@@ -1,0 +1,15 @@
+# Fdb version 3
+["pdflatex"] 1735827563 "slides/kick_off_meeting.tex" "logs/kick_off_meeting.pdf" "kick_off_meeting" 1735827563
+  "/etc/texmf/web2c/texmf.cnf" 1719304510 475 c0e671620eb5563b2130f56340a5fde8 ""
+  "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
+  "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1735410378 1435939 db9de979e20e56cc6326e69927fc37ad ""
+  "].cls" 0 -1 0 ""
+  "logs/].cls" 0 -1 0 ""
+  "logs/kick_off_meeting.aux" 1735827563 32 3985256e7290058c681f74d7a3565a19 ""
+  "logs/q.cls" 0 -1 0 ""
+  "q.cls" 0 -1 0 ""
+  "slides/kick_off_meeting.tex" 1735827559 473 247309a6dbe425348aefb183c8e5eb53 ""
+  (generated)
+  "logs/kick_off_meeting.log"
+  "logs/kick_off_meeting.pdf"

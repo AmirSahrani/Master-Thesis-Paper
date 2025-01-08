@@ -29,7 +29,7 @@
 
 \documentclass[11pt, oneside]{Thesis} % The default font size and one-sided printing (no margin offsets)
 
-\graphicspath{{Pictures/}} % Specifies the directory where pictures are stored
+\graphicspath{{Figures}} % Specifies the directory where pictures are stored
 
 
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
@@ -39,7 +39,6 @@
 \usepackage{booktabs}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
-\hypersetup{urlcolor=black, colorlinks=true} % Colors hyperlinks in blue - change to black if annoying
 \title{\ttitle} % Defines the thesis title - don't touch this
 
 \begin{document}
@@ -66,6 +65,10 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
+\begingroup
+\hypersetup{
+	urlcolor=black
+}
 \begin{titlepage}
 \begin{center}
 
@@ -104,6 +107,7 @@
 \end{center}
 
 \end{titlepage}
+\endgroup
 
 %----------------------------------------------------------------------------------------
 %	DECLARATION PAGE
@@ -117,20 +121,19 @@
 I, \authornames, declare that this thesis, entitled `\ttitle' and the work presented in it are my own. I confirm that:
 
 \begin{itemize} 
-\item[\tiny{$\blacksquare$}] This work was done wholly or mainly while in candidature for a research degree at the University of Amsterdam.
-\item[\tiny{$\blacksquare$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
-\item[\tiny{$\blacksquare$}] Where I have consulted the published work of others, this is always clearly attributed.
-\item[\tiny{$\blacksquare$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
-\item[\tiny{$\blacksquare$}] I have acknowledged all main sources of help.
-\item[\tiny{$\blacksquare$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
+\item[\tiny{$\square$}] This work was done wholly or mainly while in candidature for a research degree at the University of Amsterdam.
+\item[\tiny{$\square$}] Where any part of this thesis has previously been submitted for a degree or any other qualification at this University or any other institution, this has been clearly stated.
+\item[\tiny{$\square$}] Where I have consulted the published work of others, this is always clearly attributed.
+\item[\tiny{$\square$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
+\item[\tiny{$\square$}] I have acknowledged all main sources of help.
+\item[\tiny{$\square$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
 \end{itemize}
 
 
-Signed: \\\\\includegraphics[width=3cm]{Pictures/yoursignature.pdf} \\
+Signed: \\\\\includegraphics[width=3cm]{Figures/yoursignature.pdf} \\
 %\rule[1em]{25em}{0.5pt} % This prints a line for the signature
  
-Date: 1 August 2020\\
-%\rule[1em]{25em}{0.5pt} % This prints a line to write the date
+Date: \today\\
 }
 
 \clearpage % Start a new page
@@ -143,10 +146,10 @@ Date: 1 August 2020\\
 
 \null\vfill % Add some space to move the quote down the page a bit
 
-\textit{``What I cannot create, I do not understand."}
+\textit{``He clearly felt very passionately about it"}
 
 \begin{flushright}
-Richard P. Feynman
+	Douglas Adams
 \end{flushright}
 
 \vfill\vfill\vfill\vfill\vfill\vfill\null % Add some space at the bottom to position the quote just right
@@ -219,12 +222,9 @@ Thank the people that have helped, supervisors family etc.
 \textbf{UvA} & \textbf{U}niversitiet \textbf{v}an \textbf{A}msterdam\\
 %\textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
 }
-
 %----------------------------------------------------------------------------------------
 %	PHYSICAL CONSTANTS/OTHER DEFINITIONS
 %----------------------------------------------------------------------------------------
-
-\clearpage % Start a new page
 
 %\lhead{\emph{Physical Constants}} % Set the left side page header to "Physical Constants"
 
@@ -238,21 +238,15 @@ Thank the people that have helped, supervisors family etc.
 %	SYMBOLS
 %----------------------------------------------------------------------------------------
 
-%\clearpage % Start a new page
+\clearpage % Start a new page
 
-%\lhead{\emph{Symbols}} % Set the left side page header to "Symbols"
+\lhead{\emph{Symbols}} % Set the left side page header to "Symbols"
 
-%\listofnomenclature{lll} % Include a list of Symbols (a three column table)
-%{
-%$a$ & distance & m \\
-%$P$ & power & W (Js$^{-1}$) \\
-%% Symbol & Name & Unit \\
-
-%& & \\ % Gap to separate the Roman symbols from the Greek
-%
-%$\omega$ & angular frequency & rads$^{-1}$ \\
-%% Symbol & Name & Unit \\
-%}
+\listofnomenclature{ll} % Include a list of Symbols (a three column table)
+{
+$N$ & The set of all voters\\
+$X$ & The set of all alternatives\\
+}
 
 %----------------------------------------------------------------------------------------
 %	DEDICATION

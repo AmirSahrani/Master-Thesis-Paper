@@ -104,26 +104,107 @@
 \newpage
 \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \usepackage{amsmath,amsfonts,amssymb,amscd,amsthm,xspace}
-\theoremstyle{plain}
-\newtheorem{example}{Example}[chapter]
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{axiom}[theorem]{Axiom}
+\usepackage[most]{tcolorbox}
+\RequirePackage{amsthm}
+
+% Define colors
+\definecolor{theoremcolor}{named}{OrangeRed}
+\definecolor{corollarycolor}{named}{PineGreen}
+\definecolor{propositioncolor}{named}{VioletRed}
+\definecolor{definitioncolor}{named}{TealBlue}
+\definecolor{examplecolor}{named}{Mulberry}
+
+\newtcolorbox{myexample}[2][]{%
+    new/auto counter,
+    colback=examplecolor!2!white,
+    colbacktitle=examplecolor!8!white,
+    colframe=examplecolor!80!black,
+    coltitle=black, 
+    fonttitle=\normalfont,
+    description font=\normalfont,
+    arc=0mm,
+    enlarge top by=0.3mm, enlarge bottom by=0.3mm, toptitle=0.8mm,bottomtitle=0.35mm,left=2mm,right=2mm,
+    boxrule=\heavyrulewidth,titlerule=\lightrulewidth,leftrule=0mm,rightrule=0mm,
+    title=#1}
+
+
+
+% Boxed theorem style
+\newtcolorbox{mytheorem}[2][]{%
+	blanker,breakable,left=3.5mm,
+	top=2pt, bottom=1pt,
+	parbox=false,
+	before skip=8pt,after skip=10pt,
+	borderline west={1mm}{0.3mm}{#1!50!white}
+}
+
+% Updated Example Environment
+\newtheorem{exampleaux}{Example}[chapter]
+\newenvironment{example}[1][]{%
+    \myexample{%
+        \textbf{Example \theexampleaux}%
+        \textit{#1}
+    }%
+    \begin{exampleaux}%
+}{%
+    \end{exampleaux}%
+    \endmyexample%
+}
+
+
+% Define theorem environments
+\newtheorem{theoremaux}{Theorem}[chapter]
+\newenvironment{theorem}{%
+    \mytheorem[theoremcolor]{Theorem \thetheoremaux}%
+    \begin{theoremaux}
+}{%
+    \end{theoremaux}
+    \endmytheorem
+}
+
+\newtheorem{corollaryaux}[theoremaux]{Corollary}
+\newenvironment{corollary}{%
+    \mytheorem[corollarycolor]{Corollary \thecorollaryaux}%
+    \begin{corollaryaux}
+}{%
+    \end{corollaryaux}
+    \endmytheorem
+}
+
+\newtheorem{propositionaux}[theoremaux]{Proposition}
+\newenvironment{proposition}{%
+    \mytheorem[propositioncolor]{Proposition \thepropositionaux}%
+    \begin{propositionaux}
+}{%
+    \end{propositionaux}
+    \endmytheorem
+}
+\newtheorem{definitionaux}[exampleaux]{Definition}
+\newenvironment{definition}[1][]{%
+    \mytheorem[definitioncolor]{%
+        \textbf{Definition \thedefinitionaux}%
+        (\textit{#1})
+    }%
+    \begin{definitionaux}}{%
+    \end{definitionaux}%
+    \endmytheorem%
+}
+
+\newtheorem{lemma}[theoremaux]{Lemma}
+\newtheorem{axiom}[theoremaux]{Axiom}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
 \theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
+\newtheorem{remark}[theoremaux]{Remark}
 \usepackage[centerlast,small,sc]{caption}
 \setlength{\captionmargin}{20pt}
-\newcommand{\fref}[1]{Figure~\ref{#1}}
-\newcommand{\tref}[1]{Table~\ref{#1}}
-\newcommand{\eref}[1]{Equation~\ref{#1}}
-\newcommand{\cref}[1]{Chapter~\ref{#1}}
-\newcommand{\sref}[1]{Section~\ref{#1}}
-\newcommand{\aref}[1]{Appendix~\ref{#1}}
-\renewcommand{\topfraction}{0.85}
+
+\newcommand{\fref}[1]{\textcolor{OrangeRed}{Figure~\ref{#1}}}
+\newcommand{\tref}[1]{\textcolor{OrangeRed}{Table~\ref{#1}}}
+\newcommand{\eref}[1]{\textcolor{OrangeRed}{Equation~\ref{#1}}}
+\newcommand{\cref}[1]{\textcolor{OrangeRed}{Chapter~\ref{#1}} }
+\newcommand{\sref}[1]{\textcolor{OrangeRed}{Section~\ref{#1}} }
+\newcommand{\aref}[1]{\textcolor{OrangeRed}{Appendix~\ref{#1}}}
+\renewcommand{\topfraction}{0.85}                             
 \renewcommand{\bottomfraction}{.85}
 \renewcommand{\textfraction}{0.1}
 \renewcommand{\dbltopfraction}{.85}
@@ -144,14 +225,15 @@
         basicstyle=\scriptsize\ttfamily,
         showstringspaces=false,
         keepspaces=true}
-\lstdefinestyle{matlab} {
-        language=Matlab,
-        keywordstyle=\color{blue},
-        commentstyle=\color[rgb]{0.13,0.55,0.13}\em,
-        stringstyle=\color[rgb]{0.7,0,0} }
+\lstdefinestyle{caml} {
+        language=caml,
+        keywordstyle=\color{OrangeRed},
+        commentstyle=\color{Gray},
+      stringstyle=\color{PineGreen}
+    }
 \usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
    bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
-   colorlinks,linkcolor={blue},citecolor={blue},urlcolor={red},
+   colorlinks,linkcolor={Black},citecolor={PineGreen},urlcolor={Mulberry},
    pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
 \pdfstringdefDisableCommands{
    \let\\\space
@@ -182,13 +264,13 @@
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Your Thesis Title} % Your thesis title - this is used in the title and abstract
+\thesistitle{Modelling Meta-Agreement through an Agent Based Model} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------  
-\supervisor{supervisor name} % You supervisor's name - this is used in the title page
+\supervisor{Prof. Dr. Ulle Endriss} % You supervisor's name - this is used in the title page
 %-------------------------------------------------   
-\examiner{examiner name} % Your examiner's name - this is not currently used anywhere in the template, cite it with \examname if you want it
+\examiner{Dr. Fernando P. Santos} % Your examiner's name - this is not currently used anywhere in the template, cite it with \examname if you want it
 %-------------------------------------------------   
-\assessor{assessor name} % Your assesor's name - this is not currently used anywhere in the template, cite it with \assessorname if you want it
+\assessor{Dr. Davide Grossi} % Your assesor's name - this is not currently used anywhere in the template, cite it with \assessorname if you want it
 %-------------------------------------------------   
 \degree{Master of Science in Computational Science} % Your degree name - this is currently used in the title page and abstract
 %-------------------------------------------------   
@@ -297,20 +379,20 @@
   \thispagestyle{empty}
   \null\vfil
   \begin{center}
-    \setlength{\parskip}{0pt}
-    {\normalsize \UNIVNAME \par} % University name in capitals
-    \bigskip
+    % \setlength{\parskip}{0pt}
+    % {\normalsize \UNIVNAME \par} % University name in capitals
+    % \bigskip
     {\huge{\textit{Abstract}} \par}
-    \bigskip
-    {\normalsize \facname \par} % Faculty name
-    {\normalsize \deptname \par} % Department name
-    \bigskip
-    {\normalsize \degreename\par} % Degree name
-    \bigskip
-    {\normalsize\bf \@title \par} % Thesis title
-    \medskip
-    {\normalsize by \authornames \par} % Author name
-    \bigskip
+    % \bigskip
+    % {\normalsize \facname \par} % Faculty name
+    % {\normalsize \deptname \par} % Department name
+    % \bigskip
+    % {\normalsize \degreename\par} % Degree name
+    % \bigskip
+    % {\normalsize\bf \@title \par} % Thesis title
+    % \medskip
+    % {\normalsize by \authornames \par} % Author name
+    % \bigskip
   \end{center}
 }
 %----------------------------------------------------------------------------------------

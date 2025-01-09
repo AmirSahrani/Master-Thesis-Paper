@@ -1,20 +1,44 @@
 \documentclass[10pt,dvipsnames]{beamer}
 \usepackage{xcolor}
 \usepackage{bookmark}
+\usepackage{Oswald}
+\usepackage[T1]{fontenc}
 
-\setbeamercolor{palette primary}{fg=OrangeRed,bg=white}
-\setbeamercolor{palette secondary}{fg=RoyalPurple,bg=white}
-\setbeamercolor{structure}{fg=White,bg=white}
-\setbeamercolor{title in head/foot}{fg=black,bg=white}
-\setbeamercolor{date in head/foot}{fg=gray,bg=white}
+
+\title{First kick off meeting}
+\author{Amir Sahrani}
+\date{13-01-2025}
+
+\setbeamertemplate{frametitle}{%
+    \vspace{0.5em}% Space before the title
+    {\centering\textcolor{OrangeRed}{\Large\insertframetitle}\par}
+    \vspace{1em}% Space after the title
+}
+\definecolor{ICLLightGrey}{RGB}{245, 245, 245} % Kept the same
 
 \begin{document}
+\begingroup
+\setbeamercolor{background canvas}{bg=ICLLightGrey} % Slide background color
+	\setbeamercolor{title page title}{fg=OrangeRed} % Title text color
+	\setbeamercolor{title page subtitle}{fg=OrangeRed} % Subtitle text color
+	\setbeamercolor{author}{fg=OrangeRed} % Author(s) text color
+	\setbeamercolor{date}{fg=OrangeRed} % Date text color
+	\frame[plain, s]{\titlepage} % Output the title page with no footer ('plain') and vertically distributed text ('s')
+\endgroup
 
 \begin{frame}
-    Hello
+   Here is a bunch of text
+   Here is a bunch of text!
+   Here is a bunch of text
+   Here is a bunch of text
+   	
 \end{frame}
 
 \begin{frame}
+    World
+    World
+    World
+    World
     World
 \end{frame}
 

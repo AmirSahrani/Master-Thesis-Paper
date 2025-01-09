@@ -105,6 +105,8 @@
 \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \usepackage{amsmath,amsfonts,amssymb,amscd,amsthm,xspace}
 \usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{cleveref}
 \RequirePackage{amsthm}
 
 % Define colors
@@ -114,18 +116,6 @@
 \definecolor{definitioncolor}{named}{TealBlue}
 \definecolor{examplecolor}{named}{Mulberry}
 
-\newtcolorbox{myexample}[2][]{%
-    new/auto counter,
-    colback=examplecolor!2!white,
-    colbacktitle=examplecolor!8!white,
-    colframe=examplecolor!80!black,
-    coltitle=black, 
-    fonttitle=\normalfont,
-    description font=\normalfont,
-    arc=0mm,
-    enlarge top by=0.3mm, enlarge bottom by=0.3mm, toptitle=0.8mm,bottomtitle=0.35mm,left=2mm,right=2mm,
-    boxrule=\heavyrulewidth,titlerule=\lightrulewidth,leftrule=0mm,rightrule=0mm,
-    title=#1}
 
 
 
@@ -138,18 +128,18 @@
 	borderline west={1mm}{0.3mm}{#1!50!white}
 }
 
-% Updated Example Environment
-\newtheorem{exampleaux}{Example}[chapter]
-\newenvironment{example}[1][]{%
-    \myexample{%
-        \textbf{Example \theexampleaux}%
-        \textit{#1}
-    }%
-    \begin{exampleaux}%
-}{%
-    \end{exampleaux}%
-    \endmyexample%
-}
+%Updated Example Environment
+\newtcbtheorem[crefname={example}{examples}]{example}{Example}{
+	new/auto counter,
+	colback=examplecolor!2!white,
+	colbacktitle=examplecolor!8!white,
+	colframe=examplecolor!80!black,
+	coltitle=black, fonttitle=\scshape,
+	arc=0mm,
+	enlarge top by=0.3mm, enlarge bottom by=0.3mm, toptitle=0.8mm,bottomtitle=0.35mm,left=2mm,right=2mm,
+	boxrule=\heavyrulewidth,titlerule=\lightrulewidth,leftrule=0mm,rightrule=0mm,
+	description font=\mdseries\itshape,
+	title=#1}{ex}
 
 
 % Define theorem environments
@@ -179,16 +169,16 @@
     \end{propositionaux}
     \endmytheorem
 }
-\newtheorem{definitionaux}[exampleaux]{Definition}
-\newenvironment{definition}[1][]{%
-    \mytheorem[definitioncolor]{%
-        \textbf{Definition \thedefinitionaux}%
-        (\textit{#1})
-    }%
-    \begin{definitionaux}}{%
-    \end{definitionaux}%
-    \endmytheorem%
-}
+\tcolorboxenvironment{definition}{
+	blanker,
+	interior engine=standard,
+	breakable,
+	left=3.5mm, right=7pt,
+	top=6pt, bottom=6pt,
+	parbox=false,
+	before skip=8pt,after skip=10pt,
+	colback=definitioncolor!6!white,
+	borderline west={1mm}{0mm}{definitioncolor!30!white}}
 
 \newtheorem{lemma}[theoremaux]{Lemma}
 \newtheorem{axiom}[theoremaux]{Axiom}
@@ -198,12 +188,11 @@
 \usepackage[centerlast,small,sc]{caption}
 \setlength{\captionmargin}{20pt}
 
-\newcommand{\fref}[1]{\textcolor{OrangeRed}{Figure~\ref{#1}}}
-\newcommand{\tref}[1]{\textcolor{OrangeRed}{Table~\ref{#1}}}
-\newcommand{\eref}[1]{\textcolor{OrangeRed}{Equation~\ref{#1}}}
-\newcommand{\cref}[1]{\textcolor{OrangeRed}{Chapter~\ref{#1}} }
-\newcommand{\sref}[1]{\textcolor{OrangeRed}{Section~\ref{#1}} }
-\newcommand{\aref}[1]{\textcolor{OrangeRed}{Appendix~\ref{#1}}}
+\newcommand{\fref}[1]{\textcolor{PineGreen}{Figure~\ref{#1}}}
+\newcommand{\tref}[1]{\textcolor{PineGreen}{Table~\ref{#1}}}
+\newcommand{\eref}[1]{\textcolor{PineGreen}{Equation~\ref{#1}}}
+\newcommand{\sref}[1]{\textcolor{PineGreen}{Section~\ref{#1}} }
+\newcommand{\aref}[1]{\textcolor{PineGreen}{Appendix~\ref{#1}}}
 \renewcommand{\topfraction}{0.85}                             
 \renewcommand{\bottomfraction}{.85}
 \renewcommand{\textfraction}{0.1}

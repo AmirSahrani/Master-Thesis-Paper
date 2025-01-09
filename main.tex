@@ -27,7 +27,7 @@
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
 
-\documentclass[11pt, oneside, ]{Thesis} % The default font size and one-sided printing (no margin offsets)
+\documentclass[11pt, oneside, dvipsnames]{Thesis} % The default font size and one-sided printing (no margin offsets)
 
 \graphicspath{{Figures}} % Specifies the directory where pictures are stored
 
@@ -36,10 +36,21 @@
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{amsmath}
 \usepackage{booktabs}
+% Setup fonts
+\usepackage[T1]{fontenc}
+
+\usepackage{titlesec}
+
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \title{\ttitle} % Defines the thesis title - don't touch this
 
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{cyan}}
+  {\thesection}{1em}{}
 \begin{document}
 
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages

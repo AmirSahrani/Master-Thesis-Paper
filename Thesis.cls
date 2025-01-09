@@ -137,13 +137,18 @@
 	before skip=8pt,after skip=10pt,
 	borderline west={1mm}{0.3mm}{#1!50!white}
 }
+
+% Updated Example Environment
 \newtheorem{exampleaux}{Example}[chapter]
-\newenvironment{example}{%
-    \myexample{Example \theexampleaux}%
-    \begin{exampleaux}
+\newenvironment{example}[1][]{%
+    \myexample{%
+        \textbf{Example \theexampleaux}%
+        \textit{#1}
+    }%
+    \begin{exampleaux}%
 }{%
-    \end{exampleaux}
-    \endmyexample
+    \end{exampleaux}%
+    \endmyexample%
 }
 
 
@@ -174,14 +179,17 @@
     \end{propositionaux}
     \endmytheorem
 }
-\newtheorem{definitionaux}[theoremaux]{Definition}
+\newtheorem{definitionaux}[exampleaux]{Definition}
 \newenvironment{definition}[1][]{%
-    \mytheorem[definitioncolor]{Definition #1}%
-    \begin{definitionaux}
-}{%
-    \end{definitionaux}
-    \endmytheorem
+    \mytheorem[definitioncolor]{%
+        \textbf{Definition \thedefinitionaux}%
+        (\textit{#1})
+    }%
+    \begin{definitionaux}}{%
+    \end{definitionaux}%
+    \endmytheorem%
 }
+
 \newtheorem{lemma}[theoremaux]{Lemma}
 \newtheorem{axiom}[theoremaux]{Axiom}
 \theoremstyle{definition}

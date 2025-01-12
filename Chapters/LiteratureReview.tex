@@ -1,3 +1,62 @@
 \newpage
 \chapter{Literature review}
-\label{LR}
+\label{Literature}
+
+\lhead{\emph{Literature Review}} % Set the left side page header to "Symbols"
+
+Though Black's result~\citep{Black_1948} is a famous positive result, it is far from the only positive result relating to domain restrictions. We first look into various domain restrictions and their properties. To fully understand why single peakedness is specifically desirable we outline the political and philosophical reasons first, after which we elaborate on the mechanism through which deliberation should result in single peakedness according to \citet{List_2002}. Finally for completeness sake, we mention critiques of this theory.
+
+\section{Domain Restrictions}
+A voting domain $\mathcal{D}$ is the domain of all possible voting profiles \(R\) given some number of voters $N$ and some number of alternatives $|X|$. Intuitively, this is simple the space of all possible outcomes of some election. Put more formally, we get.
+
+\begin{definition}{Domain}{domain}
+	{
+		Given a set of voters $N$, alternatives $A$, and conditions $C$, the domain $\mathcal{D}$ of an election is the set of all profiles $R$ such that all conditions $C$ are satisfied.
+	}
+\end{definition}
+
+When we consider the domain of an election, one particular profile is the source of many impossibility results in social choice, namely, the Condorcet cycle. To understand why this profile is problematic, let us first define a notion of aggregation, the \textit{majority relation} is the preference relation we get when we compare all alternatives pairwise, and construct a preference profile from this. 
+
+\begin{example}{Majority relations}{maj-rel}
+	\begin{minipage}{0.15\linewidth}
+		\begin{tabular}{ccc}
+			\toprule
+			$v_1$ & $v_2$ & $v_3$ \\
+			\midrule
+			a & b & a \\
+			b & c & c \\
+			c & a & b \\
+			\bottomrule
+		\end{tabular}
+	\end{minipage}
+	\hspace{2em}
+	\begin{minipage}{0.70\linewidth}
+		Given the profile on the left, we first start by comparing $a$ to $b$, both voters 1 and 3 prefer $a$ to $b$, thus the majority has prefers $a$ to $b$. Comparing $b$ to $c$, we see again that the majority prefers $b$ to $c$. Finally comparing $a$ to $c$ we see $a$ is again preferred. Thus the majority relation is $a \prefmaj b \prefmaj c$
+	\end{minipage}
+\end{example}
+
+One property of the majority relation, that is both desirable, yet violated by the Condorcet cycle is that of transitivity. We define the transitivity on the majority relation as follows
+
+\begin{definition}{Transitivity}{maj-trans}
+	A (majority) relation is transitive, if it holds that if $a \prefmaj b$ and $b \prefmaj c$, then it must necessarily hold that $a \prefmaj c$.
+\end{definition}
+
+Intuitively it is clear why such a property is desirable, if the majority can agree on the ordering of the alternatives, it must be easier to pick a winner. Unfortunately this is not always the case, with the most famous example being the Condorcet cycle. This is a profile with 3 voters and 3 alternatives, in which all alternatives are ranked in all positions, \cref{tab: Condorcet} show a particular instance of a Condorcet cycle.
+
+ 
+\begin{table}[h]
+\centering
+\begin{tabular}{ccc}
+	\toprule
+	$v_1$ & $v_2$ & $v_3$ \\
+	\midrule
+	a & b & c \\
+	b & c & a \\
+	c & a & b \\
+	\bottomrule
+\end{tabular}
+	\caption{The Condorcet cycle, showing all alternatives in each position}
+	\label{tab: Condorcet}
+\end{table}
+
+Clearly this profile present problems, as each possible outcome, would also have a majority of voters preferring another. 

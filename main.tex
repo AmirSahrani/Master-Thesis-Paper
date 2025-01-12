@@ -36,21 +36,16 @@
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{amsmath}
 \usepackage{booktabs}
-\usepackage{hyperref}
-\usepackage{cleveref}
-% Setup crimson font
+\usepackage[Sonny]{fncychap}
+\ChNameUpperCase
+\ChNumVar{\fontsize{30}{35}\usefont{OT1}{ptm}{m}{n}\selectfont}
+\ChTitleVar{\Large\sc}
 
 \usepackage{titlesec}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \title{\ttitle} % Defines the thesis title - don't touch this
 
-\titleformat{\chapter}[display]
-  {\normalfont\sffamily\huge\bfseries}
-  {\chaptertitlename\ \thechapter}{20pt}{\Huge}
-\titleformat{\section}
-  {\normalfont\sffamily\Large\bfseries\color{cyan}}
-  {\thesection}{1em}{}
 \begin{document}
 
 \frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the pre-content pages
@@ -64,6 +59,13 @@
 \pagestyle{fancy} % Finally, use the "fancy" page style to implement the FancyHdr headers
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
+
+
+% Command for Social choice
+\newcommand{\alternatives}{X}
+\newcommand{\voters}{N}
+\newcommand{\pref}{\succ}
+\newcommand{\prefmaj}{\succ_{\text{maj}}}
 
 % PDF meta-data
 \hypersetup{pdftitle={\ttitle}}
@@ -324,6 +326,6 @@ $X$ & The set of all alternatives\\
 
 \bibliographystyle{unsrtnat} % Use the "unsrtnat" BibTeX style for formatting the Bibliography
 
-\bibliography{References} % The references (bibliography) information are stored in the file named "Bibliography.bib"
+\bibliography{references}
 
 \end{document}  

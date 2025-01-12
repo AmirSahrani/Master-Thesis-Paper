@@ -91,12 +91,24 @@
 \clubpenalty=9999                 % Almost no orphans at top of page.
 \interfootnotelinepenalty=9999    % Almost never break footnotes.
 \usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[Sonny]{fncychap}
+
 \lhead[\rm\thepage]{\fancyplain{}{\sl{\rightmark}}}
 \rhead[\fancyplain{}{\sl{\leftmark}}]{\rm\thepage}
 \chead{}\lfoot{}\rfoot{}\cfoot{}
 \pagestyle{fancy}
-\renewcommand{\chaptermark}[1]{\btypeout{\thechapter\space #1}\markboth{\@chapapp\ \thechapter\ #1}{\@chapapp\ \thechapter\ #1}}
+\ChNameUpperCase
+\ChNumVar{\fontsize{40}{42}\usefont{OT1}{ptm}{m}{n}\selectfont}
+\ChTitleVar{\Large\sc}
+
 \renewcommand{\sectionmark}[1]{}
+
+
+\titleformat{\section}
+  {\normalfont\normalsize\bfseries}{\thesection.}{1em}{}
+\titlespacing*{\section}
+  {0pt}{1.5ex plus .1ex minus .2ex}{0 ex plus .1ex}
 \renewcommand{\subsectionmark}[1]{}
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
 \hbox{}
@@ -105,7 +117,10 @@
 \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \usepackage{amsmath,amsfonts,amssymb,amscd,amsthm,xspace}
 \usepackage[most]{tcolorbox}
-\usepackage{hyperref}
+\usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
+   bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
+   colorlinks,linkcolor={Black},citecolor={PineGreen},urlcolor={Mulberry},
+   pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
 \usepackage{cleveref}
 \RequirePackage{amsthm}
 
@@ -169,16 +184,17 @@
     \end{propositionaux}
     \endmytheorem
 }
-\tcolorboxenvironment{definition}{
-	blanker,
-	interior engine=standard,
-	breakable,
-	left=3.5mm, right=7pt,
-	top=6pt, bottom=6pt,
-	parbox=false,
-	before skip=8pt,after skip=10pt,
-	colback=definitioncolor!6!white,
-	borderline west={1mm}{0mm}{definitioncolor!30!white}}
+\newtcbtheorem[crefname={definition}{definitions}]{definition}{Definition}{
+	new/auto counter,
+	colback=definitioncolor!2!white,
+	colbacktitle=definitioncolor!8!white,
+	colframe=definitioncolor!80!black,
+	coltitle=black, fonttitle=\scshape,
+	arc=0mm,
+	enlarge top by=0.3mm, enlarge bottom by=0.3mm, toptitle=0.8mm,bottomtitle=0.35mm,left=2mm,right=2mm,
+	boxrule=\heavyrulewidth,titlerule=\lightrulewidth,leftrule=0mm,rightrule=0mm,
+	description font=\mdseries\itshape,
+	title=#1}{def}
 
 \newtheorem{lemma}[theoremaux]{Lemma}
 \newtheorem{axiom}[theoremaux]{Axiom}
@@ -220,10 +236,6 @@
         commentstyle=\color{Gray},
       stringstyle=\color{PineGreen}
     }
-\usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
-   bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
-   colorlinks,linkcolor={Black},citecolor={PineGreen},urlcolor={Mulberry},
-   pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
 \pdfstringdefDisableCommands{
    \let\\\space
 }

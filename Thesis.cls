@@ -106,7 +106,7 @@
 
 
 \titleformat{\section}
-  {\normalfont\normalsize\bfseries}{\thesection.}{1em}{}
+  {\normalfont\normalsize\bfseries}{\thesection}{1em}{}
 \titlespacing*{\section}
   {0pt}{1.5ex plus .1ex minus .2ex}{0 ex plus .1ex}
 \renewcommand{\subsectionmark}[1]{}
@@ -119,7 +119,7 @@
 \usepackage[most]{tcolorbox}
 \usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
    bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
-   colorlinks,linkcolor={Black},citecolor={PineGreen},urlcolor={Mulberry},
+   colorlinks,linkcolor={Black},citecolor={PineGreen},urlcolor={RoyalBlue},
    pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
 \usepackage{cleveref}
 \RequirePackage{amsthm}

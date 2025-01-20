@@ -35,7 +35,10 @@
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{amsmath}
+\usepackage{enumitem}
+\setlist{nolistsep}
 \usepackage{booktabs}
+
 \usepackage[Sonny]{fncychap}
 \ChNameUpperCase
 \ChNumVar{\fontsize{30}{35}\usefont{OT1}{ptm}{m}{n}\selectfont}
@@ -66,9 +69,12 @@
 \newcommand{\voters}{N}
 \newcommand{\pref}{\succ}
 \newcommand{\prefmaj}{\succ_{\text{maj}}}
+\newcommand{\domain}[1]{\mathcal{D}_{\text{#1}}}
+\newcommand{\votingrule}[1]{f_{\text{#1}}}
+\newcommand{\orderalt}{\triangleleft}
 
 % PDF meta-data
-\hypersetup{pdftitle={\ttitle}}
+\hypersetup{pdftitle=\ttitle}
 \hypersetup{pdfsubject=\subjectname}
 \hypersetup{pdfauthor=\authornames}
 \hypersetup{pdfkeywords=\keywordnames}
@@ -138,14 +144,18 @@ I, \authornames, declare that this thesis, entitled `\ttitle' and the work prese
 \item[\tiny{$\square$}] Where I have consulted the published work of others, this is always clearly attributed.
 \item[\tiny{$\square$}] Where I have quoted from the work of others, the source is always given. With the exception of such quotations, this thesis is entirely my own work.
 \item[\tiny{$\square$}] I have acknowledged all main sources of help.
-\item[\tiny{$\square$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.\\
+\item[\tiny{$\square$}] Where the thesis is based on work done by myself jointly with others, I have made clear exactly what was done by others and what I have contributed myself.
 \end{itemize}
 
 
-Signed: \\\\\includegraphics[width=3cm]{Figures/yoursignature.pdf} \\
-%\rule[1em]{25em}{0.5pt} % This prints a line for the signature
+Signed: 
+
+\vspace{1em}
+
+
+\includegraphics[width=3cm]{Figures/yoursignature.pdf} \par
  
-Date: \today\\
+Date: \today
 }
 
 \clearpage % Start a new page
@@ -158,10 +168,10 @@ Date: \today\\
 
 \null\vfill % Add some space to move the quote down the page a bit
 
-\textit{``He clearly felt very passionately about it"}
+\textit{``The majority, standing in for the people, wills everything and therefore wills nothing"}
 
 \begin{flushright}
-	Douglas Adams
+	Joshua Cohen
 \end{flushright}
 
 \vfill\vfill\vfill\vfill\vfill\vfill\null % Add some space at the bottom to position the quote just right
@@ -208,6 +218,7 @@ Thank the people that have helped, supervisors family etc.
 
 \lhead{\emph{Contents}} % Set the left side page header to "Contents"
 \tableofcontents % Write out the Table of Contents
+
 
 \lhead{\emph{List of Figures}} % Set the left side page header to "List of Figures"
 \listoffigures % Write out the List of Figures
@@ -258,6 +269,9 @@ Thank the people that have helped, supervisors family etc.
 {
 $N$ & The set of all voters\\
 $X$ & The set of all alternatives\\
+$\pref$ & A preference relation ship\\
+$\domain{ }$ & A domain of possible profiles\\
+$\orderalt$ & A geometric order over candidates\\
 }
 
 %----------------------------------------------------------------------------------------

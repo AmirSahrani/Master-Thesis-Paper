@@ -189,18 +189,50 @@ These features allow us to be more precise when we talk about a deliberative dem
 \end{enumerate}
 
 \subsection{Meta-Agreement}
-% TODO: Add source for not coming to substantative agreement
+% TODO: Add source for not coming to substantive agreement
 Historically the goal of deliberation was to reach consensus, which is sometimes referred to as substantive agreement. Although this might be desirable, we make no argument for this in this work, it is clear to see that in practice people, even after deliberation rarely come to full substantive agreement. \citet{List_2002}
 
-
 \section{Related Work}
+\citet{Soroush_Rafiee_Rad_Roy_2021} model deliberation and its effect on single peakedness, though they argue single plateauedness is a more accurate term. To this end, they model each voter to have preferences order, and deliberation being the process of all voters announcing their preferences, after which all other voters update their current preference towards that of the announced ranking, in doing so they might have a bias towards their own preference, as such they try to minimize the distance between their current preference and the announced one. This process repeats until all voters have announced their opinion once, and possibly occurs for multiple rounds. The preference a voter adopts when updating must lie between their current profile and the announced profile, which profiles are considered to be "between" is define by the distance metric used. They considered three metrics, the Kemeny-Snell [SOURCE] (KS) distance, Dubby-P... (DP) [SOURCE], and C... (CS) [SOURCE]. Both KS and DP depend on the judgement set resulting from the voters preferences, the KS distance is then defined as the number of binary swaps a judgement set needs to undergo before it becomes the target judgement set. The DP distance is defined on the graph of judgement sets, where 2 sets have an edge if there is no judgement set between them. Betweenness for KS and DP is the same, and is defined as follows: 
+
+\begin{definition}{J-Betweenness}{def:j-between}
+	A judgement set $J_i$ is between profiles $J_j$ and $J_k$ if for all $\pref \in J_i$ $\pref \in J_j \vee \pref \in J_k$
+\end{definition}
+Diagram \ref{dia:DPDistance} shows a graph used for the DP distance in the case of 3 alternatives, for simplicity the associated profiles are used to label the judgement sets.
 
 
 
+The CS distance is simpler and is simply defined as the number of positions two voters disagree on, and a profile is between to other if for each position it agrees with one of the two profiles. 
+
+It is clear that each distance has different trade-offs, CS is the simplest, but might exaggerate the distance when there are many alternatives, for example if 2 voters agree on the relative ranking of all but 1 alternatives, which one voter happens to rank first, thereby shifting all other profiles right. The KS distance, using judgement sets instead of raw profiles captures this more effectively, while still being relatively easy to compute, but in cases of more disagreement, it is likely to over count the distance, since the binary changes to not capture logical necessities. For example, swapping $( a \pref b)$ to $\neg (a \pref b)$ must result in $(a \pref b)$ becoming true (in the case of strict preferences), thus one might reasonably conclude this should only count as 1 step. DP improves upon this, but in doing so become much harder to compute, mainly through the cost of constructing the full graph of judgement sets, which grows in $\mathcal{O}(n!)$ in the number of vertices, where $n$ is the number of alternatives. 
 
 
-
-
-
-
+\begin{tikzpicture}[>=latex,line join=bevel,scale=0.8]
+%%
+\node (123) at (27.0bp,36.0bp) [draw,rectangle] {$1 \pref 2 \pref 3$};
+  \node (132) at (117.0bp,64.0bp) [draw,rectangle] {$1 \pref 3 \pref 2$};
+  \node (213) at (477.0bp,36.0bp) [draw,rectangle] {$2 \pref 1 \pref 3$};
+  \node (312) at (207.0bp,64.0bp) [draw,rectangle] {$3 \pref 1 \pref 2$};
+  \node (231) at (387.0bp,64.0bp) [draw,rectangle] {$2 \pref 3 \pref 1$};
+  \node (321) at (297.0bp,64.0bp) [draw,rectangle] {$3 \pref 2 \pref 1$};
+  \draw [->] (123) ..controls (62.569bp,40.26bp) and (71.703bp,43.035bp)  .. (132);
+  \draw [->] (123) ..controls (88.567bp,12.545bp) and (151.46bp,0.0bp)  .. (206.0bp,0.0bp) 
+.. controls (206.0bp,0.0bp) and (206.0bp,0.0bp)  .. (298.0bp,0.0bp) .. controls (347.64bp,0
+.0bp) and (404.2bp,10.392bp)  .. (213);
+  \draw [->] (132) ..controls (81.779bp,59.84bp) and (72.652bp,57.077bp)  .. (123);
+  \draw [->] (132) ..controls (152.39bp,57.272bp) and (161.31bp,57.135bp)  .. (312);
+  \draw [->] (213) ..controls (415.43bp,30.545bp) and (352.54bp,18.0bp)  .. (298.0bp,18.0bp
+) .. controls (206.0bp,18.0bp) and (206.0bp,18.0bp)  .. (206.0bp,18.0bp) .. controls (156.3
+6bp,18.0bp) and (99.8bp,28.392bp)  .. (123);
+  \draw [->] (213) ..controls (441.87bp,53.584bp) and (432.85bp,56.597bp)  .. (231);
+  \draw [->] (231) ..controls (422.48bp,46.295bp) and (431.51bp,43.289bp)  .. (213);
+  \draw [->] (231) ..controls (351.95bp,70.718bp) and (343.04bp,70.864bp)  .. (321);
+  \draw [->] (312) ..controls (171.95bp,70.718bp) and (163.04bp,70.864bp)  .. (132);
+  \draw [->] (312) ..controls (242.39bp,57.272bp) and (251.31bp,57.135bp)  .. (321);
+  \draw [->] (321) ..controls (332.39bp,57.272bp) and (341.31bp,57.135bp)  .. (231);
+  \draw [->] (321) ..controls (261.95bp,70.718bp) and (253.04bp,70.864bp)  .. (312);
+%
+  \label{dia:DPDistance}
+\end{tikzpicture}
+% End of code
 

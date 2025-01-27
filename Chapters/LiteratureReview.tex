@@ -4,7 +4,7 @@
 
 \lhead{\emph{Literature Review}} % Set the left side page header to "Symbols"
 
-Though Black's result~\citep{Black_1948} is a famous positive result, it is far from the only positive result relating to domain restrictions. We first look into various domain restrictions and their properties. To fully understand why single peakedness is specifically desirable we outline the political and philosophical reasons first, after which we elaborate on the mechanism through which deliberation should result in single peakedness according to \citet{List_2002}. Finally, for completeness' sake, we mention critiques of this theory.
+Though Black's result~\citep{blackRationaleGroupDecisionmaking1948} is a famous positive result, it is far from the only positive result relating to domain restrictions. We first look into various domain restrictions and their properties. To fully understand why single peakedness is specifically desirable we outline the political and philosophical reasons first, after which we elaborate on the mechanism through which deliberation should result in single peakedness according to \citet{listTwoConceptsAgreement2002}. Finally, for completeness' sake, we mention critiques of this theory.
 
 \section{Domain Restrictions}
 A voting domain $\mathcal{D}$ is the domain of all possible voting profiles \(R\) given some number of voters $N$ and some number of alternatives $|X|$. Intuitively, this is simple the space of all possible outcomes of some election. Put more formally, we get.
@@ -15,7 +15,7 @@ A voting domain $\mathcal{D}$ is the domain of all possible voting profiles \(R\
 	}
 \end{definition}
 
-When we consider the domain of an election, one particular profile is the source of many impossibility results in social choice, namely, the Condorcet cycle. To understand why this profile is problematic, let us first define a notion of aggregation, the \textit{majority relation} is the preference relation we get when we compare all alternatives pairwise, and construct a preference profile from this. 
+When we consider the domain of an election, one particular profile is the source of many impossibility results in social choice, namely, the Condorcet cycle. To understand why this profile is problematic, let us first define a notion of aggregation, the \textit{majority relation} is the preference relation we get when we compare all alternatives pairwise, and construct a preference profile from this.
 
 \begin{example}{Majority relations}{maj-rel}
 	\begin{minipage}{0.15\linewidth}
@@ -23,9 +23,9 @@ When we consider the domain of an election, one particular profile is the source
 			\toprule
 			$v_1$ & $v_2$ & $v_3$ \\
 			\midrule
-			a & b & a \\
-			b & c & c \\
-			c & a & b \\
+			a     & b     & a     \\
+			b     & c     & c     \\
+			c     & a     & b     \\
 			\bottomrule
 		\end{tabular}
 	\end{minipage}
@@ -43,18 +43,18 @@ One property of the majority relation, that is both desirable, yet violated by t
 
 Intuitively it is clear why such a property is desirable, if the majority can agree on the ordering of the alternatives, it must be easier to pick a winner. Unfortunately this is not always the case, with the most famous example being the Condorcet cycle. This is a profile with 3 voters and 3 alternatives, in which all alternatives are ranked in all positions, \cref{tab: Condorcet} show a particular instance of a Condorcet cycle.
 
- 
+
 \begin{table}[h]
-\centering
-\begin{tabular}{ccc}
-	\toprule
-	$v_1$ & $v_2$ & $v_3$ \\
-	\midrule
-	a & b & c \\
-	b & c & a \\
-	c & a & b \\
-	\bottomrule
-\end{tabular}
+	\centering
+	\begin{tabular}{ccc}
+		\toprule
+		$v_1$ & $v_2$ & $v_3$ \\
+		\midrule
+		a     & b     & c     \\
+		b     & c     & a     \\
+		c     & a     & b     \\
+		\bottomrule
+	\end{tabular}
 	\caption{The Condorcet cycle, showing all alternatives in each position}
 	\label{tab: Condorcet}
 \end{table}
@@ -76,16 +76,16 @@ This allows us to state our first proposition.
 	Assume, for the sake of contradiction, the plurality in fact does return a tie this must mean that all alternatives were ranked first an equal number of times, call this $k$, necessarily then, we have need exactly $k \cdot |X|$ voters, but this leads to a contradiction, as this would no longer be inside $\domain{No-tie}$.
 \end{proof}
 
-This is a simple result, but it leads to way to more interesting ones. For this we need to specify more clearly in what ways we can restrict our domains. \citet{Gaertner_2002} establishes 2 ways in which a domain can be restricted. Firstly we can restrict the domain to a number of voters or alternatives, which is what we did in $\domain{No-tie}$. Secondly, the domain can be restricted to have a certain structure, such as being single-peaked. Furthermore, \citet{Elkind_Lackner_Peters_2022} establish the \textit{hereditary}
+This is a simple result, but it leads to way to more interesting ones. For this we need to specify more clearly in what ways we can restrict our domains. \citet{gaertnerChapter3Domain2002} establishes 2 ways in which a domain can be restricted. Firstly we can restrict the domain to a number of voters or alternatives, which is what we did in $\domain{No-tie}$. Secondly, the domain can be restricted to have a certain structure, such as being single-peaked. Furthermore, \citet{elkindPreferenceRestrictionsComputational2022a} establish the \textit{hereditary}
 
-\begin{definition}{Hereditary \textnormal{(\citet{Elkind_Lackner_Peters_2022})}}{dom-hereditary}
+\begin{definition}{Hereditary \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022a})}}{dom-hereditary}
 	A domain restriction onto $\domain{ }$ is \textit{hereditary} if, for every profile $P \in \domain{ }$, and every profile $P'$, that can be obtained by deleting voters and alternatives from $P$, $P'$ is also in $\domain{ }$
 \end{definition}
 
 \subsection{Condorcet Domain}
-If our goal is to prevent Condorcet cycles, or in general have transitive majority relations, the best we could hope to do is to apply our domain restriction such that our domain contains all profiles $P$ such that $P$ has a (weak) Condorcet winner. We call this domain $\domain{Condorcet}$. Under this domain, let $\votingrule{Condorcet}$ be the Condorcet Rule, which picks a Condorcet winner. Then $\votingrule{Condorcet}$ is strategyproof over $\domain{Condorcet}$ \citep{Elkind_Lackner_Peters_2022}.
+If our goal is to prevent Condorcet cycles, or in general have transitive majority relations, the best we could hope to do is to apply our domain restriction such that our domain contains all profiles $P$ such that $P$ has a (weak) Condorcet winner. We call this domain $\domain{Condorcet}$. Under this domain, let $\votingrule{Condorcet}$ be the Condorcet Rule, which picks a Condorcet winner. Then $\votingrule{Condorcet}$ is strategyproof over $\domain{Condorcet}$ \citep{elkindPreferenceRestrictionsComputational2022a}.
 
-\begin{proof}{(\citet{Elkind_Lackner_Peters_2022}).} 
+\begin{proof}{(\citet{elkindPreferenceRestrictionsComputational2022a}).}e
 	Assume, for the sake of a contradiction, we have profiles $P = (\pref_1 \dots \pref_i \dots \pref_n)$ and $P' = (\pref_1 \dots \pref_{i'} \dots \pref_n)$ such that:
 	\[
 		\votingrule{Condorcet}(P) = a, \quad \votingrule{Condorcet}(P') = b, \quad \text{and } a \neq b
@@ -99,11 +99,11 @@ Though this result is positive, $\domain{Condorcet}$ is not hereditary, this is 
 	\begin{minipage}{0.25\linewidth}
 		\begin{tabular}{cccc}
 			\toprule
-			$v_1$ & $v_2$ & $v_3$ & $v_4$  \\
+			$v_1$ & $v_2$ & $v_3$ & $v_4$ \\
 			\midrule
-			a & b & c & a \\
-			b & c & a & c \\
-			c & a & b & b \\
+			a     & b     & c     & a     \\
+			b     & c     & a     & c     \\
+			c     & a     & b     & b     \\
 			\bottomrule
 		\end{tabular}
 	\end{minipage}
@@ -116,7 +116,7 @@ A domain not being hereditary means that the nice properties of the domain can b
 
 \subsection{Hereditary Domains}
 
-The first hereditary domain we present, will also be the main focus of this thesis. This is the domain of all single peaked profiles. 
+The first hereditary domain we present, will also be the main focus of this thesis. This is the domain of all single peaked profiles.
 
 \begin{definition}{Single Peaked Profiles}{single-peaked}
 	A profile $P$ is single peaked, if given some ordering $\orderalt$ over the alternatives, it holds that for all voters $i$, and all $a, b, c \in X$, if $a \orderalt b \orderalt c$, then either $a \pref_i b$ or $c \pref_i b$, but never both.
@@ -124,12 +124,12 @@ The first hereditary domain we present, will also be the main focus of this thes
 
 Note that in  a voter is allowed to prefer $b$ best, and then choose $a$ or $c$ in any order. It is clear to see that if any voter or alternative is deleted, this property is satisfied.
 
-\begin{proposition}{\textnormal{(\citet{Elkind_Lackner_Peters_2022}).}}
+\begin{proposition}{\textnormal{(\citet{elkindPreferenceRestrictionsComputational2022a}).}}
 	$\domain{SP}$ is hereditary.
 \end{proposition}
 
 \begin{proof}
-	(Voter Deletion). If we remove a voter, this does not affect the other voters, thus the property is satisfied.~\checkmark	
+	(Voter Deletion). If we remove a voter, this does not affect the other voters, thus the property is satisfied.~\checkmark
 
 	(Alternative Deletion). Consider a voter $i$ and their single peaked vote, if we remove some alternative $x$, this voter all alternatives which voter $i$ preferred to $x$ stay in the same position, while all other alternatives move up one rank, thus preserving the order.~\checkmark
 \end{proof}
@@ -138,8 +138,8 @@ A similar notion to single peaked profiles is that of single caved profiles, whi
 
 Instead of ordering the alternatives, we can imagine instead ordering the voters, such that we have a leftmost and rightmost voters, and all other voters can be placed between them based on their difference. In this case, a profile is single crossing if, for any alternative $a$, its preference relation to another any alternative $b$ flips at most once when traversing the voters in order $\orderalt$.
 
-\begin{definition}{Single Crossing Profiles \textnormal{(\citet{Elkind_Lackner_Peters_2022})}}{single-crossing}
-	A profile $P$ is single crossing w.r.t. $\orderalt$, if for any $a,b \ in X$, $\{i \in N : a \pref b\}$ and $\{i \in N: b \pref b\}$ are both intervals over $[n]$. A profile $P$ is single crossing if the votes can be permuted such that it is single crossing w.r.t. a given ordering. 
+\begin{definition}{Single Crossing Profiles \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022a})}}{single-crossing}
+	A profile $P$ is single crossing w.r.t. some ordering $\orderalt$, if for any $a,b \ in X$, $\{i \in N : a \pref b\}$ and $\{i \in N: b \pref b\}$ are both intervals over $[n]$. A profile $P$ is single crossing if the votes can be permuted such that it is single crossing w.r.t. a given ordering.
 \end{definition}
 
 Similar to single peaked profiles, the domain of single crossing profiles, $\domain{SC}$ is also hereditary
@@ -155,13 +155,15 @@ Similar to single peaked profiles, the domain of single crossing profiles, $\dom
 \end{proof}
 
 \section{The History of Deliberation and Meta-Agreement}
-In this section we examine the historical ideas around deliberation and deliberative democracy, as well as that of Meta-Agreement. Furthermore, we review the relationship between them. We do not argue in favor or against deliberation, or Meta-agreement, though we might share some arguments made in the literature if they relate to our work.
+
+We have provided an overview of different domain restriction and their properties, mainly showing how they avoid Condorcet cycles. Some argue however, that Condorcet cycle are empirically rare. The next section is dedicated to explaining why this is so through examining the historical ideas around deliberation and deliberative democracy, as well as that of Meta-Agreement.
 
 \subsection{Deliberation}
-Though deliberation is intuitively familiar, namely the process of multiple people talking through a problem with the goal of coming to an agreement, compromise or solution, providing a definition that is both clear and consistent with the literature in Political Science, Philosophy and Social choice is difficult. Though the intuition is completely incorrect, it leaves some of the reasons for and goals of deliberation, as state in the literature, unmentioned. 
+Though deliberation is intuitively familiar, namely the process of multiple people talking through a problem with the goal of coming to an agreement, compromise or solution, providing a definition that is both clear and consistent with the literature in Political Science, Philosophy and Social choice is difficult. Though the intuition is completely incorrect, it leaves some of the reasons for and goals of deliberation, as state in the literature, unmentioned.
 
 
-\citet{Freeman_2000} gives an overview of deliberative democracy, in which he shares the intuitive idea that a deliberative democracy contains open discussion, open legislative deliberation and a pursuit of the common good. He also notes that there is no common agreement on the central features of a deliberative democracy, one account is that of deliberative democracy simply involving discussion among the public before voting. Another similar account is that this voting must not only be preceded by deliberation, but also general communication, all of which intended to change people's preferences. He further proceeds to give a more detailed conception of deliberative democracy, according to which a deliberative democracy is one in which political agents or their representatives
+\citet{freemanDeliberativeDemocracySympathetic2000} gives an overview of deliberative democracy, in which he shares the intuitive idea that a deliberative democracy contains open discussion, open legislative deliberation and a pursuit of the common good. He also notes that there is no common agreement on the central features of a deliberative democracy, one account is that of deliberative democracy simply involving discussion among the public before voting. Another similar account is that this voting must not only be preceded by deliberation, but also general communication, all of which intended to change people's preferences. He further proceeds to give a more detailed conception of deliberative democracy, according to which a deliberative democracy is one in which political agents or their representatives
+
 \begin{enumerate}
 	\label{list:deliberative-democracy}
 	\setlength\itemsep{1px}
@@ -177,7 +179,7 @@ Though deliberation is intuitively familiar, namely the process of multiple peop
 	\item  Agree that their common interest lies primarily in freedom, independence and equal status as citizens.
 \end{enumerate}
 
-These features allow us to be more precise when we talk about a deliberative democracy, and in turn be more careful about what deliberation must entail. \citet{Cohen_2002} further argues that deliberation is needed for democratic legitimacy. By this he means that without deliberation, a democracy is simply the will of the majority, but since majority rule is unstable, it is simply a reflection of the particular institutional constrains at the time. He further goes on to describe the \textit{ideal deliberative procedure} as follows
+These features allow us to be more precise when we talk about a deliberative democracy, and in turn be more careful about what deliberation must entail. \citet{cohenDELIBERATIONDEMOCRATICLEGITIMACY2002} further argues that deliberation is needed for democratic legitimacy. By this he means that without deliberation, a democracy is simply the will of the majority, but since majority rule is unstable, it is simply a reflection of the particular institutional constrains at the time. He further goes on to describe the \textit{ideal deliberative procedure} as follows
 
 \begin{enumerate}
 	\label{list:ideal-deliberation}
@@ -185,54 +187,79 @@ These features allow us to be more precise when we talk about a deliberative dem
 	\item  Ideal deliberation is \textit{free}, participants regard themselves as only bound by the results of the deliberation, and the preconditions thereof. Participants act in accordance with the decision made through deliberation, and it being agreed on is sufficient reason to do so.
 	\item  Ideal deliberation is \textit{reasoned}, parties are required to state their reasons for advancing proposals.
 	\item  In ideal deliberation, parties are \textit{equal}, but formally and substantively. There are no rules that single individuals out, and existing distributions of power to no lend a party the opportunity to contribute to deliberation.
-	\item  Ideal deliberation aims to arrive at \textit{consensus}, which can be rationally defended. 
+	\item  Ideal deliberation aims to arrive at \textit{consensus}, which can be rationally defended.
 \end{enumerate}
 
 \subsection{Meta-Agreement}
-% TODO: Add source for not coming to substantive agreement
-Historically the goal of deliberation was to reach consensus, which is sometimes referred to as substantive agreement. Although this might be desirable, we make no argument for this in this work, it is clear to see that in practice people, even after deliberation rarely come to full substantive agreement. \citet{List_2002}
+
+A goal of deliberation could be to reach consensus, which is sometimes referred to as substantive agreement, \citet{elsterMARKETFORUMThree2002} argues that this is not only the goal, but through unanimity this process completely replaces voting, thereby circumventing Arrow's impossibility theorem: ``Or rather, there would not be any need for an aggregation mechanism, since a rational discussion would tend to produce unanimous preferences.” (p. 112). Though it would be desirable to circumvent Arrow's impossibility theorem, in practice people, even after deliberation might not, indeed often do not, come to full substantive agreement. \citet{listTwoConceptsAgreement2002} instead proposed another lens through which we can analyze deliberation and the type of agreement it induces.
+
+Under \emph{Meta-agreement} individuals do not need to agree on the their most preferred outcome, instead they only need to agree on the dimensions of the problem. To contrast this with substantive agreement, under which individuals do not need to conceive of the problem in the same way, all they need is to agree on the same outcome. This means that under substantive agreement, voters can agree outcome $a \pref b$ for different reasons, while under meta-agreement, if voters disagree on $a \pref b$ it must be for the same reason.
+
+According to \citet{listTwoConceptsAgreement2002} there are three hypothesis that need to be satisfied for deliberation to induce meta-agreement:
+\begin{enumerate}
+	\label{list:meta-agreement-checklist}
+	\setlength\itemsep{1px}
+	\item [D1] Deliberation leads people to discover a single \textit{issue}-dimension
+	\item [D2] Deliberation lets people place all possible alternatives in this \textit{issue}-dimension
+	\item [D3] After this deliberation, people update their preferences by picking a preferred (peak) outcome, and all other rankings are based on structure of the \textit{issue}-dimension
+\end{enumerate}
+
+All these are necessary conditions for meta-agreement, from this is it also clear to see that, given that there is exactly 1 \textit{issue}-dimension, single peaked profile are, by definition, a direct consequence. This is the main reason meta-agreement is desirable, as it lets us circumvent the Gibberd- Satterthwaite theorem (\citep{gibbardManipulationVotingSchemes1973} \citep{satterthwaiteStrategyproofnessArrowsConditions1975})through restricting the domain of preference profiles to the single peaked domain $\domain{SP}$
+
+
+\citet{listDeliberationSinglePeakednessPossibility2013} provide empirical evidence for this theory of deliberation, showing deliberation increases proximity to single peakedness, which they define as $S= \frac{m}{n}$ where $m = |M|$ is the largest subset of voters such that their profile is single peaked. Furthermore, they also introduce the notion of salience, which represents to what extent a topic is salient in the voting population. In order to test whether deliberation increases single-peakedness \textit{through} meta-agreement, they test the following four hypotheses: (H1) deliberation increases proximity to single peakedness. (H2')\footnote{This is a test for a corollary. H2 states that the rate of increase of proximity to single peakedness decreases. Since high salience means some sort of deliberation has happened before, we expect this to have the same affect.} high salience issues show less increase in PtS then low salience issues. (H3) Effective deliberation, in the sense that more is learned during deliberation, results in bigger increases. (H4) All things equal, the increase is largest for issues with natural \textit{issue}-dimensions.
+
+Meta-agreement is not without its critiques, however. \citet{ottonelliElusiveNotionMetaagreement2013} show meta-agreement to be much strong of a requirement than it may seem at a first glance. Firstly for (D1) to hold, the \textit{issue}-dimension must hold some semantic meaning, as otherwise it unclear how people can exchange conceptualization of the problem otherwise. Furthermore, the issues must consist of 2 semantic issue, otherwise with only 1 dimension voters simply reach substantive agreement. A further restriction on these two dimensions is that they need to be opposite, with opposite justifications. If this is not the case, a voter can agree with both justifications, and thereby introduce a new dimension ``balance", which then violates the conditions under which single peaked profiles guarantee the existence of strategyproof voting rules. D2 requires that all voters share the exact same semantic understand of the dimension, and the outcome associated with each alternative. Finally D3 requires D1 and D2 to have happened before in order. Clearly D3 is the weakest of the three.
+
+Thus meta-agreement is still quite restrictive, needing multiple forms of unanimity, and only applying to problems with certain properties. Nonetheless, in this work we investigate its explanatory power on prevention of Condorcet cycles.
 
 \section{Related Work}
-\citet{Soroush_Rafiee_Rad_Roy_2021} model deliberation and its effect on single peakedness, though they argue single plateauedness is a more accurate term. To this end, they model each voter to have preferences order, and deliberation being the process of all voters announcing their preferences, after which all other voters update their current preference towards that of the announced ranking, in doing so they might have a bias towards their own preference, as such they try to minimize the distance between their current preference and the announced one. This process repeats until all voters have announced their opinion once, and possibly occurs for multiple rounds. The preference a voter adopts when updating must lie between their current profile and the announced profile, which profiles are considered to be "between" is define by the distance metric used. They considered three metrics, the Kemeny-Snell [SOURCE] (KS) distance, Dubby-P... (DP) [SOURCE], and C... (CS) [SOURCE]. Both KS and DP depend on the judgement set resulting from the voters preferences, the KS distance is then defined as the number of binary swaps a judgement set needs to undergo before it becomes the target judgement set. The DP distance is defined on the graph of judgement sets, where 2 sets have an edge if there is no judgement set between them. Betweenness for KS and DP is the same, and is defined as follows: 
+\citet{radDeliberationSinglePeakednessCoherent2021a} model deliberation and its effect on single peakedness, though they argue single plateauedness is a more accurate term. To this end, they model each voter to have preferences order, and deliberation being the process of all voters announcing their preferences, after which all other voters update their current preference towards that of the announced ranking, in doing so they might have a bias towards their own preference, as such they try to minimize the distance between their current preference and the announced one. This process repeats until all voters have announced their opinion once, and possibly occurs for multiple rounds. The preference a voter adopts when updating must lie between their current profile and the announced profile, which profiles are considered to be "between" is define by the distance metric used. They considered three metrics, the Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins (DP)~\citep{duddyMeasureDistanceJudgment2012a}, and Cook-Seiford (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the judgement set resulting from the voters preferences, the KS distance is then defined as the number of binary swaps a judgement set needs to undergo before it becomes the target judgement set, an example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref b)$. The DP distance is defined on the graph of judgement sets, where 2 sets share an edge if there is no judgement set between them. Since KS and DP share their notion of betweenness, we introduce betweenness as follows.
 
 \begin{definition}{J-Betweenness}{def:j-between}
-	A judgement set $J_i$ is between profiles $J_j$ and $J_k$ if for all $\pref \in J_i$ $\pref \in J_j \vee \pref \in J_k$
+	A judgement set $J_i$ is between profiles $J_j$ and $J_k$ if for all $\pref \in J_i$ \quad $\pref \in J_j \vee \pref \in J_k$
 \end{definition}
-Diagram \ref{dia:DPDistance} shows a graph used for the DP distance in the case of 3 alternatives, for simplicity the associated profiles are used to label the judgement sets.
+
+\Cref{figure:DPDistance} shows a graph used for the DP distance in the case of 3 alternatives, for simplicity the associated profiles are used to label the judgement sets.
 
 
 
-The CS distance is simpler and is simply defined as the number of positions two voters disagree on, and a profile is between to other if for each position it agrees with one of the two profiles. 
+The CS distance is simpler and is simply defined as the number of positions two voters disagree on, and a profile is between two others if for each position it agrees with one of the two profiles.
 
-It is clear that each distance has different trade-offs, CS is the simplest, but might exaggerate the distance when there are many alternatives, for example if 2 voters agree on the relative ranking of all but 1 alternatives, which one voter happens to rank first, thereby shifting all other profiles right. The KS distance, using judgement sets instead of raw profiles captures this more effectively, while still being relatively easy to compute, but in cases of more disagreement, it is likely to over count the distance, since the binary changes to not capture logical necessities. For example, swapping $( a \pref b)$ to $\neg (a \pref b)$ must result in $(a \pref b)$ becoming true (in the case of strict preferences), thus one might reasonably conclude this should only count as 1 step. DP improves upon this, but in doing so become much harder to compute, mainly through the cost of constructing the full graph of judgement sets, which grows in $\mathcal{O}(n!)$ in the number of vertices, where $n$ is the number of alternatives. 
+Each distance has different trade-offs, CS is the simplest, but might exaggerate the distance when there are many alternatives, for example if 2 voters agree on the relative ranking of all but 1 alternative, which one voter happens to rank first, thereby shifting all other profiles right. The KS distance, using judgement sets instead of raw profiles captures this more effectively, while still being relatively easy to compute, but in cases of more disagreement, it is likely to over count the distance, since the binary changes to not capture logical necessities. For example, swapping $( a \pref b)$ to $\neg (a \pref b)$ must result in $(a \pref b)$ becoming true (in the case of strict preferences), thus one might reasonably conclude this should only count as 1 step. DP improves upon this, but in doing so becomes much harder to compute, mainly through the cost of constructing the full graph of judgement sets, which grows in $\mathcal{O}(n!)$ in the number of vertices, where $n$ is the number of alternatives.
 
 
-\begin{tikzpicture}[>=latex,line join=bevel,scale=0.8]
-%%
-\node (123) at (27.0bp,36.0bp) [draw,rectangle] {$1 \pref 2 \pref 3$};
-  \node (132) at (117.0bp,64.0bp) [draw,rectangle] {$1 \pref 3 \pref 2$};
-  \node (213) at (477.0bp,36.0bp) [draw,rectangle] {$2 \pref 1 \pref 3$};
-  \node (312) at (207.0bp,64.0bp) [draw,rectangle] {$3 \pref 1 \pref 2$};
-  \node (231) at (387.0bp,64.0bp) [draw,rectangle] {$2 \pref 3 \pref 1$};
-  \node (321) at (297.0bp,64.0bp) [draw,rectangle] {$3 \pref 2 \pref 1$};
-  \draw [->] (123) ..controls (62.569bp,40.26bp) and (71.703bp,43.035bp)  .. (132);
-  \draw [->] (123) ..controls (88.567bp,12.545bp) and (151.46bp,0.0bp)  .. (206.0bp,0.0bp) 
-.. controls (206.0bp,0.0bp) and (206.0bp,0.0bp)  .. (298.0bp,0.0bp) .. controls (347.64bp,0
-.0bp) and (404.2bp,10.392bp)  .. (213);
-  \draw [->] (132) ..controls (81.779bp,59.84bp) and (72.652bp,57.077bp)  .. (123);
-  \draw [->] (132) ..controls (152.39bp,57.272bp) and (161.31bp,57.135bp)  .. (312);
-  \draw [->] (213) ..controls (415.43bp,30.545bp) and (352.54bp,18.0bp)  .. (298.0bp,18.0bp
-) .. controls (206.0bp,18.0bp) and (206.0bp,18.0bp)  .. (206.0bp,18.0bp) .. controls (156.3
-6bp,18.0bp) and (99.8bp,28.392bp)  .. (123);
-  \draw [->] (213) ..controls (441.87bp,53.584bp) and (432.85bp,56.597bp)  .. (231);
-  \draw [->] (231) ..controls (422.48bp,46.295bp) and (431.51bp,43.289bp)  .. (213);
-  \draw [->] (231) ..controls (351.95bp,70.718bp) and (343.04bp,70.864bp)  .. (321);
-  \draw [->] (312) ..controls (171.95bp,70.718bp) and (163.04bp,70.864bp)  .. (132);
-  \draw [->] (312) ..controls (242.39bp,57.272bp) and (251.31bp,57.135bp)  .. (321);
-  \draw [->] (321) ..controls (332.39bp,57.272bp) and (341.31bp,57.135bp)  .. (231);
-  \draw [->] (321) ..controls (261.95bp,70.718bp) and (253.04bp,70.864bp)  .. (312);
-%
-  \label{dia:DPDistance}
-\end{tikzpicture}
-% End of code
+\vspace{1em}
+\begin{figure}
+	\begin{tikzpicture}[>=latex,line join=bevel,scale=0.8]
+		%%
+		\node (123) at (27.0bp,36.0bp) [draw,rectangle] {$a \pref b \pref c$};
+		\node (132) at (117.0bp,64.0bp) [draw,rectangle] {$a \pref c \pref b$};
+		\node (213) at (477.0bp,36.0bp) [draw,rectangle] {$b \pref a \pref c$};
+		\node (312) at (207.0bp,64.0bp) [draw,rectangle] {$c \pref a \pref b$};
+		\node (231) at (387.0bp,64.0bp) [draw,rectangle] {$b \pref c \pref a$};
+		\node (321) at (297.0bp,64.0bp) [draw,rectangle] {$c \pref b \pref a$};
+		\draw [->] (123) ..controls (62.569bp,40.26bp) and (71.703bp,43.035bp)  .. (132);
+		\draw [->] (123) ..controls (88.567bp,12.545bp) and (151.46bp,0.0bp)  .. (206.0bp,0.0bp)
+		.. controls (206.0bp,0.0bp) and (206.0bp,0.0bp)  .. (298.0bp,0.0bp) .. controls (347.64bp,0
+		.0bp) and (404.2bp,10.392bp)  .. (213);
+		\draw [->] (132) ..controls (81.779bp,59.84bp) and (72.652bp,57.077bp)  .. (123);
+		\draw [->] (132) ..controls (152.39bp,57.272bp) and (161.31bp,57.135bp)  .. (312);
+		\draw [->] (213) ..controls (415.43bp,30.545bp) and (352.54bp,18.0bp)  .. (298.0bp,18.0bp
+		) .. controls (206.0bp,18.0bp) and (206.0bp,18.0bp)  .. (206.0bp,18.0bp) .. controls (156.3
+		6bp,18.0bp) and (99.8bp,28.392bp)  .. (123);
+		\draw [->] (213) ..controls (441.87bp,53.584bp) and (432.85bp,56.597bp)  .. (231);
+		\draw [->] (231) ..controls (422.48bp,46.295bp) and (431.51bp,43.289bp)  .. (213);
+		\draw [->] (231) ..controls (351.95bp,70.718bp) and (343.04bp,70.864bp)  .. (321);
+		\draw [->] (312) ..controls (171.95bp,70.718bp) and (163.04bp,70.864bp)  .. (132);
+		\draw [->] (312) ..controls (242.39bp,57.272bp) and (251.31bp,57.135bp)  .. (321);
+		\draw [->] (321) ..controls (332.39bp,57.272bp) and (341.31bp,57.135bp)  .. (231);
+		\draw [->] (321) ..controls (261.95bp,70.718bp) and (253.04bp,70.864bp)  .. (312);
+		%
+	\end{tikzpicture}
+	\caption{The graph of judgement sets for all preferences over three alternatives.}
+	\label{figure:DPDistance}
+\end{figure}
+
 

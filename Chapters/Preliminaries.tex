@@ -26,7 +26,8 @@ Given some profile $\strictProfile$ can construct a \textit{majority relationshi
 
 \section{Social Choice Functions}
 \label{sec:SCF}
-In order to decide the outcome of an election, we pick a social choice function $F$, this function should map all possible profiles to an outcome. More formally we have $F: \strictProfile^\numVoters \mapsto \alternatives$. A famous example of a SCF is the plurality rule, which simply elects the alternatives voted into first place most often. Since the outcome of our SCF is only allowed to be a single alternative, the plurality rule also needs to be equipped with a tie breaking mechanism in order to be a valid SCF, we require the tie-breaking to be deterministic. Non-deterministic voting rules are a part of probabilistic social choice theory and are outside the scope of this work.
+In order to decide the outcome of an election, we pick a social choice function $F$, this function should map all possible profiles to an outcome. More formally we have $F: \strictProfile^\numVoters \mapsto \alternatives$. A famous example of a SCF is the plurality rule, which simply elects the alternatives voted into first place most often. Since the outcome of our SCF is only allowed to be a single alternative, the plurality rule also needs to be equipped with a tie breaking mechanism in order to be a valid SCF, we require the tie-breaking to be deterministic. Non-deterministic voting rules are a part of probabilistic social choice theory and are outside the scope of this work. With all these definitions in place we know can define an election.
+
 
 \subsection{Axioms}
 The axiomatic approach specifies desirable axioms which our voting rule should abide by. One such axiom is the axiom of neutrality, stating that the voting rule should be neutral with respect to the outcomes. In this work three main axioms are of importance.
@@ -39,6 +40,7 @@ The axiomatic approach specifies desirable axioms which our voting rule should a
 
 Another way to interpret strategyproofness is that the SCF should ideally maximize the outcome for all voters, as such it is clear that if you report something which is not truly your preference, the outcome would not be better than if you were truthful.
 
+These are some of many possible axioms one could wish their voting rule to satisfy, however, in the next section we show some negative results regarding these axioms.
 
 
 \section{Negative results}
@@ -78,6 +80,42 @@ One of the major negative results in social choice is that of the Gibbard Sather
 
 \section{Domain Restrictions}
 \label{sec: Domain-res}
+Many negative results are a consequence of a few ill-behaved profiles, if one can argue such profiles do not occur in the real election, there is some hope of constructing SCF's satisfying our axioms. To speak more formally about profiles "not occuring", we introduce Domain restrictions.
+
+\begin{definition}{Domain}{domain}
+	{
+		Given a set of voters $N$, alternatives $A$, and conditions $C$, the domain $\domain{}$ of an election is the set of all profiles $R$ such that all conditions $C$ are satisfied.
+	}
+\end{definition}
+
+When we consider the domain of an election, one particular profile is the source of many impossibility results in social choice, namely, the Condorcet cycle. 
+
+One property of the majority relation, that is both desirable, yet violated by the Condorcet cycle is that of transitivity. We define the transitivity on the majority relation as follows
+
+\begin{definition}{Transitivity}{maj-trans}
+	A (majority) relation is transitive, if for any triplet $a, b, c \in A$, if $a \prefmaj b$ and $b \prefmaj c$, then $a \prefmaj c$.
+\end{definition}
+
+
+
+Clearly this profile presents problems, as each possible outcome, would also have a majority of voters preferring another. Naturally one might consider if this profile might even come up in practice, since though conceivable it seems generally unlikely that there exists a perfect split in opinions. Quite naturally one of the first ``solutions" one might consider is when the number of voters is not a multiple of the number of alternatives, though this is hardly a solution, if this is the case, it is in fact possible to pick a winner through a simple rule such as the plurality rule [CITATION NEEDED]. This is the first example of a domain restriction, we define it as follows
+
+
+\begin{definition}{$\domain{No-tie}$}{dom-ties}
+	Let $X$ be the set of alternatives and $N$ be the set of voters, of size $n$ such that $n \neq k \cdot |X|$. We call the domain of all outcomes $\domain{No-tie}$.
+\end{definition}
+
+This allows us to state our first proposition.
+
+\begin{proposition}
+	The plurality rule never returns a $|X|$-way tie between alternatives when applied to $\domain{No-tie}$
+\end{proposition}
+
+\begin{proof}
+	Assume, for the sake of contradiction, the plurality in fact does return a tie this must mean that all alternatives were ranked first an equal number of times, call this $k$, necessarily then, we have need exactly $k \cdot |X|$ voters, but this leads to a contradiction, as this would no longer be inside $\domain{No-tie}$.
+\end{proof}
+
+This is a simple result, but it leads to way to more interesting ones. For this we need to specify more clearly in what ways we can restrict our domains. \citet{gaertnerChapter3Domain2002} establishes 2 ways in which a domain can be restricted. Firstly we can restrict the domain to a number of voters or alternatives, which is what we did in $\domain{No-tie}$. Secondly, the domain can be restricted to have a certain structure, such as being single-peaked. Furthermore, \citet{elkindPreferenceRestrictionsComputational2022a} establish the \textit{hereditary}
 
 \subsection{Single-Peaked profiles}
 \label{sec: Single-peaked}

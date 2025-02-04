@@ -151,7 +151,7 @@
 	colframe=examplecolor!80!black,
 	coltitle=black, fonttitle=\scshape,
 	arc=0mm,
-	enlarge top by=0.3mm, enlarge bottom by=0.3mm, toptitle=0.8mm,bottomtitle=0.35mm,left=2mm,right=2mm,
+	enlarge top by=0.3mm, enlarge bottom by=0.3mm, toptitle=0.8mm,bottomtitle=0.35mm,left=0mm,right=0mm,
 	boxrule=\heavyrulewidth,titlerule=\lightrulewidth,leftrule=0mm,rightrule=0mm,
 	description font=\mdseries\itshape,
 	title=#1}{ex}

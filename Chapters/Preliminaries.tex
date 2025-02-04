@@ -1,0 +1,87 @@
+\chapter{Preliminaries}
+We first proceed by giving a short introduction of social choice. We first outline the basic model, as well as establishing the notation for most mathematical objects.
+
+\section{The basic model}
+To model election, or more generally voting games, we represent voters by the set $\voters$ consisting of $n$ voters. The possible outcomes of an election, we represent with the set $\alternatives$ consisting of $|A|$ possible outcomes, for convenience we will refer to the outcomes of an election as alternatives. Each voter can represent their preferred outcome through a preference relation $\prefeq_i$, for example if voter 2 prefers outcome $a$ to outcome $b$, we write $a \prefeq_i b$. If, however, this preference is known to be strict, we instead write $a \pref_i b$. We call the set of all strict preferences over the alternatives $\strictProfile$, the set of weak preferences is denoted by $\weakProfile$. Finally, we need a rule $F$ by which we decide the outcome of the election. We discuss the specifics of these rules in section \cref{sec:SCF}.
+
+Given some profile $\strictProfile$ can construct a \textit{majority relationship} as follows, for each pair of alternatives $x,y$, we ask how many people prefer $x$ to $y$, if the number of people who prefer $x$ to $y$ is greater than the other way around we write $x  \prefmaj y$. We proceed with an example.
+
+\begin{example}{Majority relation}{maj-rel}
+	\begin{minipage}{0.15\linewidth}
+		\begin{tabular}{ccc}
+			\toprule
+			$1$ & $2$ & $3$ \\
+			\midrule
+			a   & b   & a   \\
+			b   & c   & c   \\
+			c   & a   & b   \\
+			\bottomrule
+		\end{tabular}
+	\end{minipage}
+	\hspace{0.02\linewidth}
+	\begin{minipage}{0.78\linewidth}
+		Given the profile on the left, we first start by comparing $a$ to $b$, both voters 1 and 3 prefer $a$ to $b$, thus the majority has prefers $a$ to $b$. Comparing $b$ to $c$, we see again that the majority prefers $b$ to $c$. Finally, comparing $a$ to $c$ we see $a$ is again preferred. Thus, the majority relation is $a \prefmaj b \prefmaj c$
+	\end{minipage}
+\end{example}
+
+\section{Social Choice Functions}
+\label{sec:SCF}
+In order to decide the outcome of an election, we pick a social choice function $F$, this function should map all possible profiles to an outcome. More formally we have $F: \strictProfile^\numVoters \mapsto \alternatives$. A famous example of a SCF is the plurality rule, which simply elects the alternatives voted into first place most often. Since the outcome of our SCF is only allowed to be a single alternative, the plurality rule also needs to be equipped with a tie breaking mechanism in order to be a valid SCF, we require the tie-breaking to be deterministic. Non-deterministic voting rules are a part of probabilistic social choice theory and are outside the scope of this work.
+
+\subsection{Axioms}
+The axiomatic approach specifies desirable axioms which our voting rule should abide by. One such axiom is the axiom of neutrality, stating that the voting rule should be neutral with respect to the outcomes. In this work three main axioms are of importance.
+
+\textit{Surjective} A SCF is surjective, if for every alternative, there exists a profile $R$ such that $F(R)$ elects it.
+
+\textit{Non-Dictatorial} A SCF is non-dicatorial, if there does not exists a voter $i$ such that $F(R) = \textnormal{top}(i,R)$ for all profiles $R$, where $\textnormal{top}(i,R)$ is the function that extracts voter $i$'s most preferred alternative from profile $R$.
+
+\textit{Strategyproof}. A SCF is strategy proof if, for any voter $i \in \voters$, $i$ cannot report a "false" preference, and thereby cause the outcome of the elective to improve for them. For example, given an election with 3 alternatives $a, b, c$, $a,b$  are very similar, such that some voters have $a \pref b$ and some have $ b \pref a $, but all voters that have $a \pref c$ must also have $b \pref c$ and vice versa. in this case, $c$ could win because the voters are split on whether $a$ or $b$ is better. But given a close enough election, .... % just turn this into an example, reference the al gore election maybe? 
+
+Another way to interpret strategyproofness is that the SCF should ideally maximize the outcome for all voters, as such it is clear that if you report something which is not truly your preference, the outcome would not be better than if you were truthful.
+
+
+
+\section{Negative results}
+Classic social choice theory has many negative results, one such example is the Condorcet cycle. This is a specific profile that results in a cycle in the majority relation, as shown in the following example.
+
+\begin{example}{Condorcet cycle}{condorcet-cycle}
+	\begin{minipage}{0.15\linewidth}
+		\begin{tabular}{ccc}
+			\toprule
+			$1$ & $2$ & $3$ \\
+			\midrule
+			a   & b   & c   \\
+			b   & c   & a   \\
+			c   & a   & b   \\
+			\bottomrule
+		\end{tabular}
+	\end{minipage}
+	\hspace{0.02\linewidth}
+	\begin{minipage}{0.78\linewidth}
+		Voters 1 and 3  prefer $a$ to $b$, forming a majority, next voters 1 and 2 prefer $b$ to $c$, forming another majority. However, voters 2 and 3 prefer $c$ to $a$ forming a majority, and thus creating a cycle.
+	\end{minipage}
+\end{example}
+
+It is not hard to convinces oneself that under weak preferences the Condorcet cycle can occur anytime there are 3 or more alternatives and voters. While under strict preferences this can occur anytime the number of alternatives is odd and greater than 3, with the number of voters being a multiple of the number of alternatives.
+
+The Condorcet cycle is an example of a broader notion of cyclic profiles. A cyclic profile is any profile in which there exists three alternatives $x,y,z$ such that they form a Condorcet cycle in this profile. A trivial example would be to extend the Condorcet cycle with 1 more alternative which is unanimously ranked last.
+
+One of the major negative results in social choice is that of the Gibbard Satherswaite theorem \citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
+
+\begin{theorem}[Gibbard-Satherswaite]
+	There exists no resolute Social Choice Function for elections with $|\alternatives| \geq$ 3 that is surjective, strategyproof, and non-dictatorial.
+\end{theorem}
+
+\begin{proof}
+	...
+\end{proof}
+
+\section{Domain Restrictions}
+\label{sec: Domain-res}
+
+\subsection{Single-Peaked profiles}
+\label{sec: Single-peaked}
+
+
+
+

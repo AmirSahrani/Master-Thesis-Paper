@@ -60,13 +60,17 @@
 
 
 % Command for Social choice
-\newcommand{\alternatives}{X}
+\newcommand{\alternatives}{A}
+\newcommand{\alternative}{a}
 \newcommand{\voters}{N}
+\newcommand{\numVoters}{n}
+\newcommand{\strictProfile}{\mathcal{L}(a)}
+\newcommand{\weakProfile}{\hat{\mathcal{L}}(a)}
 \newcommand{\pref}{\succ}
 \newcommand{\prefeq}{\succcurlyeq}
-\newcommand{\prefmaj}{\succ_{\text{maj}}}
-\newcommand{\domain}[1]{\mathcal{D}_{\text{#1}}}
-\newcommand{\votingrule}[1]{f_{\text{#1}}}
+\newcommand{\prefmaj}{\succ_{\textnormal{maj}}}
+\newcommand{\domain}[1]{\mathcal{D}_{\textnormal{#1}}}
+\newcommand{\votingrule}[1]{f_{\normalfont{#1}}}
 \newcommand{\orderalt}{\triangleleft}
 
 % PDF meta-data
@@ -300,6 +304,7 @@
 %NOTE - there is not strict limit/minimum.
 
 \input{Chapters/Introduction} %Set out your thesis and state your research question (5-8 pages)
+\input{Chapters/Preliminaries} %Set out your thesis and state your research question (5-8 pages)
 \input{Chapters/LiteratureReview} %Related literature and material (8-12 pages)
 \input{Chapters/Methods} %Details of your approach (10-15 pages)
 \input{Chapters/ExperimentsandResults} %Evaluation/testing of your hypothesis (10-15 pages)

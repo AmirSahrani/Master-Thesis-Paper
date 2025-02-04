@@ -17,23 +17,6 @@ A voting domain $\mathcal{D}$ is the domain of all possible voting profiles \(R\
 
 When we consider the domain of an election, one particular profile is the source of many impossibility results in social choice, namely, the Condorcet cycle. To understand why this profile is problematic, let us first define a notion of aggregation, the \textit{majority relation} is the preference relation we get when we compare all alternatives pairwise, and construct a preference profile from this.
 
-\begin{example}{Majority relations}{maj-rel}
-	\begin{minipage}{0.15\linewidth}
-		\begin{tabular}{ccc}
-			\toprule
-			$v_1$ & $v_2$ & $v_3$ \\
-			\midrule
-			a     & b     & a     \\
-			b     & c     & c     \\
-			c     & a     & b     \\
-			\bottomrule
-		\end{tabular}
-	\end{minipage}
-	\hspace{2em}
-	\begin{minipage}{0.70\linewidth}
-		Given the profile on the left, we first start by comparing $a$ to $b$, both voters 1 and 3 prefer $a$ to $b$, thus the majority has prefers $a$ to $b$. Comparing $b$ to $c$, we see again that the majority prefers $b$ to $c$. Finally, comparing $a$ to $c$ we see $a$ is again preferred. Thus, the majority relation is $a \prefmaj b \prefmaj c$
-	\end{minipage}
-\end{example}
 
 One property of the majority relation, that is both desirable, yet violated by the Condorcet cycle is that of transitivity. We define the transitivity on the majority relation as follows
 
@@ -41,7 +24,7 @@ One property of the majority relation, that is both desirable, yet violated by t
 	A (majority) relation is transitive, if for any triplet $a, b, c \in A$, if $a \prefmaj b$ and $b \prefmaj c$, then $a \prefmaj c$.
 \end{definition}
 
-Intuitively it is clear why such a property is desirable, if the majority can agree on the ordering of the alternatives, it must be easier to pick a winner. Unfortunately this is not always the case, with the most famous example being the Condorcet cycle. This is a profile with 3 voters and 3 alternatives, in which all alternatives are ranked in all positions, \cref{tab: Condorcet} show a particular instance of a Condorcet cycle.
+% Intuitively it is clear why such a property is desirable, if the majority can agree on the ordering of the alternatives, it must be easier to pick a winner. Unfortunately this is not always the case, with the most famous example being the Condorcet cycle. This is a profile with 3 voters and 3 alternatives, in which all alternatives are ranked in all positions, \cref{tab: Condorcet} show a particular instance of a Condorcet cycle.
 
 
 \begin{table}[h]
@@ -212,10 +195,10 @@ All these are necessary conditions for meta-agreement, from this is it also clea
 
 Meta-agreement is not without its critiques, however. \citet{ottonelliElusiveNotionMetaagreement2013} show meta-agreement to be much strong of a requirement than it may seem at a first glance. Firstly for (D1) to hold, the \textit{issue}-dimension must hold some semantic meaning, as otherwise it unclear how people can exchange conceptualization of the problem otherwise. Furthermore, the issues must consist of 2 semantic issue, otherwise with only 1 dimension voters simply reach substantive agreement. A further restriction on these two dimensions is that they need to be opposite, with opposite justifications. If this is not the case, a voter can agree with both justifications, and thereby introduce a new dimension ``balance", which then violates the conditions under which single peaked profiles guarantee the existence of strategyproof voting rules. D2 requires that all voters share the exact same semantic understand of the dimension, and the outcome associated with each alternative. Finally D3 requires D1 and D2 to have happened before in order. Clearly D3 is the weakest of the three.
 
-Thus meta-agreement is still quite restrictive, needing multiple forms of unanimity, and only applying to problems with certain properties. Nonetheless, in this work we investigate its explanatory power on prevention of Condorcet cycles.
+Thus, meta-agreement is still quite restrictive, needing multiple forms of unanimity, and only applying to problems with certain properties. Nonetheless, in this work we investigate its explanatory power on prevention of Condorcet cycles.
 
 \section{Related Work}
-\citet{radDeliberationSinglePeakednessCoherent2021a} model deliberation and its effect on single peakedness, though they argue single plateauedness is a more accurate term. To this end, they model each voter to have preferences order, and deliberation being the process of all voters announcing their preferences, after which all other voters update their current preference towards that of the announced ranking, in doing so they might have a bias towards their own preference, as such they try to minimize the distance between their current preference and the announced one. This process repeats until all voters have announced their opinion once, and possibly occurs for multiple rounds. The preference a voter adopts when updating must lie between their current profile and the announced profile, which profiles are considered to be "between" is define by the distance metric used. They considered three metrics, the Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins (DP)~\citep{duddyMeasureDistanceJudgment2012a}, and Cook-Seiford (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the judgement set resulting from the voters preferences, the KS distance is then defined as the number of binary swaps a judgement set needs to undergo before it becomes the target judgement set, an example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref b)$. The DP distance is defined on the graph of judgement sets, where 2 sets share an edge if there is no judgement set between them. Since KS and DP share their notion of betweenness, we introduce betweenness as follows.
+\citet{radDeliberationSinglePeakednessCoherent2021a} model deliberation and its effect on single peakedness, though they argue single plateauedness is a more accurate term. To this end, they model each voter to have preferences order, and deliberation being the process of all voters announcing their preferences, after which all other voters update their current preference towards that of the announced ranking, in doing so they might have a bias towards their own preference, as such they try to minimize the distance between their current preference and the announced one. This process repeats until all voters have announced their opinion once, and possibly occurs for multiple rounds. The preference a voter adopts when updating must lie between their current profile and the announced profile, which profiles are considered to be ``between" is define by the distance metric used. They considered three metrics, the Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins (DP)~\citep{duddyMeasureDistanceJudgment2012a}, and Cook-Seiford (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the judgement set resulting from the voters preferences, the KS distance is then defined as the number of binary swaps a judgement set needs to undergo before it becomes the target judgement set, an example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref b)$. The DP distance is defined on the graph of judgement sets, where 2 sets share an edge if there is no judgement set between them. Since KS and DP share their notion of betweenness, we introduce betweenness as follows.
 
 \begin{definition}{J-Betweenness}{def:j-between}
 	A judgement set $J_i$ is between profiles $J_j$ and $J_k$ if for all $\pref \in J_i$ \quad $\pref \in J_j \vee \pref \in J_k$

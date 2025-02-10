@@ -100,7 +100,7 @@
 \pagestyle{fancy}
 \ChNameUpperCase
 \ChNumVar{\fontsize{30}{35}\usefont{OT1}{ptm}{m}{n}\selectfont}
-\ChTitleVar{\Large\sc}
+\ChTitleVar{\vspace{-1em}\Large\sc}
 
 \renewcommand{\sectionmark}[1]{}
 

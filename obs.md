@@ -36,7 +36,7 @@ We can further subdivide the class 1 into restrictions such that some profile ar
 *Extremal restriction* (ER): If there is an individual that strictly prefers $a > b >c$, then for all individual such that $c >a$, it must be that $c > b > a$
 
 Equivalent to the following:
-- Single caved: Essentially an inverse of single peaked. It is obtained reversing single-peakedness. 
+- Single caved: Essentially an inverse of single-peaked. It is obtained reversing single-peakedness. 
 - Antagonistic: For any voters, their liner order is transitive, and there are two voters $j,k$ and an ordered triplet $(a,b,c)$ such that $j: a \succ b\succ c$ and $k: c \succ b \succ a$, while for all other i there are indifferent between $a,c$.
 - Echoic
 - Dichotomous: For any voter, their linear order is transitive, and for some distinct $a,b$ in $(x,y,z)$ this voter is indifferent

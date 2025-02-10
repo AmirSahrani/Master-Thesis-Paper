@@ -35,6 +35,8 @@
 \usepackage[square, numbers, comma, sort&compress]{natbib} % Use the natbib reference package - read up on this to edit the reference style; if you want text (e.g. Smith et al., 2012) for the in-text references (instead of numbers), remove 'numbers' 
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{amsmath}
+% \usepackage{subfig}
+\usepackage{subcaption}
 \usepackage{enumitem}
 \setlist{nolistsep}
 \usepackage{booktabs}
@@ -63,12 +65,16 @@
 \newcommand{\alternatives}{A}
 \newcommand{\alternative}{a}
 \newcommand{\voters}{N}
+\newcommand{\Nat}{\mathbb{N}}
 \newcommand{\numVoters}{n}
-\newcommand{\strictProfile}{\mathcal{L}(a)}
-\newcommand{\weakProfile}{\hat{\mathcal{L}}(a)}
+\newcommand{\setOfStrictProfiles}{\mathcal{L}(A)}
+\newcommand{\strictProfile}{\mathbf{R}}
+\newcommand{\setOfWeakProfiles}{\hat{\mathcal{L}}(A)}
+\newcommand{\weakProfile}{\hat{\mathbf{R}}}
 \newcommand{\pref}{\succ}
 \newcommand{\prefeq}{\succcurlyeq}
-\newcommand{\prefmaj}{\succ_{\textnormal{maj}}}
+\newcommand{\prefmaj}{\pref_{\textnormal{maj}}}
+\newcommand{\prefeqmaj}{\prefeq_{\textnormal{maj}}}
 \newcommand{\domain}[1]{\mathcal{D}_{\textnormal{#1}}}
 \newcommand{\votingrule}[1]{f_{\normalfont{#1}}}
 \newcommand{\orderalt}{\triangleleft}
@@ -306,6 +312,7 @@
 \input{Chapters/Introduction} %Set out your thesis and state your research question (5-8 pages)
 \input{Chapters/Preliminaries} %Set out your thesis and state your research question (5-8 pages)
 \input{Chapters/LiteratureReview} %Related literature and material (8-12 pages)
+\input{Chapters/Theory} %Details of your approach (10-15 pages)
 \input{Chapters/Methods} %Details of your approach (10-15 pages)
 \input{Chapters/ExperimentsandResults} %Evaluation/testing of your hypothesis (10-15 pages)
 \input{Chapters/Discussion} %Evaluation/testing of your hypothesis (5-8 pages)

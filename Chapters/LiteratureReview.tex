@@ -4,66 +4,9 @@
 
 \lhead{\emph{Literature Review}} % Set the left side page header to "Symbols"
 
-Though Black's result~\citep{blackRationaleGroupDecisionmaking1948} is a famous positive result, it is far from the only positive result relating to domain restrictions. We first look into various domain restrictions and their properties. To fully understand why single peakedness is specifically desirable we outline the political and philosophical reasons first, after which we elaborate on the mechanism through which deliberation should result in single peakedness according to \citet{listTwoConceptsAgreement2002}. Finally, for completeness' sake, we mention critiques of this theory.
-
-\section{Domain Restrictions}
-A voting domain $\mathcal{D}$ is the domain of all possible voting profiles \(R\) given some number of voters $N$ and some number of alternatives $|X|$. Intuitively, this is simple the space of all possible outcomes of some election. Put more formally, we get.
-
-\begin{definition}{Domain}{domain}
-	{
-		Given a set of voters $N$, alternatives $A$, and conditions $C$, the domain $\mathcal{D}$ of an election is the set of all profiles $R$ such that all conditions $C$ are satisfied.
-	}
-\end{definition}
-
-When we consider the domain of an election, one particular profile is the source of many impossibility results in social choice, namely, the Condorcet cycle. To understand why this profile is problematic, let us first define a notion of aggregation, the \textit{majority relation} is the preference relation we get when we compare all alternatives pairwise, and construct a preference profile from this.
 
 
-One property of the majority relation, that is both desirable, yet violated by the Condorcet cycle is that of transitivity. We define the transitivity on the majority relation as follows
 
-\begin{definition}{Transitivity}{maj-trans}
-	A (majority) relation is transitive, if for any triplet $a, b, c \in A$, if $a \prefmaj b$ and $b \prefmaj c$, then $a \prefmaj c$.
-\end{definition}
-
-% Intuitively it is clear why such a property is desirable, if the majority can agree on the ordering of the alternatives, it must be easier to pick a winner. Unfortunately this is not always the case, with the most famous example being the Condorcet cycle. This is a profile with 3 voters and 3 alternatives, in which all alternatives are ranked in all positions, \cref{tab: Condorcet} show a particular instance of a Condorcet cycle.
-
-
-\begin{table}[h]
-	\centering
-	\begin{tabular}{ccc}
-		\toprule
-		$v_1$ & $v_2$ & $v_3$ \\
-		\midrule
-		a     & b     & c     \\
-		b     & c     & a     \\
-		c     & a     & b     \\
-		\bottomrule
-	\end{tabular}
-	\caption{The Condorcet cycle, showing all alternatives in each position}
-	\label{tab: Condorcet}
-\end{table}
-
-% TODO: Find the paper that specifies the number of voters needed for a neutral and annonymous rule to never return a full tie.
-Clearly this profile presents problems, as each possible outcome, would also have a majority of voters preferring another. Naturally one might consider if this profile might even come up in practice, since though conceivable it seems generally unlikely that there exists a perfect split in opinions. Quite naturally one of the first ``solutions" one might consider is when the number of voters is not a multiple of the number of alternatives, though this is hardly a solution, if this is the case, it is in fact possible to pick a winner through a simple rule such as the plurality rule [CITATION NEEDED]. This is the first example of a domain restriction, we define it as follows
-
-\begin{definition}{$\domain{No-tie}$}{dom-ties}
-	Let $X$ be the set of alternatives and $N$ be the set of voters, of size $n$ such that $n \neq k \cdot |X|$. We call the domain of all outcomes $\domain{No-tie}$.
-\end{definition}
-
-This allows us to state our first proposition.
-
-\begin{proposition}
-	The plurality rule never returns a $|X|$-way tie between alternatives when applied to $\domain{No-tie}$
-\end{proposition}
-
-\begin{proof}
-	Assume, for the sake of contradiction, the plurality in fact does return a tie this must mean that all alternatives were ranked first an equal number of times, call this $k$, necessarily then, we have need exactly $k \cdot |X|$ voters, but this leads to a contradiction, as this would no longer be inside $\domain{No-tie}$.
-\end{proof}
-
-This is a simple result, but it leads to way to more interesting ones. For this we need to specify more clearly in what ways we can restrict our domains. \citet{gaertnerChapter3Domain2002} establishes 2 ways in which a domain can be restricted. Firstly we can restrict the domain to a number of voters or alternatives, which is what we did in $\domain{No-tie}$. Secondly, the domain can be restricted to have a certain structure, such as being single-peaked. Furthermore, \citet{elkindPreferenceRestrictionsComputational2022a} establish the \textit{hereditary}
-
-\begin{definition}{Hereditary \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022a})}}{dom-hereditary}
-	A domain restriction onto $\domain{ }$ is \textit{hereditary} if, for every profile $P \in \domain{ }$, and every profile $P'$, that can be obtained by deleting voters and alternatives from $P$, $P'$ is also in $\domain{ }$
-\end{definition}
 
 \subsection{Condorcet Domain}
 If our goal is to prevent Condorcet cycles, or in general have transitive majority relations, the best we could hope to do is to apply our domain restriction such that our domain contains all profiles $P$ such that $P$ has a (weak) Condorcet winner. We call this domain $\domain{Condorcet}$. Under this domain, let $\votingrule{Condorcet}$ be the Condorcet Rule, which picks a Condorcet winner. Then $\votingrule{Condorcet}$ is strategyproof over $\domain{Condorcet}$ \citep{elkindPreferenceRestrictionsComputational2022a}.
@@ -99,11 +42,13 @@ A domain not being hereditary means that the nice properties of the domain can b
 
 \subsection{Hereditary Domains}
 
-The first hereditary domain we present, will also be the main focus of this thesis. This is the domain of all single peaked profiles.
-
-\begin{definition}{Single Peaked Profiles}{single-peaked}
-	A profile $P$ is single peaked, if given some ordering $\orderalt$ over the alternatives, it holds that for all voters $i$, and all $a, b, c \in X$, if $a \orderalt b \orderalt c$, then either $a \pref_i b$ or $c \pref_i b$, but never both.
+\begin{definition}{Hereditary \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022a})}}{dom-hereditary}
+	A domain restriction onto $\domain{ }$ is \textit{hereditary} if, for every profile $P \in \domain{ }$, and every profile $P'$, that can be obtained by deleting voters and alternatives from $P$, $P'$ is also in $\domain{ }$
 \end{definition}
+
+
+The first hereditary domain we present, will also be the main focus of this thesis. This is the domain of all single-peaked profiles.
+
 
 Note that in  a voter is allowed to prefer $b$ best, and then choose $a$ or $c$ in any order. It is clear to see that if any voter or alternative is deleted, this property is satisfied.
 
@@ -114,18 +59,18 @@ Note that in  a voter is allowed to prefer $b$ best, and then choose $a$ or $c$ 
 \begin{proof}
 	(Voter Deletion). If we remove a voter, this does not affect the other voters, thus the property is satisfied.~\checkmark
 
-	(Alternative Deletion). Consider a voter $i$ and their single peaked vote, if we remove some alternative $x$, this voter all alternatives which voter $i$ preferred to $x$ stay in the same position, while all other alternatives move up one rank, thus preserving the order.~\checkmark
+	(Alternative Deletion). Consider a voter $i$ and their single-peaked vote, if we remove some alternative $x$, this voter all alternatives which voter $i$ preferred to $x$ stay in the same position, while all other alternatives move up one rank, thus preserving the order.~\checkmark
 \end{proof}
 
-A similar notion to single peaked profiles is that of single caved profiles, which is equivalent, but instead a voters peak representing their most preferred option, they have a valley, which represents the worst option. Single caved profile are hereditary as well, but for a voting rule on them to be strategy proof, only two possible alternatives can be chosen, the left and right most alternatives according to $\orderalt$.
+A similar notion to single-peaked profiles is that of single caved profiles, which is equivalent, but instead a voters peak representing their most preferred option, they have a valley, which represents the worst option. Single caved profile are hereditary as well, but for a voting rule on them to be strategy proof, only two possible alternatives can be chosen, the left and right most alternatives according to $\orderalt$.
 
-Instead of ordering the alternatives, we can imagine instead ordering the voters, such that we have a leftmost and rightmost voters, and all other voters can be placed between them based on their difference. In this case, a profile is single crossing if, for any alternative $a$, its preference relation to another any alternative $b$ flips at most once when traversing the voters in order $\orderalt$.
+Instead of ordering the alternatives, we can imagine instead ordering the voters, such that we have a leftmost and rightmost voters, and all other voters can be placed between them based on their difference. In this case, a profile is single-crossing if, for any alternative $a$, its preference relation to another any alternative $b$ flips at most once when traversing the voters in order $\orderalt$.
 
-\begin{definition}{Single Crossing Profiles \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022a})}}{single-crossing}
-	A profile $P$ is single crossing w.r.t. some ordering $\orderalt$, if for any $a,b \ in X$, $\{i \in N : a \pref b\}$ and $\{i \in N: b \pref b\}$ are both intervals over $[n]$. A profile $P$ is single crossing if the votes can be permuted such that it is single crossing w.r.t. a given ordering.
+\begin{definition}{Single-Crossing Profiles \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022a})}}{single-crossing}
+	A profile $P$ is single-crossing w.r.t. some ordering $\orderalt$, if for any $a,b \ in X$, $\{i \in N : a \pref b\}$ and $\{i \in N: b \pref b\}$ are both intervals over $[n]$. A profile $P$ is single crossing if the votes can be permuted such that it is single crossing w.r.t. a given ordering.
 \end{definition}
 
-Similar to single peaked profiles, the domain of single crossing profiles, $\domain{SC}$ is also hereditary
+Similar to single-peaked profiles, the domain of single-crossing profiles, $\domain{SC}$ is also hereditary
 
 \begin{proposition}
 	$\domain{SC}$ is hereditary
@@ -134,7 +79,7 @@ Similar to single peaked profiles, the domain of single crossing profiles, $\dom
 \begin{proof}
 	(Voter Deletion). Deleting a voter preserves the ordering between voters, as such this cannot introduce a new crossing between alternatives.~\checkmark
 
-	(Alternative Deletion). If we remove an alternative the voters' rankings of the other alternatives does not change, thus preserving single crossing.~\checkmark
+	(Alternative Deletion). If we remove an alternative the voters' rankings of the other alternatives does not change, thus preserving single-crossing.~\checkmark
 \end{proof}
 
 \section{The History of Deliberation and Meta-Agreement}
@@ -188,17 +133,17 @@ According to \citet{listTwoConceptsAgreement2002} there are three hypothesis tha
 	\item [D3] After this deliberation, people update their preferences by picking a preferred (peak) outcome, and all other rankings are based on structure of the \textit{issue}-dimension
 \end{enumerate}
 
-All these are necessary conditions for meta-agreement, from this is it also clear to see that, given that there is exactly 1 \textit{issue}-dimension, single peaked profile are, by definition, a direct consequence. This is the main reason meta-agreement is desirable, as it lets us circumvent the Gibberd- Satterthwaite theorem (\citep{gibbardManipulationVotingSchemes1973} \citep{satterthwaiteStrategyproofnessArrowsConditions1975})through restricting the domain of preference profiles to the single peaked domain $\domain{SP}$
+All these are necessary conditions for meta-agreement, from this is it also clear to see that, given that there is exactly 1 \textit{issue}-dimension, single-peaked profile are, by definition, a direct consequence. This is the main reason meta-agreement is desirable, as it lets us circumvent the Gibberd- Satterthwaite theorem (\citep{gibbardManipulationVotingSchemes1973} \citep{satterthwaiteStrategyproofnessArrowsConditions1975})through restricting the domain of preference profiles to the single-peaked domain $\domain{SP}$
 
 
-\citet{listDeliberationSinglePeakednessPossibility2013} provide empirical evidence for this theory of deliberation, showing deliberation increases proximity to single peakedness, which they define as $S= \frac{m}{n}$ where $m = |M|$ is the largest subset of voters such that their profile is single peaked. Furthermore, they also introduce the notion of salience, which represents to what extent a topic is salient in the voting population. In order to test whether deliberation increases single-peakedness \textit{through} meta-agreement, they test the following four hypotheses: (H1) deliberation increases proximity to single peakedness. (H2')\footnote{This is a test for a corollary. H2 states that the rate of increase of proximity to single peakedness decreases. Since high salience means some sort of deliberation has happened before, we expect this to have the same affect.} high salience issues show less increase in PtS then low salience issues. (H3) Effective deliberation, in the sense that more is learned during deliberation, results in bigger increases. (H4) All things equal, the increase is largest for issues with natural \textit{issue}-dimensions.
+\citet{listDeliberationSinglePeakednessPossibility2013} provide empirical evidence for this theory of deliberation, showing deliberation increases proximity to single-peakedness, which they define as $S= \frac{m}{n}$ where $m = |M|$ is the largest subset of voters such that their profile is single peaked. Furthermore, they also introduce the notion of salience, which represents to what extent a topic is salient in the voting population. In order to test whether deliberation increases single-peakedness \textit{through} meta-agreement, they test the following four hypotheses: (H1) deliberation increases proximity to single peakedness. (H2')\footnote{This is a test for a corollary. H2 states that the rate of increase of proximity to single peakedness decreases. Since high salience means some sort of deliberation has happened before, we expect this to have the same affect.} high salience issues show less increase in PtS then low salience issues. (H3) Effective deliberation, in the sense that more is learned during deliberation, results in bigger increases. (H4) All things equal, the increase is largest for issues with natural \textit{issue}-dimensions.
 
-Meta-agreement is not without its critiques, however. \citet{ottonelliElusiveNotionMetaagreement2013} show meta-agreement to be much strong of a requirement than it may seem at a first glance. Firstly for (D1) to hold, the \textit{issue}-dimension must hold some semantic meaning, as otherwise it unclear how people can exchange conceptualization of the problem otherwise. Furthermore, the issues must consist of 2 semantic issue, otherwise with only 1 dimension voters simply reach substantive agreement. A further restriction on these two dimensions is that they need to be opposite, with opposite justifications. If this is not the case, a voter can agree with both justifications, and thereby introduce a new dimension ``balance", which then violates the conditions under which single peaked profiles guarantee the existence of strategyproof voting rules. D2 requires that all voters share the exact same semantic understand of the dimension, and the outcome associated with each alternative. Finally D3 requires D1 and D2 to have happened before in order. Clearly D3 is the weakest of the three.
+Meta-agreement is not without its critiques, however. \citet{ottonelliElusiveNotionMetaagreement2013} show meta-agreement to be much strong of a requirement than it may seem at a first glance. Firstly for (D1) to hold, the \textit{issue}-dimension must hold some semantic meaning, as otherwise it unclear how people can exchange conceptualization of the problem otherwise. Furthermore, the issues must consist of 2 semantic issue, otherwise with only 1 dimension voters simply reach substantive agreement. A further restriction on these two dimensions is that they need to be opposite, with opposite justifications. If this is not the case, a voter can agree with both justifications, and thereby introduce a new dimension ``balance", which then violates the conditions under which single-peaked profiles guarantee the existence of strategyproof voting rules. D2 requires that all voters share the exact same semantic understand of the dimension, and the outcome associated with each alternative. Finally D3 requires D1 and D2 to have happened before in order. Clearly D3 is the weakest of the three.
 
 Thus, meta-agreement is still quite restrictive, needing multiple forms of unanimity, and only applying to problems with certain properties. Nonetheless, in this work we investigate its explanatory power on prevention of Condorcet cycles.
 
 \section{Related Work}
-\citet{radDeliberationSinglePeakednessCoherent2021a} model deliberation and its effect on single peakedness, though they argue single plateauedness is a more accurate term. To this end, they model each voter to have preferences order, and deliberation being the process of all voters announcing their preferences, after which all other voters update their current preference towards that of the announced ranking, in doing so they might have a bias towards their own preference, as such they try to minimize the distance between their current preference and the announced one. This process repeats until all voters have announced their opinion once, and possibly occurs for multiple rounds. The preference a voter adopts when updating must lie between their current profile and the announced profile, which profiles are considered to be ``between" is define by the distance metric used. They considered three metrics, the Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins (DP)~\citep{duddyMeasureDistanceJudgment2012a}, and Cook-Seiford (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the judgement set resulting from the voters preferences, the KS distance is then defined as the number of binary swaps a judgement set needs to undergo before it becomes the target judgement set, an example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref b)$. The DP distance is defined on the graph of judgement sets, where 2 sets share an edge if there is no judgement set between them. Since KS and DP share their notion of betweenness, we introduce betweenness as follows.
+\citet{radDeliberationSinglePeakednessCoherent2021a} model deliberation and its effect on single-peakedness, though they argue single plateauedness is a more accurate term. To this end, they model each voter to have preferences order, and deliberation being the process of all voters announcing their preferences, after which all other voters update their current preference towards that of the announced ranking, in doing so they might have a bias towards their own preference, as such they try to minimize the distance between their current preference and the announced one. This process repeats until all voters have announced their opinion once, and possibly occurs for multiple rounds. The preference a voter adopts when updating must lie between their current profile and the announced profile, which profiles are considered to be ``between" is define by the distance metric used. They considered three metrics, the Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins (DP)~\citep{duddyMeasureDistanceJudgment2012a}, and Cook-Seiford (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the judgement set resulting from the voters preferences, the KS distance is then defined as the number of binary swaps a judgement set needs to undergo before it becomes the target judgement set, an example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref b)$. The DP distance is defined on the graph of judgement sets, where 2 sets share an edge if there is no judgement set between them. Since KS and DP share their notion of betweenness, we introduce betweenness as follows.
 
 \begin{definition}{J-Betweenness}{def:j-between}
 	A judgement set $J_i$ is between profiles $J_j$ and $J_k$ if for all $\pref \in J_i$ \quad $\pref \in J_j \vee \pref \in J_k$

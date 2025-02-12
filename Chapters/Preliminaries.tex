@@ -29,7 +29,7 @@ A majority relation can be a-cyclic, and transitive, though neither are guarante
 
 \section{Social Choice Functions}
 \label{sec:SCF}
-In order to decide the outcome of an election, we pick a social choice function $F$, this function should map all possible profiles to an outcome, thus $F: \strictProfile \mapsto \alternatives$. A famous example of a SCF is the plurality rule, which simply elects the alternative voted into first place most often, though simple, it can also lead to a tie. Since the outcome of our SCF is only allowed to be a single alternative, the plurality rule needs to be equipped with a tie breaking mechanism in order to be a valid SCF, we require the tie-breaking to be deterministic. 
+In order to decide the outcome of an election, we pick a social choice function $F$, this function should map all possible profiles to an outcome, thus $F: \strictProfile \mapsto \alternatives$. A famous example of a SCF is the plurality rule, which simply elects the alternative voted into first place most often, though simple, it can also lead to a tie. Since the outcome of our SCF is only allowed to be a single alternative, the plurality rule needs to be equipped with a tie breaking mechanism in order to be a valid SCF, we require the tie-breaking to be deterministic.
 
 
 \subsection{Axioms}
@@ -39,7 +39,7 @@ Though any voting rule that outputs one alternative for each profile is valid, f
 
 \textit{Axiom of Non-Dictatorship.} A SCF $F$ is non-dicatorial, if there does not exist a voter $i$ such that $F(R) = \textnormal{top}(i,R)$ for all profiles $R$, where $\textnormal{top}(i,R)$  extracts voter $i$'s most preferred alternative from profile $R$.
 
-\textit{Axiom of Strategyproofness.} A SCF $F$ is strategy proof if, for any voter $i \in \voters$, $i$ cannot report an untruthful preference, and thereby cause the outcome of the elective to improve for them. 
+\textit{Axiom of Strategyproofness.} A SCF $F$ is strategy proof if, for any voter $i \in \voters$, $i$ cannot report an untruthful preference, and thereby cause the outcome of the elective to improve for them.
 
 Another way to interpret strategyproofness is that the SCF should maximize the outcome for all voters, as such  if a voter reports something which is not their true preference, the outcome will maximize the wrong preference and thus result in an outcome that is worse for you.
 

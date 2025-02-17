@@ -126,7 +126,7 @@
 
 % Define colors
 \definecolor{theoremcolor}{named}{OrangeRed}
-\definecolor{corollarycolor}{named}{PineGreen}
+\definecolor{corollarycolor}{named}{Fuchsia}
 \definecolor{propositioncolor}{named}{VioletRed}
 \definecolor{definitioncolor}{named}{TealBlue}
 \definecolor{examplecolor}{named}{Mulberry}
@@ -176,7 +176,7 @@
 	\endmytheorem
 }
 
-\newtheorem{propositionaux}[theoremaux]{Proposition}
+\newtheorem{propositionaux}[theoremaux]{Proposition}{label}
 \newenvironment{proposition}{%
 	\mytheorem[propositioncolor]{Proposition \thepropositionaux}%
 	\begin{propositionaux}

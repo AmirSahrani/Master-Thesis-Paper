@@ -2,25 +2,32 @@
 \chapter{Theoretical Results}
 \label{theory}
 
-\textcolor{OrangeRed}{The following are propositions are not fully worked out, which is also why they are written informally, but general ideas I got from toying around with the model. I also have not spent substantial time thinking how to prove them. The point of the first two is to show that deliberation itself is not strategyproof, at least not in this form. I am not sure if whatever model of deliberation we end up creating will be (although I am highly doubtful that it will). The point is also not to say that it needs to be strategyproof, we can simply argue that deliberation not being strategyproof is preferable as voters at least have a change of recognizing some point lying etc.}
 
 In the model of deliberation of \citet{radDeliberationSinglePeakednessCoherent2021a}, outlined in \cref{section:related_work}, aims to model deliberation, through this the aim is to show deliberation results in nicely structured profiles which allow for strategy proof voting rules. One important caveat, also given by the authors, is that all participants should honestly and truthfully participate in deliberation. We attempt to make this more formal with the following proposition.
 
-\begin{proposition}
-	Deliberation on any metric space can be manipulated if all voters can still change their mind (open-minded voters), if one voter decided not to change their mind.
+\begin{proposition}{}\label{proposition:deterministic-delib}
+	% Deliberation on any metric space can be manipulated if all voters can still change their mind (open-minded voters), if one voter decided not to change their mind.
+	The process of deliberation over $|\alternatives| \geq 3$ through deterministic deliberation procedure \(\boldsymbol{D}: \setOfStrictProfiles^n \mapsto \setOfStrictProfiles^n\) followed by voting with voting rule $F$ cannot be surjective, strategyproof and non-dictatorial.
 \end{proposition}
 
-\begin{proof}{(very rough sketch).} If all voters are able to change their mind, a malicious voter, call them $\hat{v}$, can simply refuse to change their mind. Since all other are still updating their preferences, if they currently hold a preference that still has a ``path" towards $\hat{v}$'s preference they will end start to agree.\end{proof}
-
-\textcolor{Fuchsia}{The two main issues I have when I think about actually writing a proof is that the hole notion of open-minded voters is a bit vague (e.g. 0.73 is just and empiric observation), thus it would need some kind of lemma showing when voters stop being open-minded. Furthermore, I have trouble thinking about making formal statements about a deliberation step in the first place}
-
-Unfortunately, sticking to your original preference is not the only way in which a  voter can manipulate the outcome of a deliberation. Through misrepresentation a voter could argue for a preference different from their in the hope to better the outcome. As an example imagine after 1 round of deliberation voters find themselves separated into two clusters, with mutually exclusive opinions, as in given the metric space there are no opinions between the two clusters. A strategic voter could then pretend to hold an opinion that is compatible with the other clusters and slowly move them towards their
+\begin{proof}{} 
+	Assume, towards a contradiction, such a pair of deliberative procedure ($D$) and voting rule (\(f\)) exists. Any deterministic deliberation procedure $D$ could, in principle, be embedded into a voting rule $f'$, such that the voting rule simulates $D$ and before applying $f$, which would result in  voting rule $f'$ being surjective, strategyproof and non-dictatorial. This is a contradiction, by the Gibbard-Satterthwaite theorem\citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
+\end{proof}
 
 
-\begin{proposition}
-	Deliberation on any metric space can be manipulated if all voters can still change their mind, through misrepresentation of one current preferences.
-\end{proposition}
+We extend upon this result, showing the inclusion of biases in voters does not mitigate the negative result. Towards this we assume biases are true, in the sense that a voter cannot help but be 'convinced' by the presented profiles as much as their biases allows for this. We think this assumption is a rather weak one, as without this assumption, the biases become an object of strategic behavior, resulting in all voters having a bias of 1 towards their own opinion, reducing to the situation in \cref{proposition:deterministic-delib}.
 
-\textcolor{Fuchsia}{I have similar issues with this one, but I think this could go two ways, either we don't let the strategic voter change their main (bias = 1), which then would build on the previous proposition. Or instead the voter can change their mind, but they will present a false preference in their announcement. I think the second approach might result in a possible complexity theory result.}
+\begin{corollary}
+	\label{corollary:biased-delib}
+	Deliberation with biases $\boldsymbol{D}_b: \setOfStrictProfiles ^ n \times \Reals_{[0,1]}^n \mapsto \setOfStrictProfiles^n$, followed by voting with voting rule any $F$, cannot be surjective, strategyproof and non-dictatorial
+\end{corollary}
 
-Then from a game theoretic perspective, we can model deliberation as a game, through which voters try to manipulate the outcome of the election.
+\begin{proof}{} 
+	The proof will follow from a reduction of the biased Deliberation $\boldsymbol{D}_b$ to general deliberation $\boldsymbol{D}$. 
+
+	Take any election consisting of biased deliberation $D_b$ and voting rule $f$, since biases $\bold{b}$ are true, they must be fixed. If this election was immune to strategic manipulation, then a deliberative procedure $D$ could embed this $b$, and simulate biased deliberation $D_b$. This is now equivalent to the setting in \cref{proposition:deterministic-delib}, and thus suffers the same impossibility result.
+
+	
+\end{proof}
+
+

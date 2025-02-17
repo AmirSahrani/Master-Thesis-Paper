@@ -3,31 +3,35 @@
 \label{theory}
 
 
-In the model of deliberation of \citet{radDeliberationSinglePeakednessCoherent2021a}, outlined in \cref{section:related_work}, aims to model deliberation, through this the aim is to show deliberation results in nicely structured profiles which allow for strategy proof voting rules. One important caveat, also given by the authors, is that all participants should honestly and truthfully participate in deliberation. We attempt to make this more formal with the following proposition.
+In the model of deliberation of \citet{radDeliberationSinglePeakednessCoherent2021a}, outlined in \cref{section:related_work}, aims to model deliberation, through this the aim is to show deliberation results in nicely structured profiles which allow for strategy proof voting rules. One important caveat, given by the authors as well, is all participants should honestly and truthfully participate in deliberation. We now provide a formal statement, showing deliberation does not prevent strategic behavior.
 
-\begin{proposition}{}\label{proposition:deterministic-delib}
-	% Deliberation on any metric space can be manipulated if all voters can still change their mind (open-minded voters), if one voter decided not to change their mind.
-	The process of deliberation over $|\alternatives| \geq 3$ through deterministic deliberation procedure \(\boldsymbol{D}: \setOfStrictProfiles^n \mapsto \setOfStrictProfiles^n\) followed by voting with voting rule $F$ cannot be surjective, strategyproof and non-dictatorial.
+\begin{proposition}
+	The process of deliberation over $|\alternatives| \geq 3$ through deterministic deliberation procedure \({D}: \setOfStrictProfiles^n \mapsto \setOfStrictProfiles^n\), followed by voting with voting rule $F$ cannot be surjective, strategyproof and non-dictatorial.
+
+	\label{proposition:deterministic-delib}
 \end{proposition}
 
-\begin{proof}{} 
-	Assume, towards a contradiction, such a pair of deliberative procedure ($D$) and voting rule (\(f\)) exists. Any deterministic deliberation procedure $D$ could, in principle, be embedded into a voting rule $f'$, such that the voting rule simulates $D$ and before applying $f$, which would result in  voting rule $f'$ being surjective, strategyproof and non-dictatorial. This is a contradiction, by the Gibbard-Satterthwaite theorem\citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
-\end{proof}
+\begin{proofc}
+	Assume, towards a contradiction, such a pair of deliberative procedure ($D$) and voting rule (\(f\)) exists. Any deterministic deliberation procedure $D$ could, in principle, be embedded into a voting rule $f'(\strictProfile) = f(D(\strictProfile))$, such that the voting rule simulates $D$ before applying $f$, which would result in  voting rule $f'$ being surjective, strategyproof and non-dictatorial. This is a contradiction, by the Gibbard-Satterthwaite theorem\citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
+\end{proofc}
 
 
-We extend upon this result, showing the inclusion of biases in voters does not mitigate the negative result. Towards this we assume biases are true, in the sense that a voter cannot help but be 'convinced' by the presented profiles as much as their biases allows for this. We think this assumption is a rather weak one, as without this assumption, the biases become an object of strategic behavior, resulting in all voters having a bias of 1 towards their own opinion, reducing to the situation in \cref{proposition:deterministic-delib}.
+We extend upon this result, showing the inclusion of biases in voters does not mitigate the negative result. Towards this we assume biases are true, in the sense that a voter cannot help but be 'convinced' by the presented profiles as much as their bias allows for this. We think this assumption is a weak and natural in the light of the current model. Furthermore, a violation of this assumption would not imply the following corollary to be false, instead it would result in it being trivially true. For, if voters report their biases,
 
 \begin{corollary}
+	Deliberation with biases ${D}_b: \setOfStrictProfiles ^ n \times \Reals_{[0,1]}^n \mapsto \setOfStrictProfiles^n$, followed by voting with voting rule any $F$, cannot be surjective, strategyproof and non-dictatorial
+
 	\label{corollary:biased-delib}
-	Deliberation with biases $\boldsymbol{D}_b: \setOfStrictProfiles ^ n \times \Reals_{[0,1]}^n \mapsto \setOfStrictProfiles^n$, followed by voting with voting rule any $F$, cannot be surjective, strategyproof and non-dictatorial
 \end{corollary}
 
-\begin{proof}{} 
-	The proof will follow from a reduction of the biased Deliberation $\boldsymbol{D}_b$ to general deliberation $\boldsymbol{D}$. 
+The proof of this follows from a reduction of the biased Deliberation $D_b$ to general deliberation $D$.
 
-	Take any election consisting of biased deliberation $D_b$ and voting rule $f$, since biases $\bold{b}$ are true, they must be fixed. If this election was immune to strategic manipulation, then a deliberative procedure $D$ could embed this $b$, and simulate biased deliberation $D_b$. This is now equivalent to the setting in \cref{proposition:deterministic-delib}, and thus suffers the same impossibility result.
+\begin{proofc}{}
+	Take any election consisting of biased deliberation $D_b$ and voting rule $f$, since biases $\mathbf{b}$ are true by assumption, they must be fixed, meaning that $\mathbf{b}$ is not reported but some fact of the matter. If this election was immune to strategic manipulation, then a deliberative procedure $D$ could embed this $b$, and simulate biased deliberation $D_b$, resulting in $D'(\strictProfile) = D_b(\strictProfile, \mathbf{b})$. As a direct corollary to \cref{proposition:deterministic-delib}, such a $D'$ cannot be surjective, strategyproof and non-dictatorial, showing a contradiction.
+\end{proofc}
 
-	
-\end{proof}
+This result is independent of the metric space chosen, as well as the number of voters.
+
+Having stated this, it is clearly frivolous to attempt to design a strategy proof deliberation procedure of the likes shown. Instead, focus in now brought to modeling `ideal' deliberation, as laid out in \cref{subsection:Meta-agreement}. We provide the following mathematical formulations to the four tenants laid out. \textit{Freedom}: voters can report any preference, \textit{Reason}: voters are rational, \textit{Equality}: voters are allowed \textit{Consensus}:  voters are allowed. Which we extend with \textit{Honesty}: Voters represent their true beliefs and preferences only.
 
 

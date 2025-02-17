@@ -128,6 +128,7 @@
 \definecolor{theoremcolor}{named}{OrangeRed}
 \definecolor{corollarycolor}{named}{Fuchsia}
 \definecolor{propositioncolor}{named}{VioletRed}
+\definecolor{proofcolor}{named}{Gray}
 \definecolor{definitioncolor}{named}{TealBlue}
 \definecolor{examplecolor}{named}{Mulberry}
 
@@ -139,8 +140,15 @@
 	blanker,breakable,left=3.5mm,
 	top=2pt, bottom=1pt,
 	parbox=false,
-	before skip=8pt,after skip=10pt,
+	before skip=12pt,after skip=18pt,
 	borderline west={1mm}{0.3mm}{#1!50!white}
+}
+\newtcolorbox{myproof}[1][]{%
+	blanker,breakable,left=3.5mm,
+	top=2pt, bottom=1pt,
+	parbox=false,
+	before skip=12pt,after skip=18pt,
+	borderline west={1mm}{0.3mm}{#1!50!white},
 }
 
 %Updated Example Environment
@@ -156,11 +164,22 @@
 	description font=\mdseries\itshape,
 	title=#1}{ex}
 
+\newtheoremstyle{compact} % Define a new theorem style
+{0pt}   % Space above
+{0pt}   % Space below
+{\itshape} % Body font
+{}      % Indent amount
+{\bfseries} % Theorem head font
+{.}     % Punctuation after theorem head
+{5pt plus 1pt minus 1pt} % Space after theorem head
+{}      % Theorem head spec
+
+\theoremstyle{compact}
 
 % Define theorem environments
 \newtheorem{theoremaux}{Theorem}[chapter]
 \newenvironment{theorem}{%
-	\mytheorem[theoremcolor]{Theorem \thetheoremaux}%
+	\mytheorem[theoremcolor]{Theorem \theoremaux}%
 	\begin{theoremaux}
 		}{%
 	\end{theoremaux}
@@ -169,14 +188,22 @@
 
 \newtheorem{corollaryaux}[theoremaux]{Corollary}
 \newenvironment{corollary}{%
-	\mytheorem[corollarycolor]{Corollary \thecorollaryaux}%
+	\mytheorem[corollarycolor]{Corollary}%
 	\begin{corollaryaux}
 		}{%
 	\end{corollaryaux}
 	\endmytheorem
 }
+\newtheorem*{proofaux}{\textnormal{\textit{Proof}}}
+\newenvironment{proofc}{%
+	\myproof[proofcolor] %
+	\begin{proofaux}
+		}{%
+	\end{proofaux}
+	\endmytheorem
+}
 
-\newtheorem{propositionaux}[theoremaux]{Proposition}{label}
+\newtheorem{propositionaux}[theoremaux]{Proposition}
 \newenvironment{proposition}{%
 	\mytheorem[propositioncolor]{Proposition \thepropositionaux}%
 	\begin{propositionaux}
@@ -198,8 +225,6 @@
 
 \newtheorem{lemma}[theoremaux]{Lemma}
 \newtheorem{axiom}[theoremaux]{Axiom}
-\theoremstyle{definition}
-\theoremstyle{remark}
 \newtheorem{remark}[theoremaux]{Remark}
 \usepackage[centerlast,small,sc]{caption}
 \setlength{\captionmargin}{20pt}

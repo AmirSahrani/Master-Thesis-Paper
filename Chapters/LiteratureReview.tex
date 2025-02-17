@@ -114,7 +114,7 @@ These features allow us to be more precise when we talk about a deliberative dem
 	\setlength\itemsep{1px}
 	\item  Ideal deliberation is \textit{free}, participants regard themselves as only bound by the results of the deliberation, and the preconditions thereof. Participants act in accordance with the decision made through deliberation, and it being agreed on is sufficient reason to do so.
 	\item  Ideal deliberation is \textit{reasoned}, parties are required to state their reasons for advancing proposals.
-	\item  In ideal deliberation, parties are \textit{equal}, but formally and substantively. There are no rules that single individuals out, and existing distributions of power to no lend a party the opportunity to contribute to deliberation.
+	\item  In ideal deliberation, parties are \textit{equal}, both formally and substantively. There are no rules that single individuals out, and existing distributions of power to no lend a party the opportunity to contribute to deliberation.
 	\item  Ideal deliberation aims to arrive at \textit{consensus}, which can be rationally defended.
 \end{enumerate}
 
@@ -137,7 +137,7 @@ According to \citet{listTwoConceptsAgreement2002} there are three hypotheses tha
 All these are necessary conditions for meta-agreement, from this is it also clear to see that, given that there is exactly 1 \textit{issue}-dimension, single-peaked profile are, by definition, a direct consequence. This is the main reason meta-agreement is desirable, as it lets us circumvent the Gibbard-Satterthwaite theorem \citep{gibbardManipulationVotingSchemes1973, satterthwaiteStrategyproofnessArrowsConditions1975} through restricting the domain of preference profiles to the single-peaked domain $\domain{SP}$
 
 
-\citet{listDeliberationSinglePeakednessPossibility2013} provide empirical evidence for this theory of deliberation, showing deliberation increases proximity to single-peakedness, which they define as $S= \frac{m}{n}$ where $m = |\alternatives|$ is the largest subset of voters such that their profile is single-peaked. Furthermore, they also introduce the notion of salience, which represents to what extent a topic is salient in the voting population. In order to test whether deliberation increases single-peakedness \textit{through} meta-agreement, they test the following four hypotheses: (H1) deliberation increases proximity to single-peakedness. (H2')\footnote{This is a test for a corollary. H2 states that the rate of increase of proximity to single-peakedness decreases. Since high salience means some sort of deliberation has happened before, we expect this to have the same affect.} high salience issues show less increase in PtS then low salience issues. (H3) Effective deliberation, in the sense that more is learned during deliberation, results in bigger increases. (H4) All things equal, the increase is largest for issues with natural \textit{issue}-dimensions.
+\citet{listDeliberationSinglePeakednessPossibility2013} provide empirical evidence for this theory of deliberation, showing deliberation increases proximity to single-peakedness, which they define as $S= \frac{m}{n}$ where $n = |\voters|$ and $m$ is the largest subset of voters such that their profile is single-peaked. Furthermore, they also introduce the notion of salience, which represents to what extent a topic is salient in the voting population. In order to test whether deliberation increases single-peakedness \textit{through} meta-agreement, they test the following four hypotheses: (H1) deliberation increases proximity to single-peakedness. (H2')\footnote{This is a test for a corollary. H2 states that the rate of increase of proximity to single-peakedness decreases. Since high salience means some sort of deliberation has happened before, we expect this to have the same affect.} high salience issues show less increase in PtS then low salience issues. (H3) Effective deliberation, in the sense that more is learned during deliberation, results in bigger increases. (H4) All things equal, the increase is largest for issues with natural \textit{issue}-dimensions.
 
 Meta-agreement is not without its critiques, however. \citet{ottonelliElusiveNotionMetaagreement2013} show meta-agreement to be a stronger requirement than it may seem at a first glance. Firstly for (D1) to hold, the \textit{issue}-dimension must hold some semantic meaning, as otherwise it is unclear how people can exchange conceptualization of the problem otherwise. Furthermore, the issues must consist of 2 semantic issues, otherwise with only 1 dimension voters simply reach substantive agreement. A further restriction on these two dimensions is that they need to be opposite, with opposite justifications. If this is not the case, a voter can agree with both justifications, and thereby introduce a new dimension ``balance", which then violates the conditions under which single-peaked profiles guarantee the existence of strategyproof voting rules. D2 requires that all voters share the exact same semantic understand of the dimension, and the outcome associated with each alternative. Finally D3 requires D1 and D2 to have happened before in order. Clearly D3 is the weakest of the three.
 
@@ -148,7 +148,7 @@ Thus, meta-agreement is still quite restrictive, needing multiple forms of unani
 \citet{radDeliberationSinglePeakednessCoherent2021a} model deliberation and its effect on single-peakedness, though they argue single plateauedness is a more accurate term. To this end, they model each voter to have preferences order, and deliberation being the process of all voters announcing their preferences, after which all other voters update their current preference towards that of the announced ranking, in doing so they might have a bias towards their own preference, as such they try to minimize the distance between their current preference and the announced one. This process repeats until all voters have announced their opinion once, for one or multiple rounds. The preference a voter adopts when updating must lie between their current profile and the announced profile, which profiles are considered to be ``between" is defined by the distance metric used. They considered three metrics, the Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins (DP)~\citep{duddyMeasureDistanceJudgment2012a}, and Cook-Seiford (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the judgement set resulting from the voters preferences, the KS distance is then defined as the number of binary swaps a judgement set needs to undergo before it becomes the target judgement set, an example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref b)$. The DP distance is defined on the graph of judgement sets, where 2 sets share an edge if there is no judgement set between them. Since KS and DP share their notion of betweenness, we introduce betweenness as follows.
 
 \begin{definition}{J-Betweenness}{def:j-between}
-	A judgement set $J_i$ is between profiles $J_j$ and $J_k$ if for every proposition about $x,y \in \Alternatives$, $J_i$ either agrees with $J_j$ or $J_k$.
+	A judgement set $J_i$ is between profiles $J_j$ and $J_k$ if for every proposition about $x,y \in \alternatives$, $J_i$ either agrees with $J_j$ or $J_k$.
 \end{definition}
 
 \Cref{figure:DPDistance} shows a graph used for the DP distance in the case of 3 alternatives, for simplicity the associated profiles are used to label the judgement sets.
@@ -161,77 +161,8 @@ Each distance has different trade-offs, CS is the simplest, but might exaggerate
 
 \vspace{1em}
 \begin{figure}
-	\begin{tikzpicture}[>=,line join=bevel,scale = 0.3]
-		\node (1) at (233.0bp,288.0bp) [draw,ellipse] {1};
-		\node (_2_3) at (85.0bp,234.0bp) [draw,rectangle] {\$(1,2,3)\$};
-		\node (2) at (233.0bp,153.0bp) [draw,ellipse] {2};
-		\node (3) at (233.0bp,396.0bp) [draw,ellipse] {3};
-		\node (_2) at (85.0bp,180.0bp) [draw,rectangle] {\$(3) $\backslash$pref (2) $\backslash$pref (1)\$};
-		\node (_3) at (85.0bp,396.0bp) [draw,rectangle] {\$(2,3) $\backslash$pref (1)\$};
-		\node (_2_3_p) at (85.0bp,342.0bp) [draw,rectangle] {\$(1) $\backslash$pref (2,3)\$};
-		\node (_2_3_alt) at (85.0bp,288.0bp) [draw,rectangle] {\$(1) $\backslash$pref (3) $\backslash$pref (2)\$};
-		\node (_3_p) at (85.0bp,72.0bp) [draw,rectangle] {\$(2) $\backslash$pref (3,1)\$};
-		\node (_2_1) at (85.0bp,504.0bp) [draw,rectangle] {\$(3) $\backslash$pref (2,1)\$};
-		\node (_1_2) at (85.0bp,450.0bp) [draw,rectangle] {\$(3) $\backslash$pref (1) $\backslash$pref (2)\$};
-		\node (_1_3) at (85.0bp,126.0bp) [draw,rectangle] {\$(2) $\backslash$pref (1) $\backslash$pref (3)\$};
-		\node (_3_1) at (85.0bp,18.0bp) [draw,rectangle] {\$(2) $\backslash$pref (3) $\backslash$pref (1)\$};
-		\draw [->] (_2_3) ..controls (139.72bp,232.29bp) and (155.67bp,237.59bp)  .. (170.0bp,243.0bp) .. controls (185.2bp,248.74bp) and (202.09
-		bp,256.16bp)  .. (1);
-		\draw [->] (_2_3) ..controls (139.72bp,250.29bp) and (155.67bp,255.59bp)  .. (170.0bp,261.0bp) .. controls (180.22bp,264.86bp) and (191.1
-		9bp,269.47bp)  .. (1);
-		\draw [->] (_2_3) ..controls (119.31bp,261.75bp) and (146.78bp,270.24bp)  .. (170.0bp,279.0bp) .. controls (178.94bp,282.37bp) and (188.4
-		6bp,286.33bp)  .. (1);
-		\draw [->] (_2_3) ..controls (140.29bp,211.52bp) and (156.39bp,205.68bp)  .. (170.0bp,198.0bp) .. controls (182.56bp,190.91bp) and (194.8
-		5bp,181.01bp)  .. (2);
-		\draw [->] (_2_3) ..controls (140.29bp,229.52bp) and (156.39bp,223.68bp)  .. (170.0bp,216.0bp) .. controls (187.4bp,206.18bp) and (204.3b
-		p,190.96bp)  .. (2);
-		\draw [->] (_2_3) ..controls (141.05bp,243.62bp) and (157.74bp,250.12bp)  .. (170.0bp,261.0bp) .. controls (186.95bp,276.03bp) and (209.8
-		3bp,334.0bp)  .. (3);
-		\draw [->] (_2) ..controls (160.05bp,200.69bp) and (165.24bp,203.65bp)  .. (170.0bp,207.0bp) .. controls (190.33bp,221.34bp) and (207.02b
-		p,244.34bp)  .. (1);
-		\draw [->] (_2) ..controls (163.92bp,158.7bp) and (181.15bp,155.76bp)  .. (2);
-		\draw [->] (_2) ..controls (180.56bp,169.06bp) and (190.73bp,166.86bp)  .. (2);
-		\draw [->] (_2) ..controls (162.85bp,200.72bp) and (166.63bp,203.65bp)  .. (170.0bp,207.0bp) .. controls (171.49bp,208.48bp) and (206.52b
-		p,316.84bp)  .. (3);
-		\draw [->] (_3) ..controls (145.31bp,373.51bp) and (158.86bp,367.86bp)  .. (170.0bp,360.0bp) .. controls (187.9bp,347.37bp) and (202.98bp
-		,328.03bp)  .. (1);
-		\draw [->] (_3) ..controls (155.59bp,386.72bp) and (163.24bp,382.77bp)  .. (170.0bp,378.0bp) .. controls (192.74bp,361.96bp) and (210.92b
-		p,335.1bp)  .. (1);
-		\draw [->] (_3) ..controls (156.12bp,380.26bp) and (163.82bp,375.38bp)  .. (170.0bp,369.0bp) .. controls (183.33bp,355.25bp) and (212.68b
-		p,235.53bp)  .. (2);
-		\draw [->] (_3) ..controls (164.68bp,389.11bp) and (182.24bp,389.38bp)  .. (3);
-		\draw [->] (_3) ..controls (164.68bp,402.89bp) and (182.24bp,402.62bp)  .. (3);
-		\draw [->] (_2_3_p) ..controls (119.31bp,314.25bp) and (146.78bp,305.76bp)  .. (170.0bp,297.0bp) .. controls (178.94bp,293.63bp) and (188
-		.46bp,289.67bp)  .. (1);
-		\draw [->] (_2_3_p) ..controls (153.44bp,321.02bp) and (161.97bp,318.03bp)  .. (170.0bp,315.0bp) .. controls (180.22bp,311.14bp) and (191
-		.19bp,306.53bp)  .. (1);
-		\draw [->] (_2_3_p) ..controls (155.26bp,338.38bp) and (162.83bp,335.7bp)  .. (170.0bp,333.0bp) .. controls (185.2bp,327.26bp) and (202.0
-		9bp,319.84bp)  .. (1);
-		\draw [->] (_2_3_alt) ..controls (179.43bp,281.44bp) and (188.52bp,281.71bp)  .. (1);
-		\draw [->] (_2_3_alt) ..controls (179.43bp,294.56bp) and (188.52bp,294.29bp)  .. (1);
-		\draw [->] (_3_p) ..controls (155.94bp,87.925bp) and (163.7bp,92.737bp)  .. (170.0bp,99.0bp) .. controls (193.06bp,121.92bp) and (215.75b
-		p,213.41bp)  .. (1);
-		\draw [->] (_3_p) ..controls (155.48bp,82.647bp) and (163.06bp,86.085bp)  .. (170.0bp,90.0bp) .. controls (187.4bp,99.818bp) and (204.3bp
-		,115.04bp)  .. (2);
-		\draw [->] (_3_p) ..controls (141.24bp,94.82bp) and (156.79bp,100.55bp)  .. (170.0bp,108.0bp) .. controls (182.56bp,115.09bp) and (194.85
-		bp,124.99bp)  .. (2);
-		\draw [->] (_2_1) ..controls (155.94bp,488.07bp) and (163.7bp,483.26bp)  .. (170.0bp,477.0bp) .. controls (171.49bp,475.52bp) and (206.52
-		bp,367.16bp)  .. (1);
-		\draw [->] (_2_1) ..controls (145.31bp,481.51bp) and (158.86bp,475.86bp)  .. (170.0bp,468.0bp) .. controls (187.9bp,455.37bp) and (202.98
-		bp,436.03bp)  .. (3);
-		\draw [->] (_2_1) ..controls (155.59bp,494.72bp) and (163.24bp,490.77bp)  .. (170.0bp,486.0bp) .. controls (192.74bp,469.96bp) and (210.9
-		2bp,443.1bp)  .. (3);
-		\draw [->] (_1_2) ..controls (162.02bp,429.29bp) and (166.22bp,426.35bp)  .. (170.0bp,423.0bp) .. controls (186.95bp,407.97bp) and (209.8
-		3bp,350.0bp)  .. (1);
-		\draw [->] (_1_2) ..controls (153.44bp,429.02bp) and (161.97bp,426.03bp)  .. (170.0bp,423.0bp) .. controls (180.22bp,419.14bp) and (191.1
-		9bp,414.53bp)  .. (3);
-		\draw [->] (_1_3) ..controls (162.02bp,146.71bp) and (166.22bp,149.65bp)  .. (170.0bp,153.0bp) .. controls (201.93bp,181.32bp) and (218.4
-		9bp,229.44bp)  .. (1);
-		\draw [->] (_1_3) ..controls (179.44bp,143.28bp) and (188.55bp,144.97bp)  .. (2);
-		\draw [->] (_3_1) ..controls (198.45bp,59.171bp) and (216.28bp,98.603bp)  .. (2);
-		\draw [->] (_3_1) ..controls (147.81bp,40.352bp) and (160.12bp,46.002bp)  .. (170.0bp,54.0bp) .. controls (193.72bp,73.192bp) and (210.13
-		bp,104.04bp)  .. (2);
-	\end{tikzpicture}
+	\centering
+	\includegraphics[width=0.65\textwidth]{dpGraph.pdf}
 	\caption{The graph of judgement sets for all preferences over three alternatives.}
 	\label{figure:DPDistance}
 \end{figure}

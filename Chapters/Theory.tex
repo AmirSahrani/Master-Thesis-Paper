@@ -2,6 +2,7 @@
 \chapter{Theoretical Results}
 \label{theory}
 
+\lhead{\emph{Theory}} % Set the left side page header to "Symbols"
 
 In the model of deliberation of \citet{radDeliberationSinglePeakednessCoherent2021a}, outlined in \cref{section:related_work}, aims to model deliberation, through this the aim is to show deliberation results in nicely structured profiles which allow for strategy proof voting rules. One important caveat, given by the authors as well, is all participants should honestly and truthfully participate in deliberation. We now provide a formal statement, showing deliberation does not prevent strategic behavior.
 
@@ -12,7 +13,7 @@ In the model of deliberation of \citet{radDeliberationSinglePeakednessCoherent20
 \end{proposition}
 
 \begin{proofc}
-	Assume, towards a contradiction, such a pair of deliberative procedure ($D$) and voting rule (\(f\)) exists. Any deterministic deliberation procedure $D$ could, in principle, be embedded into a voting rule $f'(\strictProfile) = f(D(\strictProfile))$, such that the voting rule simulates $D$ before applying $f$, which would result in  voting rule $f'$ being surjective, strategyproof and non-dictatorial. This is a contradiction, by the Gibbard-Satterthwaite theorem\citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
+	Assume, towards a contradiction, such a pair of deliberative procedure ($D$) and voting rule (\(f\)) exists. Any deterministic deliberation procedure $D$ could, in principle, be embedded into a voting rule $f'(\strictProfile) = f(D(\strictProfile))$, such that the voting rule simulates $D$ before applying $f$, which would result in  voting rule $f'$ being surjective, strategyproof and non-dictatorial. This is a contradiction, by the Gibbard-Satterthwaite theorem~\citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
 \end{proofc}
 
 
@@ -30,8 +31,126 @@ The proof of this follows from a reduction of the biased Deliberation $D_b$ to g
 	Take any election consisting of biased deliberation $D_b$ and voting rule $f$, since biases $\mathbf{b}$ are true by assumption, they must be fixed, meaning that $\mathbf{b}$ is not reported but some fact of the matter. If this election was immune to strategic manipulation, then a deliberative procedure $D$ could embed this $b$, and simulate biased deliberation $D_b$, resulting in $D'(\strictProfile) = D_b(\strictProfile, \mathbf{b})$. As a direct corollary to \cref{proposition:deterministic-delib}, such a $D'$ cannot be surjective, strategyproof and non-dictatorial, showing a contradiction.
 \end{proofc}
 
-This result is independent of the metric space chosen, as well as the number of voters.
+This result is independent of the metric space chosen, as well as the number of voters. From here we now show that even if we take the deliberation procedures on its own, it still not immune to strategic manipulation. For this we restate strategyproofness as follows:
 
-Having stated this, it is clearly frivolous to attempt to design a strategy proof deliberation procedure of the likes shown. Instead, focus in now brought to modeling `ideal' deliberation, as laid out in \cref{subsection:Meta-agreement}. We provide the following mathematical formulations to the four tenants laid out. \textit{Freedom}: voters can report any preference, \textit{Reason}: voters are rational, \textit{Equality}: voters are allowed \textit{Consensus}:  voters are allowed. Which we extend with \textit{Honesty}: Voters represent their true beliefs and preferences only.
+\begin{definition}{Strategyproofness of Deliberation}{delib-strategyproof}
+	A deliberation procedure is strategyproof if there exists no voter $i$ such that there is a profile $\strictProfile$, in which $i$ misreporting their preference $\Preference_{i}$ as $\Preference_{i}^{'}$ results in the final profile after deliberation  when $\Preference_{i}$ was reported $D(\strictProfile)$ is further from the $i$'s original preference than if they had reported $\Preference_{i}^{'}$. This distance is measured as
+	\[\operatorname{Dist}(\Preference_{i}, D(\strictProfile_{-i})) \geq \operatorname{Dist}(\Preference_{i}, D(\hat{\strictProfile}_{-i})).\]
+	Where the Dist function is simply the sum of all distances between $\Preference_i$ and all preferences in $\strictProfile_{-i}$.
+\end{definition}
+
+Using this definition, we show that the deliberative procedures, under the metric spaces \textit{KS}, \textit{ DP}, \textit{ CS} are not strategyproof. Stated as follows:
+
+\begin{proposition}
+	Deliberation under distance measures \textit{KS}, \textit{ DP}, \textit{ CS} is not strategyproof, for $n \geq 2$ and $m \geq 3$.
+\end{proposition}
+
+\begin{proofc}
+	Assume the following population, we have voter 1, whose bias is $1$, and all other voters $j \neq 1$ have bias $0.5$. Furthermore, we have $\operatorname{Dist}(\Preference_1, \Preference_j) = 2$ for all $j$. $1$ now has the option to report $\Preference_{1}^{'}$ instead, which has $\operatorname{Dist}(\Preference_{1}^{'}, \Preference_j) = 4$ and $\operatorname{Dist}(\Preference_{1}^{'}, \Preference_1) = 2$. If $1$ reports $\Preference_1^{'}$, then all $j$ will update towards $1$'s true preference, as using \cref{eq:deliberation_step_formula} we get $r(R_{j}, R_{1}^{'}, R_1) = 4$, while $r(R_{j}, R_{1}^{'}, R_j) = r(R_{j}, R_{1}^{'}, R_1^{'}) = 16$.
+
+	Resulting in $\operatorname{Dist}(R_{1}, D(\strictProfile_{-1})) = 2(n-1) >  \operatorname{Dist}(R_{1}, D(\hat{\strictProfile}_{-1})) = 0$.
+
+	Since 1 has a bias of 1, the order of the deliberation does not matter.
+
+	We now show that for all distance measures, there exists these 3 preference orderings such that this profile can be constructed. For DP and KS, we can use the following profiles $R_{1}  = a \pref b \pref c \pref \dots \pref m$, $R_{j} = b \pref a \pref c \pref \dots \pref m$ and $R^{'}_{1} = a \pref c \pref b \pref \dots \pref m$. For DP the distances can easily be checked in \cref{figure:DPDistance} As for KS, note that the distance increases by 2 every time the positions of only 2 alternatives are swapped, thus we have $\operatorname{Dist}_{\text{KS}}(R_{1}, R_{j}) = 2$ and $\operatorname{Dist}_{\text{KS}}(R_{1}, R_{1}^{'}) = 2$, thus the total distance between $R_{1}^{'}$ and $R_{j}$ is 4.
+
+	Finally, for \textit{CS}, $R_{1}$ and $R_{j}$ stay the same, while $R_{1}^{'} = c \pref a \pref b \pref \dots \pref m$, resulting in $\operatorname{Dist}_{\text{CS}}(R_{1}^{'}, R_{j}) = |2-2| + |1-3| + |3-1| = 4$.
+\end{proofc}
+
+These results show it is frivolous to attempt to design a strategy proof deliberation procedure of the likes shown. Instead, focus is now brought to modeling `ideal' deliberation, as laid out in \cref{subsection:Meta-agreement}. We provide the following mathematical formulations to the four tenants laid out. \textit{Freedom}: voters can report any preference, \textit{Reason}: voters are rational, \textit{Equality}: voters are allowed \textit{Consensus}:  voters are allowed. Which we extend with \textit{Honesty}: Voters represent their true beliefs and preferences only.
+
+
+\section{Our model}
+\label{sec: main model}
+
+
+In an attempt to model meta-agreement through deliberation, our model need to make a proper distinction between the `level' and the meta `level'. In order to do so, we propose the following, let \(E = \{e_{1}, \dots e_{k}\}\) denote the set of events that could occur, A voter $i \in \voters$, at the base level has a preference over outcomes. At a meta level, however, a voter has a probability distribution over the outcomes, conditional on the alternative \(\alternative \in \alternatives\) elected. Now deliberation can be modelled as a deliberation on probability distributions.
+
+More specifically, we model deliberation as a DeGroot learning model. In this model, a voter is a node in a graph, and deliberation can be modeled as a Markov chain. A voter has probability matrix $P_i$, defined as follows:
+
+\[
+	P_i =\begin{bmatrix}
+		p_i(e_1 | a) & \dots  & p_i(e_1 | m) \\
+		\vdots       & \ddots & \vdots       \\
+		p_i(e_k | a) & \dots  & p_i(e_k | m) \\
+	\end{bmatrix}
+\]
+
+Under the constraint that each column must sum to one, representing that an alternative must have at least one outcome. Note that this does not mean that all outcomes have to be equally likely, nor that an alternative can only represent one outcome. When the let $\boldsymbol{P}= [P_1, \dots, P_{n}]^{T}$ denote the population opinion, which is has shape \(|\voters| \times |E| \times |\alternatives|\).
+
+In order to extract a ballot from this matrix, we assume Borda scores for each event, using this we can model the most preferred alternative as the one that maximizes the expected utility with respect to the Borda scores, starting from 1 instead of 0, and voter $i$'s subjective probability.
+
+Then a deliberative step can be modelled using a transition matrix $T$, defined as follows:
+
+\[
+	T=\begin{bmatrix}
+		t_{11} & \dots  & t_{1n} \\
+		\vdots & \ddots & \vdots \\
+		t_{n1} & \dots  & t_{nn} \\
+	\end{bmatrix}
+\]
+
+Here each $t_{ij}$ represents how much voter $i$ trusts the opinion of voter $j$, in order for this to be a proper stochastic matrix, all rows must sum to one, and have non-negative entries. Although this last requirement could be seen as unrealistic, as a voter might actively distrust another voter and update away from their opinion.
+
+Using this, we can now model the opinions of voters after a deliberative step as a matrix multiplication:
+
+\begin{equation}
+	P^{(1)} = TP^{(0)}
+	\label{eq:update_degroot}
+\end{equation}
+
+The resulting probability distribution is then simply a weighted linear combination of all probability distributions.
+
+Finally, we provide an example of the first deliberation round in example \ref{example:deGroot-delib}
+
+\begin{example}{DeGroot deliberation}
+	{}
+	We have voters \(\voters = \{1,2\}\), events \(E = \{e_{1}, e_{2}\}\), and candidates \(\alternatives = \{a,b\}\). The voters both think that \(e_{1} \pref e_{2}\), and this these are the probabilities:
+	\[
+		P_1 =\begin{bmatrix}
+			0.5 & 0 \\
+			0.5 & 1 \\
+		\end{bmatrix}\quad
+		P_2 =\begin{bmatrix}
+			1 & 0.9 \\
+			0 & 0.1 \\
+		\end{bmatrix}
+	\]
+	This results in voter 1 preferring candidate $b$ over candidate $a$, while voter 2, prefers $a$. Intuitively, since voter 1 things $e_{1}$ is equally likely for each alternative, while $e_{2}$ will not happen under $a$, it makes sense for them to prefer candidate $b$.
+
+	Now deliberating with the following trust matrix:
+	\[
+		T=\begin{bmatrix}
+			t_{11} & \dots  & t_{1n} \\
+			\vdots & \ddots & \vdots \\
+			t_{n1} & \dots  & t_{nn} \\
+		\end{bmatrix}
+	\]
+	We get the following updated opinions:
+	\begin{align*}
+		\boldsymbol{P}^{(1)} & = T\boldsymbol{P}^{(0)}                                                    \\
+		                     & =T\begin{bmatrix}P_1 P_2\end{bmatrix}^{T}                                  \\
+		                     & =\begin{bmatrix}(0.3P_1 + 0.7P_{2}) & (0.2P_1 + 0.8P_{2})\end{bmatrix}^{T} \\
+		                     & = \begin{bmatrix}
+			                         \begin{bmatrix}
+				0.35 & 0.63 \\
+				0.15 & 0.37 \\
+			\end{bmatrix} &
+			                         \begin{bmatrix}
+				0.9 & 0.72 \\
+				0.1 & 0.18 \\
+			\end{bmatrix}
+		                         \end{bmatrix}^{T}
+	\end{align*}
+
+	These new probabilities are not yet in full consensus, however, looking at their corresponding ballots there is consensus on their most preferred alternative.
+	\label{example:deGroot-delib}
+\end{example}
+
+\subsection{Consensus}
+\label{sub: concensus DeGroot}
+Using this model of deliberation, meta-agreement as some common probability distribution over all events. If the goal of deliberation is meta-agreement, then the study of interest becomes the dynamics of convergence towards a unified probability distribution.
+
+
 
 

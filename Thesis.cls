@@ -154,6 +154,7 @@
 %Updated Example Environment
 \newtcbtheorem[crefname={example}{examples}]{example}{Example}{
 	new/auto counter,
+	boxsep = 2mm,
 	colback=examplecolor!2!white,
 	colbacktitle=examplecolor!8!white,
 	colframe=examplecolor!80!black,
@@ -194,11 +195,11 @@
 	\end{corollaryaux}
 	\endmytheorem
 }
-\newtheorem*{proofaux}{\textnormal{\textit{Proof}}}
+\newtheorem*{proofaux}{\normalfont{\textit{Proof}}}
 \newenvironment{proofc}{%
 	\myproof[proofcolor] %
-	\begin{proofaux}
-		}{%
+	\begin{proofaux} \normalfont
+		}{
 	\end{proofaux}
 	\endmytheorem
 }

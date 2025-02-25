@@ -166,9 +166,9 @@
 	title=#1}{ex}
 
 \newtheoremstyle{compact} % Define a new theorem style
-{0pt}   % Space above
-{0pt}   % Space below
-{\itshape} % Body font
+{}   % Space above
+{}   % Space below
+{} % Body font
 {}      % Indent amount
 {\bfseries} % Theorem head font
 {.}     % Punctuation after theorem head

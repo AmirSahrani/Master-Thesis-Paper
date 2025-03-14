@@ -93,7 +93,9 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage[Sonny]{fncychap}
-
+\usepackage[T1]{fontenc}
+\usepackage{charter}           % For Charter text font
+\usepackage{amsmath,amssymb}   % For AMS math symbols
 
 \lhead[\rm\thepage]{\fancyplain{}{\sl{\rightmark}}}
 \rhead[\fancyplain{}{\sl{\leftmark}}]{\rm\thepage}
@@ -116,7 +118,7 @@
 			\thispagestyle{empty}
 			\newpage
 			\if@twocolumn\hbox{}\newpage\fi\fi\fi}
-\usepackage{amsmath,amsfonts,amssymb,amscd,amsthm,xspace}
+\usepackage{amsmath,amsfonts, amscd,amsthm,xspace}
 \usepackage[most]{tcolorbox}
 \usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
 	bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
@@ -145,6 +147,7 @@
 	before skip=12pt,after skip=18pt,
 	borderline west={1mm}{0.3mm}{#1!50!white}
 }
+
 \newtcolorbox{myproof}[1][]{%
 	blanker,breakable,left=3.5mm,
 	top=2pt, bottom=1pt,
@@ -183,7 +186,8 @@
 \newtheorem{theoremaux}{Theorem}[chapter]
 \newenvironment{theorem}{%
 	\mytheorem[theoremcolor]{Theorem \theoremaux}%
-	\begin{theoremaux}
+	\begin{theoremaux}\vspace{-10pt}
+
 		}{%
 	\end{theoremaux}
 	\endmytheorem
@@ -192,7 +196,8 @@
 \newtheorem{corollaryaux}[theoremaux]{Corollary}
 \newenvironment{corollary}{%
 	\mytheorem[corollarycolor]{Corollary}%
-	\begin{corollaryaux}
+	\begin{corollaryaux}\vspace{-10pt}
+
 		}{%
 	\end{corollaryaux}
 	\endmytheorem
@@ -209,11 +214,14 @@
 \newtheorem{propositionaux}[theoremaux]{Proposition}
 \newenvironment{proposition}{%
 	\mytheorem[propositioncolor]{Proposition \thepropositionaux}%
-	\begin{propositionaux}
+	\begin{propositionaux}\vspace{-10pt}
 		}{%
-	\end{propositionaux}
+	\end{propositionaux}%
 	\endmytheorem
 }
+
+
+
 \newtcbtheorem[crefname={definition}{definitions}]{definition}{Definition}{
 	new/auto counter,
 	colback=definitioncolor!2!white,

@@ -8,16 +8,16 @@
 
 
 
-\subsection{Condorcet Domain}
+\section{Condorcet Domain}
 If our goal is to prevent Condorcet cycles, or in general have transitive majority relations, the best we could hope to do is to apply our domain restriction such that our domain contains all profiles $P$ such that $P$ has a (weak) Condorcet winner. We call this domain $\domain{Condorcet}$. Under this domain, let $\votingrule{Condorcet}$ be the Condorcet Rule, which picks a Condorcet winner. Then $\votingrule{Condorcet}$ is strategyproof over $\domain{Condorcet}$ \citep{elkindPreferenceRestrictionsComputational2022a}.
 
-\begin{proof}{(\citet{elkindPreferenceRestrictionsComputational2022a})}.
+\begin{proofc}{(\citet{elkindPreferenceRestrictionsComputational2022a})}.
 	Assume, for the sake of a contradiction, we have profiles $P = (\pref_1 \dots \pref_i \dots \pref_n)$ and $P' = (\pref_1 \dots \pref_{i'} \dots \pref_n)$ such that:
 	\[
 		\votingrule{Condorcet}(P) = a, \quad \votingrule{Condorcet}(P') = b, \quad \text{and } a \neq b
 	\]
 	Then under $P$ a strict majority $N' \subseteq N$ have $a \pref b$, but $i \notin N'$, thus in $P'$, $N'$ is still a majority preferring $a$ to $b$, but this is in contradiction to $b$ winning in $P'$.
-\end{proof}
+\end{proofc}
 
 
 Though this result is positive, $\domain{Condorcet}$ is not hereditary, this is easy to see through an example:
@@ -131,7 +131,8 @@ According to \citet{listTwoConceptsAgreement2002} there are three hypotheses tha
 	\setlength\itemsep{1px}
 	\item [D1] Deliberation leads people to discover a single \textit{issue}-dimension
 	\item [D2] Deliberation lets people place all possible alternatives in this \textit{issue}-dimension
-	\item [D3] After this deliberation, people update their preferences by picking a preferred (peak) outcome, and all other rankings are based on structure of the \textit{issue}-dimension
+	\item [D3] After this deliberation, people update their preferences by picking
+	      a preferred outcome, and all other rankings are based on the distance to this outcome in the \textit{issue}-dimension
 \end{enumerate}
 
 All these are necessary conditions for meta-agreement, from this is it also clear to see that, given that there is exactly 1 \textit{issue}-dimension, single-peaked profile are, by definition, a direct consequence. This is the main reason meta-agreement is desirable, as it lets us circumvent the Gibbard-Satterthwaite theorem \citep{gibbardManipulationVotingSchemes1973, satterthwaiteStrategyproofnessArrowsConditions1975} through restricting the domain of preference profiles to the single-peaked domain $\domain{SP}$

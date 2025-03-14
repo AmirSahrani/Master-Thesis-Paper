@@ -40,6 +40,7 @@
 \setlist{nolistsep}
 \usepackage{booktabs}
 \usepackage{algorithm2e}
+\usepackage{custom_commands}
 
 \usepackage{titlesec}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -61,28 +62,6 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % New command to make the lines in the title page
 
 
-% Command for Social choice
-\newcommand{\alternatives}{A}
-\newcommand{\alternative}{a}
-\newcommand{\voters}{N}
-\newcommand{\voter}{n}
-\newcommand{\Nat}{\mathbb{N}}
-\newcommand{\Reals}{\mathbb{R}}
-\newcommand{\numVoters}{n}
-\newcommand{\biasedDeliberation}{\operatorname{DB}}
-\newcommand{\setOfStrictProfiles}{\mathcal{L}(A)}
-\newcommand{\strictProfile}{\boldsymbol{R}}
-\newcommand{\Preference}{R}
-\newcommand{\setOfWeakProfiles}{\hat{\mathcal{L}}(A)}
-\newcommand{\weakProfile}{\hat{\boldsymbol{R}}}
-\newcommand{\pref}{\succ}
-\newcommand{\prefeq}{\succcurlyeq}
-\newcommand{\prefmaj}{\pref_{\textnormal{maj}}}
-\newcommand{\prefeqmaj}{\prefeq_{\textnormal{maj}}}
-\newcommand{\domain}[1]{\mathcal{D}_{\textnormal{#1}}}
-\newcommand{\votingrule}[1]{f_{\normalfont{#1}}}
-\newcommand{\orderalt}{\triangleleft}
-
 % PDF meta-data
 \hypersetup{pdftitle=\ttitle}
 \hypersetup{pdfsubject=\subjectname}
@@ -101,7 +80,7 @@
 	\begin{center}
 
 		\textsc{\LARGE \univname}\\[1.5cm] % University name
-		\textsc{\Large Master's Thesis}\\[0.5cm] % Thesis type
+		\textsc{\Large Master Thesis}\\[0.5cm] % Thesis type
 
 		\HRule \\[0.4cm] % Horizontal line
 		{\huge \bfseries \ttitle}\\[0.4cm] % Thesis title
@@ -246,7 +225,7 @@
 
 \clearpage % Start a new page
 
-\setstretch{1.5} % Set the line spacing to 1.5, this makes the following tables easier to read
+\setstretch{1.3} % Set the line spacing to 1.5, this makes the following tables easier to read
 
 \lhead{\emph{Abbreviations}} % Set the left side page header to "Abbreviations"
 \listofsymbols{ll} % Include a list of Abbreviations (a table of two columns)

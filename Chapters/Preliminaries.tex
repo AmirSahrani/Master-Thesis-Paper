@@ -4,9 +4,9 @@
 We first proceed by giving a short introduction of social choice. We outline the basic model, and restate well known results relevant to the following chapters.
 
 \section{The basic model}
-To model elections, or more generally voting games, we represent voters by the set $\voters$ consisting of $n$ voters. The possible outcomes of an election, we represent with the set $\alternatives$ consisting of $|A|$ possible outcomes, from now on we will refer to the outcomes of an election as alternatives. Each voter can represent their preference on alternatives through a preference relation $\prefeq_i$, for example if voter 2 prefers outcome $a$ to outcome $b$, we write $a \prefeq_i b$. If, however, a voter wants to make it clear $a$ is strictly better than $b$, we instead write $a \pref_i b$, when a voter specifies their preferences on the entire set of alternatives we call this a (weak) linear order. We call the set of possible linear orders over the alternatives $\setOfStrictProfiles$, the set of weak linear orders is denoted by $\setOfWeakProfiles$. Thus, for an election, all voters report a (weak) linear order, the set of each voters preference is called a profile, denoted by $\strictProfile$. Finally, a rule $F$ decides the outcome of the election based on the profile. We discuss the specifics of these rules in section \cref{sec:SCF}.
+To model elections, or more generally voting games, we represent voters by the set $\voters$ consisting of $n$ voters. The possible outcomes of an election, we represent with the set $\alternatives$ consisting of $|A|$ possible outcomes, from now on we will refer to the outcomes of an election as alternatives. Each voter can represent their preference on alternatives through a preference relation $\prefeq_i$, for example if voter 2 prefers outcome $a$ to outcome $b$, we write $a \prefeq_2 b$. If, however, this voter wants to make it clear $a$ is strictly better than $b$, we instead write $a \pref_2 b$. When a voter specifies their preferences on the entire set of alternatives we call this a (weak) linear order. We call the set of possible linear orders over the alternatives $\setOfStrictProfiles$, the set of weak linear orders is denoted by $\setOfWeakProfiles$. Thus, for an election, all voters report a (weak) linear order, the set of each voters preference is called a profile, denoted by $\strictProfile$. Finally, a rule $F$ decides the outcome of the election based on the profile. We discuss the specifics of these rules in Section \cref{sec:SCF}.
 
-The last general tool we will need is the \textit{majority relationship}. Given some profile $\strictProfile$ can construct a majority relationship as follows, for each pair of alternatives $x,y$, we ask how many people prefer $x$ to $y$, if the number of people who prefer $x$ to $y$ is greater than the other way around we write $x  \prefmaj y$, if we have an even number of voters, and thus $|\voters_{x \pref y}| = |\voters_{y \pref x}|$ this becomes a weak preference, and we simply write $x \prefeqmaj y$ (defaulting to lexicographical order). We proceed with an example.
+The last general tool we will need is the \textit{majority relation}. Given some profile $\strictProfile$ we can construct a majority relationship as follows: for each pair of alternatives $x,y$, we ask how many people prefer $x$ to $y$; if the number of people who prefer $x$ to $y$ is greater than the other way around we write $x  \prefmaj y$, if we have an even number of voters, these two number can be equal and this becomes a weak preference, we simply write $x \prefeqmaj y$ (defaulting to lexicographical order). We proceed with an example.
 
 \begin{example}{Majority relation}{maj-rel}
 	\begin{minipage}{0.15\linewidth}
@@ -14,9 +14,9 @@ The last general tool we will need is the \textit{majority relationship}. Given 
 			\toprule
 			$1$ & $2$ & $3$ \\
 			\midrule
-			a   & b   & a   \\
-			b   & c   & c   \\
-			c   & a   & b   \\
+			$a$ & $b$ & $a$ \\
+			$b$ & $c$ & $c$ \\
+			$c$ & $a$ & $b$ \\
 			\bottomrule
 		\end{tabular}
 	\end{minipage}
@@ -31,7 +31,7 @@ A majority relation can be a-cyclic, and transitive, though neither are guarante
 
 \section{Social Choice Functions}
 \label{sec:SCF}
-In order to decide the outcome of an election, we pick a social choice function $F$, this function should map all possible profiles to an outcome, thus $F: \strictProfile \mapsto \alternatives$. A famous example of a SCF is the plurality rule, which simply elects the alternative voted into first place most often, though simple, it can also lead to a tie. Since the outcome of our SCF is only allowed to be a single alternative, the plurality rule needs to be equipped with a tie breaking mechanism in order to be a valid SCF, we require the tie-breaking to be deterministic.
+In order to decide the outcome of an election, we pick a social choice function $F$, this function should map all possible profiles to an outcome, thus $F: \strictProfile \to \alternatives$. A famous example of a SCF is the plurality rule, which simply elects the alternative voted into first place most often, though simple, it can also lead to a tie. Since the outcome of our SCF is only allowed to be a single alternative, the plurality rule needs to be equipped with a tie breaking mechanism in order to be a valid SCF, we require the tie-breaking to be deterministic.
 
 
 \subsection{Axioms}

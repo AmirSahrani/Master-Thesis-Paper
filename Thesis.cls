@@ -124,6 +124,7 @@
 	pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
 \usepackage[noabbrev]{cleveref}
 \RequirePackage{amsthm}
+\usepackage[english]{babel}
 
 % Define colors
 \definecolor{theoremcolor}{named}{OrangeRed}

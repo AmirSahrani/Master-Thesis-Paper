@@ -158,9 +158,9 @@ Finally, we provide an example of the first deliberation round in example \ref{e
 \label{sub: concensus DeGroot}
 Using this model of deliberation, meta-agreement can be seen as some common probability distribution over all events. If the goal of deliberation is meta-agreement, then the study of interest becomes the dynamics of convergence towards a unified probability distribution.
 
-We present a summary of results relating to strongly connected graphs, as well as graphs for which there exists only closed and strongly connected subsets of nodes. For other results we refer to \citet{Golub_Jackson_2010}. Firstly we focus on the strongly connected graphs.
+We present a summary of results relating to strongly connected graphs, as well as graphs for which there exists only closed and strongly connected subsets of nodes. For other results we refer to \citet{golubNaiveLearningSocial2010}. Firstly we focus on the strongly connected graphs.
 
-\begin{proposition}{(\citet{Golub_Jackson_2010}).}
+\begin{proposition}{(\citet{golubNaiveLearningSocial2010}).}
 	For a strongly connected matrix \(T\), the following properties are equivalent:
 	\begin{itemize}
 		\item[o] \(T\) is Convergent
@@ -170,7 +170,7 @@ We present a summary of results relating to strongly connected graphs, as well a
 	\end{itemize}
 \end{proposition}
 
-This result is very positive from a convergence dynamics point of view, as no knowledge of the initial distribution is need to determine convergence, allowing us to simply verify one of these three properties on the network. Though strongly connected graph might be a strong requirement, in the case of small scale (in person) deliberation, this might not be infeasible. Fortunately, even outside this setting it might be possible to reach convergence. For this we first define what a closed set of nodes is.
+This result is very positive from a convergence dynamics point of view, as no knowledge of the initial distribution is needed to determine convergence, it allows us to simply verify one of these three properties on the network. Though strongly connected graph might be a strong requirement, in the case of small scale (in person) deliberation, this might not be infeasible. Fortunately, even outside this setting it might be possible to reach convergence. For this we first define what a closed set of nodes is.
 
 \begin{definition}{Closed set of Nodes}{}
 	A set of Nodes \(C = \{1, \dots, n\}\) is closed if for each \(i,j \in C\) we have $T_{ij} \geq 0$ and for each \(i \in C, j \notin C\) we have \(T_{ij} = 0\)
@@ -178,7 +178,7 @@ This result is very positive from a convergence dynamics point of view, as no kn
 
 Using this definition, if each node is part of a closed set, we can form the following proposition
 
-\begin{proposition}{(\citet{Golub_Jackson_2010}).}
+\begin{proposition}{(\citet{golubNaiveLearningSocial2010}).}
 	If for each \(i \in N\), \(i\) is a member of a closed set in the graph, and each closed set is strongly connected, \(T\) is convergent.
 \end{proposition}
 

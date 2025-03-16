@@ -9,21 +9,21 @@ To model elections, or more generally voting games, we represent voters by the s
 The last general tool we will need is the \textit{majority relation}. Given some profile $\strictProfile$ we can construct a majority relationship as follows: for each pair of alternatives $x,y$, we ask how many people prefer $x$ to $y$; if the number of people who prefer $x$ to $y$ is greater than the other way around we write $x  \prefmaj y$, if we have an even number of voters, these two number can be equal and this becomes a weak preference, we simply write $x \prefeqmaj y$ (defaulting to lexicographical order). We proceed with an example.
 
 \begin{example}{Majority relation}{maj-rel}
-	\begin{minipage}{0.15\linewidth}
-		\begin{tabular}{ccc}
-			\toprule
-			$1$ & $2$ & $3$ \\
-			\midrule
-			$a$ & $b$ & $a$ \\
-			$b$ & $c$ & $c$ \\
-			$c$ & $a$ & $b$ \\
-			\bottomrule
-		\end{tabular}
-	\end{minipage}
-	\hspace{0.02\linewidth}
-	\begin{minipage}{0.78\linewidth}
-		Given the profile on the left, we first start by comparing $a$ to $b$, both voters 1 and 3 prefer $a$ to $b$, thus the majority has prefers $a$ to $b$. Comparing $b$ to $c$,the majority prefers $b$ to $c$. Finally, comparing $a$ to $c$, $a$ is preferred again. Thus, the majority relation is $a \prefmaj b \prefmaj c$
-	\end{minipage}
+    \begin{minipage}{0.15\linewidth}
+        \begin{tabular}{ccc}
+            \toprule
+            $1$ & $2$ & $3$ \\
+            \midrule
+            $a$ & $b$ & $a$ \\
+            $b$ & $c$ & $c$ \\
+            $c$ & $a$ & $b$ \\
+            \bottomrule
+        \end{tabular}
+    \end{minipage}
+    \hspace{0.02\linewidth}
+    \begin{minipage}{0.78\linewidth}
+        Given the profile on the left, we first start by comparing $a$ to $b$, both voters 1 and 3 prefer $a$ to $b$, thus the majority has prefers $a$ to $b$. Comparing $b$ to $c$,the majority prefers $b$ to $c$. Finally, comparing $a$ to $c$, $a$ is preferred again. Thus, the majority relation is $a \prefmaj b \prefmaj c$
+    \end{minipage}
 \end{example}
 
 A majority relation can be a-cyclic, and transitive, though neither are guaranteed. An a-cyclic majority profile is simply a majority relation without any cycles, meaning there does not exists a series of alternatives $a_1, \dots a_n$ such that $a_1 \pref a_2 \pref \dots \pref a_n  \prefeq a_1$. Transitivity is very similar, stating that the preferences between alternatives are transitive in that for any triplet of alternatives $x,y,z$ if $x \prefeq y$ and $y \prefeq z$ then $x \prefeq z$. These notions are similar, but transitivity is a stronger requirement, as it includes indifference.
@@ -51,21 +51,21 @@ There are many more axioms on could reasonably argue for, however, these are eno
 Classic social choice theory has many negative results, one such example is the Condorcet cycle. This is a specific profile that results in a cycle in the majority relation, as shown in the following example.
 
 \begin{example}{Condorcet cycle}{condorcet-cycle}
-	\begin{minipage}{0.15\linewidth}
-		\begin{tabular}{ccc}
-			\toprule
-			$1$ & $2$ & $3$ \\
-			\midrule
-			a   & b   & c   \\
-			b   & c   & a   \\
-			c   & a   & b   \\
-			\bottomrule
-		\end{tabular}
-	\end{minipage}
-	\hspace{0.02\linewidth}
-	\begin{minipage}{0.78\linewidth}
-		Voters 1 and 3  prefer $a$ to $b$, forming a majority, next voters 1 and 2 prefer $b$ to $c$, forming another majority. However, voters 2 and 3 prefer $c$ to $a$ forming a majority, and thus creating a cycle.
-	\end{minipage}
+    \begin{minipage}{0.15\linewidth}
+        \begin{tabular}{ccc}
+            \toprule
+            $1$ & $2$ & $3$ \\
+            \midrule
+            a   & b   & c   \\
+            b   & c   & a   \\
+            c   & a   & b   \\
+            \bottomrule
+        \end{tabular}
+    \end{minipage}
+    \hspace{0.02\linewidth}
+    \begin{minipage}{0.78\linewidth}
+        Voters 1 and 3  prefer $a$ to $b$, forming a majority, next voters 1 and 2 prefer $b$ to $c$, forming another majority. However, voters 2 and 3 prefer $c$ to $a$ forming a majority, and thus creating a cycle.
+    \end{minipage}
 \end{example}
 
 It is not hard to convinces oneself that under weak preferences the Condorcet cycle can occur anytime there are 3 or more alternatives and voters. While under strict preferences this can occur anytime the number of alternatives is odd and greater than 3, with the number of voters being a multiple of the number of alternatives. As we will show later, this profile can be the cause of some impossibility results.
@@ -73,11 +73,11 @@ It is not hard to convinces oneself that under weak preferences the Condorcet cy
 One of the major negative results in social choice is that of the Gibbard Satherswaite theorem \citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
 
 \begin{theorem}[Gibbard-Satherswaite]
-	There exists no resolute Social Choice Function for elections with $|\alternatives| \geq$ 3 that is surjective, strategyproof, and non-dictatorial.
+    There exists no resolute Social Choice Function for elections with $|\alternatives| \geq$ 3 that is surjective, strategyproof, and non-dictatorial.
 \end{theorem}
 
 \begin{proofc}
-	...
+    ...
 \end{proofc}
 
 \section{Domain Restrictions}
@@ -85,9 +85,9 @@ One of the major negative results in social choice is that of the Gibbard Sather
 Many negative results are a consequence of a few ill-behaved profiles, if one can argue such profiles do not occur in the real election, there is some hope of constructing SCF's satisfying our axioms. To speak more formally about profiles "not occuring", we introduce Domain restrictions, for this we use the definition by \citet{elkindPreferenceRestrictionsComputational2022}.
 
 \begin{definition}{Domain}{domain}
-	{
-		Given a set of voters $N$, alternatives $A$, and conditions $C$, the domain $\domain{}$ of an election is the set of all profiles $R$ such that all conditions $C$ are satisfied.
-	}
+    {
+        Given a set of voters $N$, alternatives $A$, and conditions $C$, the domain $\domain{}$ of an election is the set of all profiles $R$ such that all conditions $C$ are satisfied.
+    }
 \end{definition}
 
 This definition is different from usual definitions in social choice in so far as it talks about allowed profiles instead of allowed votes.
@@ -96,17 +96,17 @@ This definition is different from usual definitions in social choice in so far a
 As stated earlier, the Condorcet profile is one such ill-behaved profile, as each alternative, holds a majority preference over another alternative. Naturally one might consider if this profile might even come up in practice, since though conceivable it seems generally unlikely that there exists a perfect split in opinions. Quite naturally one of the first ``solutions” one might consider is when the number of voters is not a multiple of the number of alternatives, though this is hardly a useful solution since it only prevents Condorcet cycles, it is the first example of a domain restriction, we define it as follows
 
 \begin{definition}{$\domain{No-tie}$}{dom-ties}
-	Let $X$ be the set of alternatives and $N$ be the set of voters, of size $n$ such that $n \neq k \cdot |X|$ for any $k \in \Nat$. We call this domain $\domain{No-tie}$.
+    Let $X$ be the set of alternatives and $N$ be the set of voters, of size $n$ such that $n \neq k \cdot |X|$ for any $k \in \Nat$. We call this domain $\domain{No-tie}$.
 \end{definition}
 
 This allows us to state our first proposition.
 
 \begin{proposition}
-	The plurality rule never returns a $|X|$-way tie between alternatives when applied to $\domain{No-tie}$
+    The plurality rule never returns a $|X|$-way tie between alternatives when applied to $\domain{No-tie}$
 \end{proposition}
 
 \begin{proof}
-	Assume, for the sake of contradiction, the plurality in fact does return a tie this must mean that all alternatives were ranked first an equal number of times, call this $k$, necessarily then, we have need exactly $k \cdot |X|$ voters, but this leads to a contradiction, as this would no longer be inside $\domain{No-tie}$.
+    Assume, for the sake of contradiction, the plurality in fact does return a tie this must mean that all alternatives were ranked first an equal number of times, call this $k$, necessarily then, we have need exactly $k \cdot |X|$ voters, but this leads to a contradiction, as this would no longer be inside $\domain{No-tie}$.
 \end{proof}
 
 This is a simple result, but it serves as an example on how we can use the properties of the domain to prove things about the election. \citet{gaertnerDomainRestrictions2002} establishes 2 ways in which a domain can be restricted. Firstly we can restrict the domain to a number of voters or alternatives, which is what we did in $\domain{No-tie}$. Secondly, the domain can be restricted to have a certain structure, such as being single-peaked.
@@ -117,7 +117,7 @@ This is a simple result, but it serves as an example on how we can use the prope
 In a election the alternatives might represent a axis, such that a voters is prefers an alternative more if they are closer to them on the axis. For example, if the alternatives represent free-trade vs regulation, we can imagine that a voter that is of the opinion that free trade is of ultimate importance will prefer alternatives more the more the are on the side of free trade. More generally, we call a profile single peaked if there exists an axis on which we can place the alternative such that all voters' preferences have a single peak on this axis. \Cref{def:single-peaked} makes this notion formal.
 
 \begin{definition}{Single-Peaked Profiles}{single-peaked}
-	A profile $P$ is single-peaked, if given some ordering $\orderalt$ over the alternatives, it holds that for all voters $i$, and all $a, b, c \in X$, if $a \orderalt b \orderalt c$, then either $a \pref_i b$ or $c \pref_i b$, but never both.
+    A profile $P$ is single-peaked, if given some ordering $\orderalt$ over the alternatives, it holds that for all voters $i$, and all $a, b, c \in X$, if $a \orderalt b \orderalt c$, then either $a \pref_i b$ or $c \pref_i b$, but never both.
 \end{definition}
 
 

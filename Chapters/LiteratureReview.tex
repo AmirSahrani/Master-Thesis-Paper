@@ -12,30 +12,30 @@
 If our goal is to prevent Condorcet cycles, or in general have transitive majority relations, the best we could hope to do is to apply our domain restriction such that our domain contains all profiles $P$ such that $P$ has a (weak) Condorcet winner. We call this domain $\domain{Condorcet}$. Under this domain, let $\votingrule{Condorcet}$ be the Condorcet Rule, which picks a Condorcet winner. Then $\votingrule{Condorcet}$ is strategyproof over $\domain{Condorcet}$ \citep{elkindPreferenceRestrictionsComputational2022}.
 
 \begin{proofc}{(\citet{elkindPreferenceRestrictionsComputational2022})}.
-	Assume, for the sake of a contradiction, we have profiles $P = (\pref_1 \dots \pref_i \dots \pref_n)$ and $P' = (\pref_1 \dots \pref_{i'} \dots \pref_n)$ such that:
-	\[
-		\votingrule{Condorcet}(P) = a, \quad \votingrule{Condorcet}(P') = b, \quad \text{and } a \neq b
-	\]
-	Then under $P$ a strict majority $N' \subseteq N$ have $a \pref b$, but $i \notin N'$, thus in $P'$, $N'$ is still a majority preferring $a$ to $b$, but this is in contradiction to $b$ winning in $P'$.
+    Assume, for the sake of a contradiction, we have profiles $P = (\pref_1 \dots \pref_i \dots \pref_n)$ and $P' = (\pref_1 \dots \pref_{i'} \dots \pref_n)$ such that:
+    \[
+        \votingrule{Condorcet}(P) = a, \quad \votingrule{Condorcet}(P') = b, \quad \text{and } a \neq b
+    \]
+    Then under $P$ a strict majority $N' \subseteq N$ have $a \pref b$, but $i \notin N'$, thus in $P'$, $N'$ is still a majority preferring $a$ to $b$, but this is in contradiction to $b$ winning in $P'$.
 \end{proofc}
 
 
 Though this result is positive, $\domain{Condorcet}$ is not hereditary, this is easy to see through an example:
 \begin{example}{$\domain{Condorcet}$ is not hereditary}{con-her}
-	\begin{minipage}{0.25\linewidth}
-		\begin{tabular}{cccc}
-			\toprule
-			$v_1$ & $v_2$ & $v_3$ & $v_4$ \\
-			\midrule
-			a     & b     & c     & a     \\
-			b     & c     & a     & c     \\
-			c     & a     & b     & b     \\
-			\bottomrule
-		\end{tabular}
-	\end{minipage}
-	\begin{minipage}[b]{0.70\linewidth}
-		We can see that in this example, $a$ is the weak Condorcet winner, as it beats $b$ and is tied with $c$, however if we remove voter 4, we return to the original Condorcet cycle.
-	\end{minipage}
+    \begin{minipage}{0.25\linewidth}
+        \begin{tabular}{cccc}
+            \toprule
+            $v_1$ & $v_2$ & $v_3$ & $v_4$ \\
+            \midrule
+            a     & b     & c     & a     \\
+            b     & c     & a     & c     \\
+            c     & a     & b     & b     \\
+            \bottomrule
+        \end{tabular}
+    \end{minipage}
+    \begin{minipage}[b]{0.70\linewidth}
+        We can see that in this example, $a$ is the weak Condorcet winner, as it beats $b$ and is tied with $c$, however if we remove voter 4, we return to the original Condorcet cycle.
+    \end{minipage}
 \end{example}
 
 A domain not being hereditary means that the nice properties of the domain can be unstable, as the number of voters and alternatives might not be known or could be manipulated. Instead, we might want to look at hereditary domains.
@@ -43,7 +43,7 @@ A domain not being hereditary means that the nice properties of the domain can b
 \subsection{Hereditary Domains}
 
 \begin{definition}{Hereditary \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022})}}{dom-hereditary}
-	A domain restriction onto $\domain{ }$ is \textit{hereditary} if, for every profile $P \in \domain{ }$, and every profile $P'$, that can be obtained by deleting voters and alternatives from $P$, $P'$ is also in $\domain{ }$
+    A domain restriction onto $\domain{ }$ is \textit{hereditary} if, for every profile $P \in \domain{ }$, and every profile $P'$, that can be obtained by deleting voters and alternatives from $P$, $P'$ is also in $\domain{ }$
 \end{definition}
 
 
@@ -53,13 +53,13 @@ The first hereditary domain we present, will also be the main focus of this thes
 Note that in  a voter is allowed to prefer $b$ best, and then choose $a$ or $c$ in any order. It is clear to see that if any voter or alternative is deleted, this property is satisfied.
 
 \begin{proposition}{\textnormal{(\citet{elkindPreferenceRestrictionsComputational2022}).}}
-	$\domain{SP}$ is hereditary.
+    $\domain{SP}$ is hereditary.
 \end{proposition}
 
 \begin{proof}
-	(Voter Deletion). If we remove a voter, this does not affect the other voters, thus the property is satisfied.~\checkmark
+    (Voter Deletion). If we remove a voter, this does not affect the other voters, thus the property is satisfied.~\checkmark
 
-	(Alternative Deletion). Consider a voter $i$ and their single-peaked vote, if we remove some alternative $x$, this voter all alternatives which voter $i$ preferred to $x$ stay in the same position, while all other alternatives move up one rank, thus preserving the order.~\checkmark
+    (Alternative Deletion). Consider a voter $i$ and their single-peaked vote, if we remove some alternative $x$, this voter all alternatives which voter $i$ preferred to $x$ stay in the same position, while all other alternatives move up one rank, thus preserving the order.~\checkmark
 \end{proof}
 
 A similar notion to single-peaked profiles is that of single caved profiles, which is equivalent, but instead a voters peak representing their most preferred option, they have a valley, which represents the worst option. Single caved profile are hereditary as well, but for a voting rule on them to be strategy proof, only two possible alternatives can be chosen, the left and right most alternatives according to $\orderalt$.
@@ -67,19 +67,19 @@ A similar notion to single-peaked profiles is that of single caved profiles, whi
 Instead of ordering the alternatives, we can imagine instead ordering the voters, such that we have a leftmost and rightmost voters, and all other voters can be placed between them based on their difference. In this case, a profile is single-crossing if, for any alternative $a$, its preference relation to another any alternative $b$ flips at most once when traversing the voters in order $\orderalt$.
 
 \begin{definition}{Single-Crossing Profiles \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022})}}{single-crossing}
-	A profile $P$ is single-crossing w.r.t. some ordering $\orderalt$, if for any $a,b \in X$, $\{i \in N : a \pref b\}$ and $\{i \in N: b \pref a\}$ are both intervals over $[n]$. A profile $P$ is single crossing if the votes can be permuted such that it is single crossing w.r.t. a given ordering.
+    A profile $P$ is single-crossing w.r.t. some ordering $\orderalt$, if for any $a,b \in X$, $\{i \in N : a \pref b\}$ and $\{i \in N: b \pref a\}$ are both intervals over $[n]$. A profile $P$ is single crossing if the votes can be permuted such that it is single crossing w.r.t. a given ordering.
 \end{definition}
 
 Similar to single-peaked profiles, the domain of single-crossing profiles, $\domain{SC}$ is also hereditary
 
 \begin{proposition}
-	$\domain{SC}$ is hereditary
+    $\domain{SC}$ is hereditary
 \end{proposition}
 
 \begin{proof}
-	(Voter Deletion). Deleting a voter preserves the ordering between voters, as such this cannot introduce a new crossing between alternatives.~\checkmark
+    (Voter Deletion). Deleting a voter preserves the ordering between voters, as such this cannot introduce a new crossing between alternatives.~\checkmark
 
-	(Alternative Deletion). If we remove an alternative the voters' rankings of the other alternatives does not change, thus preserving single-crossing.~\checkmark
+    (Alternative Deletion). If we remove an alternative the voters' rankings of the other alternatives does not change, thus preserving single-crossing.~\checkmark
 \end{proof}
 
 \section{The History of Deliberation and Meta-Agreement}
@@ -93,29 +93,29 @@ Though deliberation is intuitively familiar, namely the process of multiple peop
 \citet{freemanDeliberativeDemocracySympathetic2000} gives an overview of deliberative democracy, in which he shares the intuitive idea that a deliberative democracy contains open discussion, open legislative deliberation and a pursuit of the common good. He also notes that there is no common agreement on the central features of a deliberative democracy, one account is that of deliberative democracy simply involving discussion among the public before voting. Another similar account is that this voting must not only be preceded by deliberation, but also general communication, all of which intended to change people's preferences. He further proceeds to give a more detailed conception of deliberative democracy, according to which a deliberative democracy is one in which political agents or their representatives
 
 \begin{enumerate}
-	\label{list:deliberative-democracy}
-	\setlength\itemsep{1px}
-	\item  Aim to collect, deliberate and vote
-	\item  Represent their sincere and informed judgements
-	\item  Vote and deliberate on measures beneficial to the common good on the citizens
-	\item  Are seen and see each other as political equals
-	\item  Have Constitutional right and social means enables them to participate in public life
-	\item  Are individually free, such that they have their own freely determined conceptions of the good
-	\item  Have diverse and disagreeing conceptions of the good
-	\item  Recognize and accept their duty as democratic citizens, and do not engage in public argument on the basis of their particular moral views incompatible with public reason.
-	\item  Agree reason is public, in so much as it is related to and advances common interests of citizens
-	\item  Agree that their common interest lies primarily in freedom, independence and equal status as citizens.
+    \label{list:deliberative-democracy}
+    \setlength\itemsep{1px}
+    \item  Aim to collect, deliberate and vote
+    \item  Represent their sincere and informed judgements
+    \item  Vote and deliberate on measures beneficial to the common good on the citizens
+    \item  Are seen and see each other as political equals
+    \item  Have Constitutional right and social means enables them to participate in public life
+    \item  Are individually free, such that they have their own freely determined conceptions of the good
+    \item  Have diverse and disagreeing conceptions of the good
+    \item  Recognize and accept their duty as democratic citizens, and do not engage in public argument on the basis of their particular moral views incompatible with public reason.
+    \item  Agree reason is public, in so much as it is related to and advances common interests of citizens
+    \item  Agree that their common interest lies primarily in freedom, independence and equal status as citizens.
 \end{enumerate}
 
 These features allow us to be more precise when we talk about a deliberative democracy, and in turn be more careful about what deliberation must entail. \citet{cohenDeliberationDemocraticLegimitimacy2002} further argues that deliberation is needed for democratic legitimacy. By this he means that without deliberation, a democracy is simply the will of the majority, but since majority rule is unstable, it is simply a reflection of the particular institutional constrains at the time. He further goes on to describe the \textit{ideal deliberative procedure} as follows
 
 \begin{enumerate}
-	\label{list:ideal-deliberation}
-	\setlength\itemsep{1px}
-	\item  Ideal deliberation is \textit{free}, participants regard themselves as only bound by the results of the deliberation, and the preconditions thereof. Participants act in accordance with the decision made through deliberation, and it being agreed on is sufficient reason to do so.
-	\item  Ideal deliberation is \textit{reasoned}, parties are required to state their reasons for advancing proposals.
-	\item  In ideal deliberation, parties are \textit{equal}, both formally and substantively. There are no rules that single individuals out, and existing distributions of power to no lend a party the opportunity to contribute to deliberation.
-	\item  Ideal deliberation aims to arrive at \textit{consensus}, which can be rationally defended.
+    \label{list:ideal-deliberation}
+    \setlength\itemsep{1px}
+    \item  Ideal deliberation is \textit{free}, participants regard themselves as only bound by the results of the deliberation, and the preconditions thereof. Participants act in accordance with the decision made through deliberation, and it being agreed on is sufficient reason to do so.
+    \item  Ideal deliberation is \textit{reasoned}, parties are required to state their reasons for advancing proposals.
+    \item  In ideal deliberation, parties are \textit{equal}, both formally and substantively. There are no rules that single individuals out, and existing distributions of power to no lend a party the opportunity to contribute to deliberation.
+    \item  Ideal deliberation aims to arrive at \textit{consensus}, which can be rationally defended.
 \end{enumerate}
 
 \subsection{Meta-Agreement}
@@ -127,12 +127,12 @@ Under \emph{Meta-agreement} individuals do not need to agree on their most prefe
 
 According to \citet{listTwoConceptsAgreement2002} there are three hypotheses that need to be satisfied for deliberation to induce meta-agreement:
 \begin{enumerate}
-	\label{list:meta-agreement-checklist}
-	\setlength\itemsep{1px}
-	\item [D1] Deliberation leads people to discover a single \textit{issue}-dimension
-	\item [D2] Deliberation lets people place all possible alternatives in this \textit{issue}-dimension
-	\item [D3] After this deliberation, people update their preferences by picking
-	      a preferred outcome, and all other rankings are based on the distance to this outcome in the \textit{issue}-dimension
+    \label{list:meta-agreement-checklist}
+    \setlength\itemsep{1px}
+    \item [D1] Deliberation leads people to discover a single \textit{issue}-dimension
+    \item [D2] Deliberation lets people place all possible alternatives in this \textit{issue}-dimension
+    \item [D3] After this deliberation, people update their preferences by picking
+          a preferred outcome, and all other rankings are based on the distance to this outcome in the \textit{issue}-dimension
 \end{enumerate}
 
 All these are necessary conditions for meta-agreement, from this is it also clear to see that, given that there is exactly 1 \textit{issue}-dimension, single-peaked profile are, by definition, a direct consequence. This is the main reason meta-agreement is desirable, as it lets us circumvent the Gibbard-Satterthwaite theorem \citep{gibbardManipulationVotingSchemes1973, satterthwaiteStrategyproofnessArrowsConditions1975} through restricting the domain of preference profiles to the single-peaked domain $\domain{SP}$
@@ -149,7 +149,7 @@ Thus, meta-agreement is still quite restrictive, needing multiple forms of unani
 \citet{radDeliberationSinglePeakednessCoherent2021} model deliberation and its effect on single-peakedness, though they argue single plateauedness is a more accurate term. To this end, they model each voter to have preferences order, and deliberation being the process of all voters announcing their preferences, after which all other voters update their current preference towards that of the announced ranking, in doing so they might have a bias towards their own preference, as such they try to minimize the distance between their current preference and the announced one. This process repeats until all voters have announced their opinion once, for one or multiple rounds. The preference a voter adopts when updating must lie between their current profile and the announced profile, which profiles are considered to be ``between" is defined by the distance metric used. They considered three metrics, the Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins (DP)~\citep{duddyMeasureDistanceJudgment2012}, and Cook-Seiford (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the judgement set resulting from the voters preferences, the KS distance is then defined as the number of binary swaps a judgement set needs to undergo before it becomes the target judgement set, an example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref b)$. The DP distance is defined on the graph of judgement sets, where 2 sets share an edge if there is no judgement set between them. Since KS and DP share their notion of betweenness, we introduce betweenness as follows.
 
 \begin{definition}{J-Betweenness}{def:j-between}
-	A judgement set $J_i$ is between profiles $J_j$ and $J_k$ if for every proposition about $x,y \in \alternatives$, $J_i$ either agrees with $J_j$ or $J_k$.
+    A judgement set $J_i$ is between profiles $J_j$ and $J_k$ if for every proposition about $x,y \in \alternatives$, $J_i$ either agrees with $J_j$ or $J_k$.
 \end{definition}
 
 \Cref{figure:DPDistance} shows a graph used for the DP distance in the case of 3 alternatives, for simplicity the associated profiles are used to label the judgement sets.
@@ -162,40 +162,40 @@ Each distance has different trade-offs, CS is the simplest, but might exaggerate
 
 \vspace{1em}
 \begin{figure}
-	\centering
-	\includegraphics[width=0.65\textwidth]{dpGraph.pdf}
-	\caption{The graph of judgement sets for all preferences over three alternatives.}
-	\label{figure:DPDistance}
+    \centering
+    \includegraphics[width=0.65\textwidth]{dpGraph.pdf}
+    \caption{The graph of judgement sets for all preferences over three alternatives.}
+    \label{figure:DPDistance}
 \end{figure}
 
 Apart from there distances, they also define a voter as a tuple of a (weak) preference and a bias (towards their current position) \(v = \langle r, b \rangle \), with \( b \in \Reals_{[0,1]}\). Finally, a deliberation step \(D_{s} : V \times r \mapsto V\), with $V$ being a set of voters and $s$ being one of the spaces (KS, DP, CS). A round of deliberation consists of $n$ deliberation steps, where each voter has announced their opinion once. We formulate this procedure in the following program:
 \IncMargin{1em}
 \begin{algorithm}
-	\SetKwInOut{Input}{input}
-	\SetKwInOut{Output}{output}
+    \SetKwInOut{Input}{input}
+    \SetKwInOut{Output}{output}
 
-	\Input{Set of Voters $V$, metric space $s$}
-	\Output{Updated set of Voters $V$}
-	\BlankLine
+    \Input{Set of Voters $V$, metric space $s$}
+    \Output{Updated set of Voters $V$}
+    \BlankLine
 
-	$V_{\text{u}} \gets V$ \tcp*[h]{Set of unannounced voters (references to $V$)}\\
+    $V_{\text{u}} \gets V$ \tcp*[h]{Set of unannounced voters (references to $V$)}\\
 
-	\While{$|V_{\text{u}}| > 0$}{
-	Select a random $v \in V_{\text{u}}$\\
-	$V_{\text{u}} \gets V_{\text{u}} \setminus \{v\}$\\
-	$V \gets D_s(V, v.r)$ \tcp*[h]{Update voters based on $v$'s preference}
-	}
+    \While{$|V_{\text{u}}| > 0$}{
+    Select a random $v \in V_{\text{u}}$\\
+    $V_{\text{u}} \gets V_{\text{u}} \setminus \{v\}$\\
+    $V \gets D_s(V, v.r)$ \tcp*[h]{Update voters based on $v$'s preference}
+    }
 
 \end{algorithm}
 \DecMargin{1em}
 
 The deliberation step $D_s$ then updates all voters such that their new preference  minimizes the following formula.
 \begin{equation}
-	r =
-	\sqrt{
-		b d_s(r_i, r')^2 + (1-b)d_s(r_j, r')^2
-	}
-	\label{eq:deliberation_step_formula}
+    r =
+    \sqrt{
+        b d_s(r_i, r')^2 + (1-b)d_s(r_j, r')^2
+    }
+    \label{eq:deliberation_step_formula}
 \end{equation}
 Where $r_i, r_j$ are the voters and the announced preference, respectively, and $r'$ is the voters new preference.
 

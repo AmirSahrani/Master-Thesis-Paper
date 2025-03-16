@@ -95,6 +95,7 @@
 \usepackage[Sonny]{fncychap}
 \usepackage[T1]{fontenc}
 \usepackage{charter}           % For Charter text font
+\usepackage{newtxmath}
 \usepackage{amsmath,amssymb}   % For AMS math symbols
 
 \lhead[\rm\thepage]{\fancyplain{}{\sl{\rightmark}}}

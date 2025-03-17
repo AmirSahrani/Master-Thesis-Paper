@@ -7,72 +7,71 @@
 In the model of deliberation of \citet{radDeliberationSinglePeakednessCoherent2021}, outlined in \Cref{section:related_work}, aim to model deliberation and show that deliberation results in nicely structured profiles which allow for strategy proof voting rules. One important caveat, given by the authors as well, is all participants should honestly and truthfully participate in deliberation. We now provide a formal statement, showing deliberation does not prevent strategic behavior.
 
 \begin{proposition}
-    The process of deliberation over $|\alternatives| \geq 3$ through deterministic deliberation procedure \({D}: \setOfStrictProfiles^n \to \setOfStrictProfiles^n\), followed by voting with voting rule $f$ cannot be surjective, strategyproof and non-dictatorial.
+	The process of deliberation over $|\alternatives| \geq 3$ through deterministic deliberation procedure \({D}: \setOfStrictProfiles^n \to \setOfStrictProfiles^n\), followed by voting with voting rule $f$ cannot be surjective, strategyproof and non-dictatorial.
 
-    \label{proposition:deterministic-delib}
+	\label{proposition:deterministic-delib}
 \end{proposition}
 
 \begin{proofc}
-    Assume, towards a contradiction, such a pair of deliberative procedure ($D$) and voting rule (\(f\)) exists. Any deterministic deliberation procedure $D$ could, in principle, be embedded into a voting rule $f'(\strictProfile) = f(D(\strictProfile))$, such that the voting rule simulates $D$ before applying $f$, which would result in  voting rule $f'$ being surjective, strategyproof and non-dictatorial. This is a contradiction, by the Gibbard-Satterthwaite theorem~\citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
-\end{proofc}
+	Assume, towards a contradiction, such a pair of deliberative procedure ($D$) and voting rule (\(f\)) exists. Any deterministic deliberation procedure $D$ could, in principle, be embedded into a voting rule $f'(\strictProfile) = f(D(\strictProfile))$, such that the voting rule simulates $D$ before applying $f$, which would result in  voting rule $f'$ being surjective, strategyproof and non-dictatorial. This is a contradiction, by the Gibbard-Satterthwaite theorem~\citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}. \end{proofc}
 
 
 We extend upon this result, showing the inclusion of biases in voters does not mitigate the negative result. For this we define $\biasedDeliberation$ as follows:
 
 \begin{definition}{Biased Deliberation}{biased_delib}
-    A deliberative procedure with biases $\biasedDeliberation : \setOfStrictProfiles ^ n \times \Reals_{[0,1]}^n \mapsto \setOfStrictProfiles^n$ is an extension on a standard deliberative procedure. \(\biasedDeliberation\) has access to the bias each voter has to their own opinion.
+	A deliberative procedure with biases $\biasedDeliberation : \setOfStrictProfiles ^ n \times \Reals_{[0,1]}^n \to \setOfStrictProfiles^n$ is an extension on a standard deliberative procedure. \(\biasedDeliberation\) has access to the bias each voter has to their own opinion.
 \end{definition}
 
 We now proceed with a corollary on \Cref{proposition:deterministic-delib}. Towards this we assume biases are true, in the sense that a voter cannot help but be 'convinced' by the presented profiles as much as their bias allows for this. We think this assumption is a weak and natural in the light of the current model. Furthermore, a violation of this assumption would not imply the following corollary to be false, instead the bias itself becomes a point of strategy, allowing voters to pretend to be more hardheaded than they in fact are.
 
 \begin{corollary}
-    A deliberative procedure with biases, followed by voting with any voting rule $f$, cannot be surjective, strategyproof and non-dictatorial
+	A deliberative procedure with biases, followed by voting with any voting rule $f$, cannot be surjective, strategyproof and non-dictatorial
 
-    \label{corollary:biased-delib}
+	\label{corollary:biased-delib}
 \end{corollary}
 
 The proof of this follows from a reduction of the biased Deliberation $\biasedDeliberation$ to general deliberation $D$.
 
 \begin{proofc}{}
-    Take any election consisting of biased deliberation $\biasedDeliberation$ and voting rule $f$, since biases $\boldsymbol{b}$ are true by assumption, they must be fixed, meaning that $\boldsymbol{b}$ is not reported but some fact of the matter. If this election was immune to strategic manipulation, then a deliberative procedure $D$ could embed this $b$, and simulate biased deliberation $\biasedDeliberation$, resulting in $D'(\strictProfile) = \biasedDeliberation(\strictProfile, \boldsymbol{b})$. As a direct corollary to \Cref{proposition:deterministic-delib}, such a $D'$ cannot be surjective, strategyproof and non-dictatorial, showing a contradiction.
+	Take any election consisting of biased deliberation $\biasedDeliberation$ and voting rule $f$, since biases $\boldsymbol{b}$ are true by assumption, they must be fixed, meaning that $\boldsymbol{b}$ is not reported but some fact of the matter. If this election was immune to strategic manipulation, then a deliberative procedure $D$ could embed this $b$, and simulate biased deliberation $\biasedDeliberation$, resulting in $D'(\strictProfile) = \biasedDeliberation(\strictProfile, \boldsymbol{b})$. As a direct corollary to \Cref{proposition:deterministic-delib}, such a $D'$ cannot be surjective, strategyproof and non-dictatorial, showing a contradiction.
 \end{proofc}
 
 This result is independent of the metric space chosen. From here we now show that even if we take the deliberation procedures on its own, it still not immune to strategic manipulation. For this we restate strategyproofness as follows:
 
 \begin{definition}{Strategyproofness of Deliberation}{delib-strategyproof}
-    A deliberation procedure is strategyproof if there exists no voter $i$ such that there is a profile $\strictProfile$, in which $i$ misreporting their preference $\Preference_{i}$ as $\Preference_{i}'$ results in the profile after deliberation $D(\strictProfile)$ is further from the $i$'s original preference than if they had reported $\Preference_{i}'$. This distance is measured as
-    \[\operatorname{Dist}(\Preference_{i}, D(\strictProfile)) \geq \operatorname{Dist}(\Preference_{i}, D(\strictProfile')).\]
-    Where the Dist function is simply the sum of all distances between $\Preference_i$ and all preferences in $\strictProfile$.
+	A deliberation procedure is strategyproof if there exists no voter $i$ such that there is a profile $\strictProfile$, in which $i$ misreporting their preference $\Preference_{i}$ as $\Preference_{i}'$ results in the profile after deliberation $D(\strictProfile)$ is further from the $i$'s original preference than if they had reported $\Preference_{i}'$. This distance is measured as
+	\[\operatorname{Dist}(\Preference_{i}, D(\strictProfile)) \geq \operatorname{Dist}(\Preference_{i}, D(\strictProfile')).\]
+	Where the Dist function is simply the sum of all distances between $\Preference_i$ and all preferences in $\strictProfile$.
 \end{definition}
 
 One important note is that in the final profile, the preferences of voter \(i\) might not be the same as it was before the deliberation. That is why the distance is calculated w.r.t. \(i\)'s original preference. Intuitively this could be read as \(i\) misreporting their preference to prevent even their own mind from being changed.
-Using this definition, we show that the deliberative procedures, under the metric spaces \textit{KS}, \textit{ DP}, \textit{ CS} are not strategyproof. Stated as follows:
+Using this definition, we show that the deliberative procedures, under the metric spaces \emph{KS}, \emph{ DP}, \emph{ CS} are not strategyproof. Stated as follows:
 
 \begin{proposition}
-    Deliberation under distance measures \textit{KS}, \textit{ DP}, \textit{ CS} is not strategyproof, for $n \geq 2$ and $m \geq 3$.
+	Deliberation under distance measures \emph{KS}, \emph{ DP}, \emph{ CS} is not strategyproof, for $n \geq 2$ and $m \geq 3$.
 \end{proposition}
 We provide a proof by construction, we show how to do this for KS and DP, as they share the same profiles for this proof. The proof for CS is laid out in \Cref{AppendixA}
 \begin{proofc}
-    Assume the following population: we have voter 1 whose bias is $1$, and all other voters $j \neq 1$ have bias $0.5$. Furthermore, we have $\operatorname{Dist}(\Preference_1, \Preference_j) = 2$ for all $j$. Voter $1$ now has the option to report $\Preference_{1}'$ instead, which has $\operatorname{Dist}(\Preference_{1}', \Preference_j) = 4$ and $\operatorname{Dist}(\Preference_{1}', \Preference_1) = 2$. If voter $1$ reports $\Preference_1'$, then all $j$ will update towards $1$'s true preference, as using \cref{eq:deliberation_step_formula} we get $r(R_{j}, R_{1}', R_1) = 4$, while $r(R_{j}, R_{1}', R_j) = r(R_{j}, R_{1}', R_1') = 16$.
+	Assume the following population: we have voter 1 whose bias is $1$, and all other voters $j \neq 1$ have bias $0.5$. Furthermore, we have $\operatorname{Dist}(\Preference_1, \Preference_j) = 2$ for all $j$. Voter $1$ now has the option to report $\Preference_{1}'$ instead, which has $\operatorname{Dist}(\Preference_{1}', \Preference_j) = 4$ and $\operatorname{Dist}(\Preference_{1}', \Preference_1) = 2$. If voter $1$ reports $\Preference_1'$, then all $j$ will update towards $1$'s true preference, as using \cref{eq:deliberation_step_formula} we get $r(R_{j}, R_{1}', R_1) = 4$, while $r(R_{j}, R_{1}', R_j) = r(R_{j}, R_{1}', R_1') = 16$.
 
-    Resulting in $\operatorname{Dist}(R_{1}, D(R_{1},\strictProfile_{-1})) = 2(n-1) >  \operatorname{Dist}(R_{1}, D(R_{1}', \strictProfile_{-1})) = 0$.
+	Resulting in $\operatorname{Dist}(R_{1}, D(R_{1},\strictProfile_{-1})) = 2(n-1) >  \operatorname{Dist}(R_{1}, D(R_{1}', \strictProfile_{-1})) = 0$.
 
-    Since 1 has a bias of 1, the order of the deliberation has no effect. 
+	Since 1 has a bias of 1, the order of the deliberation has no effect.
 
-    We now show that for distance measures KS and DP, there exists these 3 preference orderings such that the necessary profile can be constructed. We use the following profiles:
-    \[
-    \begin{aligned}
-        R_{1}' &= a \pref c \pref b \pref \cdots \pref m, \\
-        R_{1}  &= a \pref b \pref c \pref \cdots \pref m,\\ 
-        R_{j} &= b \pref a \pref c \pref \cdots \pref m. \\
-    \end{aligned}
-\]
+	We now show that for distance measures KS and DP, there exists these 3 preference orderings such that the necessary profile can be constructed. We use the following profiles:
+	\[
+		\begin{aligned}
+			R_{1}' & = a \pref c \pref b \pref \cdots \pref m, \\
+			R_{1}  & = a \pref b \pref c \pref \cdots \pref m, \\
+			R_{j}  & = b \pref a \pref c \pref \cdots \pref m. \\
+		\end{aligned}
+	\]
 
-    As we are only allowing strict preferences, both distance metrics behave locally the same, with the distance of two profiles being 2 whenever one is 1 swap of alternatives away from the other. This means that  \(R_{i}\) and \(R_{j}\) have a distance of 2, as well as  \(R_{1}'\) and \(R_{1}\) having a distance of 2. In this case the total distance from \(R_{1}'\) to \(R_{j}\) is simply the sum of the local distances for both distance metrics, thus satisfying our requirements.
+	As we are only allowing strict preferences, both distance metrics behave locally the same, with the distance of two profiles being 2 whenever one is 1 swap of alternatives away from the other. This means that  \(R_{i}\) and \(R_{j}\) have a distance of 2, as well as  \(R_{1}'\) and \(R_{1}\) having a distance of 2. In this case the total distance from \(R_{1}'\) to \(R_{j}\) is simply the sum of the local distances for both distance metrics, thus satisfying our requirements.
 \end{proofc}
 
 
-These results show it is frivolous to attempt to design a strategy proof deliberation procedure of the likes shown. Instead, focus is now brought to modeling `ideal' deliberation, as laid out in \Cref{subsection:Meta-agreement}. We provide the following mathematical formulations to the four tenants laid out. \textit{Freedom}: voters can report any preference, \textit{Reason}: voters are rational, \textit{Equality}: no voter has special rights \textit{Consensus}:  voters deliberate aim to reach consensus. Which we extend with \textit{Honesty}: Voters represent their true beliefs and preferences only.
+These results show it is frivolous to attempt to design a strategy proof deliberation procedure of the likes shown. Instead, focus is now brought to modeling `ideal' deliberation, as laid out in \Cref{subsection:Meta-agreement}. We provide the following mathematical formulations to the four tenants laid out. \emph{Freedom}: voters can report any preference, \emph{Reason}: voters are rational, \emph{Equality}: no voter has special rights \emph{Consensus}:  voters deliberate aim to reach consensus. Which we extend with \emph{Honesty}: Voters represent their true beliefs and preferences only.
 
 
 \section{Our model}
@@ -84,11 +83,11 @@ In an attempt to model meta-agreement through deliberation, our model needs to m
 More specifically, we model deliberation as a DeGroot learning model. In this model, a voter is a node in a graph, and deliberation can be modeled as a Markov chain. A voter has probability matrix $P_i$, defined as follows:
 
 \[
-    P_i =\begin{bmatrix}
-        p_i(e_1 | a) & \dots  & p_i(e_1 | m) \\
-        \vdots       & \ddots & \vdots       \\
-        p_i(e_k | a) & \dots  & p_i(e_k | m) \\
-    \end{bmatrix}
+	P_i =\begin{bmatrix}
+		p_i(e_1 | a) & \dots  & p_i(e_1 | m) \\
+		\vdots       & \ddots & \vdots       \\
+		p_i(e_k | a) & \dots  & p_i(e_k | m) \\
+	\end{bmatrix}
 \]
 
 Under the constraint that each column must sum to one, representing that an alternative must have at least one outcome. Note that this does not mean that all outcomes have to be equally likely, nor that an alternative can only represent one outcome.  Let $\boldsymbol{P}= [P_1, \dots, P_{n}]^{T}$ denote the population opinion, which has shape \(|\voters| \times |E| \times |\alternatives|\).
@@ -98,11 +97,11 @@ In order to extract a ballot from this matrix, we assume Borda scores for each e
 Then a deliberative step can be modelled using a transition matrix $T$, defined as follows:
 
 \[
-    T=\begin{bmatrix}
-        t_{11} & \dots  & t_{1n} \\
-        \vdots & \ddots & \vdots \\
-        t_{n1} & \dots  & t_{nn} \\
-    \end{bmatrix}
+	T=\begin{bmatrix}
+		t_{11} & \dots  & t_{1n} \\
+		\vdots & \ddots & \vdots \\
+		t_{n1} & \dots  & t_{nn} \\
+	\end{bmatrix}
 \]
 
 Here each $t_{ij}$ represents how much voter $i$ trusts the opinion of voter $j$, in order for this to be a proper stochastic matrix, all rows must sum to one, and have non-negative entries. Although this last requirement could be seen as unrealistic, as a voter might actively distrust another voter and update away from their opinion.
@@ -110,8 +109,8 @@ Here each $t_{ij}$ represents how much voter $i$ trusts the opinion of voter $j$
 Using this, we can now model the opinions of voters after a deliberative step as a matrix multiplication:
 
 \begin{equation}
-    P^{(1)} = TP^{(0)}
-    \label{eq:update_degroot}
+	P^{(1)} = TP^{(0)}
+	\label{eq:update_degroot}
 \end{equation}
 
 The resulting probability distribution is then simply a weighted linear combination of all probability distributions.
@@ -119,47 +118,47 @@ The resulting probability distribution is then simply a weighted linear combinat
 Finally, we provide an example of the first deliberation round in example \ref{example:deGroot-delib}
 
 \begin{example}{DeGroot deliberation}
-    {}
-    We have voters \(\voters = \{1,2\}\), events \(E = \{e_{1}, e_{2}\}\), and candidates \(\alternatives = \{a,b\}\). The voters both think that \(e_{1} \pref e_{2}\), and this these are the probabilities:
-    \[
-        P_1 =\begin{bmatrix}
-            0.5 & 0 \\
-            0.5 & 1 \\
-        \end{bmatrix}\quad
-        P_2 =\begin{bmatrix}
-            1 & 0.9 \\
-            0 & 0.1 \\
-        \end{bmatrix}
-    \]
-    This results in voter 1 preferring candidate $b$ over candidate $a$, while voter 2, prefers $a$. Intuitively, since voter 1 thinks $e_{1}$ is equally likely for each alternative, while $e_{2}$ will not happen under $a$, it makes sense for them to prefer candidate $b$.
+	{}
+	We have voters \(\voters = \{1,2\}\), events \(E = \{e_{1}, e_{2}\}\), and candidates \(\alternatives = \{a,b\}\). The voters both think that \(e_{1} \pref e_{2}\), and this these are the probabilities:
+	\[
+		P_1 =\begin{bmatrix}
+			0.5 & 0 \\
+			0.5 & 1 \\
+		\end{bmatrix}\quad
+		P_2 =\begin{bmatrix}
+			1 & 0.9 \\
+			0 & 0.1 \\
+		\end{bmatrix}
+	\]
+	This results in voter 1 preferring candidate $b$ over candidate $a$, while voter 2, prefers $a$. Intuitively, since voter 1 thinks $e_{1}$ is equally likely for each alternative, while $e_{2}$ will not happen under $a$, it makes sense for them to prefer candidate $b$.
 
-    Now deliberating with the following trust matrix:
-    \[
-        T=\begin{bmatrix}
-            t_{11} & \dots  & t_{1n} \\
-            \vdots & \ddots & \vdots \\
-            t_{n1} & \dots  & t_{nn} \\
-        \end{bmatrix}
-    \]
-    We get the following updated opinions:
-    \begin{align*}
-        \boldsymbol{P}^{(1)} & = T\boldsymbol{P}^{(0)}                                                    \\
-                             & =T\begin{bmatrix}P_1 P_2\end{bmatrix}^{T}                                  \\
-                             & =\begin{bmatrix}(0.3P_1 + 0.7P_{2}) & (0.2P_1 + 0.8P_{2})\end{bmatrix}^{T} \\
-                             & = \begin{bmatrix}
-                                     \begin{bmatrix}
-                0.35 & 0.63 \\
-                0.15 & 0.37 \\
-            \end{bmatrix} &
-                                     \begin{bmatrix}
-                0.9 & 0.72 \\
-                0.1 & 0.18 \\
-            \end{bmatrix}
-                                 \end{bmatrix}^{T}
-    \end{align*}
+	Now deliberating with the following trust matrix:
+	\[
+		T=\begin{bmatrix}
+			t_{11} & \dots  & t_{1n} \\
+			\vdots & \ddots & \vdots \\
+			t_{n1} & \dots  & t_{nn} \\
+		\end{bmatrix}
+	\]
+	We get the following updated opinions:
+	\begin{align*}
+		\boldsymbol{P}^{(1)} & = T\boldsymbol{P}^{(0)}                                                    \\
+		                     & =T\begin{bmatrix}P_1 P_2\end{bmatrix}^{T}                                  \\
+		                     & =\begin{bmatrix}(0.3P_1 + 0.7P_{2}) & (0.2P_1 + 0.8P_{2})\end{bmatrix}^{T} \\
+		                     & = \begin{bmatrix}
+			                         \begin{bmatrix}
+				0.35 & 0.63 \\
+				0.15 & 0.37 \\
+			\end{bmatrix} &
+			                         \begin{bmatrix}
+				0.9 & 0.72 \\
+				0.1 & 0.18 \\
+			\end{bmatrix}
+		                         \end{bmatrix}^{T}
+	\end{align*}
 
-    These new probabilities are not yet in full consensus, however, looking at their corresponding ballots there is consensus on their most preferred alternative.
-    \label{example:deGroot-delib}
+	These new probabilities are not yet in full consensus, however, looking at their corresponding ballots there is consensus on their most preferred alternative.
+	\label{example:deGroot-delib}
 \end{example}
 
 \subsection{Consensus}
@@ -169,31 +168,24 @@ Using this model of deliberation, meta-agreement can be seen as some common prob
 We present a summary of results relating to strongly connected graphs, as well as graphs for which there exists only closed and strongly connected subsets of nodes. For other results we refer to \citet{golubNaiveLearningSocial2010}. Firstly we focus on the strongly connected graphs.
 
 \begin{proposition}{(\citet{golubNaiveLearningSocial2010}).}
-    For a strongly connected matrix \(T\), the following properties are equivalent:
-    \begin{itemize}
-        \item[o] \(T\) is Convergent
-        \item[o] \(T\) is Aperiodic
-        \item[o] There exists a left eigenvector \(\boldsymbol{s}\) for matrix \(T\), with corresponding eigenvalue \(1\), whose entries sum to one, such that for every $P_i$, we have
-            \[\left(\lim_{t\to \infty}T^{t} \boldsymbol{P}\right)_{i} = \boldsymbol{s}\boldsymbol{P}\]
-    \end{itemize}
+	For a strongly connected matrix \(T\), the following properties are equivalent:
+	\begin{itemize}
+		\item[o] \(T\) is Convergent
+		\item[o] \(T\) is Aperiodic
+		\item[o] There exists a left eigenvector \(\boldsymbol{s}\) for matrix \(T\), with corresponding eigenvalue \(1\), whose entries sum to one, such that for every $P_i$, we have
+			\[\left(\lim_{t\to \infty}T^{t} \boldsymbol{P}\right)_{i} = \boldsymbol{s}\boldsymbol{P}\]
+	\end{itemize}
 \end{proposition}
 
 This result is very positive from a convergence dynamics point of view, as no knowledge of the initial distribution is needed to determine convergence, it allows us to simply verify one of these three properties on the network. Though strongly connected graph might be a strong requirement, in the case of small scale (in person) deliberation, this might not be infeasible. Fortunately, even outside this setting it might be possible to reach convergence. For this we first define what a closed set of nodes is.
 
 \begin{definition}{Closed set of Nodes}{}
-    A set of Nodes \(C = \{1, \dots, n\}\) is closed if for each \(i,j \in C\) we have $T_{ij} \geq 0$ and for each \(i \in C, j \notin C\) we have \(T_{ij} = 0\)
+	A set of Nodes \(C = \{1, \dots, n\}\) is closed if for each \(i,j \in C\) we have $T_{ij} \geq 0$ and for each \(i \in C, j \notin C\) we have \(T_{ij} = 0\)
 \end{definition}
 
 Using this definition, if each node is part of a closed set, we can form the following proposition
 
 \begin{proposition}{(\citet{golubNaiveLearningSocial2010}).}
-    If for each \(i \in N\), \(i\) is a member of a closed set in the graph, and each closed set is strongly connected, \(T\) is convergent.
+	If for each \(i \in N\), \(i\) is a member of a closed set in the graph, and each closed set is strongly connected, \(T\) is convergent.
 \end{proposition}
-
-
-
-
-
-
-
 

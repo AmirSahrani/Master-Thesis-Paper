@@ -114,6 +114,7 @@
 \titlespacing*{\section}
 {0pt}{1.5ex plus .1ex minus .2ex}{0 ex plus .1ex}
 \renewcommand{\subsectionmark}[1]{}
+
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
 			\hbox{}
 			\thispagestyle{empty}
@@ -312,7 +313,7 @@
 %-------------------------------------------------   
 \degree{Master of Science in Computational Science} % Your degree name - this is currently used in the title page and abstract
 %-------------------------------------------------   
-\authors{Amir \textsc{Sahrani}} % Your name - this is used in the title page and abstract
+\authors{Amir Sahrani} % Your name - this is used in the title page and abstract
 %-------------------------------------------------   
 \addresses{} % Your address - this is not currently used anywhere in the template, cite it with \addressnames if you want it
 %-------------------------------------------------   

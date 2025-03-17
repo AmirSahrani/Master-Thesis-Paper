@@ -124,7 +124,7 @@
 \usepackage[most]{tcolorbox}
 \usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
 	bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
-	colorlinks,linkcolor={Black},citecolor={PineGreen},urlcolor={RoyalBlue},
+	colorlinks,linkcolor={RoyalPurple},citecolor={PineGreen},urlcolor={RoyalPurple},
 	pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
 \usepackage[noabbrev]{cleveref}
 \RequirePackage{amsthm}

@@ -96,6 +96,8 @@
 \usepackage[T1]{fontenc}
 \usepackage{charter}           % For Charter text font
 \usepackage{newtxmath}
+\let\Bbbk\undefined
+\let\openbox\undefined
 \usepackage{amsmath,amssymb}   % For AMS math symbols
 
 \lhead[\rm\thepage]{\fancyplain{}{\sl{\rightmark}}}

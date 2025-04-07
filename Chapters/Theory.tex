@@ -77,16 +77,16 @@ These results show it is frivolous to attempt to design a strategy proof deliber
 \section{Our model}
 \label{sec: main model}
 
-In an attempt to model meta-agreement through deliberation, our model needs to make a proper distinction between the substantive `level' and the meta `level'. In order to do so, we propose the following, let \(\policies = \{\policy_{1}, \cdots \policy_{k}\}\) denote the set of policies that could be implemented, where each $\policy_i \in \Reals^{m}$. A voter $i \in \voters$, at the base level has support for these policies, represented as an integer on an interval over $\Reals$. At a meta level, however, a voter has an understanding of which policies are supported by which alternatives. This is modelled as another vector, representing the estimated support for each policy for a candidate, thus voter $i$ has $S_i(\policy_j, x)$, which returns this voters estimated support of $\policy_j$ by alternative $x$.
+In an attempt to model meta-agreement through deliberation, our model needs to make a proper distinction between the substantive `level' and the meta `level'. In order to do so, we propose the following, let \(\policies = \{\policy_{1}, \cdots \policy_{k}\}\) denote the set of policies that could be implemented, where each $\policy_i \in \Reals^{m}$. A voter $i \in \voters$, at the base level has support for these policies, represented as an integer on an interval over $\Reals$. At a meta level, however, a voter has an understanding of which policies are supported by which alternatives. This is modelled as another vector, representing the estimated support for each policy for a candidate, thus voter $i$ has $S_i(\policy_j, x)$, which returns these voters' estimated support of $\policy_j$ by alternative $x$.
 
-This 
+This model does not explicitly $D1$, the discovery of a common issue dimension, on the one hand, if the alternatives can be reduced to a line, this model should be able to capture this, even if this one line crosses through multiple issue dimension. For example if all issues are strongly (negatively) correlated on the side of the alternatives, but not on the voters, this model allows for the voters to recognize this by properly estimating the alternatives' support matrices, while voters themselves can keep an uncorrelated support matrix. In the case that the actual issue dimension is simply not included in the support matrix, our model would not be able to discover this new dimension, even if human deliberation feasibly could. More straightforwardly, if we the measured support is irrelevant to the true issue dimension(s), our model cannot recover the true issue dimension.
 
 More specifically, our model is adapted from the DeGroot learning model, which originally strictly models probability distributions. In that model, a voter is a node in a graph, and deliberation can be modeled as a Markov chain. In our model, we keep voters as nodes on a graph, as well as the Markov chain, however, instead of probability distribution, a voter has a support matrix $\boldsymbol{S}_i$, defined as follows:
 
 \[
 	\boldsymbol{S}_i =\begin{bmatrix}
 		S_i(\policy_1 , a) & \dots  & S_i(\policy_1 , m) \\
-		\vdots       & \ddots & \vdots       \\
+		\vdots             & \ddots & \vdots             \\
 		S_i(\policy_k , a) & \dots  & S_i(\policy_k , m) \\
 	\end{bmatrix}
 \]
@@ -95,10 +95,9 @@ Note that this does not mean that all policies have to have any estimated suppor
 
 In order to extract a ballot from this matrix, we assume a voter ranks the alternatives such that the most preferred alternative has the smallest distance between the estimated support matrix for that alternative and her own. We further allow this distance to be weighted, such that a voter may have one or more policies their think are more important. We normalize these weights such that the sum of weights is 1.
 
-Next we define the deliberative procedure, for which we will provide to alternatives. Firstly a simpler model, which stays true to the original DeGroot model, using only a transition matrix. Secondly we extend this model to be an Agent Based model, in which we allow agents to have additional properties. In both models we allow voters to deliberate on both their own support matrix and the estimated support matrix, capturing deliberation on substantive basis as well as a meta basis, respectively.
+Next we define the deliberative procedure, for which we will provide two models. Firstly a simpler model, which stays closer to the original DeGroot model, using only a transition matrix. Secondly we extend this model to be an Agent Based model, in which we allow agents to have additional properties. In both models we allow voters to deliberate on both their own support matrix and the estimated support matrix, capturing deliberation on substantive basis as well as a meta basis, respectively.
 
 Firstly, a deliberative step can be modelled using a transition matrix $T$, defined as follows:
-
 \[
 	T=\begin{bmatrix}
 		t_{11} & \dots  & t_{1n} \\
@@ -107,7 +106,7 @@ Firstly, a deliberative step can be modelled using a transition matrix $T$, defi
 	\end{bmatrix}
 \]
 
-Here each $t_{ij}$ represents how much voter $i$ trusts the opinion of voter $j$, in order for this to be a proper stochastic matrix, all rows must sum to one, and have non-negative entries. Although this last requirement could be seen as unrealistic, as a voter might actively distrust another voter and update away from their opinion. 
+Here each $t_{ij}$ represents how much voter $i$ trusts the opinion of voter $j$, in order for this to be a proper stochastic matrix, all rows must sum to one, and have non-negative entries. Although this last requirement could be seen as unrealistic, as a voter might actively distrust another voter and update away from their opinion.
 
 Using this, we can now model the opinions of voters after a deliberative step as a matrix multiplication on some matrix $M$:
 
@@ -116,15 +115,31 @@ Using this, we can now model the opinions of voters after a deliberative step as
 	\label{eq:update_degroot}
 \end{equation}
 
-Each entry in the matrix then is simply a linear combination of the other entries. In the case of $M = \EstSupport$, this means that each estimated support matrix is now a linear combination of all support matrices. Deliberation can now be modelled as a matrix $T^{t}$, which is the trust matrix as time $t$. This matrix now represents how much each voter $i$ has learned from the other voters, and can then be using to right multiply both the support and the estimated support matrix to calculate a voters beliefs after deliberation.
+Each entry in the matrix then is simply a linear combination of the other entries in that same column in $M^{(0)}$. In the case of $M = \EstSupport$, this means that voter $i$'s support matrix becomes a linear combination of all support matrices, weighted by the trust in each voter. Deliberation can now be modelled by taking powers of the trust matrix, $T^{t}$, representing $t$ deliberation steps. This matrix now represents how much each voter $i$ has learned from the other voters, and can then be used to right multiply both the support and the estimated support matrix to calculate a voters beliefs after deliberation.
 
-Finally, we provide an example of the first deliberation round in example \ref{example:deGroot-delib}, since it is identical for both $\Support$ and  $\EstSupport$, we only show it for $\Support$.
+Finally, we provide an example of the first deliberation round in example \ref{example:deGroot-delib}, since it is identical for both $\Support$ and  $\EstSupport$, we only show it for $\EstSupport$. The example also shows how voters can initially agree on their support for policies, while disagreeing on their preferred candidates, using meta-agreement to come to a consensus.
 
 \begin{example}{DeGroot deliberation}
 	{}
-	\textcolor{RedViolet}{This example is no longer correct}
 
-	We have voters \(\voters = \{1,2\}\), events \(\policies = \{\policy_{1}, \policy_{2}\}\), and candidates \(\alternatives = \{a,b\}\). The voters both think that \(\policy_{1} = 1, \policy_{2} = 0\), meaning that they fully support the first policy and reject the second, and these are:
+	We have voters \(\voters = \{1,2\}\), events \(\policies = \{\policy_{1}, \policy_{2}\}\), and candidates \(\alternatives = \{a,b\}\). The voters both think that \(\policy_{1} = 1, \policy_{2} = 0\), meaning that they fully support the first policy and reject the second, they estimate the support by alternatives as:
+	\[
+		\begin{array}{c|cc}
+			1 & \policy_1 & \policy_2 \\
+			\hline
+			a & 0.5       & 0         \\
+			b & 0.5       & 1         \\
+		\end{array}
+		\hspace{1em}
+		\begin{array}{c|cc}
+			2 & \policy_1 & \policy_2 \\
+			\hline
+			a & 1         & 0.9       \\
+			b & 1         & 0.1       \\
+		\end{array}
+	\]
+	We can encode this into the estimated support matrices as follows:
+
 	\[
 		\EstSupport_1 =\begin{bmatrix}
 			0.5 & 0 \\
@@ -132,43 +147,45 @@ Finally, we provide an example of the first deliberation round in example \ref{e
 		\end{bmatrix}\quad
 		\EstSupport_2 =\begin{bmatrix}
 			1 & 0.9 \\
-			0 & 0.1 \\
+			1 & 0.1 \\
 		\end{bmatrix}
 	\]
-	This results in voter 1 preferring candidate $b$ over candidate $a$, while voter 2, prefers $a$. Intuitively, since voter 1 thinks $\policy_{1}$ is equally supported by each alternative, while $\policy_{2}$ is not supported by $a$, it makes sense for them to prefer candidate $b$.
+
+	This results in voter 1 preferring candidate $b$ over candidate $a$, while voter 2, prefers $a$. Intuitively, since voter 1 thinks $\policy_{1}$ is equally supported by each alternative, while $\policy_{2}$ is not supported by $a$, it makes sense for them to prefer candidate $a$. Looking at the distances, we see that the absolute distance between voter 1 and alternative $a$ is 0.5, while for alternative $b$ it is 1.5. For voter 2 we see that the distance to $a$ is 0.9, while for alternative $b$ is it 0.1. Thus, voter 2 prefers $b$ to $a$.
+
 
 	Now deliberating with the following trust matrix:
 	\[
 		T=\begin{bmatrix}
-			t_{11} & \dots  & t_{1n} \\
-			\vdots & \ddots & \vdots \\
-			t_{n1} & \dots  & t_{nn} \\
+			0.3	0.7
+			0.2	0.8
 		\end{bmatrix}
 	\]
 	We get the following updated opinions:
 	\begin{align*}
-		\boldsymbol{P}^{(1)} & = T\boldsymbol{P}^{(0)}                                                    \\
-		                     & =T\begin{bmatrix}P_1 P_2\end{bmatrix}^{T}                                  \\
-		                     & =\begin{bmatrix}(0.3P_1 + 0.7P_{2}) & (0.2P_1 + 0.8P_{2})\end{bmatrix}^{T} \\
-		                     & = \begin{bmatrix}
-			                         \begin{bmatrix}
-				0.35 & 0.63 \\
-				0.15 & 0.37 \\
+		\boldsymbol{\boldsymbol{\EstSupport}}^{(1)} & = T\boldsymbol{\boldsymbol{\EstSupport}}^{(0)}                                                                     \\
+		                                            & =T\begin{bmatrix}\EstSupport_1 \EstSupport_2\end{bmatrix}^{T}                                                      \\
+		                                            & =\begin{bmatrix}(0.3\EstSupport_1 + 0.7\EstSupport_{2}) & (0.2\EstSupport_1 + 0.8\EstSupport_{2})\end{bmatrix}^{T} \\
+		                                            & = \begin{bmatrix}
+			                                                \begin{bmatrix}
+				0.85 & 0.63 \\
+				0.85 & 0.37 \\
 			\end{bmatrix} &
-			                         \begin{bmatrix}
+			                                                \begin{bmatrix}
 				0.9 & 0.72 \\
-				0.1 & 0.18 \\
+				0.9 & 0.18 \\
 			\end{bmatrix}
-		                         \end{bmatrix}^{T}
+		                                                \end{bmatrix}^{T}
 	\end{align*}
 
-	These new probabilities are not yet in full consensus, however, looking at their corresponding ballots there is consensus on their most preferred alternative.
+	These new estimates are not yet in full consensus, however, looking at their corresponding ballots there is consensus on their most preferred alternative, as they both agree that alternatives support $\policy_1$ equally, while $b$ supports $\policy_2$ less.
+
 	\label{example:deGroot-delib}
 \end{example}
 
 \subsection{Consensus}
 \label{sub: concensus DeGroot}
-\textcolor{RedViolet}{In using a single trust matrix for both support and estimated support matrices, we either have both meta and substantive agreement, or neither. But using two matrices would require justification and make implementation more difficult. Maybe here we can introduce biases again, were we assume the original trust matrix, but we add some kind of "meta" bias and "substantive" bias, where these biases reflect how much they are willing to change their minds. In terms of analysis this would not really make things different, but for experimentation we might be able to argue that people might be more willing to change their views on the meta level, and we can experiment with lower meta bias.}
+\textcolor{RedViolet}{In using a single trust matrix for both support and estimated support matrices, we either have both meta and substantive agreement, or neither. But using two matrices would require justification, Maybe here we can introduce biases again, were we assume the original trust matrix, but we add some kind of "meta" bias and "substantive" bias, where these biases reflect how much they are willing to change their minds. In terms of analysis this would not really make things different, but for experimentation we might be able to argue that people might be more willing to change their views on the meta level, and we can experiment with lower substantive bias.}
 
 Using this model of deliberation, meta-agreement can be seen as some estimated support matrix over all policies. If the goal of deliberation is meta-agreement, then the study of interest becomes the dynamics of convergence towards a unified estimate.
 
@@ -184,7 +201,7 @@ We present a summary of results relating to strongly connected graphs, as well a
 	\end{itemize}
 \end{proposition}
 
-This result is very positive from a convergence dynamics point of view, as no knowledge of the initial distribution is needed to determine convergence, it allows us to simply verify one of these three properties on the network. Though strongly connected graph might be a strong requirement, in the case of small scale (in person) deliberation, this might not be infeasible. Fortunately, even outside this setting it might be possible to reach convergence. For this we first define what a closed set of nodes is.
+This result is positive for studying the convergence dynamics, as no knowledge of the initial distribution is needed to determine convergence, it allows us to simply verify one of these three properties on the network. Though strongly connected graphs might be a strong requirement, in the case of small scale (in person) deliberation, this might be realistic. Fortunately, even outside this setting it might be possible to reach convergence. For this we first define what a closed set of nodes is.
 
 \begin{definition}{Closed set of Nodes}{}
 	A set of Nodes \(C = \{1, \dots, n\}\) is closed if for each \(i,j \in C\) we have $T_{ij} \geq 0$ and for each \(i \in C, j \notin C\) we have \(T_{ij} = 0\)
@@ -214,18 +231,18 @@ Where $k_{i}$ is voter $i$'s knowledge, normalized to be between 0 and 1, $\iota
 
 \textcolor{orange}{The following updates seem useful to allow us to capture how voters don't just change their opinion, but their general attitudes towards each other and the policies as well. The aim to use this to allow us to capture the following:}
 \textcolor{orange}{
-\begin{itemize}
-	\item Voters becoming more knowledgable (This was observed in the America in one room experiment)
-	\item Voters grouping together, essentially creating "friendships" with people they talked to before. I might want to change the model to also allow people do trust people less under some circumstances
-	\item Change the importance the place on policies as a function of the "social group"
-\end{itemize}}
+	\begin{itemize}
+		\item Voters becoming more knowledgable (This was observed in the America in one room experiment)
+		\item Voters grouping together, essentially creating "friendships" with people they talked to before. I might want to change the model to also allow people do trust people less under some circumstances
+		\item Change the importance the place on policies as a function of the "social group"
+	\end{itemize}}
 
 \textcolor{orange}{
-Furthermore, I would use this to argue why small scale deliberation with strangers is as beneficial as it is, since people do not know each other, all these are "uniform", and they get to interact more sincerely. This apposed to broad interaction people have in their daily lives where they interact with similar people, and place importance accordingly.
+	Furthermore, I would use this to argue why small scale deliberation with strangers is as beneficial as it is, since people do not know each other, all these are "uniform", and they get to interact more sincerely. This apposed to broad interaction people have in their daily lives where they interact with similar people, and place importance accordingly.
 }
 
 After the conversation step, a voter can update her knowledge, importance and trust. Firstly a voter's knowledge increases as \textcolor{red}{T.B.D.}, the importance on each topic increases, and is renormalized. Finally a voter's trust in their conversational partners increases with some amount, distributed over all the conversational partners in their group at time $t$, and is again renormalized. This trust updating allows us to capture two things: People can get into (small) echo chambers, where a voter can start to distrust everyone but themselves (or a small selection of people). This however, also lets us model exposure effects, where a voter can come to trust people after their first interaction with them.
 
 \textcolor{orange}{
-	I think that we can use the agent based framework to get some simple results that make intuition more formal. For example as I just mentioned, echo chambers can be a result of consecutive isolation of small groups or individuals. I did not write any of these out as the specifics will strongly depend on the updating functions as well as which parameters we end up including. 
+	I think that we can use the agent based framework to get some simple results that make intuition more formal. For example as I just mentioned, echo chambers can be a result of consecutive isolation of small groups or individuals. I did not write any of these out as the specifics will strongly depend on the updating functions as well as which parameters we end up including.
 }

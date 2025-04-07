@@ -493,9 +493,7 @@
 			\else
 				\@restonecolfalse
 			\fi
-			\chapter*{\listtablename
-			  \@mkboth{
-				  \MakeUppercase\listtablename}{\MakeUppercase\listtablename}}
+			\chapter*{\listtablename}
 			\@starttoc{lot}
 			\if@restonecol\twocolumn\fi
 			\cleardoublepage

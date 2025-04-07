@@ -468,6 +468,9 @@
 \renewcommand\listoffigures{
 	\btypeout{List of Figures}
 	\addtotoc{List of Figures}
+	\chapter*{\listfigurename
+	  \@mkboth{\MakeUppercase\listfigurename}
+	  {\MakeUppercase\listfigurename}}
 	\begin{spacing}{1}{
 			\setlength{\parskip}{1pt}
 			\if@twocolumn
@@ -475,9 +478,6 @@
 			\else
 				\@restonecolfalse
 			\fi
-			\chapter*{\listfigurename
-			  \@mkboth{\MakeUppercase\listfigurename}
-			  {\MakeUppercase\listfigurename}}
 			\@starttoc{lof}
 			\if@restonecol\twocolumn\fi
 			\cleardoublepage
@@ -486,6 +486,7 @@
 \renewcommand\listoftables{
 	\btypeout{List of Tables}
 	\addtotoc{List of Tables}
+	\chapter*{\listtablename}
 	\begin{spacing}{1}{
 			\setlength{\parskip}{1pt}
 			\if@twocolumn
@@ -493,7 +494,6 @@
 			\else
 				\@restonecolfalse
 			\fi
-			\chapter*{\listtablename}
 			\@starttoc{lot}
 			\if@restonecol\twocolumn\fi
 			\cleardoublepage

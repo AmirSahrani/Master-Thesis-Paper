@@ -216,7 +216,12 @@ Then, each voter announces their (estimated) support on a \textcolor{orange}{sub
 
 \begin{equation}
 	\label{eq:abm_update_function}
-	\sqrt{k_{i}\iota_{i,j} b_{i}d(\Support{i,j}, \Support{i,j}')^{2} - ((1-k)(1-\iota_{i,j})(1-b_{i})d(\Support{i,j}, \Support{i,j}')^{2})}
+	% \sqrt{k_{i}\iota_{i,j} b_{i}d(\Support{i,j}, \Support{i,j}')^{2} - ((1-k)(1-\iota_{i,j})(1-b_{i})d(\Support{i,j}, \Support{i,j}')^{2})}
+	\sqrt{
+		(1-(k_j-k_i))b_id(\Support_i, \Support')^{\iota_i + \iota_j}
+		-
+		(1 - (k_i-k_j))(1-b_i)d(\Support_j, \Support')^{\iota_j + \iota_i}
+	}
 \end{equation}
 
 Where $k_{i}$ is voter $i$'s knowledge, normalized to be between 0 and 1, $\iota_{i,j}$ is the importance she places on policy $\policy_{j}$, and $b_{i}$ is the biases she has towards her own opinion.

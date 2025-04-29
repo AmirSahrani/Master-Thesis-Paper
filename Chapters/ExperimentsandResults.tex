@@ -10,8 +10,7 @@ experiment and visualizations can be found in
 \href{https://github.com/amirsahrani/master_thesis}{this Repository}.
 
 
-\section{Replication}
-We are able to fully replicate the results found by
+\section{Replication} We are able to fully replicate the results found by
 \citet{radDeliberationSinglePeakednessCoherent2021},  in \Cref{fig:rep_cyclic}
 we see that while the bias is less than 0.73, all metric results in a-cyclic
 preferences. We also replicate the behavior of the KS metric, where biases in
@@ -105,7 +104,9 @@ $\mathcal{O}(|V| \cdot{} |C|^5)$ algorithm
 	\caption{The parameters of the DeGroot learning based model, as well as their descriptions}
 \end{table}
 
-Since the dataset used does not contain full preference rankings, we validate
+We use the \textsc{America in One room} dataset
+\cite{fishkinCanDeliberationHave2024} for the support vectors of all
+voters. As this dataset does not contain full preference rankings, we validate
 the explanatory power of the model as follows. We aim to show that under
 different numbers of voters and candidates and different ways to generate
 candidates, we can find bias factors and deliberation times which minimize the
@@ -114,7 +115,7 @@ different (plausible) scenarios we argue that model does capture the learning
 process. We then proceed to analyse the results in relation to this dataset,
 interpreting the optimal bias values, as well as looking at the rate of
 converges given "optimal" parameters. For this analysis, all configurations
-were run 100 times. 
+were run 100 times.
 
 
 \subsection{Optimal parameters}

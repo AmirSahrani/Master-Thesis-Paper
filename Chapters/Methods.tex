@@ -9,22 +9,54 @@ We proceed with the methods used to replicate the paper by \citet{radDeliberatio
 We implement the model as described in \Cref{section:related_work}, agents are only allowed strict preferences over all candidates. All experiments are done with 3 alternatives, and 51 voters. The number of voters is specifically chosen to be an odd number, as this prevents perfect ties between alternatives. We measure all evaluations relating to strict preferences, as reported by \citet{radDeliberationSinglePeakednessCoherent2021}, in addition to those we also measure the number of Condorcet winners.
 
 \section{Experiments}
-We aim to replicate the findings by the America in One Room experiments \cite{fishkinCanDeliberationHave2024}, to this end we use two models. Firstly we use the adapted DeGroot model as laid out in \Cref{sec: main model}, then we extend these results using our Agent Based model. The original experiment had a control group as well as the experimental group. To model the control group, we map all the voters onto various graphs, such as the graph of academic citations, or a social media network \cite{nr}. We explain the mapping in the next section. The experimental group is simply modelled as a densely connected network, the weights of the edges, and thus the values of the trust matrix, are generated using three methods:\textit{Uniform, Credibility-based, Similarity-Based}. Uniform spreads the weight uniformly amongst all neighbors of some node, Credibility-based spreads the trust proportional to that neighbors edges, and similarity based spreads the trust inversely proportional to the distance between the two voters.
+We aim to replicate the findings by the America in One Room experiments \cite{fishkinCanDeliberationHave2024}, to this end we use two models. Firstly we use the adapted DeGroot model as laid out in \Cref{sec: main model}, then we extend these results using our Agent Based model. The original experiment had a control group as well as the experimental group. To model the control group, we map all the voters onto a graph of academic citations in physics \cite{nr}. We explain this mapping in the next section, as well as its computational difficulties. The experimental group is simply modelled as a densely connected network, the weights of the edges, and thus the values of the trust matrix, are generated using three methods: \textit{Uniform, Credibility-based, Knowledge-Based}. Uniform spreads the weight uniformly amongst all neighbors of some node, Credibility-based spreads the trust proportional to that neighbors outgoing edges, finally, Knowledge-based spreads the trust proportional to the influencing voter's knowledge, meaning that for voter $i$, they trust voter $j$ more if $j$ is more knowledgeable.
 
 \subsection{Voter Mapping}
 In order to simulate realistic information flow through the control group, we aim to use a natural graph structure, as well as a natural mapping from voters to nodes. Firstly, in order to generate the graph, a starting graph is taken, for example the graph of academic citations, and the TIES \cite{ahmedNetworkSamplingStatic2013} algorithm is then used to sample exactly $n$ nodes from this graph. The TIES Algorithm first samples an edge, and adds both the source and target node to the new graph, these stage is called the sampling stage. After the desired number of nodes has been reached, we proceed to the induction step, during which all the edges that exist between the sampled nodes in the original graph are added to the new graph. This algorithm allows for the use of large, natural graphs, by scaling them down to the number of nodes desired.
 
+Once the proper graph is generated, we calculate the pairwise shortest paths between all nodes, as well as the distance in voter opinions. We then find a bijection between the voters and the nodes such that the difference between the shortest path distance and the opinion distance is minimized.
+
+We now proceed to show that mapping voters to a graph as just described is NP-Hard, we call this problem Distance based Voter Mapping. We prove two statements regarding its complexity.
+
 \begin{theorem}{}
-	Distance based Voter mapping NP-Complete
+	Distance based Voter mapping is NP-Hard, when using the $\ell_2$-norm
 \end{theorem}
 
 \begin{proofc}{}
-	The proof follows from a reduction of the Traveling Salesman Problem. 
+	The proof follows from a reduction to the Quadratic Assignment Problem. 
+
+	Assume we have matrix $A$ containing all the distances between each pair of voters, and matrix $B$ containing all shortest paths in graph $G$. Mapping the voters from $A$ to nodes in $B$ requires finding a bijection $f$ such that it minimizes the following expression: 
+$$
+	\begin{aligned}
+	&\sum_{i} \sum_{j} \sqrt{\left(A_{i,j} -B_{f(i),f(j)}\right)^2}\\
+	\propto&\sum_{i} \sum_{j} A_{i,j}^2 -2A_{i,j}B_{f(i),f(j)} + B_{f(i),f(j)}^2\\
+	=& C - \frac{1}{2} \sum_{i} \sum_{j} A_{i,j}B_{f(i),f(j)} + \sum_{i} \sum_{j}  B_{f(i),f(j)}^2\\
+	\end{aligned}
+$$
+	In the first step, we note that minimizing the term in the square root is
+	equivalent to minimizing the square root itself. In the last step we note that
+	the sum of both matrices is a constant thus we are minimized in the product of entries
+	in the two matrices, thus the structure of the problem is identical to QAP. We
+	now note that The only restriction we have on the distance matrix A, is that
+	the voters can be embedded in a Euclidian space, however even under this
+	constraint QAP remains NP-Hard \cite{queyrannePerformanceRatioPolynomial1986}.
 \end{proofc}
 
-Once the proper graph is generated, we calculate the pairwise shortest paths between all nodes, as well as the distance in voter opinions. We then normalize both to the $[0,1]$ interval, and map the voters to the nodes such that the difference between the shortest path distance and the opinion distance is minimized.
+\begin{corollary}{}
+	Distance Based Voter mapping is NP-Hard, when using the $\ell_1$-norm
+\end{corollary}
 
-\textcolor{Bittersweet}{I think this would benefit from a diagram to visualize the "pipeline"}.
+\begin{proofc}{}
+	First assume that matrices $A$ and $B$, representing the same matrices as before, are now binary matrices. Under this assumption the $\ell_1$- and $\ell_2$-norms are identical. Under this --strong-- restriction, we have reduced the problem to 0-1-QAP, which is NP-Hard \cite{nagarajanMaximumQuadraticAssignment}.
+\end{proofc}
+
+Despite these negative results, we enlist the help of QAP-solver
+\cite{virtanenSciPy10Fundamental2020}  to find solutions, using the Fast
+Approximate QAP Algorithm \cite{vogelsteinFastApproximateQuadratic2015}. We
+find the solver does not consistently find better solutions. Given the number
+of simulation ran, it is infeasible to attempt to refine solutions to
+consistently be better than random solutions.
+
 
 \subsection{DeGroot extension}
 \begin{enumerate}
@@ -36,15 +68,17 @@ Once the proper graph is generated, we calculate the pairwise shortest paths bet
 	\item Mention metrics of interest
 
 \end{enumerate}
-\subsection{Agent Based Model}
-\begin{enumerate}
-	\item List Graph used, neighbor selection procedure
-	\item List parameters to be varied
-	      \begin{itemize}
-		      \item Hyper parameters: trust update factors, bias factors etc.
-	      \end{itemize}
-	\item Mention metrics of interest
-\end{enumerate}
+
+% \subsection{Agent Based Model}
+% \begin{enumerate}
+% 	\item List Graph used, neighbor selection procedure
+% 	\item List parameters to be varied
+% 	      \begin{itemize}
+% 		      \item Hyper parameters: trust update factors, bias factors etc.
+% 	      \end{itemize}
+% 	\item Mention metrics of interest
+% \end{enumerate}
+
 \subsection{Analysis}
 \begin{enumerate}
 	\item Explain data set, as well has what a proper simulation should look like

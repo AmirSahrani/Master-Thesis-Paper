@@ -2,14 +2,14 @@
 \label{Methods}
 \lhead{\emph{Methods}} % Set the left side page header to "Symbols"
 
-We proceed with the methods used to replicate the paper by \citet{radDeliberationSinglePeakednessCoherent2021}, as well as the experimental setup of our own model. Links to the data used for these experiments can be found in \Cref{ethics_data}. The programs are implemented using \texttt{Ocaml}, and \texttt{Python}.
+We proceed with the methods used to replicate the paper by \citet{radDeliberationSinglePeakednessCoherent2021}, as well as the experimental setup of our own model. Links to the data used for these experiments can be found in \Cref{ethics_data}. The programs are implemented using \texttt{OCaml}, and \texttt{Python}.
 
 
 \section{Replication}
 We implement the model as described in \Cref{section:related_work}, agents are only allowed strict preferences over all candidates. All experiments are done with 3 alternatives, and 51 voters. The number of voters is specifically chosen to be an odd number, as this prevents perfect ties between alternatives. We measure all evaluations relating to strict preferences, as reported by \citet{radDeliberationSinglePeakednessCoherent2021}, in addition to those we also measure the number of Condorcet winners.
 
 \section{Experiments}
-We aim to replicate the findings by the America in One Room experiments \cite{fishkinCanDeliberationHave2024}, to this end we use two models. Firstly we use the adapted DeGroot model as laid out in \Cref{sec: main model}, then we extend these results using our Agent Based model. The original experiment had a control group as well as the experimental group. To model the control group, we map all the voters onto a graph. We explain this mapping in the next section, as well as its computational difficulties. The experimental group is simply modelled as a densely connected network, the weights of the edges, and thus the values of the trust matrix, are generated using three methods: \textit{Uniform, Credibility-based, Knowledge-Based}. Uniform spreads the weight uniformly amongst all neighbors of some node, Credibility-based spreads the trust proportional to that neighbors outgoing edges, finally, Knowledge-based spreads the trust proportional to the influencing voter's knowledge, meaning that for voter $i$, they trust voter $j$ more if $j$ is more knowledgeable.
+We aim to replicate the findings by the \textsc{America in One room} experiments \cite{fishkinCanDeliberationHave2024}, to this end we use two models. Firstly we use the adapted DeGroot model as laid out in \Cref{sec: main model}, then we extend these results using our Agent Based model. The original experiment had a control group as well as the experimental group. To model the control group, we map all the voters onto a graph. We explain this mapping in the next section, as well as its computational difficulties. The experimental group is simply modelled as a densely connected network, the weights of the edges, and thus the values of the trust matrix, are generated using three methods: \textit{Uniform, Credibility-based, Knowledge-Based}. Uniform spreads the weight uniformly amongst all neighbors of some node, Credibility-based spreads the trust proportional to that neighbors outgoing edges, finally, Knowledge-based spreads the trust proportional to the influencing voter's knowledge, meaning that for voter $i$, they trust voter $j$ more if $j$ is more knowledgeable.
 
 \subsection{Voter Mapping}
 In order to simulate realistic information flow through the control group, we aim to use a natural graph structure, as well as a natural mapping from voters to nodes. Firstly, in order to generate the graph, a starting graph is taken, for example the graph of academic citations, and the TIES \cite{ahmedNetworkSamplingStatic2013} algorithm is then used to sample exactly $n$ nodes from this graph. The TIES Algorithm first samples an edge, and adds both the source and target node to the new graph, these stage is called the sampling stage. After the desired number of nodes has been reached, we proceed to the induction step, during which all the edges that exist between the sampled nodes in the original graph are added to the new graph. This algorithm allows for the use of large, natural graphs, by scaling them down to the number of nodes desired.
@@ -63,15 +63,15 @@ consistently be better than random solutions.
 The first experiment we perform concern the DeGroot model. These experiments
 consist of two parts. Firstly we search the parameter space to identify
 parameters that best replicate the data. For this we use data from the
-America in One Room experiment as described in \Cref{section:related_work}.
+\textsc{America in One room} experiment as described in \Cref{section:related_work}.
 Though this data does not provide full preference rankings over the
 candidates, it does provide data on voters' opinions on 6 different topics
 of political discussion, such as climate change, and immigration. Using
 these opinions, we are able to generate potential candidates, this is done
 either by selecting a voter and creating a candidate with identical
 opinions, or by pooling 10 voters\footnote{This is arbitrary, and it might
-	be good to look into this, but in my opinion is low priority
-	for now. It might also be useful to keep the candidate constant over the
+	be good to look into this, but in my opinion this is low priority
+	for now. It might also be useful to keep the candidates constant over the
 	course of an experiment} and creating an average of their opinions. Using
 these simulated candidates we are able to create preference rankings using
 the $\ell_2$-norm. To model the difference between the deliberation and
@@ -79,20 +79,100 @@ control group we change the topology of the graphs voters in the respective
 groups are situated in. The deliberation groups will be embedded in a fully
 connected graph, while the control group will be placed on the graph of
 academic citations in physics \cite{nr}\footnote{It might also be useful to
-	compare to different graphs, but for now it seems okay to mention the graph's
-	statistics and how they compare to other social networks.}, this graph is
-small enough to allow
-sampling of the graph for each simulation. Since the original data provides group numbers for candidates who participated in the deliberation, we also experiment with replicating these groups as opposed to randomly grouping voters together.
+compare to different graphs, but for now it seems okay to mention the graph's
+statistics and how they compare to other social networks.}, this graph is small
+enough to allow sampling of the graph for each simulation. Since the original
+data provides group numbers for candidates who participated in the
+deliberation, we also experiment with replicating these groups as opposed to
+randomly grouping voters together.
 
-The trust matrix is generated based on the graph the voters are embedded in, as such they can only trust voters they have a connection to in the underlying graph. The distribution of this trust we control though 3 methods. Firstly, and most simply, we give all voters a bias. This bias reflects how much of their trust they place on them selves. For example a bias of 1 represent them placing equal trust on themselves as all other voters combined. Secondly, we have knowledge based trust, in which a voter trusts voters more if that voter is more knowledgeable. We get the knowledge scores from the America in One Room dataset as well. The interpretation is that more knowledgeable voters could be more persuasive and thus be more influential on other voters' opinions. Thirdly, we have credibility based trust, where the trust a voter places on another voter is proportional to the number of outgoing edges that second voter has. This method becomes equivalent to placing uniform trust in all voters when all voters are situated in a fully connected graph. If we do not use credibility or knowledge based trust, we call this uniform trust, meaning that they treat all neighbors the same.
+The trust matrix is generated based on the graph the voters are embedded in, as
+such they can only trust voters they have a connection to in the underlying
+graph. The distribution of this trust we control though 3 methods. Firstly, and
+most simply, we give all voters a bias. This bias reflects how much of their
+trust they place on them selves. For example a bias of 1 represent them placing
+equal trust on themselves as all other voters combined. Secondly, we have
+knowledge based trust, in which a voter trusts voters more if that voter is
+more knowledgeable. We get the knowledge scores from the \textsc{America in One
+room} dataset as well. The interpretation is that more knowledgeable voters
+could be more persuasive and thus be more influential on other voters'
+opinions. Thirdly, we have credibility based trust, where the trust a voter
+places on another voter is proportional to the number of outgoing edges that
+second voter has. This method becomes equivalent to placing uniform trust in
+all voters when all voters are situated in a fully connected graph. If we do
+not use credibility or knowledge based trust, we call this uniform trust,
+meaning that they treat all neighbors the same.
 
-\begin{enumerate}
-	\item List Graph used
-	\item List parameters to be varied
-	\item Mention metrics of interest
+We measure whether the final profiles are cyclic, whether they have a Condorcet
+winner, home many unique profiles there are, and their proximity to being
+singly peaked. Proximity to single peakedness is measured in two ways. When the
+simulation size allows for it, we measure the proximity in terms of the number
+of voters that would need to be removed for the full profile to become singly
+peaked. This particular method is NP-complete
+\cite{erdelyiComputationalAspectsNearly2013}, though it allows for a
+2-approximation, we cannot reliably use it for larger groups, given the sheer
+number of simulation necessary. The other notion of proximity, which we will
+always measure, is the proximity in terms of the number of candidates that need
+to be removed for the profile to become singly peaked. This can be done in
+$\mathcal{O}(|V| \cdot{} |C| ^3)$\cite{przedmojskiAlgorithmsExperimentsNearly},
+though the implementation used is that of the \texttt{PrefTools} library
+\cite{preftool}, which implements a slower $\mathcal{O}(|V| \cdot{} |C|^5)$
+algorithm \cite{erdelyiComputationalAspectsNearly2013}. 
 
-\end{enumerate}
 
+
+
+We aim to show that under different numbers of voters and candidates and
+different ways to generate candidates, we can find bias factors and
+deliberation times which minimize the error of our model. We define the error
+of our model as the (normalized) difference of the proportion of cyclic
+profiles, the proportion of simulation containing a Condorcet winner, and the
+proximity to single-peakedness using the voter based notion if possible and the
+candidate based notion. Through showing these positive results for multiple
+different (plausible) scenarios we argue that model does capture the learning
+process. We then proceed to analyse the results in relation to this dataset,
+interpreting the optimal bias values, as well as looking at the rate of
+converges given ``optimal'' parameters. For this analysis, all configurations
+were run 100 times.
+
+Given the best configurations, we will analyse the behavior of the model to 
+
+
+\renewcommand{\arraystretch}{1.2}
+\begin{table}
+	\centering
+	\begin{tabular}{p{4cm}p{0.65\linewidth }}
+		\toprule
+		Parameter & Description  \\
+		\midrule
+	\texttt{Number of Voters} & The number of voters in the simulation, representing either the deliberation group, or the control population.\\
+	\texttt{Number of Candidates}  & The number of candidates to be voted on. \\
+	\texttt{Candidate Generator} & The way the candidates are generated. Either a random voter is selected for each candidate, or 10 random voters get averaged into one candidate.\\
+	\texttt{Bias}& The bias all voters have towards their own opinion. \\
+	\texttt{Time steps}& The number of deliberation ``steps'' the voters undergo.\\
+	\texttt{Group}& Use the original groups.\\
+	\texttt{Credibility}& Distribute trust based on credibility.\\
+	\texttt{Knowledge}& distribute trust based on knowledge.\\
+		\bottomrule
+	\end{tabular}
+	\caption{The parameters of the DeGroot learning based model, as well as their descriptions}
+\end{table}
+
+Given the best configurations, we will analyse the behavior of the model to
+understand the convergence on opinion. To this end, the change in the trust
+matrix, as well as the distance between each voter's pre- and post-deliberation
+opinions using the KS and CS distance. We first aim to find after how many
+deliberative steps our model convergences, which we define as the moment where
+the largest change in the trust matrix is smaller than some $\epsilon$. Then we
+hope to understand how individual voters' opinions change by looking at the
+final state of the trust matrix, as this shows how each voter is influenced by
+their neighbors.
+
+
+Finally we use sensitivity analysis to investigate which parameters have the
+strongest effect on the model, using Sobol indices to get the first and second
+order effects. \footnote{This I have not had the time to implement in code yet,
+as it requires a little restructuring of how the model gets its parameters.}
 % \subsection{Agent Based Model}
 % \begin{enumerate}
 % 	\item List Graph used, neighbor selection procedure
@@ -103,24 +183,24 @@ The trust matrix is generated based on the graph the voters are embedded in, as 
 % 	\item Mention metrics of interest
 % \end{enumerate}
 
-\subsection{Analysis}
-\begin{enumerate}
-	\item Explain data set, as well has what a proper simulation should look like
-	      \begin{itemize}
-		      \item Similar trends for control vs treatment $\to$ Find pivotal voters to maximally disperse information?
-	      \end{itemize}
-
-	\item Statistical Tests
-
-	      \begin{itemize}
-		      \item Effect of single issue voters (e.g. all share similar importance vectors, for example as result of recent event) on single-peakedness
-		      \item Effect of difference graphs, twitter vs academia etc.
-		      \item Condorcet winners?
-		      \item Num alternatives vs proximity to single peakedness
-	      \end{itemize}
-	\item sensitivity analysis
-	      \begin{itemize}
-		      \item Explain sensitivity analysis, Sobol indices
-	      \end{itemize}
-\end{enumerate}
+% \subsection{Analysis}
+% \begin{enumerate}
+% 	\item Explain data set, as well has what a proper simulation should look like
+% 	      \begin{itemize}
+% 		      \item Similar trends for control vs treatment $\to$ Find pivotal voters to maximally disperse information?
+% 	      \end{itemize}
+%
+% 	\item Statistical Tests
+%
+% 	      \begin{itemize}
+% 		      \item Effect of single issue voters (e.g. all share similar importance vectors, for example as result of recent event) on single-peakedness
+% 		      \item Effect of difference graphs, twitter vs academia etc.
+% 		      \item Condorcet winners?
+% 		      \item Num alternatives vs proximity to single peakedness
+% 	      \end{itemize}
+% 	\item sensitivity analysis
+% 	      \begin{itemize}
+% 		      \item Explain sensitivity analysis, Sobol indices
+% 	      \end{itemize}
+% \end{enumerate}
 

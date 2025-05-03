@@ -64,59 +64,6 @@ unique preferences being smaller.
 \label{degroot_results}
 
 We now present the results of our model based on the DeGroot learning process.
-The deliberation group, which is supposed to represent a small group with
-deeper talks with everyone on the group, is analysed first. The deliberation
-group is modelled as a dense graph, with a few voters. Though the original data
-supplied group numbers, for these experiments voters were assigned to their
-groups arbitrarily. In terms of the final measures, we focus on whether the
-final profiles are cyclic, whether they have a Condorcet winner, home many
-unique profiles there are, and their proximity to being singly peaked.
-Proximity to single peakedness is measured in two ways. When the simulation
-size allows for it, we measure the proximity in terms of the number of voters
-that would need to be removed for the full profile to become singly peaked.
-This particular method is NP-complete
-\cite{erdelyiComputationalAspectsNearly2013}, though it allows for a
-2-approximation, we cannot reliably use it for larger groups, given the
-sheer number of simulation necessary. The other notion of proximity, which we
-will always measure, is the proximity in terms of the number of candidates that
-need to be removed for the profile to become singly peaked. This can be done in
-$\mathcal{O}(|V| \cdot{} |C| ^3)$\cite{przedmojskiAlgorithmsExperimentsNearly}, though the implementation used is
-that of the \texttt{PrefTools} library \cite{preftool}, which implements a slower
-$\mathcal{O}(|V| \cdot{} |C|^5)$ algorithm
-\cite{erdelyiComputationalAspectsNearly2013}. 
-
-
-
-\renewcommand{\arraystretch}{1.2}
-\begin{table}
-	\centering
-	\begin{tabular}{p{4cm}p{0.65\linewidth }}
-		\toprule
-		Parameter & Description  \\
-		\midrule
-	\texttt{Number of Voters} & The number of voters in the simulation, representing either the deliberation group, or the control population.\\
-	\texttt{Number of Candidates}  & The number of candidates to be voted on. \\
-	\texttt{Candidate Generator} & The way the candidates are generated. Either a random voter is selected for each candidate, or 10 random voters get averaged into one candidate.\\
-	\texttt{Bias}& The bias all voters have towards their own opinion. \\
-	\texttt{Time steps}& The number of deliberation ``steps" the voters undergo.\\
-		\bottomrule
-	\end{tabular}
-	\caption{The parameters of the DeGroot learning based model, as well as their descriptions}
-\end{table}
-
-We use the \textsc{America in One room} dataset
-\cite{fishkinCanDeliberationHave2024} for the support vectors of all
-voters. As this dataset does not contain full preference rankings, we validate
-the explanatory power of the model as follows. We aim to show that under
-different numbers of voters and candidates and different ways to generate
-candidates, we can find bias factors and deliberation times which minimize the
-error of our model. Through showing these positive results for multiple
-different (plausible) scenarios we argue that model does capture the learning
-process. We then proceed to analyse the results in relation to this dataset,
-interpreting the optimal bias values, as well as looking at the rate of
-converges given "optimal" parameters. For this analysis, all configurations
-were run 100 times.
-
 
 \subsection{Optimal parameters}
 

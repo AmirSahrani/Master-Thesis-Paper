@@ -9,7 +9,7 @@ We proceed with the methods used to replicate the paper by \citet{radDeliberatio
 We implement the model as described in \Cref{section:related_work}, agents are only allowed strict preferences over all candidates. All experiments are done with 3 alternatives, and 51 voters. The number of voters is specifically chosen to be an odd number, as this prevents perfect ties between alternatives. We measure all evaluations relating to strict preferences, as reported by \citet{radDeliberationSinglePeakednessCoherent2021}, in addition to those we also measure the number of Condorcet winners.
 
 \section{Experiments}
-We aim to replicate the findings by the America in One Room experiments \cite{fishkinCanDeliberationHave2024}, to this end we use two models. Firstly we use the adapted DeGroot model as laid out in \Cref{sec: main model}, then we extend these results using our Agent Based model. The original experiment had a control group as well as the experimental group. To model the control group, we map all the voters onto a graph of academic citations in physics \cite{nr}. We explain this mapping in the next section, as well as its computational difficulties. The experimental group is simply modelled as a densely connected network, the weights of the edges, and thus the values of the trust matrix, are generated using three methods: \textit{Uniform, Credibility-based, Knowledge-Based}. Uniform spreads the weight uniformly amongst all neighbors of some node, Credibility-based spreads the trust proportional to that neighbors outgoing edges, finally, Knowledge-based spreads the trust proportional to the influencing voter's knowledge, meaning that for voter $i$, they trust voter $j$ more if $j$ is more knowledgeable.
+We aim to replicate the findings by the America in One Room experiments \cite{fishkinCanDeliberationHave2024}, to this end we use two models. Firstly we use the adapted DeGroot model as laid out in \Cref{sec: main model}, then we extend these results using our Agent Based model. The original experiment had a control group as well as the experimental group. To model the control group, we map all the voters onto a graph. We explain this mapping in the next section, as well as its computational difficulties. The experimental group is simply modelled as a densely connected network, the weights of the edges, and thus the values of the trust matrix, are generated using three methods: \textit{Uniform, Credibility-based, Knowledge-Based}. Uniform spreads the weight uniformly amongst all neighbors of some node, Credibility-based spreads the trust proportional to that neighbors outgoing edges, finally, Knowledge-based spreads the trust proportional to the influencing voter's knowledge, meaning that for voter $i$, they trust voter $j$ more if $j$ is more knowledgeable.
 
 \subsection{Voter Mapping}
 In order to simulate realistic information flow through the control group, we aim to use a natural graph structure, as well as a natural mapping from voters to nodes. Firstly, in order to generate the graph, a starting graph is taken, for example the graph of academic citations, and the TIES \cite{ahmedNetworkSamplingStatic2013} algorithm is then used to sample exactly $n$ nodes from this graph. The TIES Algorithm first samples an edge, and adds both the source and target node to the new graph, these stage is called the sampling stage. After the desired number of nodes has been reached, we proceed to the induction step, during which all the edges that exist between the sampled nodes in the original graph are added to the new graph. This algorithm allows for the use of large, natural graphs, by scaling them down to the number of nodes desired.
@@ -23,16 +23,16 @@ We now proceed to show that mapping voters to a graph as just described is NP-Ha
 \end{theorem}
 
 \begin{proofc}{}
-	The proof follows from a reduction to the Quadratic Assignment Problem. 
+	The proof follows from a reduction to the Quadratic Assignment Problem.
 
-	Assume we have matrix $A$ containing all the distances between each pair of voters, and matrix $B$ containing all shortest paths in graph $G$. Mapping the voters from $A$ to nodes in $B$ requires finding a bijection $f$ such that it minimizes the following expression: 
-$$
-	\begin{aligned}
-	&\sum_{i} \sum_{j} \sqrt{\left(A_{i,j} -B_{f(i),f(j)}\right)^2}\\
-	\propto&\sum_{i} \sum_{j} A_{i,j}^2 -2A_{i,j}B_{f(i),f(j)} + B_{f(i),f(j)}^2\\
-	=& C - \frac{1}{2} \sum_{i} \sum_{j} A_{i,j}B_{f(i),f(j)} + \sum_{i} \sum_{j}  B_{f(i),f(j)}^2\\
-	\end{aligned}
-$$
+	Assume we have matrix $A$ containing all the distances between each pair of voters, and matrix $B$ containing all shortest paths in graph $G$. Mapping the voters from $A$ to nodes in $B$ requires finding a bijection $f$ such that it minimizes the following expression:
+	$$
+		\begin{aligned}
+			        & \sum_{i} \sum_{j} \sqrt{\left(A_{i,j} -B_{f(i),f(j)}\right)^2}                              \\
+			\propto & \sum_{i} \sum_{j} A_{i,j}^2 -2A_{i,j}B_{f(i),f(j)} + B_{f(i),f(j)}^2                        \\
+			=       & C - \frac{1}{2} \sum_{i} \sum_{j} A_{i,j}B_{f(i),f(j)} + \sum_{i} \sum_{j}  B_{f(i),f(j)}^2 \\
+		\end{aligned}
+	$$
 	In the first step, we note that minimizing the term in the square root is
 	equivalent to minimizing the square root itself. In the last step we note that
 	the sum of both matrices is a constant thus we are minimized in the product of entries
@@ -59,11 +59,35 @@ consistently be better than random solutions.
 
 
 \subsection{DeGroot extension}
+
+The first experiment we perform concern the DeGroot model. These experiments
+consist of two parts. Firstly we search the parameter space to identify
+parameters that best replicate the data. For this we use data from the
+America in One Room experiment as described in \Cref{section:related_work}.
+Though this data does not provide full preference rankings over the
+candidates, it does provide data on voters' opinions on 6 different topics
+of political discussion, such as climate change, and immigration. Using
+these opinions, we are able to generate potential candidates, this is done
+either by selecting a voter and creating a candidate with identical
+opinions, or by pooling 10 voters\footnote{This is arbitrary, and it might
+	be good to look into this, but in my opinion is low priority
+	for now. It might also be useful to keep the candidate constant over the
+	course of an experiment} and creating an average of their opinions. Using
+these simulated candidates we are able to create preference rankings using
+the $\ell_2$-norm. To model the difference between the deliberation and
+control group we change the topology of the graphs voters in the respective
+groups are situated in. The deliberation groups will be embedded in a fully
+connected graph, while the control group will be placed on the graph of
+academic citations in physics \cite{nr}\footnote{It might also be useful to
+	compare to different graphs, but for now it seems okay to mention the graph's
+	statistics and how they compare to other social networks.}, this graph is
+small enough to allow
+sampling of the graph for each simulation. Since the original data provides group numbers for candidates who participated in the deliberation, we also experiment with replicating these groups as opposed to randomly grouping voters together.
+
+The trust matrix is generated based on the graph the voters are embedded in, as such they can only trust voters they have a connection to in the underlying graph. The distribution of this trust we control though 3 methods. Firstly, and most simply, we give all voters a bias. This bias reflects how much of their trust they place on them selves. For example a bias of 1 represent them placing equal trust on themselves as all other voters combined. Secondly, we have knowledge based trust, in which a voter trusts voters more if that voter is more knowledgeable. We get the knowledge scores from the America in One Room dataset as well. The interpretation is that more knowledgeable voters could be more persuasive and thus be more influential on other voters' opinions. Thirdly, we have credibility based trust, where the trust a voter places on another voter is proportional to the number of outgoing edges that second voter has. This method becomes equivalent to placing uniform trust in all voters when all voters are situated in a fully connected graph. If we do not use credibility or knowledge based trust, we call this uniform trust, meaning that they treat all neighbors the same.
+
 \begin{enumerate}
 	\item List Graph used
-	      \begin{itemize}
-		      \item Prove mapping is computationally hard?
-	      \end{itemize}
 	\item List parameters to be varied
 	\item Mention metrics of interest
 

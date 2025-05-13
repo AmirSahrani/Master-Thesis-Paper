@@ -2,81 +2,74 @@
 \label{Methods}
 \lhead{\emph{Methods}} % Set the left side page header to "Symbols"
 
-We proceed with the methods used to replicate the paper by \citet{radDeliberationSinglePeakednessCoherent2021a}, as well as the experimental setup of our own model. Links to the data used for these experiments can be found in \Cref{ethics_data}\footnote{Some references will be broken since I have simply commented out all irrelevant sections}. The programs are implemented using \texttt{OCaml}, and \texttt{Python}.
+We proceed with the methods used to replicate the paper by \citet{radDeliberationSinglePeakednessCoherent2021}, as well as the experimental setup of our own model. Links to the data used for these experiments can be found in \Cref{ethics_data}\footnote{Some references will be broken since I have simply commented out all irrelevant sections}. The programs are implemented using \texttt{OCaml}, and \texttt{Python}.
 
 
 \section{Replication}
-We implement the model as described in \Cref{section:related_work}, agents are only allowed strict preferences over all candidates. All experiments are done with 3 alternatives, and 51 voters. The number of voters is specifically chosen to be an odd number, as this prevents perfect ties between alternatives. We measure all evaluations relating to strict preferences, as reported by \citet{radDeliberationSinglePeakednessCoherent2021a}, in addition to those we also measure the number of Condorcet winners.
+We implement the model as described in \Cref{section:related_work}. Agents are only allowed strict preferences over all candidates. All experiments are done with 3 alternatives, and 51 voters. The number of voters is specifically chosen to be an odd number, as this prevents perfect ties between alternatives. We measure all evaluations relating to strict preferences, as reported by \citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those we also measure the number of Condorcet winners.
 
 \section{Experiments} We aim to replicate the findings by the \textsc{America
-in One room} experiments \cite{fishkinCanDeliberationHave2024}, to this end we
-use two models. Firstly we use the adapted DeGroot model as laid out in
-\Cref{sec: main model}\footnote{This section is excluded, but in summary it is
-	essentially a stochastic matrix, where the entries are decided based on
-	a graph and some parameters. Using this trust matrix we take power of
-	this matrix, and at different powers (i.e. time steps) we left multiply
-the support matrix and estimated support matrix to get the ``outcome'' of the
-deliberation at that time.}, then we extend these results using our Agent Based
-model. The original experiment had a control group as well as the experimental
+in One room} experiments \cite{fishkinCanDeliberationHave2024}. To this end we
+use propose an adaption to the DeGroot model as laid out in
+\Cref{sec: main model} The dataset contains a control group as well as an experimental
 group. To model the control group, we map all the voters onto a graph, we
 explain this mapping in the next section, as well as its computational
 difficulties. The experimental group is simply modelled as a densely connected
 network. The trust matrix is generated based on the graph the voters are
-embedded in, as such they can only trust voters they have a connection to in
+embedded in, so they can only trust voters they have a connection to in
 the underlying graph. The distribution of this trust we control though 3
 methods. Firstly, and most simply, we give all voters a bias. This bias
 reflects how much of their trust they place on themselves. For example a bias
 of 1 represents them placing equal trust on themselves as all other voters
-combined, the actual weight on the self loop is calculated as the sum of all
-incoming edges multiplied by the bias. Secondly, we have knowledge based trust,
+combined. The actual weight on the self loop is calculated as the sum of all
+incoming edges multiplied by the bias. Secondly, we have knowledge-based trust,
 in which a voter trusts voter $j$ more if voter $j$ is more knowledgeable. We get
 the knowledge scores from the \textsc{America in One room} dataset by taking the proportion of knowledge questions they answered correctly. The
 interpretation is that more knowledgeable voters would be more persuasive and
 thus be more influential on other voters' opinions. Thirdly, we have
-credibility based trust, where the trust a voter places on another voter is
+credibility-based trust, where the trust a voter places on another voter is
 proportional to the number of outgoing edges that second voter has. This method
 becomes equivalent to placing uniform trust in all voters when all voters are
-situated in a fully connected graph. If we do not use credibility or knowledge
+situated in a fully connected graph. If we do not use credibility- or knowledge-
 based trust, we call this uniform trust, meaning that they treat all neighbors
-the same, importantly this does not imply any specific bias value.
+the same. Importantly, this does not imply any specific bias value.
 
 \subsection{Voter Mapping}
-In order to simulate realistic information flow through the control group, we aim to use a natural graph structure, as well as a natural mapping from voters to nodes. Firstly, in order to generate the graph, a starting graph is taken, namely the graph of academic citations, and the TIES \cite{ahmedNetworkSamplingStatic2013} algorithm is then used to sample exactly $n$ nodes from this graph. The TIES Algorithm first samples an edge, and adds both the source and target node to the new graph, these stage is called the sampling stage. After the desired number of nodes has been reached, we proceed to the induction step, during which all the edges that exist between the sampled nodes in the original graph are added to the new graph. This algorithm allows for the use of large, natural graphs, by scaling them down to the number of nodes desired.
+In order to simulate realistic information flow through the control group, we aim to use a natural graph structure, as well as a natural mapping from voters to nodes. Firstly, in order to generate the graph, a starting graph is taken, namely the graph of academic citations, and the TIES \cite{ahmedNetworkSamplingStatic2013} algorithm is then used to sample exactly $n$ nodes from this graph. The TIES Algorithm first samples an edge, and adds both the source and target node to the new graph. This stage is called the sampling stage. After the desired number of nodes has been reached, we proceed to the induction step, during which all the edges that exist between the sampled nodes in the original graph are added to the new graph. This algorithm allows for the use of large, natural graphs, by scaling them down to the number of nodes desired.
 
 Once the proper graph is generated, we calculate the pairwise shortest paths between all nodes, as well as the distance in voter opinions. We then try to find a bijection between the voters and the nodes such that the difference between the shortest path and the opinion distance is minimized.
 
-We now proceed to show that mapping voters to a graph as just described is NP-Hard, we call this problem Distance based Voter Mapping and prove two statements regarding its complexity.
+We show that mapping voters to a graph as just described is NP-Hard, through showing the decision variant of the problem to be NP-Complete. We call this problem Distance-based Voter Mapping, and define it as follows.
+
+
+\begin{problem}{$\delta$-DBVM($S$)}{dbvm}
+	{Given: $A, B \in S^{n \times n}, k\in\Reals_{\geq 0}$
+
+	Decision: Does there exist some bijection $f: [n] \to [n]$, such that: $$\delta(A, f(B)) \leq k$$}
+
+	Here we take $f(B)$ to mean the matrix $B'$ that is created when we take each $B'_{i,j} = B_{f(i),f(j)}$ and  $\delta$ is some distance function, $\delta: {S^{n \times n} \times S^{n \times n} \to \Reals_{\geq 0}}$.
+\end{problem}
+
+We will be needing the Quadratic assignment problem (QAP), we formulate a decision variant of QAP as follows.
+
+\begin{problem}{QAP-Decision}{qap-decision}
+	{Given: $A, B \in S^{n \times n}, k\in\Reals_{\geq 0}$
+
+	Decision: Does there exist some bijection $f: [n] \to [n]$, such that: $$\sum_{i,j} A_{i,j}\cdot B_{f(i),f(j)} \geq k$$}
+\end{problem}
 
 \begin{theorem}
-	Distance based Voter mapping is NP-Hard, when using the $\ell_2$-norm
+	$\delta$-DBVM($S$) is NP-Complete for $\delta\in\{\ell_1, \ell_2\}$ and $S = \{0,1\}^n$
 	\label{thm:np_hard_voter_mapping_l2}
 \end{theorem}
 
-% \begin{proofc}{}
-% 	The proof follows from a reduction to the Quadratic Assignment Problem.
-%
-% 	Assume we have matrix $A$ containing all the distances between each pair of voters, and matrix $B$ containing all shortest paths in graph $G$. Mapping the voters from $A$ to nodes in $B$ requires finding a bijection $f$ such that it minimizes the following expression:
-% 	$$
-% 		\begin{aligned}
-% 			        & \sqrt{\sum_{i} \sum_{j} \bigl(A_{i,j} -B_{f(i),f(j)}\bigr)^2}                              \\
-% 			= & \sqrt{\sum_{i} \sum_{j} A_{i,j}^2 -2A_{i,j}B_{f(i),f(j)} + B_{f(i),f(j)}^2                        }\\
-% 			=       &\sqrt{ C - \frac{1}{2} \sum_{i} \sum_{j} A_{i,j}B_{f(i),f(j)} + \sum_{i} \sum_{j}  B_{f(i),f(j)}^2 }\\
-% 		\end{aligned}
-% 	$$
-% 	 In the second to  step we note that the sum of both matrices is a
-% 	 constant, thus we are minimizing in the product of entries of the two
-% 	 matrices, In the final step we note that this is proportional up to a constant and positive scaling, as such the structure of the problem is identical to QAP. We
-% 	 now note that the only restriction we have on the distance matrix A,
-% 	 is that the voters can be embedded in a Euclidian space, however even
-% 	 under this constraint QAP remains NP-Hard
-% 	 \cite{queyrannePerformanceRatioPolynomial1986}.
-% \end{proofc}
-\begin{proofc}{}
-  The proof follows from a reduction to the Quadratic Assignment Problem (QAP).
 
-  Let $A$ be the matrix of pairwise distances between voters, and let $B$ be the matrix of shortest-path distances in the graph $G$. Mapping the voters to nodes in the graph requires finding a bijection $f$ that minimizes the following objective:
+\begin{proofc}{}
+ ($\implies$ NP-Hard) The proof follows from a reduction to the Quadratic Assignment Decision Problem.
+
+  Let $A$ be the matrix of pairwise distances between voters, and let $B$ be the matrix of shortest-path distances in the graph $G$, and $k$ be the $\delta$ achieved by the optimal bijection. $\ell_2$-DBVM($S$) requires finding a bijection $f$ that minimizes the $\ell_2$ objective:
   $$
-    \sqrt{\sum_{i} \sum_{j} \bigl(A_{i,j} - B_{f(i),f(j)}\bigr)^2}.
+    \sqrt{\sum_{i,j} \bigl(A_{i,j} - B_{f(i),f(j)}\bigr)^2}.
   $$
   Since the square root is a strictly increasing function, minimizing the expression above is equivalent to minimizing the sum inside:
   $$
@@ -90,34 +83,46 @@ We now proceed to show that mapping voters to a graph as just described is NP-Ha
   $$
     \max_f \sum_{i,j} A_{i,j} B_{f(i),f(j)},
   $$
-  which is the standard form of the Quadratic Assignment Problem.
+  which is the standard form of the Quadratic Assignment Decision Problem. Note, $\max_f$ is a consequence of the sum being subtracted from the constants, thus we are still minimizing the total distance.
 
-  Finally, we note that the only restriction on $A$ is that it arises from embedding voters in a Euclidean space. However, even under this constraint, QAP remains NP-hard~\cite{queyrannePerformanceRatioPolynomial1986}.
+  Now we note that when $A$ and $B$ are in $S= \{0,1\}^{n \times n}$ , the
+  $\ell_1$ and $\ell_2$ norms are identical. We also note that this binary
+  domain would constitute a special instance of QAP, know as 0-1 Max-QAP, and
+  is NP-Hard \cite{nagarajanMaximumQuadraticAssignment}. Thus solving
+  $\delta$-DBVM($S$), on the binary domain, is equivalent to solving 0-1
+  Max-QAP, and thus NP-Hard.
+
+  ($\implies$ NP-Complete) Given some $f$ and $k$, the decision can be made in $\mathcal{O}(n^2)$.
+
 \end{proofc}
-\begin{corollary}{}
-	Distance Based Voter mapping is NP-Hard, when using the $\ell_1$-norm
-\end{corollary}
 
-\begin{proofc}{}
-	First assume that matrices $A$ and $B$, representing the same matrices as before, are now binary matrices. Under this assumption the $\ell_1$- and $\ell_2$-norms are identical. Under this --strong-- restriction, we have reduced the problem to 0-1-QAP, which is NP-Hard \cite{nagarajanMaximumQuadraticAssignment}.
-\end{proofc}
+A concern with \Cref{thm:np_hard_voter_mapping_l2}, might be the matrices
+containing certain patterns that might lead to an easier solution, though
+this proof concerns itself with the worst-case and thus
+in practice might turn out to be easier. For this problem such patterns seem
+unlikely to be of much help. We show one example to give an intuition for this.
 
-One concern with \Cref{thm:np_hard_voter_mapping_l2}, is that the data might
-contain certain patterns that we might be able to exploit, though the problem statement does not
-require such patterns to exist, if they do, such patterns seem
-unlikely to be of much help. Take for example the case in which all voters hold
-one of 2 opinions, thus we can split them into two groups of sizes $n_1, n_2$,
-then the mapping algorithm effectively requires finding a partition in the graph, that
-results in two sub-graphs with exactly $n_1$ and $n_2$ nodes each. This is now
-the size-constrained graph partitioning problem, which is NP-Hard. Thus, given that even under
-such a strong assumption the problem remains computationally intractable, we suspect that
-patterns in the data are unlikely to allow for better exact solutions. 
-Despite these negative results, we enlist the help of QAP-solver
-\cite{virtanenSciPy10Fundamental2020}  to find solutions, using the Fast
-Approximate QAP Algorithm \cite{vogelsteinFastApproximateQuadratic2015}. We
-find the solver does not consistently find better solutions than random
-assignment. Given the number of simulation ran, it is infeasible to attempt to
-refine solutions to consistently be better than random solutions.
+Take the case in which all voters hold one of 2 opinions, thus we can split
+them into two groups of sizes $n_1, n_2$. Then the mapping algorithm
+effectively requires finding a partition in the graph, that results in two
+sub-graphs with exactly $n_1$ and $n_2$ nodes each. This is now the
+size-constrained graph partitioning problem, which is NP-Hard. 
+
+Thus, given that even under such a strong assumption the problem remains
+computationally difficult, we suspect that patterns in the data are unlikely
+to allow for (much) better exact solutions. This does leave room for
+approximation algorithms, we do not present an overview of these, however under
+our constraint of one of the matrices satisfying the triangle inequality,
+namely the voter distance matrix. There exists a $\frac{2e}{e-1}$-approximation
+algorithm \cite{nagarajanMaximumQuadraticAssignment}. We do not implement this algorithm.
+
+Despite these negative results, we enlist
+the help of a QAP-solver \cite{virtanenSciPy10Fundamental2020}  to find
+solutions, using the Fast Approximate QAP Algorithm
+\cite{vogelsteinFastApproximateQuadratic2015}. Though, we find the solver does not
+consistently find better solutions than random assignment. Given the number of
+simulations ran, it is infeasible to attempt to refine solutions to consistently
+be better than random solutions.
 
 
 \subsection{DeGroot extension}
@@ -141,9 +146,7 @@ $\ell_1$-norm. To model the difference between the deliberation and control
 group we change the topology of the graphs voters in the respective groups are
 situated in. As mentioned before, the deliberation groups will be embedded in a fully connected
 graph, while the control groups will be placed on the graph of academic
-citations in physics \cite{nr}\footnote{It might also be useful to compare to
-different graphs, but for now it seems okay to mention the graph's statistics
-and how they compare to other social networks.}, this graph is small enough to
+citations in physics \cite{nr}, this graph is small enough to
 allow sampling of the graph for each simulation. Since the original data
 provides group numbers for candidates who participated in the deliberation, we
 also experiment with replicating these groups as opposed to randomly grouping
@@ -157,8 +160,8 @@ simulation size allows for it, we measure the proximity in terms of the number
 of voters that would need to be removed for the full profile to become
 single-peaked. This particular notion is NP-complete
 \cite{erdelyiComputationalAspectsNearly2013}, though it allows for a
-2-approximation, we use the method based on an ILP solver, as implemented in
-PrefTool \cite{PrefLibPreflibtools2025}. The other notion of proximity is the proximity in
+2-approximation. We use the method based on an ILP solver, as implemented in
+\texttt{PrefTools} \cite{PrefLibPreflibtools2025}. The other notion of proximity is the proximity in
 terms of the number of candidates that need to be removed for the profile to
 become single-peaked. This can be done in $\mathcal{O}(|V| \cdot{} |C|
 ^3)$\cite{przedmojskiAlgorithmsExperimentsNearly}, though the implementation we
@@ -173,10 +176,10 @@ We aim to find values for all parameters that minimize the error of the model,
 conditional on the number of voters and candidates. For this we define the
 error of our model as the (normalized) difference of the proportion of cyclic
 profiles, the proportion of simulation containing a Condorcet winner, and the
-proximity to single-peakedness using the voter based notion if possible and the
-candidate based notion. With these parameters, we argue that model captures the
+proximity to single-peakedness using the voter-based notion if possible and the
+candidate-based notion. With these parameters, we argue that model captures the
 learning process. We then proceed to analyze convergence behavior under these
-optimal parameters, for this analysis, all configurations are run 100 times.
+optimal parameters. For this analysis, all configurations are run 100 times.
 
 
 \renewcommand{\arraystretch}{1.2}
@@ -193,7 +196,7 @@ optimal parameters, for this analysis, all configurations are run 100 times.
 	\texttt{Time steps}& The number of deliberation ``steps'' the voters undergo.\\
 	\texttt{Group}& Use the original groups.\\
 	\texttt{Credibility}& Distribute trust based on credibility.\\
-	\texttt{Knowledge}& distribute trust based on knowledge.\\
+	\texttt{Knowledge}& Distribute trust based on knowledge.\\
 		\bottomrule
 	\end{tabular}
 	\caption{The parameters of the DeGroot learning based model, as well as their descriptions}
@@ -203,7 +206,7 @@ Given the best configurations, we will analyze the behavior of the model to
 understand the convergence on opinion. To this end, we measure the change in the trust
 matrix, as well as the distance between each voter's pre- and post-deliberation
 preferences using the KS and CS distances. We first aim to find the number of
-deliberative steps are needed for convergence, which we define as the moment where
+deliberative steps needed for convergence, which we define as the moment where
 the largest change in the trust matrix is smaller than some $\epsilon$. Then we
 hope to understand how individual voters' opinions change by looking at the
 final state of the trust matrix.

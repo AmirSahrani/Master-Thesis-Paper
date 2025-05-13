@@ -136,6 +136,7 @@
 \definecolor{theoremcolor}{named}{OrangeRed}
 \definecolor{corollarycolor}{named}{Fuchsia}
 \definecolor{propositioncolor}{named}{VioletRed}
+\definecolor{problemcolor}{named}{PineGreen}
 \definecolor{proofcolor}{named}{Gray}
 \definecolor{definitioncolor}{named}{TealBlue}
 \definecolor{examplecolor}{named}{Mulberry}
@@ -237,6 +238,18 @@
 	boxrule=\heavyrulewidth,titlerule=\lightrulewidth,leftrule=0mm,rightrule=0mm,
 	description font=\mdseries\itshape,
 	title=#1}{def}
+
+\newtcbtheorem[crefname={problem}{problems}]{problem}{problem}{
+	new/auto counter,
+	colback=problemcolor!2!white,
+	colbacktitle=problemcolor!8!white,
+	colframe=problemcolor!80!black,
+	coltitle=black, fonttitle=\scshape,
+	arc=0mm,
+	enlarge top by=0.3mm, enlarge bottom by=0.3mm, toptitle=0.8mm,bottomtitle=0.35mm,left=3mm,right=3mm,
+	boxrule=\heavyrulewidth,titlerule=\lightrulewidth,leftrule=0mm,rightrule=0mm,
+	description font=\mdseries\itshape,
+	title=#1}{prob}
 
 \newtheorem{lemma}[theoremaux]{Lemma}
 \newtheorem{axiom}[theoremaux]{Axiom}

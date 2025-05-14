@@ -6,7 +6,15 @@ We proceed with the methods used to replicate the paper by \citet{radDeliberatio
 
 
 \section{Replication}
-We implement the model as described in \Cref{section:related_work}. Agents are only allowed strict preferences over all candidates. All experiments are done with 3 alternatives, and 51 voters. The number of voters is specifically chosen to be an odd number, as this prevents perfect ties between alternatives. We measure all evaluations relating to strict preferences, as reported by \citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those we also measure the number of Condorcet winners.
+We implement the model as described in \Cref{section:related_work}. Agents are
+only allowed strict preferences over all candidates. All experiments are done
+with 3 alternatives, and 51 voters. The number of voters is specifically chosen
+to be an odd number, as this prevents perfect ties between alternatives. We
+measure all evaluations relating to strict preferences, namely the proportion
+of cylic Profiles, the Number of Unique profiles and the proximity to
+single-peakedness (PtS), as reported by
+\citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those we
+also measure the number of Condorcet winners.
 
 \section{Experiments} We aim to replicate the findings by the \textsc{America
 in One room} experiments \cite{fishkinCanDeliberationHave2024}. To this end we
@@ -90,9 +98,11 @@ We will be needing the Quadratic assignment problem (QAP), we formulate a decisi
   domain would constitute a special instance of QAP, know as 0-1 Max-QAP, and
   is NP-Hard \cite{nagarajanMaximumQuadraticAssignment}. Thus solving
   $\delta$-DBVM($S$), on the binary domain, is equivalent to solving 0-1
-  Max-QAP, and thus NP-Hard.
+  Max-QAP, and thus NP-Hard.~\checkmark
 
-  ($\implies$ NP-Complete) Given some $f$ and $k$, the decision can be made in $\mathcal{O}(n^2)$.
+
+  ($\implies$ NP-Complete) Given some $f$ and $k$, the decision can be made in $\mathcal{O}(n^2)$.~\checkmark
+
 
 \end{proofc}
 

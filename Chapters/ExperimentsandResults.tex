@@ -73,27 +73,52 @@ other words, it does not seem to matter how many people disagree with a voter,
 her own opinion holds a constant relative importance.
 
 Looking at the deliberation group, we show the best bias values in the following table:
-\begin{table}[ht]
-\centering
-\begin{tabular}{ccccccc}
-\toprule
-$n_\text{candidates}$ & $n_\text{voters}$ & MSE (Sample) & MSE (Voter) & Bias (Sample) & Bias (Voter) \\
-\midrule
-3 & 9  & 0.00747 & 0.00733 & 1.3 & 1.3 \\
-3 & 11 & 0.00951 & 0.00969 & 1.2 & 1.0 \\
-3 & 13 & 0.00978 & 0.01080 & 1.2 & 1.2 \\
-3 & 15 & 0.01409 & 0.01231 & 1.3 & 0.9 \\
-5 & 9  & 0.03244 & 0.05191 & 0.8 & 1.1 \\
-5 & 11 & 0.05640 & 0.05591 & 1.4 & 0.9 \\
-5 & 13 & 0.07609 & 0.08720 & 1.1 & 0.8 \\
-5 & 15 & 0.06716 & 0.07476 & 0.9 & 0.9 \\
-7 & 9  & 0.07412 & 0.18686 & 1.3 & 1.2 \\
-7 & 11 & 0.12538 & 0.17129 & 1.2 & 1.3 \\
-\bottomrule
-\end{tabular}
-\caption{Minimum mean values at time step 151 for each candidate selection method, with corresponding bias.}
-\label{tab:min_mean_bias_delib}
+\begin{table}
+	\begin{center}
+		\begin{tabular}{lccc}
+			\toprule
+			Candidate Generator & $P_{v}$            & $P_{c}$           & Total             \\
+			\midrule
+			Sample              & 0.10, $\kappa = T$ & 0.70, $\kappa =F$ & 0.10, $\kappa =T$ \\
+			Voter               & 0.90, $\kappa =F$  & 0.70, $\kappa =T$ & 0.50, $\kappa =F$ \\
+			\bottomrule
+		\end{tabular}
+		\caption{Each cell contains the optimal bias value for the configuration as well as if it is better to use knowledge based trust in the deliberation condition.}\label{tab:opt_delib}
+	\end{center}
 \end{table}
+\begin{table}
+	\begin{center}
+		\begin{tabular}{lccc}
+			\toprule
+			Candidate Generator & $P_{v}$    & $P_{c}$     & Total      \\
+			\midrule
+			Sample              & 0.50, True & 0.40, False & 0.40,False \\
+			Voter               & 0.10, True & 1.50, True  & 1.50, True \\
+			\bottomrule
+		\end{tabular}
+		\caption{Each cell contains the optimal bias value for the configuration as well as if it is better to use knowledge based trust in the control condition.}\label{tab:opt_control}
+	\end{center}
+\end{table}
+
+\begin{figure}
+	\centering
+	\begin{minipage}{0.45\textwidth}
+		\begin{center}
+			\includegraphics[width=\textwidth]{Figures/error_scatter_delib.pdf}
+		\end{center}
+		\subcaption{The distribution of errors in the deliberation condition}
+	\end{minipage}
+	\hspace{1em}
+	\begin{minipage}{0.45\textwidth}
+		\begin{center}
+			\includegraphics[width=\textwidth]{Figures/error_scatter_control.pdf}
+		\end{center}
+		\subcaption{The distribution of errors in the control condition}
+
+	\end{minipage}
+	\caption{}\label{fig:bias_over_time}
+\end{figure}
+
 
 Here it is clear that generally the model performs best when both the number of
 candidates and the number of voters are low. We also not that though the error
@@ -107,7 +132,7 @@ important than that of all other voters.
 
 We investigate this discrepancy between the two candidates generation methods
 now, to this end we look at the difference in error for all tested
-configuration. 
+configuration.
 
 % Now we T test on everything the Sample and Voter method
 
@@ -115,24 +140,28 @@ configuration.
 
 From \Cref{theory}, we have seen that in the limit some matrices are
 convergent, while some are not, in particular if the matrix is aperiodic, this
-it is convergent. For the matrices in these simulations, we cannot guarantee 
+it is convergent. For the matrices in these simulations, we cannot guarantee
 aperiodicity. Thus, we resort to the following, instead of looking at the
 matrices directly, we instead look at the distance between the estimated
 support matrix, and the true support matrix, where the distance in the element
 wise $\ell_2$ norm. We do the same for the support vectors and the true
 opinions.
 
-....
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{Figures/convergence_groups.pdf}
+	\end{center}
+	\caption{Convergence of different distance metrics as well as the
+		$\ell_1$-norm between the trust matrix at the start and time step
+		t}\label{fig:convergence_big}
+\end{figure}
 
 
-We find ....
 
-
-\subsection{Single-peaked Preferences}
+We find the error of the model in terms of both the KS and CS distance to be minimal in the case where we use the original groups and use the voters' knowledge to inform the trust matrix. We can clearly see that uniform trust is an unrealistic when we do not adhere to the original group. Interestingly, simply using the original group labels improves the model, showing that the groups might not be exactly the same.
 
 We now proceed to look at distance to single-peaked profiles, look at both
 voter removal and candidate removal. We show that for optimal bias, as
 deliberation progresses we see an increase in the proximity to single
 peakedness.
 
-...

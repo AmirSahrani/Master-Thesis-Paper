@@ -2,3 +2,103 @@
 \chapter{Discussion}
 \label{Discussion}
 \lhead{\emph{Discussion}}
+
+
+\textcolor{RedOrange}{This Chapter is a rough draft, citations still needed}
+\section{Conclusion}
+
+
+
+\section{Limitations}
+
+\subsection{Applicability of results}
+...
+
+
+As a result of not having a single data set which can fully inform the values
+in our model, multiple strong assumptions have been made in order to test the
+feasibility of the model.
+
+\subsection{Voter information}
+
+Firstly, no data (available to us) set containing opinions before and after
+deliberation contained full preference orders. This meant heaving to infer
+preferences over candidates, though we chose to do this by minimizing the
+distance between the voter and the alternatives, reasonable alternatives exist.
+For example, people might use different heuristics to locate a few alternatives
+they like best, such as "Agrees with me on important topics", or they might
+simplify each comparison to "Agrees or Disagrees" with me, with some range of
+opinion they consider to be in agreement with theirs. Furthermore, the way we
+encode voters' information on alternatives might not accurately reflect true
+voters' information. One might expect voters to be more familiar with
+candidates close to them in opinion, and thus have less noisy estimates of
+these candidates' positions. Finally,  the error of voters' estimates might not
+be normally distributed. In a polarized election, it is not unreasonable to
+expect errors on the ``opposing'' party to skew further way from that voters'
+opinion.
+
+
+\subsection{Candidates}
+
+Another consequence of not having an appropriate data
+set is the lack of a description of candidates. Though dataset such as those by
+Ipsos might contain the scores of political parties, these datasets do not
+include a pre- and post-deliberation measure of voter opinions. As a result,
+our model requires us to generate candidates manually. Thereby not only
+introducing another modeling choice, but also discarding an important piece of
+information. The \textsc{America in One Room} dataset does contain voters' most
+preferred candidate, which is either the Democratic or Republican Party or one
+of the Independent Parties. But lacking information on the candidates true
+positions as well as the ranking over the others, this information is hard to
+incorporate within the model.
+
+Instead, we chose a simple, but defensible approach, either selecting a single
+voter, or grouping some voters together as a single candidate. In the real
+world, however, candidates might arise in different ways and forms. For
+example, they could bring new idea's, not measured in the poll, or gather
+like-minded people instead of catering to the entire voting population, indeed
+the latter seems to be point of representative democracies. In representative
+democracies candidates represent specific demographics of the population, and
+advocate for their interests.
+
+
+
+\subsection{Extentions}
+
+Finally, we mention effect our model cannot capture in its current state. For
+example, there might be events such as a national health crisis, and economic
+recession or a national safety threat. These kinds of effects could affect our
+three parts of the model. First, some subset of the voters might become more
+informed on the position of the candidates, as the event might cause
+information dispersal. Second, voters might place more important on the
+policies related to the event. Thirdly, voters might change their opinions on
+these topics, either because the effect introduces some new information, e.g. a
+voter who might have been against more military spending might now recognize
+the national safety threat, or because the event causes a person to find the
+topic more important and thus take more active steps to become informed.
+
+\subsection{Future Work}
+
+
+\begin{itemize}
+	\item [o] Experimentally verifying meta-agreement, can only be done if we have data supporting a changing in preferences, with little to no change in voters' own opinion and importance they place on different topics
+	\item[o] To be able to verify our models results, we need at least the full preferences before and after deliberation, as well as the positions of the candidates. The other parameters we might be able to calibrate.
+	\item[o] If we want to have more success modeling a control group, it might be useful to gather data from people in a way that allows for easy inference of trust. Such as from a social network.
+\end{itemize}
+
+
+In order to fully test the working of this model, we propose an experimental
+setup. Ideally the election to be modelled should contain at least 3
+alternatives, as this is where electoral issues start to happen, and classical
+negative results in Social Choice become relevant. Given such an election, we
+propose a similar setup to that by \citet{fishkinCanDeliberationHave2024}. With
+two extensions, firstly the questionnaire should allow voters to mark the
+important to place on each question or topic as well as give a full ranking of
+alternatives. As a result of requiring full preferences, the number of
+candidates should be limited, as to reduce cognitive load on participants.
+Fortunately, the probability of profiles with Condorcet cycle occurring
+diminishes with the number of candidates, therefore limiting the number of
+candidates ensures we investigate the specific context in which the problem is
+most likely to occur. Finally we need voters to estimate what positions the candidates hold.
+
+\textcolor{gray}{This experiment does not seem very useful for its own sake, only as a means to generate data for this specific model. Instead I should consider one or more experiments that might be useful on their own, while still being able to inform the model}

@@ -71,12 +71,12 @@ reasonably aligned with the final PBS scores. We see that after the first time
 step the PBS scores get predicted more accurately, after which the model
 starts making larger prediction errors. This is because the model keeps
 averaging all opinions until a steady state is reaches in which most voters
-hold non-extreme positions. Whether this is a good or bad thing depends on
+hold non-extreme positions. Whether this is positive depends on
 reality, as \citet{elsterMarketForumThree2002} remarked, if deliberation is
 able to reach full consensus, the model might give a glimpse into how this
 works. If this is not the case however, then the model is overly naive
 suggesting that people come to hold a weighted average of all original
-opinions.
+opinions. The latter seems more likely.
 
 
 \begin{figure}
@@ -111,7 +111,7 @@ per-individual basis, and we find the model consistently does worse simply predi
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=0.95\textwidth]{Figures/change_pbs_scores.png}
+		\includegraphics[width=\textwidth]{Figures/change_pbs_scores.png}
 	\end{center}
 	\caption{Change in PBS score, relative to the original, pre deliberation, measurement. The control is  omitted as there was no significant change.}\label{fig:delta_pbs}
 \end{figure}
@@ -134,7 +134,7 @@ effect should make the model more stable.
 \begin{figure}
 	\centering
 
-	\includegraphics[width=0.6\textwidth]{Figures/delib_bias_error.png}
+	\includegraphics[width=0.6\textwidth]{Figures/bias_time_imshow.png}
 	\hspace{1em}
 	\caption{PBS Errors as a function of Bias, the horizontal histogram shows the (uniform) distribution of biases, the vertical histogram shows the distribution of MAE of the PBS.}\label{fig:bias_over_time}
 \end{figure}
@@ -160,16 +160,15 @@ configuration.
 
 From \Cref{theory}, we have seen that in the limit some matrices are
 convergent, while some are not, in particular if the matrix is aperiodic, this
-it is convergent. For the matrices in these simulations, we cannot guarantee
-aperiodicity. Thus, we resort to the following, instead of looking at the
-matrices directly, we instead look at the distance between the estimated
-support matrix, and the true support matrix, where the distance in the element
-wise $\ell_2$ norm. We do the same for the support vectors and the true
-opinions.
+it is convergent. As we model the deliberation group as having fully connected
+matrices, the matrices are aperiodic, and thus convergent. We look at the
+distance between the estimated support matrix, and the true support matrix, to
+get a sense of the rate of convergence. The distance in the element wise
+$\ell_1$ norm.
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=0.95\textwidth]{Figures/convergence_groups.pdf}
+		\includegraphics[width=0.95\textwidth]{Figures/convergence_groups.png}
 	\end{center}
 	\caption{Convergence of different distance metrics as well as the
 		$\ell_1$-norm between the trust matrix at the start and time step
@@ -177,8 +176,6 @@ opinions.
 \end{figure}
 
 
-
-We find the error of the model in terms of both the KS and CS distance to be minimal in the case where we use the original groups and use the voters' knowledge to inform the trust matrix. We can clearly see that uniform trust is an unrealistic when we do not adhere to the original group. Interestingly, simply using the original group labels improves the model, showing that the groups might not be exactly the same.
 
 We now proceed to look at distance to single-peaked profiles, look at both
 voter removal and candidate removal. We show that for optimal bias, as
@@ -226,32 +223,3 @@ for both smaller and larger groups, a voter's opinion is in some sense equally
 important as the of  \textit{all} other voters she comes in contact with. In
 other words, it does not seem to matter how many people disagree with a voter,
 her own opinion holds a constant relative importance.
-
-Looking at the deliberation group, we show the best bias values in the following table:
-\begin{table}
-	\begin{center}
-		\begin{tabular}{lccc}
-			\toprule
-			Candidate Generator & $P_{v}$            & $P_{c}$           & Total             \\
-			\midrule
-			Sample              & 0.10, $\kappa = T$ & 0.70, $\kappa =F$ & 0.10, $\kappa =T$ \\
-			Voter               & 0.90, $\kappa =F$  & 0.70, $\kappa =T$ & 0.50, $\kappa =F$ \\
-			\bottomrule
-		\end{tabular}
-		\caption{Each cell contains the optimal bias value for the configuration as well as if it is better to use knowledge based trust in the deliberation condition.}\label{tab:opt_delib}
-	\end{center}
-\end{table}
-\begin{table}
-	\begin{center}
-		\begin{tabular}{lccc}
-			\toprule
-			Candidate Generator & $P_{v}$    & $P_{c}$     & Total      \\
-			\midrule
-			Sample              & 0.50, True & 0.40, False & 0.40,False \\
-			Voter               & 0.10, True & 1.50, True  & 1.50, True \\
-			\bottomrule
-		\end{tabular}
-		\caption{Each cell contains the optimal bias value for the configuration as well as if it is better to use knowledge based trust in the control condition.}\label{tab:opt_control}
-	\end{center}
-\end{table}
-

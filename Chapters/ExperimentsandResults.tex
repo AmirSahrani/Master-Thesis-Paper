@@ -59,63 +59,84 @@ unique preferences being smaller.
 \end{figure}
 \newpage
 
-\section{DeGroot Model}
-\label{degroot_results}
-\subsection{Optimal parameters}
+\section{DeGroot Model} \label{degroot_results} \subsection{PBS Scores} We
+first proceed with analyzing the performance of the DeGroot model on
+substantive agreement. \Cref{fig:pbs} shows the PBS scores of both the
+deliberation and control group, and the simulation results for both instances.
+As expected the model performs poorly at predicting the control group, as
+there was no significant change for control group members. Similar to the
+control group, the starting PBS score of the participants is a strong
+indicator for their PBS score. Therefore the model at t=0 is already
+reasonably aligned with the final PBS scores. We see that after the first time
+step the PBS scores get predicted more accurately, after which the model
+starts making larger prediction errors. This is because the model keeps
+averaging all opinions until a steady state is reaches in which most voters
+hold non-extreme positions. Whether this is a good or bad thing depends on
+reality, as \citet{elsterMarketForumThree2002} remarked, if deliberation is
+able to reach full consensus, the model might give a glimpse into how this
+works. If this is not the case however, then the model is overly naive
+suggesting that people come to hold a weighted average of all original
+opinions.
 
-Between the deliberation group and the control group, if we look at the final
-time step, we find that both perform best if the bias is set to be around 1,
-though this differs based on the other parameters. This seems to indicate that
-for both smaller and larger groups, a voter's opinion is in some sense equally
-important as the of  \textit{all} other voters she comes in contact with. In
-other words, it does not seem to matter how many people disagree with a voter,
-her own opinion holds a constant relative importance.
 
-Looking at the deliberation group, we show the best bias values in the following table:
-\begin{table}
+\begin{figure}
 	\begin{center}
-		\begin{tabular}{lccc}
-			\toprule
-			Candidate Generator & $P_{v}$            & $P_{c}$           & Total             \\
-			\midrule
-			Sample              & 0.10, $\kappa = T$ & 0.70, $\kappa =F$ & 0.10, $\kappa =T$ \\
-			Voter               & 0.90, $\kappa =F$  & 0.70, $\kappa =T$ & 0.50, $\kappa =F$ \\
-			\bottomrule
-		\end{tabular}
-		\caption{Each cell contains the optimal bias value for the configuration as well as if it is better to use knowledge based trust in the deliberation condition.}\label{tab:opt_delib}
+		\includegraphics[width=0.95\textwidth]{Figures/pbs_scores.png}
 	\end{center}
-\end{table}
-\begin{table}
+	\caption{PBS scores, purple indicating the PBS score after deliberation in the original data, green indicates the results of the simulation in that time step.}\label{fig:pbs}
+\end{figure}
+
+\Cref{fig:delta_pbs} shows the change in PBS scores for the deliberation group,
+the original data shows that most change happens on people with high PBS
+scores, become less extreme. The model seems to get this wrong, in showing the
+most change for people with low initial PBS scores. This might be because there
+is a correlation between PBS score and knowledge (RUN THE STATS), as shown by
+\citet{fishkinCanDeliberationHave2024}, most extreme voters, in terms of PBS,
+seemed to also be the most knowledgeable, if this was skewed towards voters
+with high PBS, then these voters would have more effect on people's opinions in
+this model. Looking at the binned errors in \Cref{fig:binned_errors}, we see
+that the model performs better when we do not include knowledge, further
+indicating that knowledge is a poor predictor of trust, or persuasiveness. Of
+course this claim might be weakened by noting that knowledge in this case
+relates strictly to institutional knowledge, such as know which party currently
+has a majority in the senate. Thus, this specific knowledge might be
+insufficient to predict someone's persuasiveness on the topic of immigration for
+example.
+
+We note that this slight positive results are only the case when group the
+voters by their original positions, thereby giving the model reasonable
+predictive power over a population of voters. \Cref{fig:binned_errors} shows
+the progression of errors over time when the error is calculated on a
+per-individual basis, and we find the model consistently does worse simply predicting someone to not change the opinion at all.
+
+\begin{figure}
 	\begin{center}
-		\begin{tabular}{lccc}
-			\toprule
-			Candidate Generator & $P_{v}$    & $P_{c}$     & Total      \\
-			\midrule
-			Sample              & 0.50, True & 0.40, False & 0.40,False \\
-			Voter               & 0.10, True & 1.50, True  & 1.50, True \\
-			\bottomrule
-		\end{tabular}
-		\caption{Each cell contains the optimal bias value for the configuration as well as if it is better to use knowledge based trust in the control condition.}\label{tab:opt_control}
+		\includegraphics[width=0.95\textwidth]{Figures/change_pbs_scores.png}
 	\end{center}
-\end{table}
+	\caption{Change in PBS score, relative to the original, pre deliberation, measurement. The control is  omitted as there was no significant change.}\label{fig:delta_pbs}
+\end{figure}
+
+\Cref{fig:bias_over_time} shows the relation between the bias factor and the PB
+score, showing that the bias does not improve the models predictive power. This
+result is slightly surprising as one might expect a bias to ``slow down'' the
+model. Given that the model does best in early time steps, this slowing down
+effect should make the model more stable.
+
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{Figures/errors_binned.png}
+	\end{center}
+	\caption{Prediction error of the model as a function of time, binned relative to the original PBS scores.}\label{fig:binned_errors}
+\end{figure}
+
 
 \begin{figure}
 	\centering
-	\begin{minipage}{0.45\textwidth}
-		\begin{center}
-			\includegraphics[width=\textwidth]{Figures/error_scatter_delib.pdf}
-		\end{center}
-		\subcaption{The distribution of errors in the deliberation condition}
-	\end{minipage}
-	\hspace{1em}
-	\begin{minipage}{0.45\textwidth}
-		\begin{center}
-			\includegraphics[width=\textwidth]{Figures/error_scatter_control.pdf}
-		\end{center}
-		\subcaption{The distribution of errors in the control condition}
 
-	\end{minipage}
-	\caption{}\label{fig:bias_over_time}
+	\includegraphics[width=0.6\textwidth]{Figures/delib_bias_error.png}
+	\hspace{1em}
+	\caption{PBS Errors as a function of Bias, the horizontal histogram shows the (uniform) distribution of biases, the vertical histogram shows the distribution of MAE of the PBS.}\label{fig:bias_over_time}
 \end{figure}
 
 
@@ -163,4 +184,74 @@ We now proceed to look at distance to single-peaked profiles, look at both
 voter removal and candidate removal. We show that for optimal bias, as
 deliberation progresses we see an increase in the proximity to single
 peakedness.
+
+
+\begin{figure}[htbp]
+	\centering
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Figures/delib_Mean Number of Cyclic Profiles.png}
+		\caption{The proportion of cyclic profiles remaining, 0 indicating that no cyclic profiles were present after deliberation.}
+		\label{fig:degroot_cyclic}
+	\end{minipage}\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\vspace{-9pt}
+		\includegraphics[width=\textwidth]{Figures/delib_number_Unique Preferences.png}
+		\caption{Number of unique preferences at the final step of deliberation.}
+		\label{fig:degroot_count}
+	\end{minipage}
+
+	\vspace{1em}
+
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Figures/delib_Mean number of Condorcet winners.png}
+		\caption{The proportion of Condorcet winners left after deliberation, value above one indicate Condorcet winners emerging during deliberation}
+		\label{fig:degroot_condorcet}
+	\end{minipage}\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\vspace{-9pt}
+		\includegraphics[width=\textwidth]{Figures/delib_Mean candidate proximity to single peaked Profiles.png}
+		\caption{Proximity to single-peakedness after deliberation. Proximity to single-peakedness as defined in \Cref{section:related_work}.}
+		\label{fig:degroot_single_peaked}
+	\end{minipage}
+\end{figure}
+
+Between the deliberation group and the control group, if we look at the final
+time step, we find that both perform best if the bias is set to be around 1,
+though this differs based on the other parameters. This seems to indicate that
+for both smaller and larger groups, a voter's opinion is in some sense equally
+important as the of  \textit{all} other voters she comes in contact with. In
+other words, it does not seem to matter how many people disagree with a voter,
+her own opinion holds a constant relative importance.
+
+Looking at the deliberation group, we show the best bias values in the following table:
+\begin{table}
+	\begin{center}
+		\begin{tabular}{lccc}
+			\toprule
+			Candidate Generator & $P_{v}$            & $P_{c}$           & Total             \\
+			\midrule
+			Sample              & 0.10, $\kappa = T$ & 0.70, $\kappa =F$ & 0.10, $\kappa =T$ \\
+			Voter               & 0.90, $\kappa =F$  & 0.70, $\kappa =T$ & 0.50, $\kappa =F$ \\
+			\bottomrule
+		\end{tabular}
+		\caption{Each cell contains the optimal bias value for the configuration as well as if it is better to use knowledge based trust in the deliberation condition.}\label{tab:opt_delib}
+	\end{center}
+\end{table}
+\begin{table}
+	\begin{center}
+		\begin{tabular}{lccc}
+			\toprule
+			Candidate Generator & $P_{v}$    & $P_{c}$     & Total      \\
+			\midrule
+			Sample              & 0.50, True & 0.40, False & 0.40,False \\
+			Voter               & 0.10, True & 1.50, True  & 1.50, True \\
+			\bottomrule
+		\end{tabular}
+		\caption{Each cell contains the optimal bias value for the configuration as well as if it is better to use knowledge based trust in the control condition.}\label{tab:opt_control}
+	\end{center}
+\end{table}
 

@@ -8,35 +8,36 @@ We proceed with the methods used to replicate the paper by \citet{radDeliberatio
 \section{Replication}
 We implement the model as described in \Cref{section:related_work}. Agents are
 only allowed strict preferences over all candidates. All experiments are done
-with 3 alternatives, and 51 voters. The number of voters is specifically chosen
-to be an odd number, as this prevents perfect ties between alternatives. We
-measure all evaluations relating to strict preferences, namely the proportion
-of cylic Profiles, the Number of Unique profiles and the proximity to
+with 3 alternatives, and 51 voters. The number of voters is chosen
+to be an odd number, as this prevents ties between alternatives. We
+measure evaluations relating to strict preferences, namely the proportion
+of cyclic Profiles, the Number of Unique profiles and the proximity to
 single-peakedness (PtS), as reported by
 \citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those we
 also measure the number of Condorcet winners.
 
 \section{Experiments} We aim to replicate the findings by the \textsc{America
 in One room} experiments \cite{fishkinCanDeliberationHave2024}. To this end we
-use propose an adaption to the DeGroot model as laid out in
-\Cref{sec: main model} The dataset contains a control group as well as an experimental
-group. To model the control group, we map all the voters onto a graph, we
-explain this mapping in the next section, as well as its computational
-difficulties. The experimental group is simply modelled as a densely connected
-network. The trust matrix is generated based on the graph the voters are
-embedded in, so they can only trust voters they have a connection to in
-the underlying graph. The distribution of this trust we control though 3
-methods. Firstly, and most simply, we give all voters a bias. This bias
-reflects how much of their trust they place on themselves. For example a bias
-of 1 represents them placing equal trust on themselves as all other voters
-combined. The actual weight on the self loop is calculated as the sum of all
-incoming edges multiplied by the bias. Secondly, we have knowledge-based trust,
-in which a voter trusts voter $j$ more if voter $j$ is more knowledgeable. We get
-the knowledge scores from the \textsc{America in One room} dataset by taking the proportion of knowledge questions they answered correctly. The
-interpretation is that more knowledgeable voters would be more persuasive and
-thus be more influential on other voters' opinions. Thirdly, we have
-credibility-based trust, where the trust a voter places on another voter is
-proportional to the number of outgoing edges that second voter has. This method
+propose an adaption to the DeGroot model as laid out in \Cref{sec: main model}
+The dataset contains a control group as well as an experimental group. In the
+dataset, the control group shows no change in opinion over time, thus this
+group is best modelled by using the identity matrix $I^n$ as the trust matrix.
+The experimental group is simply modelled as a densely connected network. The
+trust matrix is generated based on the graph the voters are embedded in, so
+they can only trust voters they have a connection to in the underlying graph.
+The distribution of this trust we control though 3 methods. Firstly, and most
+simply, we give all voters a bias. This bias reflects how much of their trust
+they place on themselves. For example a bias of 1 represents them placing equal
+trust on themselves as all other voters combined. The actual weight on the self
+loop is calculated as the sum of all incoming edges multiplied by the bias.
+Secondly, we have knowledge-based trust, in which a voter trusts voter $j$ more
+if voter $j$ is more knowledgeable. We get the knowledge scores from the
+\textsc{America in One room} dataset by taking the proportion of knowledge
+questions they answered correctly. The interpretation is that more
+knowledgeable voters would be more persuasive and thus be more influential on
+other voters' opinions. Thirdly, we have credibility-based trust, where the
+trust a voter places on another voter is proportional to the number of outgoing
+edges that second voter has. This method
 becomes equivalent to placing uniform trust in all voters when all voters are
 situated in a fully connected graph. If we do not use credibility- or knowledge-
 based trust, we call this uniform trust, meaning that they treat all neighbors
@@ -223,8 +224,7 @@ final state of the trust matrix.
 
 Finally, we use sensitivity analysis to investigate which parameters have the
 strongest effect on the model, using Sobol indices to get the first and second
-order effects. \footnote{This I have not had the time to implement in code yet,
-as it requires a little restructuring of how the model gets its parameters.}
+order effects. 
 
 % \subsection{Agent Based Model}
 % \begin{enumerate}

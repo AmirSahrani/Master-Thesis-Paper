@@ -1,12 +1,12 @@
 \newpage
-\chapter{Experimental Results}
+\chapter{Results}
 \label{experiment_results}
 \lhead{\emph{Experimental Results}}
 We first present a full replication and extension of the work by
 \citet{radDeliberationSinglePeakednessCoherent2021}. Then we present the simulations based on our model of
 meta-deliberation, as well as the results of the sensitivity analysis on both
 models. All code for the replication, main experiment and visualizations can be
-found in \href{https://github.com/amirsahrani/master_thesis}{this Repository}. \Cref{AppendixB} contains all the values and ranges used for the experiments.
+found in \href{https://github.com/amirsahrani/master_thesis}{this Repository}. \Cref{AppendixB} contains all the values and ranges used for the experiments, as well as supplementary figures.
 
 
 \section{Replication} We are able to fully replicate the results found by
@@ -81,7 +81,7 @@ come to hold a weighted average of all original opinions. The latter seems more
 likely.
 
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=0.95\textwidth]{Figures/pbs_scores.png}
 	\end{center}
@@ -107,7 +107,7 @@ knowledge might be insufficient to predict someone's persuasiveness on the
 topic of immigration for example.
 
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=\textwidth]{Figures/change_pbs_scores.png}
 	\end{center}
@@ -123,7 +123,7 @@ time when the error is calculated on a per-individual basis, and we find the
 model consistently does worse than predicting someone to not change their
 opinion, which is what t=0 indicates.
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=0.95\textwidth]{Figures/errors_binned.png}
 	\end{center}
@@ -131,7 +131,7 @@ opinion, which is what t=0 indicates.
 \end{figure}
 
 
-\begin{figure}
+\begin{figure}[h]
 	\centering
 
 	\includegraphics[width=0.6\textwidth]{Figures/bias_time_imshow.png}
@@ -145,21 +145,31 @@ score, showing that the bias does not improve the models predictive power. As
 one might expect a bias is ``slowing down'' the model. Because of this the
 model is slower to diverge away from the true opinions.
 
-% Here it is clear that generally the model performs best when both the number of
-% candidates and the number of voters are low. We also not that though the error
-% of the different candidate generators are comparable, they in general the
-% Sample methods seems to results in larger errors, meaning that the model is
-% less well able to capture circumstances where the alternative's opinions are
-% not represented in the deliberating population. Finally, we see that The
-% distribution of best biases skews to values around 1.3, thus indicating that
-% even while deliberating, people tend to hold their opinion to be \textit{more}
-% important than that of all other voters.
-%
-% We investigate this discrepancy between the two candidates generation methods
-% now, to this end we look at the difference in error for all tested
-% configuration.
+Finally, \Cref{tab:anova_trust} shows the results of an ANOVA analysis over the
+four different methods. The knowledge method is the only non-significant
+method, meaning that including knowledge in your model does not significantly
+impact the simulation results and therefore it has no effect on the model
+error. All other methods do significantly affect the outcome of the model. We
+find that the model has the lowest error when we include self-ego and
+similarity, but exclude self-knowledge.
 
-% Now we T test on everything the Sample and Voter method
+
+\begin{table}
+	\caption{F-statistics for the different trust matrix generators.}\label{tab:anova_trust}
+	\begin{center}
+		\begin{tabular}[c]{lcr}
+			\toprule
+			Method & F-statistic& p-value \\
+			\hline
+			Knowledge & 0.3 & 0.57 \\
+			Ego & 48.4& $<0.01$ \\
+			Similarity & 21.7& $< 0.01$ \\
+			Self-Knowledge & 163.6& $ <0.01$ \\
+			
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table}
 
 \subsection{Convergence}
 
@@ -168,10 +178,10 @@ convergent, while some are not, in particular if the matrix is aperiodic, this
 it is convergent. As we model the deliberation group as having fully connected
 matrices, the matrices are aperiodic, and thus convergent. We look at the
 distance between the estimated support matrix, and the true support matrix, to
-get a sense of the rate of convergence. The distance in the element wise
+get a sense of the rate of convergence. The distance is defined as the 
 $\ell_1$ norm.
 
-\begin{figure}
+\begin{figure}[h]
 	\begin{center}
 		\includegraphics[width=0.95\textwidth]{Figures/convergence_groups.png}
 	\end{center}
@@ -181,10 +191,36 @@ $\ell_1$ norm.
 
 
 
+
 % We now proceed to look at distance to single-peaked profiles, look at both
 % voter removal and candidate removal. We show that for optimal bias, as
 % deliberation progresses we see an increase in the proximity to single
 % peakedness.
+
+\section{Sensitivity Analysis} We perform sensitivity analysis on the
+prediction error of our model on the PBS. For this we do not use the original
+groups, instead reassigning voters to random groups of constant size.
+\Cref{fig:sensitivty_pbs} shows the sensitivity indices, the \textit{number of voters}
+is clearly the biggest factor in the variance of the model. As expected the
+\textit{bias} does not contribute to the variance in the model. \textit{Knowledge} informed bias
+and\textit{ similarity} informed \textit{bias} both are significantly impacting the variance of
+the model. The second order indices show \textit{number of voters} interacts with
+self-knowledge and\textit{ similarity}, contributing a large portion of their explained
+total variance induced by the \textit{number of voters}. Similarly,\textit{ knowledge}-based
+trust and\textit{ similarity}-based trust both have most of their explained variance in
+their interactions, since their first order sensitivity is statistically
+significant, but low in magnitude.
+
+
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.95\textwidth]{Figures/senstivity_analysis.png}
+	\end{center}
+	\caption{First, Second and Total sensitivity indices on the PBS prediction error. The stars in the heat map for the Second order sensitivity indices indicate significant interactions. }\label{fig:sensitivty_pbs}
+\end{figure}
+
+
 \section{Elections}
 
 \begin{figure}[htbp]
@@ -198,7 +234,7 @@ $\ell_1$ norm.
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\vspace{-9pt}
-		\includegraphics[width=\textwidth]{Figures/delib_number_Unique Preferences.png}
+		\includegraphics[width=\textwidth]{Figures/delib_Mean number of Unique Preferences.png}
 		\caption{Number of unique preferences at the final step of deliberation.}
 		\label{fig:degroot_count}
 	\end{minipage}

@@ -57,12 +57,16 @@ unique preferences being smaller.
 		\label{fig:rep_single_peaked}
 	\end{minipage}
 \end{figure}
+
+% Things I need to do:
+% Explain general experimental setup, small recap of what we are going to present. Restate the goal of the analysis.
+
 \newpage
 \section{DeGroot Model} \label{degroot_results} \subsection{PBS Scores} We
 first proceed with analyzing the performance of the DeGroot model on
 substantive agreement. \Cref{fig:pbs} shows the PBS of both the
 deliberation and control group, and the simulation results for both instances.
-As mentioned in \Cref{sub:americainonroom}, the PBS (PBS) is the
+As mentioned in \Cref{sub:americainonroom}, the policy-based ideology score (PBS) is the
 average of the 26 most polarizing questions, where a low PBS corresponds to
 more liberal answers, and high PBS indicates more conservative answers. As
 expected the model performs poorly at predicting the control group, as there
@@ -101,7 +105,7 @@ Looking at the binned errors in \Cref{fig:binned_errors}, we see that the model
 performs better when we do not include knowledge, further indicating that
 knowledge is a poor predictor of trust, or persuasiveness. Of course this claim
 might be weakened by noting that knowledge in this case is measured by
-questions regarding the current state of the America government, such as know
+questions regarding the current state of the America government, such as knowing
 which party currently has a majority in the senate. Thus, this specific
 knowledge might be insufficient to predict someone's persuasiveness on the
 topic of immigration for example.
@@ -115,9 +119,9 @@ topic of immigration for example.
 \end{figure}
 
 
-We note that this slight positive results appear only when the voters are
+We note that these slightly positive results appear only when the voters are
 grouped by their original PBS, thereby giving the model reasonable predictive
-power over a population of voters. We note that this hold even for different
+power over a population of voters. We note that this holds even for different
 sizes of bins. \Cref{fig:binned_errors} shows the progression of errors over
 time when the error is calculated on a per-individual basis, and we find the
 model consistently does worse than predicting someone to not change their
@@ -136,12 +140,12 @@ opinion, which is what t=0 indicates.
 
 	\includegraphics[width=0.6\textwidth]{Figures/bias_time_imshow.png}
 	\hspace{1em}
-	\caption{PBS Errors as a function of bias and time. bias acts as a damper, when bias is higher the model take longer to over estimate the change in opinion.}
+	\caption{PBS Errors as a function of bias and time. Bias acts as a damper: when bias is higher the model take longer to over-estimate the change in opinion.}
 	\label{fig:bias_slowdown}
 \end{figure}
 
 \Cref{fig:bias_slowdown} shows the relation between the bias factor and the PB
-score, showing that the bias does not improve the models predictive power. As
+score, showing that the bias does not improve the model's predictive power. As
 one might expect a bias is ``slowing down'' the model. Because of this the
 model is slower to diverge away from the true opinions.
 
@@ -175,7 +179,7 @@ similarity, but exclude self-knowledge.
 
 From \Cref{theory}, we have seen that in the limit some matrices are
 convergent, while some are not, in particular if the matrix is aperiodic, this
-it is convergent. As we model the deliberation group as having fully connected
+is convergent. As we model the deliberation group as having fully connected
 matrices, the matrices are aperiodic, and thus convergent. We look at the
 distance between the estimated support matrix, and the true support matrix, to
 get a sense of the rate of convergence. The distance is defined as the 
@@ -185,7 +189,7 @@ $\ell_1$ norm.
 	\begin{center}
 		\includegraphics[width=0.95\textwidth]{Figures/convergence_groups.png}
 	\end{center}
-	\caption{Convergence of trust matrices, as measured by the $\ell_1$-norm between the trust matrix at the start and  trust matrix at the current time step
+	\caption{Convergence of trust matrices, as measured by the $\ell_1$-norm between the trust matrix at the start and  trust matrix at the current time step.
 		t}\label{fig:convergence_big}
 \end{figure}
 
@@ -244,14 +248,14 @@ significant, but low in magnitude.
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{Figures/delib_Mean number of Condorcet winners.png}
-		\caption{The proportion of Condorcet winners left after deliberation, value above one indicate Condorcet winners emerging during deliberation}
+		\caption{The proportion of Condorcet winners left after deliberation, Values above 1 indicate Condorcet winners emerging during deliberation}
 		\label{fig:degroot_condorcet}
 	\end{minipage}\hfill
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\vspace{-9pt}
 		\includegraphics[width=\textwidth]{Figures/delib_Mean candidate proximity to single peaked Profiles.png}
-		\caption{Proximity to single-peakedness after deliberation. Proximity to single-peakedness as defined in \Cref{section:related_work}.}
+		\caption{Proximity to single-peakedness after deliberation, as defined in \Cref{section:related_work}.}
 		\label{fig:degroot_single_peaked}
 	\end{minipage}
 \end{figure}
@@ -265,8 +269,8 @@ more likely to result in a Condorcet winner than the average of 10 voters is
 that the true opinions before deliberation were more polarized. As a result,
 having multiple ``average'' candidates results in little difference between
 them, while an individual voter is more likely to fall close to a large camp of
-voters, and thus become a Condorcet winner through being closer to a majority
-of voters.
+voters, and thus the alternative representing this voter becomes a Condorcet
+winner through being closer to a majority of voters.
 
 Looking at the metrics evaluated on the model, we see similar results as with
 the analysis for substantive agreement. At first the simulation starts far from

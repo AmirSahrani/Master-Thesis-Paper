@@ -58,8 +58,34 @@ unique preferences being smaller.
 	\end{minipage}
 \end{figure}
 
-% Things I need to do:
-% Explain general experimental setup, small recap of what we are going to present. Restate the goal of the analysis.
+% Things I need to do: 
+% Explain general experimental setup, small recap of what
+% we are going to present. Restate the goal of the analysis. How we adapted the
+% original data to fit our study, mainly only using voters that have filled in
+% both pre and post questionnaires without missing data. Report the number of
+% voters before and after this clean up. 
+
+% [X] Show relplots of knowledge and pbs.
+
+
+
+% https://onlinelibrary.wiley.com/doi/10.1002/bimj.202200091
+% Things that might end up going into the methods section, but need to be mentioned:
+% How is any source of randomness generated
+%	If Original groups are used, the only source of randomness is the group that we choose to measure and the voter(s) used to generate the potential candidates
+%	If we do not use original groups, then we randomly select voters (uniformly at random)
+% How are the parameters sampled
+%	For sensitivity: Sobol (Side note explain sensitivity analysis)
+%	For other experiments: Simply uniform sampling
+%	Sample size: Sensitivity chosen such that there are no negative indices, acknowledge that this might result in smaller error bars. Other: We pick 1000, though power analysis would likely be better, limited in number of samples because of the NP-hardness of PtS-V
+% What are we trying to estimate
+%	We are trying to estimate the final PBS
+%	For this we want the smallest average distance between final PBS and simulated PBS
+% How are we measuring the performance of the model
+%	Absolute difference, since the errors are small there absolute difference and the squared difference are similar.
+% How are we going to test this performance
+%	We simply look for the best this model can do, and given that we try to explain what factors are important when considering an explanatory model of deliberation.
+
 
 \newpage
 \section{DeGroot Model} \label{degroot_results} \subsection{PBS Scores} We

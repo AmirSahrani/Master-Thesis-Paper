@@ -9,7 +9,7 @@ models. All code for the replication, main experiment and visualizations can be
 found in \href{https://github.com/amirsahrani/master_thesis}{this Repository}. \Cref{AppendixB} contains all the values and ranges used for the experiments, as well as supplementary figures.
 
 
-\section{Replication} We are able to fully replicate the results found by
+\section{Replication}\label{sec: replication} We are able to fully replicate the results found by
 \citet{radDeliberationSinglePeakednessCoherent2021},  in \Cref{fig:rep_cyclic}
 we see that while the bias is less than 0.73, all metric results in a-cyclic
 preferences. We also replicate the behavior of the KS metric, where biases in
@@ -58,6 +58,27 @@ unique preferences being smaller.
 	\end{minipage}
 \end{figure}
 
+
+
+% https://onlinelibrary.wiley.com/doi/10.1002/bimj.202200091
+% Things that might end up going into the methods section, but need to be mentioned:
+% [X] How is any source of randomness generated
+%	If Original groups are used, the only source of randomness is the group that we choose to measure and the voter(s) used to generate the potential candidates
+%	If we do not use original groups, then we randomly select voters (uniformly at random)
+%	[X] In each case the uncertainty over the candidates is modelled as a normal distribution with mean 0 and std 2
+% How are the parameters sampled
+%	For sensitivity: Sobol (Side note explain sensitivity analysis)
+%	For other experiments: Simply uniform sampling
+%	Sample size: Sensitivity chosen such that there are no negative indices, acknowledge that this might result in smaller error bars. Other: We pick 1000, though power analysis would likely be better, limited in number of samples because of the NP-hardness of PtS-V
+% [X] What are we trying to estimate
+%	We are trying to estimate the final PBS
+%	For this we want the smallest average distance between final PBS and simulated PBS
+% How are we measuring the performance of the model
+%	Absolute difference, since the errors are small there absolute difference and the squared difference are similar.
+% How are we going to test this performance
+%	We simply look for the best this model can do, and given that we try to explain what factors are important when considering an explanatory model of deliberation.
+
+
 % Things I need to do: 
 % Explain general experimental setup, small recap of what
 % we are going to present. Restate the goal of the analysis. How we adapted the
@@ -68,27 +89,46 @@ unique preferences being smaller.
 % [X] Show relplots of knowledge and pbs.
 
 
-
-% https://onlinelibrary.wiley.com/doi/10.1002/bimj.202200091
-% Things that might end up going into the methods section, but need to be mentioned:
-% How is any source of randomness generated
-%	If Original groups are used, the only source of randomness is the group that we choose to measure and the voter(s) used to generate the potential candidates
-%	If we do not use original groups, then we randomly select voters (uniformly at random)
-% How are the parameters sampled
-%	For sensitivity: Sobol (Side note explain sensitivity analysis)
-%	For other experiments: Simply uniform sampling
-%	Sample size: Sensitivity chosen such that there are no negative indices, acknowledge that this might result in smaller error bars. Other: We pick 1000, though power analysis would likely be better, limited in number of samples because of the NP-hardness of PtS-V
-% What are we trying to estimate
-%	We are trying to estimate the final PBS
-%	For this we want the smallest average distance between final PBS and simulated PBS
-% How are we measuring the performance of the model
-%	Absolute difference, since the errors are small there absolute difference and the squared difference are similar.
-% How are we going to test this performance
-%	We simply look for the best this model can do, and given that we try to explain what factors are important when considering an explanatory model of deliberation.
-
-
 \newpage
-\section{DeGroot Model} \label{degroot_results} \subsection{PBS Scores} We
+\section{DeGroot Model}\label{degroot_results}
+
+We present the results of the DeGroot model. For this we take the data from the
+\textsc{America in one Room} experiment to inform the support vectors
+$\Support$ as well as the estimated support matrices $\EstSupport$.
+Specifically, like the original paper, we focus on the most polarizing
+questions, the average score on these question is referred to as the
+policy-based ideology score (PBS). To clean the data we remove all participants
+who are missing at least one question in pre- or post-deliberation
+measurements, thus only allowing voter on which we have all information. As a
+result, the number of usable opinions is 247 out of 3841 original opinions in
+the deliberation group. The support vectors $\Support$ are simply the voters'
+reported opinions, where for each topic the voter represents their agreement
+with an integer from 0 to 10 (both inclusive). Each voter's estimated support
+by each candidate is generated by taking the candidate's true opinion, and
+adding random noise to each policy, where the noise is normally distributed
+with $\mu = 0$ and $\sigma = 1.37$. The mean of 0 ensures we do not bias the
+model preferring candidates with higher or lower average scores, as otherwise
+people would consistently be over or underestimating candidates' support. The
+standard deviation of 1.37 is chosen to match voter PBS distribution before
+deliberation.
+
+To generate a group within which the voter deliberate, we either use the original deliberation groups, in which case we select a group at random and use the voters from that group, note that these are also constrained to voters that have filled in all questions. If instead we generate new groups, we first pick $n$ voters uniformly at random and place them into a single group.
+
+To assess model performance we predict the post deliberation opinion for each
+voter as well as for a segment of voters with roughly similar original
+opinions. The latter is done by grouping voters in terms of their original
+average score into 10 subgroups, we then compare the average opinion of this
+group under the simulation vs the opinion in the original data. Though this
+does not incorporate \textit{meta-agreement} yet, it allows for the evaluation
+of the model without assumptions on how to infer the final ``preferences'' of
+the voters. After this assessment, we investigate the convergence of the model,
+as well as its sensitivity to the choice of parameters.
+
+Finally, we include meta-agreement into the model and assess the effect on the
+final preferences of voters. For this we use the metrics used in the \Cref{sec: replication}.
+
+\subsection{PBS Scores}
+We
 first proceed with analyzing the performance of the DeGroot model on
 substantive agreement. \Cref{fig:pbs} shows the PBS of both the
 deliberation and control group, and the simulation results for both instances.
@@ -178,10 +218,16 @@ model is slower to diverge away from the true opinions.
 Finally, \Cref{tab:anova_trust} shows the results of an ANOVA analysis over the
 four different methods. The knowledge method is the only non-significant
 method, meaning that including knowledge in your model does not significantly
-impact the simulation results and therefore it has no effect on the model
+impact the simulation results, and therefore it has no effect on the model
 error. All other methods do significantly affect the outcome of the model. We
-find that the model has the lowest error when we include self-ego and
-similarity, but exclude self-knowledge.
+find that the model has the lowest error when we include ego and similarity,
+but exclude self-knowledge. We suspect the reason for ego's positive effect on
+the prediction accuracy is similar to that of bias's role in the model. Namely,
+ego's is uniquely able to increase the bias a voter has towards themselves,
+while self-knowledge can only lower it. As a result the ego is able to benefit
+twofold, once by giving voters different biases, which might be more
+representative of the actual deliberative process, and by slowing down the rate
+of change in a voter's opinion.
 
 
 \begin{table}
@@ -189,13 +235,13 @@ similarity, but exclude self-knowledge.
 	\begin{center}
 		\begin{tabular}[c]{lcr}
 			\toprule
-			Method & F-statistic& p-value \\
+			Method         & F-statistic & p-value  \\
 			\hline
-			Knowledge & 0.3 & 0.57 \\
-			Ego & 48.4& $<0.01$ \\
-			Similarity & 21.7& $< 0.01$ \\
-			Self-Knowledge & 163.6& $ <0.01$ \\
-			
+			Knowledge      & 0.3         & 0.57     \\
+			Ego            & 48.4        & $<0.01$  \\
+			Similarity     & 21.7        & $< 0.01$ \\
+			Self-Knowledge & 163.6       & $ <0.01$ \\
+
 			\bottomrule
 		\end{tabular}
 	\end{center}
@@ -204,11 +250,11 @@ similarity, but exclude self-knowledge.
 \subsection{Convergence}
 
 From \Cref{theory}, we have seen that in the limit some matrices are
-convergent, while some are not, in particular if the matrix is aperiodic, this
+convergent, while some are not, in particular if the matrix is aperiodic, it
 is convergent. As we model the deliberation group as having fully connected
-matrices, the matrices are aperiodic, and thus convergent. We look at the
+matrices, with self-loops, the matrices are aperiodic, and thus convergent. We look at the
 distance between the estimated support matrix, and the true support matrix, to
-get a sense of the rate of convergence. The distance is defined as the 
+get a sense of the rate of convergence. The distance is defined as the
 $\ell_1$ norm.
 
 \begin{figure}[h]
@@ -219,13 +265,12 @@ $\ell_1$ norm.
 		t}\label{fig:convergence_big}
 \end{figure}
 
+In \Cref{fig:convergence_big}, we see that all configurations converge at a similar rate, reaching their final state around t = 15. As using the original groups leads to generally larger groups we see that that absolute difference in the matrices is smaller. When using knowledge-based trust we see that the distance increases with a zigzag pattern, moving around without converging.
+
+% EXPLAIN why, show longer time scale maybe.
 
 
 
-% We now proceed to look at distance to single-peaked profiles, look at both
-% voter removal and candidate removal. We show that for optimal bias, as
-% deliberation progresses we see an increase in the proximity to single
-% peakedness.
 
 \section{Sensitivity Analysis} We perform sensitivity analysis on the
 prediction error of our model on the PBS. For this we do not use the original

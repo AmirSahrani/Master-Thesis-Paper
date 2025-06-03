@@ -40,15 +40,15 @@ follows:
 	standard deliberative procedure. \(\biasedDeliberation\) has access to
 	the bias each voter has towards their own opinion. \end{definition}
 
-	We now proceed with a corollary on
-	\Cref{proposition:deterministic-delib}. Towards this we assume biases
-	are true, in the sense that a voter cannot help but be `convinced' by
-	the presented profiles as much as their bias allows for this. We think
-	this assumption is weak and natural in the light of the current
-	model. Furthermore, a violation of this assumption would not imply the
-	following corollary to be false, instead the bias itself becomes a
-	point of strategy, allowing voters to pretend to be more hardheaded
-	than they in fact are.
+We now proceed with a corollary on
+\Cref{proposition:deterministic-delib}. Towards this we assume biases
+are true, in the sense that a voter cannot help but be `convinced' by
+the presented profiles as much as their bias allows for this. We think
+this assumption is weak and natural in the light of the current
+model. Furthermore, a violation of this assumption would not imply the
+following corollary to be false, instead the bias itself becomes a
+point of strategy, allowing voters to pretend to be more hardheaded
+than they in fact are.
 
 \begin{corollary} A deliberative procedure with biases, followed by
 	voting with any voting rule $f$, cannot be surjective,
@@ -138,12 +138,12 @@ same profiles for this proof. The proof for CS is laid out in
                 \pref \cdots \pref m.              \\\end{aligned} \]
 
 	As we are only allowing strict preferences, both distance metrics
-behave the same locally, with the distance of two profiles being 2 whenever one
-is 1 swap of alternatives away from the other. This means that  \(R_{i}\) and
-\(R_{j}\) have a distance of 2, as well as  \(R_{1}'\) and \(R_{1}\) having a
-distance of 2. In this case the total distance from \(R_{1}'\) to \(R_{j}\) is
-simply the sum of the local distances for both distance metrics, thus
-satisfying our requirements.\hfill \end{proofc}
+	behave the same locally, with the distance of two profiles being 2 whenever one
+	is 1 swap of alternatives away from the other. This means that  \(R_{i}\) and
+	\(R_{j}\) have a distance of 2, as well as  \(R_{1}'\) and \(R_{1}\) having a
+	distance of 2. In this case the total distance from \(R_{1}'\) to \(R_{j}\) is
+	simply the sum of the local distances for both distance metrics, thus
+	satisfying our requirements.\hfill \end{proofc}
 
 
 These results show it is likely frivolous to attempt to design a strategy proof
@@ -202,7 +202,7 @@ In order to extract a ballot from this matrix, we assume a voter ranks the
 alternatives such that the most preferred alternative has the smallest distance
 between the estimated support matrix for that alternative and her own. We
 further allow this distance to be weighted, such that a voter may have one or
-more policies their think are more important. 
+more policies their think are more important.
 
 % Next we define the deliberative procedure, for which we will provide two
 % models. Firstly a simpler model, which stays closer to the original DeGroot
@@ -216,8 +216,8 @@ Next we define the deliberative procedure in terms of the trust matrix of the
 DeGroot model.
 
 Firstly, a deliberative step can be modelled using a transition matrix $T$,
-defined as follows: \[ T=\begin{bmatrix} t_{11} & \cdots  & t_{1n} \\ \vdots &
-\ddots & \vdots \\ t_{n1} & \cdots  & t_{nn} \\ \end{bmatrix} \]
+defined as follows: \[ T=\begin{bmatrix} t_{11} & \cdots & t_{1n} \\ \vdots &
+                \ddots & \vdots          \\ t_{n1} & \cdots  & t_{nn} \\\end{bmatrix} \]
 
 Here each $t_{ij}$ represents how much voter $i$ trusts the opinion of voter
 $j$, in order for this to be a proper stochastic matrix, all rows must sum to
@@ -248,82 +248,82 @@ their preferred candidates, using meta-agreement to come to a consensus.
 
 \begin{example}{DeGroot deliberation} {}
 
-We have voters \(\voters = \{1,2\}\), events \(\policies =
-\{\policy_{1}, \policy_{2}\}\), and candidates \(\alternatives =
-\{a,b\}\). The voters both think that \(\policy_{1} = 1, \policy_{2} =
-0\), meaning that they fully support the first policy and reject the
-second, they estimate the support by alternatives as: 
+	We have voters \(\voters = \{1,2\}\), events \(\policies =
+	\{\policy_{1}, \policy_{2}\}\), and candidates \(\alternatives =
+	\{a,b\}\). The voters both think that \(\policy_{1} = 1, \policy_{2} =
+	0\), meaning that they fully support the first policy and reject the
+	second, they estimate the support by alternatives as:
 
-\[
-\begin{array}{c|cc} 
-	1 & \policy_1 & \policy_2 \\ \hline 
-	a & 0.5       & 0         \\ 
-	b & 0.5       & 1           \\
-\end{array}
-\hspace{1em}
-\begin{array}{c|cc} 
-	2 & \policy_1 & \policy_2  \\ \hline 
-	a & 1         & 0.9 \\
-	b & 1         & 0.1       \\
-\end{array} 
-\] 
+	\[
+		\begin{array}{c|cc}
+			1 & \policy_1 & \policy_2 \\ \hline
+			a & 0.5       & 0         \\
+			b & 0.5       & 1         \\
+		\end{array}
+		\hspace{1em}
+		\begin{array}{c|cc}
+			2 & \policy_1 & \policy_2 \\ \hline
+			a & 1         & 0.9       \\
+			b & 1         & 0.1       \\
+		\end{array}
+	\]
 
-Interpreting this matrix for both players on $\policy_1$ shows, voter 2 thinks $a$ and $b$ fully support $\policy_1$, while voter 1 thinks that $a$ and $b$  support $\policy_1$ less. We can encode this into the estimated support matrices as follows:
+	Interpreting this matrix for both players on $\policy_1$ shows, voter 2 thinks $a$ and $b$ fully support $\policy_1$, while voter 1 thinks that $a$ and $b$  support $\policy_1$ less. We can encode this into the estimated support matrices as follows:
 
-\[ \EstSupport_1 =\begin{bmatrix} 0.5 & 0 \\
-0.5 & 1 \\ \end{bmatrix}\quad
-\EstSupport_2 =\begin{bmatrix} 1 & 0.9
-\\ 1 & 0.1 \\ \end{bmatrix} \]
+	\[ \EstSupport_1 =\begin{bmatrix} 0.5 & 0 \\
+                0.5 & 1 \\\end{bmatrix}\quad
+		\EstSupport_2 =\begin{bmatrix} 1 & 0.9
+                \\ 1 & 0.1 \\\end{bmatrix} \]
 
-This results in voter 1 preferring candidate $b$ over candidate $a$, while
-voter 2, prefers $a$. Intuitively, since voter 1 thinks $\policy_{1}$ is
-equally supported by each alternative, while $\policy_{2}$ is not supported by
-$a$, it makes sense for them to prefer candidate $a$. Looking at the distances,
-we see that the absolute distance between voter 1 and alternative $a$ is 0.5,
-while for alternative $b$ it is 1.5. For voter 2 we see that the distance to
-$a$ is 0.9, while for alternative $b$ is it 0.1. Thus, voter 2 prefers $b$ to
-$a$.
+	This results in voter 1 preferring candidate $b$ over candidate $a$, while
+	voter 2, prefers $a$. Intuitively, since voter 1 thinks $\policy_{1}$ is
+	equally supported by each alternative, while $\policy_{2}$ is not supported by
+	$a$, it makes sense for them to prefer candidate $a$. Looking at the distances,
+	we see that the absolute distance between voter 1 and alternative $a$ is 0.5,
+	while for alternative $b$ it is 1.5. For voter 2 we see that the distance to
+	$a$ is 0.9, while for alternative $b$ is it 0.1. Thus, voter 2 prefers $b$ to
+	$a$.
 
-For the deliberation, we assume the following trust matrix: 
-\[
-T= \begin{bmatrix} 
-0.3 & 0.7 \\ 
-0.2 & 0.8
-\end{bmatrix}
-\] 
-We get the following updated opinions:
+	For the deliberation, we assume the following trust matrix:
+	\[
+		T= \begin{bmatrix}
+			0.3 & 0.7 \\
+			0.2 & 0.8
+		\end{bmatrix}
+	\]
+	We get the following updated opinions:
 
-\begin{align*}
-	\boldsymbol{\boldsymbol{\EstSupport}}^{(1)}
-	& =
-	T\boldsymbol{\boldsymbol{\EstSupport}}^{(0)}
-	\\ &
-	=T\begin{bmatrix}\EstSupport_1
-		\EstSupport_2\end{bmatrix}^{T}
-	\\ &
-	=\begin{bmatrix}(0.3\EstSupport_1
-	+ 0.7\EstSupport_{2}) &
-(0.2\EstSupport_1 +
-0.8\EstSupport_{2})\end{bmatrix}^{T} \\
-	   & = \begin{bmatrix}
-		   \begin{bmatrix}
-			   0.85 & 0.63
-			   \\
-			   0.85 & 0.37 \end{bmatrix}
-			   &
-		   \begin{bmatrix}
-		   0.9 & 0.72
-	   \\ 0.9 & 0.18 \\
-   \end{bmatrix}
-	   \end{bmatrix}^{T}
-\end{align*}
+	\begin{align*}
+		\boldsymbol{\boldsymbol{\EstSupport}}^{(1)}
+		 & =
+		T\boldsymbol{\boldsymbol{\EstSupport}}^{(0)}
+		\\ &
+		=T\begin{bmatrix}\EstSupport_1
+			  \EstSupport_2\end{bmatrix}^{T}
+		\\ &
+		=\begin{bmatrix}(0.3\EstSupport_1
+			 + 0.7\EstSupport_{2}) &
+			 (0.2\EstSupport_1 +
+			 0.8\EstSupport_{2})\end{bmatrix}^{T} \\
+		 & = \begin{bmatrix}
+			     \begin{bmatrix}
+				0.85 & 0.63
+				\\
+				0.85 & 0.37\end{bmatrix}
+			      &
+			     \begin{bmatrix}
+				0.9 & 0.72
+				\\ 0.9 & 0.18 \\
+			\end{bmatrix}
+		     \end{bmatrix}^{T}
+	\end{align*}
 
-These new estimates are not yet in full consensus, meaning Meta-Agreement has not yet been reached.  Looking at their
-corresponding ballots, however, shows there is consensus on their most preferred alternative,
-as they both agree that alternatives support $\policy_1$ equally, while $b$
-supports $\policy_2$ less.
+	These new estimates are not yet in full consensus, meaning Meta-Agreement has not yet been reached.  Looking at their
+	corresponding ballots, however, shows there is consensus on their most preferred alternative,
+	as they both agree that alternatives support $\policy_1$ equally, while $b$
+	supports $\policy_2$ less.
 
-\label{example:deGroot-delib}
+	\label{example:deGroot-delib}
 \end{example}
 
 
@@ -381,131 +381,102 @@ following proposition
 	strongly connected, \(T\) is convergent. \end{proposition}
 
 
-\subsection{Trust} Having formulated the model, as well as the conditions of
-convergence of the model, we now propose different mechanisms through which we
-could generate the trust matrix, as well as the intuitive and theoretical
-appeal.
-
-\subsubsection{Connectedness} Firstly, a decision has to be made on whether
-voters in the model are able to trust all other voters, if this is the case, we
-get a strongly connected graph, otherwise some voters might not share an edge.
-In the case of small scale deliberation, one might reasonably argue that, at
-least in principle, voters should be able to listen to all other participants,
-and use these opinions to inform their own. In larger settings, such as social
-media platforms or large gathering, it seems plausible that a person's ability
-to communicate effectively will every one is limited. In this work, we take
-this to be the main characterization ``true'' deliberation, namely the ability
-to listen to all other participants.
-
-Once this has been established, we might consider different ways in which we 
-could decide the weights of these edges. We present three options, two of which
-can also be used to induce some sort of self-bias.
-
-\subsubsection{Knowledge} Firstly we consider knowledge, this can be used to
-inform both the trust in others, and your bias towards yourself. For this we
-can imagine a vector $\boldsymbol{k}$, where each $k_i$ contains some knowledge
-score for voter $i$. In modeling, we now have 2 options, firstly, does a voters
-knowledge affect their bias towards their own opinion. Intuitively one could
-reasonably argue either way. Two plausible ways of reasoning are, ``A
-knowledgeable voter knows more facts and is therefore harder to convince'', or
-``A Knowledgeable voter realizes the complexity of the topic and is therefore
-less certain''. The first line of reasoning seems more general, as it seems 
-independent of the topic at hand. However, the second line of reasoning seems 
-to capture something like the Dunning-Kruger effect, which states that people 
-can have ``meta-ignorance'', meaning they do not realize what they do not realize.
-
-As for the trust a voter places in their peers, a similar argument can be made,
-where the voter could either place more trust on people that are more
-knowledgeable, and thereby might be able to provide more facts. Or they could
-trust less knowledgeable people more because their ignorance allows them to
-make more confidant claims, even if these are inaccurate. 
 
 
-\subsubsection{Popularity}
-If we leave the setting of fully connected networks, such as when we examine
-social media networks, we could determine the weights of the trust matrix
-according to the popularity of the voters. By popularity, we simply mean the
-number of incoming edges each voter has. In the case of bias, a popular voter
-might regard themself as more important or right, as a result of many people
-listening to them. In similar spirit, voters might also be more trusting of
-voters that are popular, taking their popularity as a proxy for correctness.
+\subsection{Voter Mapping} One might want to expand this model to capture
+larger scale group dynamics, such as social networks. For this a reasonable
+approach could be to gather data regarding the opinion of the general
+population, and to map this onto a graph representing the communication in the
+population.
+For this we might want to find a bijection between the voters and the nodes such that
+the difference between the shortest paths in the graph and the opinion distance is minimized.
 
-\subsubsection{Familiarity} Finally, voters might simply trust people with
-similar opinions more, representing a sort of confirmation bias. This cannot be
-applied to ones own opinion in the same sense as with the other two methods.
-This could be represented as a sort of ``general bias'', where a voter is more
-or less inclined to listen to other opinions.
+We show that mapping voters to a graph as just described is NP-Hard, and the decision variant of the problem to be NP-Complete. We call this problem Distance-based Voter Mapping, and define it as follows.
 
 
-Given these different options, the right selection of methods becomes question
-for empirical observation, which we present in the next Chapter.
+\begin{problem}{$\delta$-DBVM($S$)}{dbvm}
+{Given: $A, B \in S^{n \times n}, k\in\Reals_{\geq 0}$
 
-% \section{Agent Based Deliberation} \textcolor{RedViolet}{I have not thought
-% about the following section much yet, I think in principle the elements in
-% orange might be interesting, but I could also easily see them being too
-% complicated to implement while also being not very useful. Everything else I
-% have some more confidence in.}
-%
-% For the Agent Based model, we allow for granularity in how voters update their
-% support, as well as evolving the trust matrices. Firstly, each voter now has a
-% knowledge score, \textcolor{orange}{an importance vector, and a history}. These
-% additional properties allow for the following, firstly with a knowledge score,
-% we can inform the transaction of ideas between two voters, for example, more
-% knowledgable voters could be more convincing. Secondly using the importance
-% vector, we can guide conversation, two voters deliberating might place emphasis
-% on discussing policies they deem most important, and might be more open to
-% changing their minds on less important policies. Finally using the history, the
-% trust matrix can be updated to allow voters to trust people they have
-% successfully interacted with more. We will now define how these interactions
-% occur based on the trust matrix.
-%
-%
-% During each time step $t$, voter $i$ picks a conversational partner, where the
-% probability of talking to some voter $j$ is determined by the $T_{ij}$. Once
-% each voter has picked their conversational partner, groups are formed to
-% contain all voters in a chain of conversation, for example if voter 1 decided
-% to speak to voter 2 and voters 2 and 3 decide to talk to each other, they end
-% up talking between the three of them. It is important to note that a voter can
-% "talk to themselves", which results in them not talking at all unless it so
-% happens that someone speaks to them. All voters now update their history to
-% include their current conversational partners. During the conversation, the
-% first step is to determine whether to discuss on the meta or the substantive
-% level, randomly decided, where the probabilities are proportional
-% \textcolor{red}{T.B.D.}. Then, each voter announces their (estimated) support
-% on a \textcolor{orange}{subset} of the policies, this subset is determined by
-% her importance vector, where she announces her support on that topic with
-% probability proportional to the importance. As a result all voters update their
-% views, based on their knowledge, the knowledge of the announcer, the voter's
-% importance placed on the policy and finally the trust they have in the opinion
-% of the announcer. We capture by minimizing the following formula, adapted from
-% \citet{radDeliberationSinglePeakednessCoherent2021}:
-%
-% \begin{equation} \label{eq:abm_update_function} \sqrt{k_{i}\iota_{i,j}
-% b_{i}d(\Support{i,j}, \Support{i,j}')^{2} -
-% ((1-k)(1-\iota_{i,j})(1-b_{i})d(\Support{i,j}, \Support{i,j}')^{2})}
-% \end{equation}
-%
-% Where $k_{i}$ is voter $i$'s knowledge, normalized to be between 0 and 1,
-% $\iota_{i,j}$ is the importance she places on policy $\policy_{j}$, and $b_{i}$
-% is the biases she has towards her own opinion.
-%
-% \textcolor{orange}{The following updates seem useful to allow us to capture how
-% voters don't just change their opinion, but their general attitudes towards
-% each other and the policies as well. The aim to use this to allow us to capture
-% the following:} \textcolor{orange}{ \begin{itemize} \item Voters becoming more
-% 		knowledgable (This was observed in the America in one room
-% 		experiment) \item Voters grouping together, essentially
-% 		creating "friendships" with people they talked to before. I
-% 		might want to change the model to also allow people do trust
-% 		people less under some circumstances \item Change the
-% importance the place on policies as a function of the "social group"
-% \end{itemize}}
-%
-% \textcolor{orange}{ Furthermore, I would use this to argue why small scale
-% 	deliberation with strangers is as beneficial as it is, since people do
-% 	not know each other, all these are "uniform", and they get to interact
-% 	more sincerely. This apposed to broad interaction people have in their
-% 	daily lives where they interact with similar people, and place
-% 	importance accordingly. }
-%
+Decision: Does there exist some bijection $f: [n] \to [n]$, such that: $$\delta(A, f(B)) \leq k$$}
 
+Here we take $f(B)$ to mean the matrix $B'$ that is created when we take each $B'_{i,j} = B_{f(i),f(j)}$ and  $\delta$ is some distance function, $\delta: {S^{n \times n} \times S^{n \times n} \to \Reals_{\geq 0}}$.
+\end{problem}
+
+We will be needing the Quadratic assignment problem (QAP), we formulate a decision variant of QAP as follows.
+
+\begin{problem}{QAP-Decision}{qap-decision}
+{Given: $A, B \in S^{n \times n}, k\in\Reals_{\geq 0}$
+
+Decision: Does there exist some bijection $f: [n] \to [n]$, such that: $$\sum_{i,j} A_{i,j}\cdot B_{f(i),f(j)} \geq k$$}
+\end{problem}
+
+\begin{theorem}
+	$\delta$-DBVM($S$) is NP-Complete for $\delta\in\{\ell_1, \ell_2\}$ and $S = \{0,1\}^n$
+	\label{thm:np_hard_voter_mapping_l2}
+\end{theorem}
+
+
+\begin{proofc}{}
+	($\implies$ NP-Hard) The proof follows from a reduction to the Quadratic Assignment Decision Problem.
+
+	Let $A$ be the matrix of pairwise distances between voters, and let $B$ be the matrix of shortest-path distances in the graph $G$, and $k$ be the $\delta$ achieved by the optimal bijection. $\ell_2$-DBVM($S$) requires finding a bijection $f$ that minimizes the $\ell_2$ objective:
+	$$
+		\sqrt{\sum_{i,j} \bigl(A_{i,j} - B_{f(i),f(j)}\bigr)^2}.
+	$$
+	Since the square root is a strictly increasing function, minimizing the expression above is equivalent to minimizing the sum inside:
+	$$
+		\sum_{i,j} (A_{i,j} - B_{f(i),f(j)})^2.
+	$$
+	Expanding the square gives:
+	$$
+		\sum_{i,j} A_{i,j}^2 - 2 A_{i,j} B_{f(i),f(j)} + B_{f(i),f(j)}^2.
+	$$
+	The terms $\sum A_{i,j}^2$ and $\sum B_{f(i),f(j)}^2$ are independent of $f$ (the former is fixed, the latter is a permutation of a fixed matrix), so the optimization reduces to:
+	$$
+		\max_f \sum_{i,j} A_{i,j} B_{f(i),f(j)},
+	$$
+	which is the standard form of the Quadratic Assignment Decision Problem. Note, $\max_f$ is a consequence of the sum being subtracted from the constants, thus we are still minimizing the total distance.
+
+	Now we note that when $A$ and $B$ are in $S= \{0,1\}^{n \times n}$ , the
+	$\ell_1$ and $\ell_2$ norms are identical. We also note that this binary
+	domain would constitute a special instance of QAP, know as 0-1 Max-QAP, and
+	is NP-Hard \cite{nagarajanMaximumQuadraticAssignment}. Thus solving
+	$\delta$-DBVM($S$), on the binary domain, is equivalent to solving 0-1
+	Max-QAP, and thus NP-Hard.~\checkmark
+
+
+	($\implies$ NP-Complete) Given some $f$ and $k$, the decision can be made in $\mathcal{O}(n^2)$.~\checkmark
+
+
+\end{proofc}
+
+A concern with \Cref{thm:np_hard_voter_mapping_l2}, might be the matrices
+containing certain patterns that might lead to an easier solution, though this
+proof concerns itself with the worst-case and thus this possibility of this
+problem being easier in practice is not issue. For this problem such patterns
+seem unlikely to be of much help. We show one example to give an intuition for
+this.
+
+Take the case in which all voters hold one of 2 opinions, thus we can split
+them into two groups of sizes $n, m$. Then the mapping algorithm
+effectively requires finding a partition in the graph, that results in two
+sub-graphs with exactly $n$ and $m$ nodes each. This is the
+size-constrained graph partitioning problem, which is NP-Hard.
+
+Thus, given that even under such a strong assumption the problem remains
+computationally difficult, we suspect that patterns in the data are unlikely to
+allow for easier exact solutions. This does leave room for approximation
+algorithms, we do not present an overview of these, however under our
+constraint of one of the matrices satisfying the triangle inequality, namely
+the voter distance matrix. There exists a $\frac{2e}{e-1}$-approximation
+algorithm \cite{nagarajanMaximumQuadraticAssignment}.
+
+Despite these negative results, we enlist the help of a QAP-solver
+\cite{virtanenSciPy10Fundamental2020}  to find solutions, using the Fast
+Approximate QAP Algorithm \cite{vogelsteinFastApproximateQuadratic2015}.
+Though, we find the solver does not consistently find better solutions than
+random assignment.
+
+% Given the number of
+% simulations ran, it is infeasible to attempt to refine solutions to consistently
+% be better than random solutions.

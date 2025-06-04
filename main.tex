@@ -231,8 +231,12 @@
 \lhead{\emph{Abbreviations}} % Set the left side page header to "Abbreviations"
 \listofsymbols{ll} % Include a list of Abbreviations (a table of two columns)
 {
-	%\textbf{Acronym} & \textbf{W}hat (it) \textbf{S}tands \textbf{F}or \\
+	\textbf{PBS} & \textbf{P}olicy-\textbf{B}ased (ideology) \textbf{S}core\\
+	\textbf{PsT} & \textbf{P}roximity \textbf{t}o \textbf{S}ingle-peakedness\\
+	\textbf{PsT-V} & \textbf{P}roximity \textbf{t}o \textbf{S}ingle-peakedness (through) \textbf{V}oter (deletion)\\
+	\textbf{PsT-C} & \textbf{P}roximity \textbf{t}o \textbf{S}ingle-peakedness (through) \textbf{C}andidate (deletion)\\
 }
+
 %----------------------------------------------------------------------------------------
 %    PHYSICAL CONSTANTS/OTHER DEFINITIONS
 %----------------------------------------------------------------------------------------
@@ -269,7 +273,7 @@
 	$\policies$ & Vector of all policies\\
 	$\policy$ & An instance of a policy\\
 	$\Support$ & Vector of support for each policy\\
-	$\EstSupport$ & $|\alternatives| \times |\policies|$ matrix estimating support of policies for each alternative\\
+	$\EstSupport$ & matrix of shape $|\alternatives| \times |\policies|$, estimating support of policies for each alternative\\
 
 }
 

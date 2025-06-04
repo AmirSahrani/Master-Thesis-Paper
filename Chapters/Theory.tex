@@ -471,11 +471,13 @@ constraint of one of the matrices satisfying the triangle inequality, namely
 the voter distance matrix. There exists a $\frac{2e}{e-1}$-approximation
 algorithm \cite{nagarajanMaximumQuadraticAssignment}.
 
-Despite these negative results, we enlist the help of a QAP-solver
-\cite{virtanenSciPy10Fundamental2020}  to find solutions, using the Fast
-Approximate QAP Algorithm \cite{vogelsteinFastApproximateQuadratic2015}.
-Though, we find the solver does not consistently find better solutions than
-random assignment.
+Despite these negative results, we attempted to enlist the help of a QAP-solver
+\cite{virtanenSciPy10Fundamental2020} to find (approximate) solutions, using
+the Fast Approximate QAP Algorithm
+\cite{vogelsteinFastApproximateQuadratic2015}. Though, we find the solver does
+not consistently find better solutions than random assignment, and is unable to
+handle large enough instances for the experiments presented in the following
+chapters.
 
 % Given the number of
 % simulations ran, it is infeasible to attempt to refine solutions to consistently

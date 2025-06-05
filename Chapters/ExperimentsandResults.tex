@@ -142,7 +142,7 @@ substantive agreement and thus does not incorporate \textit{meta-agreement}.
 However, it allows for the evaluation of the model without assumptions on how
 to infer the final ``preferences'' of the voters, or the opinions of
 candidates. After this assessment, we investigate the convergence of the model,
-as well as its sensitivity to the choice of parameters. 
+as well as its sensitivity to the choice of parameters.
 
 % We now assume that substantive agreement and meta-agreement happen at the same pace, but in practice this might be unrealistic as people talk about one topic at a time, and there might be complex dynamics between them. For example learning that you have strongly misjudged a candidate might result in you sticking to your substantive opinion
 
@@ -162,7 +162,7 @@ after the first time step, with prediction errors increasing over time. This is
 because the model causes voters to converge too strongly, thereby eliminating
 most extreme opinions, contrary to the real data. The implications of this
 depend on the nature of long term deliberation. If, as suggested by
-\citet{elsterMARKETFORUMThree2002}, deliberation is able to reach full
+\citet{elsterMarketForumThree2002}, deliberation is able to reach full
 consensus, the model might offer a plausible approximation of this process.
 However, if full consensus is not typically reached—as is precisely the
 motivation for incorporating meta-agreement into the model—then the DeGroot
@@ -173,7 +173,7 @@ converge toward a weighted average of the opinions presented to them.
 	\begin{center}
 		\includegraphics[width=0.95\textwidth]{Figures/pbs_scores.png}
 	\end{center}
-	\caption{ PBS, purple indicating the PBS after deliberation in the original data, green indicates the results of the simulation in that time step.}\label{fig:pbs}
+	\caption{ PBS, purple indicating the PBS after deliberation in the original data, green indicates the results of the simulation in that time step. Large dots indicate the binned data, smaller dots indicate individual voters.}\label{fig:pbs}
 \end{figure}
 
 \Cref{fig:delta_pbs} depicts the change in PBS within the deliberation
@@ -274,7 +274,7 @@ of convergence
 PBS of the model. We do not use the original groups, as this allows us to vary
 the number of voters. \Cref{fig:sensitivty_pbs} shows the sensitivity indices.
 As for direct effects, as shown in the first order indices, the \textit{number
-of voters} is clearly the biggest factor in the variance of the model. As
+	of voters} is clearly the biggest factor in the variance of the model. As
 expected the \textit{bias} does not directly contribute to the variance in the
 model. \textit{Knowledge} informed trust and\textit{ knowledge} informed bias
 (self knowledge) both are significantly impacting the variance of the model.
@@ -299,11 +299,11 @@ model.
 
 \begin{figure}[htbp]
 	\centering
-		\centering
-		\includegraphics[width=\textwidth]{Figures/three_measures.png
-		}
-		\caption{The proportion of cyclic profiles remaining, 0 indicating that no cyclic profiles were present after deliberation.}
-		\label{fig:degroot_cyclic}
+	\centering
+	\includegraphics[width=\textwidth]{Figures/three_measures.png
+	}
+	\caption{The proportion of cyclic profiles remaining, 0 indicating that no cyclic profiles were present after deliberation.}
+	\label{fig:degroot_cyclic}
 \end{figure}
 
 Firstly, when comparing different voter generation mechanisms, we find that generating a candidate by copying the opinion of a single voter performs best—both in minimizing the number of cyclic profiles and in maximizing the frequency with which a Condorcet winner exists. Though this result may seem unintuitive, we suspect the reason is that pre-deliberation opinions were relatively polarized. As a consequence, constructing candidates as averages of 10 voters tends to produce alternatives that are too similar, making it difficult for any one to stand out.
@@ -313,11 +313,11 @@ In contrast, a single voter's opinion is more likely to fall near a large cluste
 Looking at the evaluation metrics used in the model, we observe a pattern similar to that found in the substantive agreement analysis. The simulation initially starts far from the true scores, gradually moves toward them, overshoots, and finally begins to converge.
 
 \begin{figure}[htbp]
-\centering
-\vspace{-9pt}
-\includegraphics[width=\textwidth]{Figures/pst_measures.png}
-\caption{Proximity to single-peakedness after deliberation via candidate deletion (left) and voter deletion (right). The black line is a fitted sigmoid curve.}
-\label{fig:degroot_single_peaked}
+	\centering
+	\vspace{-9pt}
+	\includegraphics[width=\textwidth]{Figures/pst_measures.png}
+	\caption{Proximity to single-peakedness after deliberation via candidate deletion (left) and voter deletion (right). The black line is a fitted sigmoid curve.}
+	\label{fig:degroot_single_peaked}
 \end{figure}
 
 \Cref{fig:degroot_single_peaked} shows similar dynamics across simulation time for both notions of proximity to single-peakedness. Although candidate deletion and voter deletion represent two fundamentally different approaches to measuring this property, they yield a consistent conclusion: voters rapidly become more single-peaked early in the simulation, after which the rate of change slows and eventually plateaus. This behavior is well captured by a sigmoid curve, where the diminishing rate of change corresponds to the trust matrix stabilizing at its convergent state.

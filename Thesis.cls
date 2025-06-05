@@ -95,6 +95,7 @@
 \usepackage[Sonny]{fncychap}
 \usepackage[T1]{fontenc}
 \usepackage{charter}           % For Charter text font
+\usepackage{dsfont}
 \usepackage{newtxmath}
 \let\Bbbk\undefined
 \let\openbox\undefined

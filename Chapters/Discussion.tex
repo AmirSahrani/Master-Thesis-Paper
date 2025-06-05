@@ -6,13 +6,32 @@
 
 \section{Conclusion}
 
+We find the DeGroot model can predict substantive opinion change on a
+population level reasonably well, while performing poorly when predicting the
+post deliberation data of individuals' opinions. Extending the model to
+incorporate deliberation on the positions of the candidates, i.e. deliberation
+on meta-opinions, we find that, under the assumption that voters simply pick
+the alternative closest to them in opinion, the model performs well in the
+first we time steps, after which preferences converge more strongly than the
+true preferences.
+
+Through sensitivity analysis we found that all parameters significantly
+affected the model, though only the parameters relating to knowledge and the
+number of voters had significant direct effects. This is likely because there
+parameters are unique in so far as they are the only parameters that result in
+the model getting new information, either through the inclusion of more voters,
+or by getting their knowledge scores. The other parameters can only interact
+with the existing information, and thus on their own are unable to affect the
+model.
+
+
+
+% Maybe i should include one more figure showing how the distance between the simulation profiles and the true profiles changes
 
 
 \section{Limitations}
 
 \subsection{Applicability of results}
-...
-
 
 As a result of not having a single data set which can fully inform the values
 in our model, multiple strong assumptions have been made in order to test the

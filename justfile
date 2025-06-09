@@ -6,8 +6,8 @@
 #     @just clean
 
 # Compile thesis (main.tex in the current directory) and clean auxiliary files
-# thesis:
-#    @pdflatex -aux-directory=/tmp main.tex
+thesis:
+   @pdflatex -aux-directory=/tmp main.tex
 #  @just clean
 
 # Clean auxiliary files in the current directory

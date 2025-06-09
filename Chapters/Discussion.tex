@@ -8,32 +8,37 @@
 
 We have shown deliberation to be susceptible to strategic manipulation under
 various notions of strategic manipulation. Most importantly, we have defined a
-new notion of strategyproofness strictly for deliberation of preference
-profiles. As a result we caution that even if deliberation is able to reach
-singly-peaked profiles, it does not guarantee "fairness", in the sense that if
-all voters had been honest during the deliberation, the outcome might have been
-different. Fortunately the strategic manipulation of deliberation is computationally difficult,
-as it requires
+new notion of strategyproofness specifically for deliberation over preference
+profiles. As a result, we caution that even when deliberation succeeds in
+producing single-peaked profiles, it does not guarantee fairness. In the sense
+that if all voters had been honest during deliberation, the resulting profile
+might have differed. Intuitively, this is expected, as individuals may pretend
+to hold more extreme views to shift the general consensus.
 
-We find the DeGroot model can predict substantive opinion change on a
-population level reasonably well, while performing poorly when predicting the
-post deliberation data of individuals' opinions. Extending the model to
-incorporate deliberation on the positions of the candidates, i.e. deliberation
-on meta-opinions, we find that, under the assumption that voters simply pick
-the alternative closest to them in opinion, the model performs well in the
-first we time steps, after which preferences converge more strongly than the
-true preferences.
+Given the idea that  deliberation encompasses more than preferences alone, we
+extended our model to deliberation over opinions of voters and alternatives,
+through an adaptation of the DeGroot model. We also demonstrated that finding a
+voter graph that minimizes the difference between opinion distance and graph
+distance is NP-Hard. Suggesting that, in practice, modeling voters on sparse
+graphs requires collecting both communication patterns and opinion data.
 
-Through sensitivity analysis we found that all parameters significantly
-affected the model, though only the parameters relating to knowledge and the
-number of voters had significant direct effects. This is likely because there
-parameters are unique in so far as they are the only parameters that result in
-the model getting new information, either through the inclusion of more voters,
-or by getting their knowledge scores. The other parameters can only interact
-with the existing information, and thus on their own are unable to affect the
-model.
+The DeGroot model successfully predicts opinion shifts at the population level
+but performs poorly at the level of individual voters. Extending the
+simulations to include deliberation on candidate positions, that is, on
+meta-opinions, yields profiles with more similar characteristics to the true
+preferences. However, after a few iterations, preferences converge too
+strongly, resulting in profiles that are less cyclic and more single-peaked
+than reality. We note that the development of proximity to single-peakedness
+(for both candidate and voter deletion) follows a sigmoid curve, characterized
+by a gradual start, a phase of rapid change, and eventual convergence.
 
+Our sensitivity analysis shows that all model parameters influence outcomes.
+However, only parameters tied to knowledge and voter count exert strong direct
+effects — likely because they introduce new information, whereas other
+parameters only modulate existing dynamics.
 
+% PBS change Per policy!!!
+% In general political elections might elect candidates that will bring about many changes, most voters however will not have a strong opinion on all of these. Though we considered in the possibility of voters considering some topics more important than other, it might also be the case during deliberation, some topics are simply not discussed. As our model takes in a matrix of opinions on all policies, it  
 
 
 % - Summary Theory
@@ -57,50 +62,79 @@ model.
 \section{Limitations}
 
 \subsection{Applicability of results}
+% Practical matters, irrespective of what the model does and does not take into account
 
-As a result of not having a single data set which can fully inform the values
-in our model, multiple strong assumptions have been made in order to test the
-feasibility of the model.
+While the DeGroot model has been shown to be a more accurate representation of
+human belief updating than full Bayesian updating, it does not take into
+account why people hold certain beliefs, not does it constraint what kinds of
+beliefs a voter can hold at the same time. To remedy this, one might consider a
+framework such as abstract argumentation theory (source (DUNG 1995)), as this
+is able to model the arguments with the deliberative groups. Though, this seem
+theoretically nice, as it allows for formal description on why opinions and
+preferences are held, not just descriptions of these facts. From a simulation
+based perspective, such a model introduces major validity question. Firstly the
+framework requires a map on the relation of all arguments, for this one does
+not only need qualitative data, i.e. reported arguments by participants, but
+also a method of reliably and accurately transforming these qualitative reports
+to argumentative graphs. Secondly, the abstract argumentation framework does
+not pose an updating mechanism, thus the method through which participants
+would updates their believes using this framework is unclear.
 
+Furthermore, our negative results on strategic manipulation might be remedied a
+in human deliberation. As fellow participants might be able to sense that
+someone is being dishonest. It is also not unreasonable to think that someone
+pretending to hold a different opinion, might be worse at defending this
+opinion, and therefore be less persuasive.
 
-We exclude quite some voters, might bias results. Even without bias it might be good to have more voters to be able to do more testing.
+In the testing of our model, we have consulted a single dataset containing a
+large amount of information need. 
+However, as a result of not having a single
+data set which can fully inform the values in our model, multiple strong
+assumptions have been made in order to test the feasibility of the model. We
+mention these explicitly once more, as well as how what kind of data might be
+collected to inform this and similar models. We formulate this in terms of
+missing information on voters and candidates respectively, and present some of
+the most important limitations of each.
 
-We should maybe have a train test split.
 
 \subsection{Voter information}
+% Issues relating to information we have on the voters
 
-Firstly, no data (available to us) set containing opinions before and after
-deliberation contained full preference orders. This meant heaving to infer
+Firstly, we have no access to a data set containing opinions before and after
+deliberation as well as the corresponding preference orders. This means having to infer
 preferences over candidates, though we chose to do this by minimizing the
 distance between the voter and the alternatives, reasonable alternatives exist.
 For example, people might use different heuristics to locate a few alternatives
-they like best, such as "Agrees with me on important topics", or they might
+they like best, such as ``Agrees with me on important topics'', thus putting weight on certain issue dimensions. Or they might
 simplify each comparison to "Agrees or Disagrees" with me, with some range of
-opinion they consider to be in agreement with theirs. Furthermore, the way we
-encode voters' information on alternatives might not accurately reflect true
-voters' information. One might expect voters to be more familiar with
-candidates close to them in opinion, and thus have less noisy estimates of
-these candidates' positions. Finally,  the error of voters' estimates might not
-be normally distributed. In a polarized election, it is not unreasonable to
-expect errors on the ``opposing'' party to skew further way from that voters'
-opinion.
+opinion they consider to be in agreement with theirs. 
+
+Furthermore, the way we encode voters' information on alternatives might not
+accurately reflect true voters' information. One might expect voters to be more
+familiar with candidates close to them in opinion, and thus have less noisy
+estimates of these candidates' positions. 
+
+Finally,  the error of voters' estimates might not be normally distributed. In
+a polarized election, it is not unreasonable to expect errors on the
+``opposing'' party to skew further way from that voters' opinion.
 
 
 \subsection{Candidates}
+% Issues we have realting to information we have on candidates (which is effectively no information)
 
-Another consequence of not having an appropriate data
-set is the lack of a description of candidates. Though dataset such as those by
-Ipsos might contain the scores of political parties, these datasets do not
-include a pre- and post-deliberation measure of voter opinions. As a result,
-our model requires us to generate candidates manually. Thereby not only
-introducing another modeling choice, but also discarding an important piece of
-information. The \textsc{America in One Room} dataset does contain voters' most
-preferred candidate, which is either the Democratic or Republican Party or one
-of the Independent Parties. But lacking information on the candidates true
-positions as well as the ranking over the others, this information is hard to
-incorporate within the model.
+Though datasets such as those by Ipsos might contain the scores of political
+parties, these datasets cannot (easily) be combined with the data used in this
+study. This is mostly due to the inconsistent formats of the questions and the
+included topics. As a result, we are required to generate candidates manually.
+Thereby not only introducing another modeling choice, but also discarding an
+important piece of information. The \textsc{America in One Room} dataset does
+contain voters' most preferred candidate, which is either the Democratic or
+Republican Party or Independent (participants are not asked to further
+specify). But lacking information on the candidates true positions as well as
+the ranking over the others, this information is hard to incorporate within the
+model. 
 
-Instead, we chose a simple, but defensible approach, either selecting a single
+Instead, we chose a simple approach, either selecting a single
 voter, or grouping some voters together as a single candidate. In the real
 world, however, candidates might arise in different ways and forms. For
 example, they could bring new idea's, not measured in the poll, or gather
@@ -110,22 +144,41 @@ democracies candidates represent specific demographics of the population, and
 advocate for their interests.
 
 
-
 \subsection{Extentions}
+% First extend model in terms of deliberation, then possibly as a model of population
 
-Finally, we mention effect our model cannot capture in its current state. For
-example, there might be events such as a national health crisis, and economic
-recession or a national safety threat. These kinds of effects could affect our
-three parts of the model. First, some subset of the voters might become more
-informed on the position of the candidates, as the event might cause
-information dispersal. Second, voters might place more important on the
-policies related to the event. Thirdly, voters might change their opinions on
-these topics, either because the effect introduces some new information, e.g. a
-voter who might have been against more military spending might now recognize
-the national safety threat, or because the event causes a person to find the
-topic more important and thus take more active steps to become informed.
+
+We proceed to present extensions on this model, both in terms of deliberation
+in small groups, and as a model of modeling opinion dynamics on larger
+populations.
+
+When humans deliberate, the amount of trust placed on each person might not be
+fixed, for example, if someone has convinced a voter to change their mind on
+multiple topics, this voter might be more likely to trust them on a new topic
+as well. Or on the contrary, if two voters consistently disagree, and move away
+in their opinions, they might come to trust each other less. Though we do not
+propose a specific updating scheme for this, the model is flexible enough to
+allow for the updating of the trust matrix over time. 
+
+If this model is extended to model large population, for example using a social
+network, it is crucial to be able to asses the effects disruptive events such
+as a national health crisis, an economic recession or a national safety threat.
+
+
+As a result of such an event subset of the voters might become more informed on the position of
+the candidates, as the event might cause information dispersal, for example
+through news networks. This limitation is closely liked to the notion of
+\textit{Salience} as described by
+\citet{listDeliberationSinglePeakednessPossibility2013}, stating that topics
+with high salience benefit less from deliberation, as participants have likely
+received more information on this topic. Though this could, at least in
+principle, be resolved by constructing trust matrices for individual topics.
+This would raise further questions as to the validity of these matrices.
+
+
 
 \subsection{Future Work}
+% What kind of data is missing to understand deliberation? What kind of model would possibly be better suited? ABM?
 
 
 \begin{itemize}
@@ -134,20 +187,3 @@ topic more important and thus take more active steps to become informed.
 	\item[o] To be able to verify our models results, we need at least the full preferences before and after deliberation, as well as the positions of the candidates. The other parameters we might be able to calibrate.
 	\item[o] If we want to have more success modeling a control group, it might be useful to gather data from people in a way that allows for easy inference of trust. Such as from a social network.
 \end{itemize}
-
-
-In order to fully test the working of this model, we propose an experimental
-setup. Ideally the election to be modelled should contain at least 3
-alternatives, as this is where electoral issues start to happen, and classical
-negative results in Social Choice become relevant. Given such an election, we
-propose a similar setup to that by \citet{fishkinCanDeliberationHave2024}. With
-two extensions, firstly the questionnaire should allow voters to mark the
-important to place on each question or topic as well as give a full ranking of
-alternatives. As a result of requiring full preferences, the number of
-candidates should be limited, as to reduce cognitive load on participants.
-Fortunately, the probability of profiles with Condorcet cycle occurring
-diminishes with the number of candidates, therefore limiting the number of
-candidates ensures we investigate the specific context in which the problem is
-most likely to occur. Finally we need voters to estimate what positions the candidates hold.
-
-\textcolor{gray}{This experiment does not seem very useful for its own sake, only as a means to generate data for this specific model. Instead I should consider one or more experiments that might be useful on their own, while still being able to inform the model}

@@ -4,6 +4,38 @@
 \lhead{\emph{Discussion}}
 
 
+% Methodological Limitations
+% Trust matrix generation mechanisms, e.g. race voice etc.
+% Uniform trust between substantative and meta
+% 
+
+% Broader implications
+
+% If the Degroot model is accurate, more deliberation would lead to
+% substantative agreement, this however is undermind by fishkins "Can
+% deliberation have lasting effects", because at least in practice this was
+% long and intense, therefore in general it is unreasonable to expect to have
+% voters deliberate even longer. 
+
+% This model aligns with that the idea that deliberation pulls extreme opinions
+% to middle, such as those from psychology about in-group out-group opinion
+% change. There it is established that if groups have little contact they
+% become more different
+% as each group becomes more alike with-in the group, therefore pull the means of
+% the two polarized groups away from each other
+
+% DeGroot model is an insufficient heuristic to model the type of "learning" done
+% during deliberation
+
+% Formal model likely unable to fully capture intricacies of interpersonal interaction
+% that occurs during deliberation. This is to say, the model might not have predicted
+% the change in opinion accurately, but nevertheless we can still learn from this and note
+% that deliberation has more complex interactions than a simple weighted linear average.
+
+
+
+
+
 \section{Conclusion}
 
 We have shown deliberation to be susceptible to strategic manipulation under
@@ -20,7 +52,15 @@ extended our model to deliberation over opinions of voters and alternatives,
 through an adaptation of the DeGroot model. We also demonstrated that finding a
 voter graph that minimizes the difference between opinion distance and graph
 distance is NP-Hard. Suggesting that, in practice, modeling voters on sparse
-graphs requires collecting both communication patterns and opinion data.
+graphs requires collecting both communication patterns and opinion data. 
+
+Though we were able to replicate the results be
+\citet{radDeliberationSinglePeakednessCoherent2021}, we note that the model is
+too restrictive, as it only concerns itself with full preferences. We find that
+for certain ranges of bias the model behaves chaotically, and introduces cyclic
+profiles, even if before the deliberation these were acylic for the KS distance
+measure. Given that this model strictly models preferences, we extend it to a 
+DeGroot learning model to incorporate opinions in general.
 
 The DeGroot model successfully predicts opinion shifts at the population level
 but performs poorly at the level of individual voters. Extending the
@@ -35,27 +75,28 @@ by a gradual start, a phase of rapid change, and eventual convergence.
 Our sensitivity analysis shows that all model parameters influence outcomes.
 However, only parameters tied to knowledge and voter count exert strong direct
 effects — likely because they introduce new information, whereas other
-parameters only modulate existing dynamics.
+parameters only modulate existing dynamics. In terms of predicting final PBS,
+we found that Ego-based bias and knowledge-based trust performed best. Thereby
+indicating that more knowledgeable people are more convincing in deliberation,
+while people become less likely to change their minds if many people value
+their opinion. This is an intuitive result, but as mentioned
+\Cref{experiment_results}, we caution that the reason for Ego-based bias
+performing well might be (partly) explain by simply reducing the change in
+opinions of voters.
 
-% PBS change Per policy!!!
-% In general political elections might elect candidates that will bring about many changes, most voters however will not have a strong opinion on all of these. Though we considered in the possibility of voters considering some topics more important than other, it might also be the case during deliberation, some topics are simply not discussed. As our model takes in a matrix of opinions on all policies, it  
+In general political elections might elect candidates that will bring about
+many changes, most voters however will not have a strong opinion on all of
+these. Though we investigated the change in opinion on a per-topic basis, 
+we were unable to incorporate this in the preferences over candidates. Given
+that most change in opinion was on immigration and healthcare, it might be
+the case that these topics were considered more important for this election
+and thus more time was spent discussing these. As a result the preferences 
+of voters over candidates might be influence more strongly be these topics. 
 
-
-% - Summary Theory
-% 	- No strategyproofness in deliberation
-% 	- Modeling "deliberation" in a graph would be hard -> Need to couple data acquisition to communication patterns
-% 	- DeGroot model as a simple estimate of human belief updates
-% - Summary Results
-% 	- Quickly mention the replication of Rad and Roy
-% 	- Model bad at predicting individual changes
-% 	- Model can predict general trends in short time frames -> Either in person deliberation if gone on longer would be similar, or it is a naive model
-% 	- Summarize which parameters were useful at a high level
-% 	- Explain how single-peakedness developed over the course of the simulation (compare to other metrics too)
 % - Explain general implications of these results
 % 	- Link back to core principles of Deliberation (Honesty etc.)
 % 	- Explain how in real life honesty can be safe guarded?
 % 	- Put in context of deliberation interventions
-
 
 
 
@@ -80,7 +121,16 @@ to argumentative graphs. Secondly, the abstract argumentation framework does
 not pose an updating mechanism, thus the method through which participants
 would updates their believes using this framework is unclear.
 
-Furthermore, our negative results on strategic manipulation might be remedied a
+The choice of the DeGroot model assumes that people linearly interpolate between
+opinions presented to them. While it has been shown that in some circumstances 
+this is a good heuristic, especially when compared to full Bayesian updating. It
+does limit the behavior of voters substantially.  
+% Now merge into this the section
+% on how voters can have contradictory opinions in this model. Also mention mention
+% voters might not actually linearly move. An example could be voters having a "threshold"
+% for when they would change their mind.
+
+Furthermore, our negative results on strategic manipulation might be remedied
 in human deliberation. As fellow participants might be able to sense that
 someone is being dishonest. It is also not unreasonable to think that someone
 pretending to hold a different opinion, might be worse at defending this
@@ -148,42 +198,32 @@ advocate for their interests.
 % First extend model in terms of deliberation, then possibly as a model of population
 
 
-We proceed to present extensions on this model, both in terms of deliberation
-in small groups, and as a model of modeling opinion dynamics on larger
-populations.
+Given the weak performance of the model, a better computational model is needed
+to understand deliberation and inform the design of deliberative interventions.
+We propose some extensions to the model, which might better capture human
+dynamics.
 
-When humans deliberate, the amount of trust placed on each person might not be
+When humans deliberate, the amount of trust placed on each person is likely not
 fixed, for example, if someone has convinced a voter to change their mind on
 multiple topics, this voter might be more likely to trust them on a new topic
-as well. Or on the contrary, if two voters consistently disagree, and move away
-in their opinions, they might come to trust each other less. Though we do not
-propose a specific updating scheme for this, the model is flexible enough to
-allow for the updating of the trust matrix over time. 
+as well. Or on the contrary, if two voters consistently disagree, and diverge
+in their opinions, they might come to trust each other less. Furthermore, the
+development of trust will likely differ between people, both on their baseline
+and development of their trust. Though we do not propose a specific updating
+scheme for this, the model is flexible enough to allow for the updating of the
+trust matrix over time. 
 
-If this model is extended to model large population, for example using a social
-network, it is crucial to be able to asses the effects disruptive events such
+
+If we extend this model to model large population, for example using a social
+network, it is crucial to be able to assess the effects disruptive events such
 as a national health crisis, an economic recession or a national safety threat.
-
 
 As a result of such an event subset of the voters might become more informed on the position of
 the candidates, as the event might cause information dispersal, for example
-through news networks. This limitation is closely liked to the notion of
+through news networks. This limitation is related to the notion of
 \textit{Salience} as described by
 \citet{listDeliberationSinglePeakednessPossibility2013}, stating that topics
 with high salience benefit less from deliberation, as participants have likely
 received more information on this topic. Though this could, at least in
 principle, be resolved by constructing trust matrices for individual topics.
 This would raise further questions as to the validity of these matrices.
-
-
-
-\subsection{Future Work}
-% What kind of data is missing to understand deliberation? What kind of model would possibly be better suited? ABM?
-
-
-\begin{itemize}
-	\item [o] Experimentally verifying meta-agreement, can only be done if we have data supporting a changing in preferences, with little to no change in voters' own opinion and importance they place on different topics
-	\item [o] Accurately modeling the control group, through a large network.
-	\item[o] To be able to verify our models results, we need at least the full preferences before and after deliberation, as well as the positions of the candidates. The other parameters we might be able to calibrate.
-	\item[o] If we want to have more success modeling a control group, it might be useful to gather data from people in a way that allows for easy inference of trust. Such as from a social network.
-\end{itemize}

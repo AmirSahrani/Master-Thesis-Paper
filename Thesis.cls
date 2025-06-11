@@ -319,7 +319,7 @@
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Modelling Meta-Agreement through an Agent-Based Model} % Your thesis title - this is used in the title and abstract
+\thesistitle{Modelling Meta-Agreement through a DeGroot Model} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------  
 \supervisor{Prof. Dr. Ulle Endriss} % You supervisor's name - this is used in the title page
 %-------------------------------------------------   

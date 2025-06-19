@@ -93,7 +93,7 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \usepackage[Sonny]{fncychap}
-\usepackage[T1]{fontenc}
+% \usepackage[T1]{fontenc}
 \usepackage{charter}           % For Charter text font
 \usepackage{dsfont}
 \usepackage{newtxmath}

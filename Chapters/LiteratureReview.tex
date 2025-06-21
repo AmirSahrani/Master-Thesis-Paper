@@ -20,16 +20,16 @@ If our goal is to prevent Condorcet cycles, or in general have transitive majori
 	Then under $P$ a strict majority $N' \subseteq N$ have $a \pref b$, but $i \notin N'$, thus in $P'$, $N'$ is still a majority preferring $a$ to $b$, but this is in contradiction to $b$ winning in $P'$.
 \end{proofc}
 
-This result is strengthened by \citet{campbellNonmonotonicityDoesNot2002,campbellCorrectionStrategyproofnessCharacterization2016}, showing that for an odd number of alternatives, \(f_{\text{Condorcet}}\) is the only voting rule over \(\domain{Condorcet}\) that is Strategyproof, Surjective and Non-dictatorial.
+This result is strengthened by \citet{campbellNonmonotonicityDoesNot2002,campbellCorrectionStrategyproofnessCharacterization2016}, showing that for an odd number of candidates, \(f_{\text{Condorcet}}\) is the only voting rule over \(\domain{Condorcet}\) that is Strategyproof, Surjective and Non-dictatorial.
 
 When Surjectivity is strengthened to Neutrality, and Non-dictorship to Anonymity, \linebreak \(f_{\text{Condorcet}}\) is the only Strategyproof voting rule over \(\domain{Condorcet}\) for an odd number of voters \cite{campbellAnonymousNeutralStrategyproof2015}.
 
 \subsection{Hereditary Domains}
 
-Though this result is positive, we might wonder how stable it is, for this we need to define a notion of stability. On natural way to think about it is as follows: suppose one of the alternatives or voters drops out, do we keep the nice structure of the domain? If this is true we call a domain \emph{Hereditary}.
+Though this result is positive, we might wonder how stable it is, for this we need to define a notion of stability. On natural way to think about it is as follows: suppose one of the candidates or voters drops out, do we keep the nice structure of the domain? If this is true we call a domain \emph{Hereditary}.
 
 \begin{definition}{Hereditary \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022})}}{dom-hereditary}
-	A domain restriction onto $\domain{ }$ is \emph{hereditary} if, for every profile $P \in \domain{ }$, and every profile $P'$, that can be obtained by deleting voters and alternatives from $P$, $P'$ is also in $\domain{ }$
+	A domain restriction onto $\domain{ }$ is \emph{hereditary} if, for every profile $P \in \domain{ }$, and every profile $P'$, that can be obtained by deleting voters and candidates from $P$, $P'$ is also in $\domain{ }$
 \end{definition}
 
 $\domain{Condorcet}$ is not hereditary, this is easy to see through an example:
@@ -51,7 +51,7 @@ $\domain{Condorcet}$ is not hereditary, this is easy to see through an example:
 	\end{minipage}
 \end{example}
 
-A domain not being hereditary means that the nice properties of the domain can be unstable, as the number of voters and alternatives might not be known or could be manipulated. Instead, we might want to look at hereditary domains. We present the single-peaked domain, will also be the main focus of this thesis. This is the domain of all single-peaked profiles.
+A domain not being hereditary means that the nice properties of the domain can be unstable, as the number of voters and candidates might not be known or could be manipulated. Instead, we might want to look at hereditary domains. We present the single-peaked domain, will also be the main focus of this thesis. This is the domain of all single-peaked profiles.
 
 
 \begin{proposition}{\textnormal{(\citet{elkindPreferenceRestrictionsComputational2022}).}}
@@ -61,12 +61,12 @@ A domain not being hereditary means that the nice properties of the domain can b
 \begin{proofc}
 	(Voter Deletion). If we remove a voter, this does not affect the other voters, thus the profile is still single-peaked.~\checkmark
 
-	(Alternative Deletion). Consider any voter $i$ and their single-peaked vote, if we remove some alternative $x$, to this voter all alternatives which voter $i$ preferred to $x$ stay in the same position, while all other alternatives move up one rank, thus preserving the order, and single-peakedness.~\checkmark
+	(candidate Deletion). Consider any voter $i$ and their single-peaked vote, if we remove some candidate $x$, to this voter all candidates which voter $i$ preferred to $x$ stay in the same position, while all other candidates move up one rank, thus preserving the order, and single-peakedness.~\checkmark
 \end{proofc}
 
-% A similar notion to single-peaked profiles is that of single caved profiles, which is equivalent, but instead of a voters peak representing their most preferred option, they have a valley, which represents the worst option. Single caved profile are hereditary as well, but for a voting rule on them to be strategy proof, only two possible alternatives can be chosen, the left and right most alternatives according to $\orderalt$.
+% A similar notion to single-peaked profiles is that of single caved profiles, which is equivalent, but instead of a voters peak representing their most preferred option, they have a valley, which represents the worst option. Single caved profile are hereditary as well, but for a voting rule on them to be strategy proof, only two possible candidates can be chosen, the left and right most candidates according to $\orderalt$.
 
-% Instead of ordering the alternatives, we can imagine instead ordering the voters, such that we have a leftmost and rightmost voter, and all other voters can be placed between them based on their difference. In this case, a profile is single-crossing if, for any alternative $a$, its preference relation to another any alternative $b$ flips at most once when traversing the voters in order $\orderalt$.
+% Instead of ordering the candidates, we can imagine instead ordering the voters, such that we have a leftmost and rightmost voter, and all other voters can be placed between them based on their difference. In this case, a profile is single-crossing if, for any candidate $a$, its preference relation to another any candidate $b$ flips at most once when traversing the voters in order $\orderalt$.
 %
 % \begin{definition}{Single-Crossing Profiles \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022})}}{single-crossing}
 % 	A profile $P$ is single-crossing w.r.t. some ordering $\orderalt$, if for any $a,b \in X$, $\{i \in N : a \pref b\}$ and $\{i \in N: b \pref_{i} a\}$ are both intervals over $[n]$. A profile $P$ is single crossing if the votes can be permuted such that it is single crossing w.r.t. some ordering.
@@ -79,9 +79,9 @@ A domain not being hereditary means that the nice properties of the domain can b
 % \end{proposition}
 %
 % \begin{proofc}
-% 	(Voter Deletion). Deleting a voter preserves the ordering between voters, as such this cannot introduce a new crossing between alternatives.~\checkmark
+% 	(Voter Deletion). Deleting a voter preserves the ordering between voters, as such this cannot introduce a new crossing between candidates.~\checkmark
 %
-% 	(Alternative Deletion). If we remove an alternative, the voters' rankings of the other alternatives does not change, thus preserving single-crossing.~\checkmark
+% 	(candidate Deletion). If we remove an candidate, the voters' rankings of the other candidates does not change, thus preserving single-crossing.~\checkmark
 % \end{proofc}
 
 As the goal is to ensure we find ourselves in nicely structured domains, we
@@ -171,7 +171,7 @@ According to \citet{listTwoConceptsAgreement2002} there are three hypotheses tha
 	\label{list:meta-agreement-checklist}
 	\setlength\itemsep{1px}
 	\item [D1] Deliberation leads people to discover a single \emph{issue}-dimension
-	\item [D2] Deliberation lets people place all possible alternatives in this \emph{issue}-dimension
+	\item [D2] Deliberation lets people place all possible candidates in this \emph{issue}-dimension
 	\item [D3] After this deliberation, people update their preferences by picking
 	      a preferred outcome, and all other rankings are based on the distance to this outcome in the \emph{issue}-dimension
 \end{enumerate}
@@ -221,7 +221,7 @@ agree with both justifications, and thereby introduce a new dimension
 ``balance'', which then violates the conditions under which single-peaked
 profiles guarantee the existence of fair, strategyproof voting rules. D2
 requires that all voters share the exact same semantic understanding of the
-dimension, and the outcome associated with each alternative. Finally D3
+dimension, and the outcome associated with each candidate. Finally D3
 requires D1 and D2 to have happened before in order. D3 seems to be the easiest
 hypothesis to satisfy.
 
@@ -247,7 +247,7 @@ metric used. They considered three distance metrics, Kemeny-Snell
 (DP)~\citep{duddyMeasureDistanceJudgment2012}, and Cook-Seiford
 (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the
 judgement set resulting from the voters preferences, which is contains, for
-each pair of alternatives $a,b$, where $a \neq b$, a proposition $(a \pref b)$ or $\neg (a
+each pair of candidates $a,b$, where $a \neq b$, a proposition $(a \pref b)$ or $\neg (a
 	\pref b)$. The KS distance is then defined as the number of binary swaps a
 judgement set needs to undergo before it becomes the target judgement set, an
 example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref
@@ -265,7 +265,7 @@ opinion where $\neg (a\pref b)$ only if the announced opinion contains $\neg (a
 	\pref b)$.
 
 \Cref{figure:DPDistance} shows a graph used for the DP distance in the case of
-3 alternatives, for simplicity the associated preferences are used to label the
+3 candidates, for simplicity the associated preferences are used to label the
 judgement sets.
 
 
@@ -274,8 +274,8 @@ voters disagree on, and a preference is between two others if for each position
 it agrees with one of the two preferences.
 
 Each distance has different trade-offs, CS is the simplest, but might
-exaggerate the distance when there are many alternatives, for example if 2
-voters agree on the relative ranking of all but 1 alternative, which one voter
+exaggerate the distance when there are many candidates, for example if 2
+voters agree on the relative ranking of all but 1 candidate, which one voter
 happens to rank first, thereby shifting the opinion of voter 2 right by one,
 the CS distance would conclude that these voters are in full disagreement,
 while reasonably one could conclude their opinions do not differ much. The KS
@@ -288,10 +288,10 @@ strict preferences), thus one might reasonably conclude this should only count
 as 1 step. DP improves upon this, but in doing so becomes much harder to
 compute, mainly through the cost of constructing the full graph of judgement
 sets, which grows in $f_n = 1 + \sum_{j=1}^{n-1} \binom{n}{j} f_{n-j}$ in the
-number of vertices, where $n$ is the number of alternatives~\cite{grossPreferentialArrangements1962}. This can easily be
+number of vertices, where $n$ is the number of candidates~\cite{grossPreferentialArrangements1962}. This can easily be
 verified by noting that the number of judgements sets over $n$ corresponds to
-the number of weak preference rankings over $n$ alternatives, which is define
-as alternatives, and a binary choice on each proposition.
+the number of weak preference rankings over $n$ candidates, which is defined
+as candidates, and a binary choice on each proposition.
 
 
 
@@ -299,7 +299,7 @@ as alternatives, and a binary choice on each proposition.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.65\textwidth]{dpGraph.pdf}
-	\caption{The graph of judgement sets for all preferences over three alternatives, brackets indicate ties.}
+	\caption{The graph of judgement sets for all preferences over three candidates, brackets indicate ties.}
 	\label{figure:DPDistance}
 \end{figure}
 

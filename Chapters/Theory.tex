@@ -103,9 +103,12 @@ show that the deliberative procedures, under the metric spaces
 \emph{KS}, \emph{ DP}, \emph{ CS} are not strategyproof. Stated
 as follows:
 
-\begin{proposition} Deliberation under distance measures
-	\emph{KS}, \emph{ DP}, \emph{ CS} is not strategyproof, for $n
-		\geq 2$ and $m \geq 3$. \end{proposition} 
+\begin{proposition}
+	Deliberation, as defined by
+	\citet{radDeliberationSinglePeakednessCoherent2021}, under distance
+	measures \emph{KS}, \emph{ DP}, \emph{ CS} is not strategyproof, for $n
+		\geq 2$ and $m \geq 3$.
+\end{proposition}
 
 We provide a proof by construction, we show how to do this for
 the KS and DP distance measures, as they share the same profiles for this proof. The
@@ -142,7 +145,7 @@ proof for the CS distance measure is laid out in \Cref{AppendixA}.
 
 	As we are only allowing strict preferences, both distance metrics
 	behave the same locally, with the distance of two profiles being 2 whenever one
-	is 1 swap of alternatives away from the other. This means that  \(R_{i}\) and
+	is 1 swap of candidates away from the other. This means that  \(R_{i}\) and
 	\(R_{j}\) have a distance of 2, as well as  \(R_{1}'\) and \(R_{1}\) having a
 	distance of 2. In this case the total distance from \(R_{1}'\) to \(R_{j}\) is
 	simply the sum of the local distances for both distance metrics, thus
@@ -167,18 +170,18 @@ In order to do so, we propose the following, let \(\policies = \{\policy_{1},
 \cdots \policy_{k}\}\) denote the set of policies that could be implemented. A
 voter $i \in \voters$, has support for these policies, represented as a number
 on an interval over $\Reals$. At a meta level, a voter has an understanding of
-which policies are supported by which alternatives. This is modelled as matrix,
+which policies are supported by which candidates. This is modelled as matrix,
 representing the estimated support for each policy for a candidate, thus voter
 $i$ has $\EstSupport^i$, where $\EstSupport^i_{j, x}$ represents this voters'
-estimated support of $\policy_j$ by alternative $x$.
+estimated support of $\policy_j$ by candidate $x$.
 
 This model does not explicitly model $D1$, the discovery of a common issue
-dimension, on the one hand, if the alternatives can be reduced to a line, this
+dimension, on the one hand, if the candidates can be reduced to a line, this
 model should be able to capture this, even if this one line crosses through
 multiple issue dimension. For example if all issues are strongly (negatively)
-correlated on the side of the alternatives, but not on the voters, this model
+correlated on the side of the candidates, but not on the voters, this model
 allows for the voters to recognize this by properly estimating the
-alternatives' support matrices, while voters themselves can keep an
+candidates' support matrices, while voters themselves can keep an
 uncorrelated support vector. In the case that the actual issue dimension is
 simply not included in $\policies$, our model would not be able to discover
 this new dimension, even if human deliberation feasibly could. More
@@ -194,16 +197,16 @@ instead of a probability distribution, a voter has a support vector $S_i \in
 	\Reals^{|\alternatives| \times |\policies|}_{[0,1]}$.
 
 Note that this does not mean that all policies have to have any (estimated)
-support, nor that an alternative can only support a specific number of
-policies, in principle there can be alternatives that represent the status quo,
-and thus do not support any policies, and there can be alternatives that are
+support, nor that an candidate can only support a specific number of
+policies, in principle there can be candidates that represent the status quo,
+and thus do not support any policies, and there can be candidates that are
 estimated to support all policies.  Let $\boldsymbol{S}= [\Support_1, \dots,
 	\Support_{n}]^{T}$ denote the population opinion, which has shape \(|\voters|
 \times |\policies|\).
 
 In order to extract a ballot from this matrix, we assume a voter ranks the
-alternatives such that the most preferred alternative has the smallest distance
-between the estimated support matrix for that alternative and her own. We
+candidates such that the most preferred candidate has the smallest distance
+between the estimated support matrix for that candidate and her own. We
 further allow this distance to be weighted, such that a voter may have one or
 more policies their think are more important.
 
@@ -255,7 +258,7 @@ their preferred candidates, using meta-agreement to come to a consensus.
 	\{\policy_{1}, \policy_{2}\}\), and candidates \(\alternatives =
 	\{a,b\}\). The voters both think that \(\policy_{1} = 1, \policy_{2} =
 	0\), meaning that they fully support the first policy and reject the
-	second, they estimate the support by alternatives as:
+	second, they estimate the support by candidates as:
 
 	\[
 		\begin{array}{c|cc}
@@ -280,11 +283,11 @@ their preferred candidates, using meta-agreement to come to a consensus.
 
 	This results in voter 1 preferring candidate $b$ over candidate $a$, while
 	voter 2, prefers $a$. Intuitively, since voter 1 thinks $\policy_{1}$ is
-	equally supported by each alternative, while $\policy_{2}$ is not supported by
+	equally supported by each candidate, while $\policy_{2}$ is not supported by
 	$a$, it makes sense for them to prefer candidate $a$. Looking at the distances,
-	we see that the absolute distance between voter 1 and alternative $a$ is 0.5,
-	while for alternative $b$ it is 1.5. For voter 2 we see that the distance to
-	$a$ is 0.9, while for alternative $b$ is it 0.1. Thus, voter 2 prefers $b$ to
+	we see that the absolute distance between voter 1 and candidate $a$ is 0.5,
+	while for candidate $b$ it is 1.5. For voter 2 we see that the distance to
+	$a$ is 0.9, while for candidate $b$ is it 0.1. Thus, voter 2 prefers $b$ to
 	$a$.
 
 	For the deliberation, we assume the following trust matrix:
@@ -322,8 +325,8 @@ their preferred candidates, using meta-agreement to come to a consensus.
 	\end{align*}
 
 	These new estimates are not yet in full consensus, meaning Meta-Agreement has not yet been reached.  Looking at their
-	corresponding ballots, however, shows there is consensus on their most preferred alternative,
-	as they both agree that alternatives support $\policy_1$ equally, while $b$
+	corresponding ballots, however, shows there is consensus on their most preferred candidate,
+	as they both agree that candidates support $\policy_1$ equally, while $b$
 	supports $\policy_2$ less.
 
 	\label{example:deGroot-delib}

@@ -22,8 +22,8 @@ doi: 10.1037/0033-295X.113.1.84
 
 - Groups ability to mediate rewards dependent on share agreement on goals
 ideologies and values
-- "In other words, the extent to which a given ocllectivity of people is seen
-to consistute a group is assumed to vary proporitonately to the degree to which
+- "In other words, the extent to which a given collectivity of people is seen
+to constitute a group is assumed to vary proportionately to the degree to which
 the members agree on various matters central to the groups' existence"
 -
 

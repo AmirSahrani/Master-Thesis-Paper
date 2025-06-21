@@ -1,5 +1,5 @@
 \newpage
-\chapter{Literature review}
+\chapter{Literature Review}
 \label{Literature}
 
 \lhead{\emph{Literature Review}} % Set the left side page header to "Symbols"
@@ -13,11 +13,11 @@ In this chapter we explore previous results, as well as introducing relevant con
 If our goal is to prevent Condorcet cycles, or in general have transitive majority relations, the best we could hope to do is to apply our domain restriction such that our domain contains all profiles $P$ such that $P$ has a (weak) Condorcet winner. We call this domain $\domain{Condorcet}$. Under this domain, let $\votingrule{Condorcet}$ be the Condorcet Rule, which picks a Condorcet winner. Then $\votingrule{Condorcet}$ is strategyproof over $\domain{Condorcet}$ \citep{elkindPreferenceRestrictionsComputational2022}.
 
 \begin{proofc}{(\citet{elkindPreferenceRestrictionsComputational2022})}.
-	Assume, for the sake of a contradiction, we have profiles $P = (\pref_1 \dots \pref_i \dots \pref_n)$ and $P' = (\pref_1 \dots \pref_{i'} \dots \pref_n)$ such that:
+	Assume, for the sake of a contradiction, we have profiles $\strictProfile = (\pref_1 \dots \pref_i \dots \pref_n)$ and $\strictProfile' = (\pref_1 \dots \pref_{i'} \dots \pref_n)$ such that:
 	\[
 		\votingrule{Condorcet}(P) = a, \quad \votingrule{Condorcet}(P') = b, \quad \text{and } a \neq b
 	\]
-	Then under $P$ a strict majority $N' \subseteq N$ have $a \pref b$, but $i \notin N'$, thus in $P'$, $N'$ is still a majority preferring $a$ to $b$, but this is in contradiction to $b$ winning in $P'$.
+	Assume that $i$ has $b \pref_i a$, then under $\strictProfile$ a strict majority $N' \subseteq N$ have $a \pref b$, but $i \notin N'$, thus in $P'$, $N'$ is still a majority preferring $a$ to $b$, but this is in contradiction to $b$ winning in $P'$.
 \end{proofc}
 
 This result is strengthened by \citet{campbellNonmonotonicityDoesNot2002,campbellCorrectionStrategyproofnessCharacterization2016}, showing that for an odd number of candidates, \(f_{\text{Condorcet}}\) is the only voting rule over \(\domain{Condorcet}\) that is Strategyproof, Surjective and Non-dictatorial.
@@ -230,7 +230,7 @@ restrictive, needing multiple forms of unanimity, and only applying to problems
 with certain properties. Nonetheless,  meta-agreement could still provide
 explanatory power to deliberation.
 
-\section{Related Work} \label{section:related_work}
+\section{Models of Deliberation} \label{section:related_work} % work on this title
 \citet{radDeliberationSinglePeakednessCoherent2021} model deliberation and its
 effect on single-peakedness, though they argue single-plateauedness is a more
 accurate term. To this end, they model deliberation as the process of all
@@ -255,9 +255,13 @@ example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref
 share an edge if there is no judgement set between them. Since KS and DP share
 their notion of betweenness, we introduce their betweenness as follows.
 
-\begin{definition}{J-Betweenness}{def:j-between} A judgement set $J_i$ is
-	between preferences $J_j$ and $J_k$ if for every proposition about $x,y \in
-		\alternatives$, $J_i$ either agrees with $J_j$ or $J_k$. \end{definition}
+\begin{definition}{J-Betweenness}{def:j-between}
+
+	A judgement set $J_i$ is between preferences $J_j$ and $J_k$ if for
+	every $x,y \in \alternatives$, $J_i$ either agrees with the proposition
+	in $J_j$ or $J_k$.
+
+\end{definition}
 
 From this definition it is clear that this could only result in a voter
 updating their original opinion in which they have $(a \pref b)$ to a new
@@ -303,7 +307,10 @@ as candidates, and a binary choice on each proposition.
 	\label{figure:DPDistance}
 \end{figure}
 
-Apart from these distances, they define a voter as a tuple of a (weak)
+
+% TODO D_s should be a map from the set of all possible voters with all possible r to the set of all voters
+% TODO also clear up notation, d_s is the distance, D_s notation? this is messy
+Apart from these distances, Rad and Roy define a voter as a tuple of a (weak)
 preference and a bias (towards their current position) \(v = \langle r, b
 \rangle\), with \( b \in \Reals_{[0,1]}\). Finally, a deliberation step \(D_{s}
 : V \times r \to V\), with $V$ being a set of voters and $s$ being one of the

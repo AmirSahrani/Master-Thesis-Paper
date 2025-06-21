@@ -16,13 +16,13 @@ deliberative procedure posited by
 \citet{radDeliberationSinglePeakednessCoherent2021} cannot be strategyproof
 under classic notions of strategyproofness as well as novel notion of
 strategyproofness we define. We use this add one more tenant to Cohen's four,
-namely \textit{honesty}. 
+namely \textit{honesty}.
 
 We then set out to mechanically understand deliberation, for this we introduced
-the DeGroot learning model, and adapted it to deliberation over opinions. We showed 
-NP-hardness on the $\delta$-DBVM(S) problem, and conclude that using de DeGroot model 
+the DeGroot learning model, and adapted it to deliberation over opinions. We showed
+NP-hardness on the $\delta$-DBVM(S) problem, and conclude that using de DeGroot model
 to model sparse graphs is computationally difficult, if one want to assign voters to nodes
-based on some distances metrics. 
+based on some distances metrics.
 
 In \Cref{experiment_results} replicated the results by
 \citet{radDeliberationSinglePeakednessCoherent2021}, and we use our adapted
@@ -31,8 +31,9 @@ DeGroot model to test its predictive power on the opinion using the
 conclude that though in the first time step the model can do well on the
 population level, the prediction on the change in opinion for individuals was
 poor. We also show that this is at least partly explain by the fact that the
-DeGroot model treats all problems as equal. The data showed that some topics
-had large shifts in opinions, which the DeGroot model was unable to capture. 
+DeGroot model treats all policies equally. The data showed that some topics had
+large shifts in opinions, while others showed less, the DeGroot model was
+unable to capture this.
 
 Using sensitivity analysis we showed that all parameters effected the final
 predictions, but interestingly some parameters had non-significant first order
@@ -45,19 +46,19 @@ Finally, we looked at the preference profiles which we simulated based on the
 opinions from both the data and the simulations. We show that similar to the
 population level predictions for the PBS, the profiles based on the simulated
 and true opinions start looking more similar during the first steps in the
-simulation, however, after this the model convergence too strongly and the profiles 
-of the simulated opinions become too ``nice''. In the sense that they get closer 
+simulation, however, after this the model convergence too strongly and the profiles
+of the simulated opinions become too ``nice''. In the sense that they get closer
 to being single-peaked and are acyclic more frequently.
 
 These results led us to conclude that the DeGroot learning model was overly
 simplistic and therefore was unable to adequately explain individual opinion
 change. As a result it is a bad approximation of what happens during human
-deliberation. These patterns are also in contradiction to know results in 
+deliberation. These patterns are also in contradiction to know results in
 social psychology, where small extreme groups tend to become more extreme \cite{myersPolarizingEffectGroup1975}.
 
 \section{Discussion}
 
-We first present some limitations of these results, we can broadly put these into 
+We first present some limitations of these results, we can broadly put these into
 3 categories.
 
 Firstly, given the lack of a complete data source combining pre- and
@@ -121,7 +122,7 @@ also a method of reliably and accurately transforming these qualitative reports
 to argumentative graphs. Secondly, the abstract argumentation framework does
 not pose an updating mechanism, thus the method through which participants
 would update their believes using this framework is unclear. Secondly, it limits
-voter's belief updates to linear transformations. 
+voter's belief updates to linear transformations.
 
 
 
@@ -129,12 +130,12 @@ Finally, we address some limitations on the real world implications of these res
 The negative results surrounding strategyproofness in \Cref{theory}, might be less
 of an issue in human deliberation, as the dishonest participant could be less convincing
 defending their dishonest opinion than their true opinion. As a result they might have less
-total influence than if they had defended their true opinion. 
+total influence than if they had defended their true opinion.
 
 In terms of modeling deliberation, we have now focussed on variables that can
 clearly be measured. While this might paint a good picture of the quantitative
 aspects of deliberation, in practice deliberation in humans come with rich interactions
-affecting their judgement and willingness to listen among other things. If we hope to 
+affecting their judgement and willingness to listen among other things. If we hope to
 get an accurate mechanistic model of deliberation, these qualitative aspects of deliberation
 need to be studied.
 
@@ -146,7 +147,7 @@ need to be studied.
 
 
 
-\subsection{Future work}
+\section{Future work}
 
 Based on the limitations of this study, and the literature it was based one, we present some areas for future work.
 
@@ -172,7 +173,7 @@ Furthermore, any good model will need proper data, as such a study similar to
 that of \citet{fishkinCanDeliberationHave2024} is needed, where voters are
 asked not only for their opinion but also their preference order. This could
 also be a great opportunity to gather qualitative insights into deliberation
-and the social dynamics there of. This would also allow for testing participant's 
-knowledge on topics directly, hopefully giving stronger indications of voter's ability 
+and the social dynamics there of. This would also allow for testing participant's
+knowledge on topics directly, hopefully giving stronger indications of voter's ability
 to persuade and defend on specific topics.
 

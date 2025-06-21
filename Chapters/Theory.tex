@@ -26,7 +26,7 @@ behavior.
 	simulates $D$ before applying $f$, which would result in  voting rule $f'$
 	being surjective, strategyproof and non-dictatorial. This is a contradiction,
 	by the Gibbard-Satterthwaite
-	theorem~\citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
+	\Cref{thm:gs-thm}.
 \end{proofc}
 
 
@@ -77,6 +77,7 @@ here we now show that even if we take the deliberation
 procedures on its own, it still not immune to strategic
 manipulation. For this we restate strategyproofness as follows:
 
+%TODO make the Dist function a function between two rankings, then change the formulation to sum notation
 \begin{definition}{Strategyproofness of
 		Deliberation}{delib-strategyproof} A deliberation
 	procedure is strategyproof if there exists no voter $i$

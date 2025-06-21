@@ -4,7 +4,23 @@
 We first proceed by giving a short introduction of social choice. We outline the basic model, and restate well known results relevant to the following chapters.
 
 \section{The basic model}
-To model elections, or more generally voting games, we represent voters by the set $\voters$ consisting of $n$ voters. The possible outcomes of an election, we represent with the set $\alternatives$ consisting of $|A|$ possible outcomes, from now on we will refer to the outcomes of an election as alternatives. Each voter can represent their preference on alternatives through a preference relation $\prefeq_i$, for example if voter 2 prefers outcome $a$ to outcome $b$, we write $a \prefeq_2 b$. If, however, this voter wants to make it clear $a$ is strictly better than $b$, we instead write $a \pref_2 b$. When a voter specifies their preferences on the entire set of alternatives we call this a (weak) linear order. We call the set of possible linear orders over the alternatives $\setOfStrictProfiles$, the set of weak orders is denoted by $\setOfWeakProfiles$. Thus, for an election, all voters report a (weak) linear order, the set of each voters preference is called a profile, denoted by $\strictProfile$. Finally, a rule $f$ decides the outcome of the election based on the profile. We discuss the specifics of these rules in Section \cref{sec:SCF}.
+
+To model elections, or more generally voting games,
+we represent voters by the set $\voters$ consisting of $n$ voters. The possible
+outcomes of an election, we represent with the set $\alternatives$ consisting
+of $|A|$ possible outcomes, from now on we will refer to the outcomes of an
+election as alternatives. Each voter can represent their preference on
+alternatives through a preference relation $\prefeq_i$, for example if voter 2
+prefers outcome $a$ to outcome $b$, we write $a \prefeq_2 b$. If, however, this
+voter wants to make it clear $a$ is strictly better than $b$, we instead write
+$a \pref_2 b$. When a voter specifies their preferences on the entire set of
+alternatives we call this a (weak) linear order. We call the set of possible
+linear orders over the alternatives $\setOfStrictProfiles$, the set of weak
+linear orders is denoted by $\setOfWeakProfiles$. Thus, for an election, all
+voters report a (weak) linear order, the set of each voters preference is
+called a profile, denoted by $\strictProfile$. Finally, a social choice
+function (SCF) $f$ decides the outcome of the election based on the profile. We
+discuss the specifics of these functions in Section \cref{sec:SCF}.
 
 The last general tool we will need is the \emph{majority relation}. Given some
 profile $\strictProfile$ we can construct a majority relationship as follows:
@@ -13,6 +29,8 @@ if the number of people who prefer $x$ to $y$ is greater than the other way
 around we write $x  \prefmaj y$, if we have an even number of voters, these two
 numbers can be equal and this becomes a weak preference, we simply write $x
 	\prefeqmaj y$ (defaulting to alphabetical order). We proceed with an
+number can be equal and this becomes a weak preference, we simply write $x
+	\prefeqmaj y$ (defaulting to lexicographical order). We proceed with an
 example.
 
 \begin{example}{Majority relation}{maj-rel}
@@ -43,13 +61,23 @@ $y \prefeq z$ then $x \prefeq z$. These notions are similar, but transitivity
 is a stronger requirement, as it includes indifference.
 
 
-\section{Social Choice Functions}
-\label{sec:SCF}
-In order to decide the outcome of an election, we pick a social choice function $f$, this function should map all possible profiles to an outcome, thus $f: \strictProfile \to \alternatives$. A famous example of a SCF is the plurality rule, which simply elects the alternative voted into first place most often, though simple, it can also lead to a tie. Since the outcome of our SCF is only allowed to be a single alternative, the plurality rule needs to be equipped with a tie breaking mechanism in order to be a valid SCF, we require the tie-breaking to be deterministic.
+\section{Social Choice Functions} \label{sec:SCF} In order to decide the
+outcome of an election, we pick a social choice function $f$, this function
+should map all possible profiles to an outcome, thus $f: \strictProfile \to
+	\alternatives$. A famous example of a SCF is the plurality rule, which simply
+elects the alternative voted into first place most often.
 
+Though a voting rule that returns some set of alternatives for each profile is
+a valid SCF, for real elections organizers likely will want to ensure the rule
+has certain nice properties, such as not favoring an alternative. In social
+choice these properties are called axioms, and the procedure of designing a
+SCF based on axioms is called the axiomatic approach. The name of the property
+just described is the axiom of neutrality, stating that the voting rule should
+be neutral with respect to the alternatives. In this work three main axioms are
+of importance.
 
-\subsection{Axioms}
-Though any voting rule that outputs one alternative for each profile is valid, for real elections organizers likely will want to ensure the rule has certain nice properties, such as not favoring some alternatives of others. In social choice these properties are called axioms, and the procedure of designing a rule based on axioms is called the axiomatic approach. The name of the property just described is the axiom of neutrality, stating that the voting rule should be neutral with respect to the alternatives. In this work three main axioms are of importance.
+\emph{Axiom of Resoluteness.} A SCF $f$ is resolute, if for every profile
+$\strictProfile$ we have $|f(\strictProfile)| = 1$.
 
 \emph{Axiom of Surjectivity.} A SCF $f$ is surjective, if for every alternative
 $x$, there exists a profile $\strictProfile$ such that

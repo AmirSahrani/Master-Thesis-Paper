@@ -11,52 +11,77 @@ elections not only have the difficult task of electing candidates that please
 as many people as possible, they have to do this while people have different
 idea's about the problems and candidates in the first place.
 
-For democracy to be effective, a shared reality is needed \cite{}.
-Specifically, a shared reality is a common understanding of the world, thus
-allowing people to argue from mutually agreed on premises. Historically, this
-understanding of the world might have come from people such as family, friends
-and colleagues. Increasingly, however, a person's sense of reality is defined
-through algorithmic means. This raises a problem, as on many social media
-networks, algorithms are tailored to individuals' preferences, and as a result,
-each individual might end up seeing a unique set of propositions about the
-world.
+For democracy to function effectively, voters need a shared foundation of
+understanding, what we term a ``shared reality.'' This shared reality consists
+of commonly accepted facts and causal relationships that allow meaningful
+debate about policy trade-offs. For example, most economists agree that raising
+minimum wages typically increases costs for businesses, which may lead to
+higher consumer prices. When voters share this understanding, they can engage
+in productive disagreement about whether wage increases are worth the potential
+price increases. However, when some voters believe wage increases lead to
+increased prices while others believe these to be unrelated, an election
+seemingly about purchasing power policies becomes an inaccurate measure of
+people's true intentions.
+
+Historically, people's understanding of the world came primarily from personal
+networks, family, friends, and colleagues who shared similar experiences and
+information sources. Increasingly, however, algorithmic curation shapes
+individual worldviews. This creates a fundamental problem: because algorithms
+tailor content to individual preferences, each person may encounter a unique
+set of claims about how the world works, leading to fragmented understandings
+of reality.
 
 As a result of fragmented world views, what was once a clear problem can become
 messy with alternate unrelated problems. As a corollary to this, during
 elections people might be voting in favor of some outcome for different, and
-possibly opposing, reasons. For example voting thinking some candidate is going
-to lower grocery prices while also increasing the minimum wage, which, in
+possibly opposing reasons. For example voting for some candidate thinking they
+will lower grocery prices while also increasing the minimum wage, which, in
 general are opposing forces. We later formalize this notion of a ``reason''
 through the concept of the \textit{Issue Dimension}
 \cite{listTwoConceptsAgreement2002}, when people have a common \textit{Issue
 	Dimension}, all their differences in opinion on outcomes can be explained
-through these dimensions.
+through these dimensions. In the case of higher wages v.s. lower prices, for
+example, a difference in opinion could be explained as favoring higher wages
+as general costs will rise proportionally less.
 
-From a social choice perspective, having shared issue dimensions, especially if
-it is a singular dimension, can be very beneficial. In this special case, we
-might get ``single-peaked'' preferences. In \Cref{Literature} we explain what
-these types of preferences are, and why they are desirable. For now, it
+From a social choice perspective, having shared issue dimensions can be very beneficial, especially if
+in the case of a singular dimension. In this special case, we
+might get ``single-peaked'' preferences, . In \Cref{Literature} we explain what
+this means exactly, and why it is desirable. For now, it
 suffices to note that they allow for elections mechanisms which encourage
 voters to be honest about their preferences. We explain what we mean exactly by
 an election mechanism in \Cref{chap: preliminaries}, but intuitively it is
-simply a way to take all the preferences (as reported through a ballot) and
-pick a winner from them.
+simply a way to pick a winner from a set of preferences.
 
-\citet{listTwoConceptsAgreement2002} pose deliberation as a method to increase
-the ``single-peakedness'' of the preferences of participants. For this List ...
-introduce the notion of meta-agreement, which captures the idea of agreeing on
-which issue dimensions are relevant, as well as where the candidates fall
-within these issue dimensions. Furthermore, deliberation has been shown to
-reduce polarization, .... , [SOURCES].
+To increase the single-peakedness of voter preferences,
+\citet{listDeliberationSinglePeakednessPossibility2013} propose deliberation
+as a potential solution. Building on List's \cite{listTwoConceptsAgreement2002}
+concept of meta-agreement, the idea that voters must agree on which issue
+dimensions matter and where candidates stand on these dimensions. List et al. argue
+that deliberation can help voters develop more coherent preference structures.
+This is particularly valuable for low-salience issues that receive little
+public attention, where deliberation can both increase voter knowledge and
+produce preference profiles closer to single-peaked
 
-Given this we think it important to understand deliberation more deeply. To
-this end, in \Cref{Literature} we present relevant work on single-peakedness,
-deliberation, and experiments. In \Cref{theory} we formally define some
-properties of deliberation, and prove generally negative results regarding
-``Honesty'' during deliberation. We also define an adaptation to the DeGroot
-model, as a mechanistic explanation of deliberation, as well as a negative
-result for using this model outside deliberative settings. In \Cref{Methods}
-w..e explain the experimental setup we use to test our model, the result of
-which can be found in \Cref{experiment_results}. Finally, we reflect on the
-results and methods in \Cref{Discussion}.
+Given deliberation's potential to lead to this meta-agreement and possibly to
+nicely structured preferences, we think it important to understand
+deliberation more deeply.  As in-silico experiments become more important parts
+of socio-political modeling, we choose a computational approach to
+understanding deliberation. Specifically, we adapt the DeGroot model
+\cite{degrootReachingConsensus1974} to fit deliberation on voter opinions and
+candidate's positions.
+
+To this end, in \Cref{Literature} we present relevant work on
+single-peakedness, deliberation, and experiments, as well as presenting a
+deliberation model by \citet{radDeliberationSinglePeakednessCoherent2021}. In
+\Cref{theory} we formally define some properties of deliberation, and prove
+negative results regarding ``Honesty'' during deliberation, showing
+deliberation is not strategyproof under a variety of circumstances. We also
+define an adaptation to the DeGroot model, as a mechanistic explanation of
+deliberation through a computational model. In doing so, we find a limitation
+in the applicability of  this model in the form of a negative computational
+complexity result, we show NP-completeness of mapping voter opinions to trust
+matrices. In \Cref{Methods} we explain the experimental setup we use to test
+our model, the result of which we present in \Cref{experiment_results}.
+Finally, we reflect on the results and methods in \Cref{Discussion}.
 

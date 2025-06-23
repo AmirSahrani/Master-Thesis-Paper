@@ -10,14 +10,25 @@ In this chapter we explore previous results, as well as introducing relevant con
 
 
 \section{Condorcet Domain}
-If our goal is to prevent Condorcet cycles, or in general have transitive majority relations, the best we could hope to do is to apply our domain restriction such that our domain contains all profiles $P$ such that $P$ has a (weak) Condorcet winner. We call this domain $\domain{Condorcet}$. Under this domain, let $\votingrule{Condorcet}$ be the Condorcet Rule, which picks a Condorcet winner. Then $\votingrule{Condorcet}$ is strategyproof over $\domain{Condorcet}$ \citep{elkindPreferenceRestrictionsComputational2022}.
+If our goal is to prevent Condorcet cycles, or in general have transitive
+majority relations, the best we could hope to do is to apply our domain
+restriction such that our domain contains all profiles $\strictProfile$ such that $\strictProfile$ has a
+(weak) Condorcet winner. We call this domain $\domain{Condorcet}$. Under this
+domain, let $\votingrule{Condorcet}$ be the Condorcet Rule, which picks a
+Condorcet winner. Then $\votingrule{Condorcet}$ is strategyproof over
+$\domain{Condorcet}$ \citep{elkindPreferenceRestrictionsComputational2022}.
 
 \begin{proofc}{(\citet{elkindPreferenceRestrictionsComputational2022})}.
 	Assume, for the sake of a contradiction, we have profiles $\strictProfile = (\pref_1 \dots \pref_i \dots \pref_n)$ and $\strictProfile' = (\pref_1 \dots \pref_{i'} \dots \pref_n)$ such that:
 	\[
-		\votingrule{Condorcet}(P) = a, \quad \votingrule{Condorcet}(P') = b, \quad \text{and } a \neq b
+		\votingrule{Condorcet}(\strictProfile) = a, \quad \votingrule{Condorcet}(\strictProfile') = b, \quad \text{and } a \neq b
 	\]
-	Assume that $i$ has $b \pref_i a$, then under $\strictProfile$ a strict majority $N' \subseteq N$ have $a \pref b$, but $i \notin N'$, thus in $P'$, $N'$ is still a majority preferring $a$ to $b$, but this is in contradiction to $b$ winning in $P'$.
+	Assume that $i$ has $b \pref_i a$, thus strictly prefers $b$ to $a$,
+	then under $\strictProfile$ there is a strict majority $C \subseteq N$
+	who have $a \pref b$, but $i \notin C$, thus in $\strictProfile'$, $C$
+	is still a majority preferring $a$ to $b$, making $a$ the Condorcet
+	winner in $\strictProfile'$, this is in contradiction to $b$ winning
+	in $\strictProfile'$.
 \end{proofc}
 
 This result is strengthened by \citet{campbellNonmonotonicityDoesNot2002,campbellCorrectionStrategyproofnessCharacterization2016}, showing that for an odd number of candidates, \(f_{\text{Condorcet}}\) is the only voting rule over \(\domain{Condorcet}\) that is Strategyproof, Surjective and Non-dictatorial.
@@ -149,10 +160,10 @@ These features allow us to be more precise when we talk about a deliberative dem
 Consensus, sometimes referred to as substantive agreement, then seems like a
 natural goal for deliberation. \citet{elsterMarketForumThree2002} argues that
 this is not only the goal, but through unanimous agreement this process
-completely replaces voting, thereby circumventing Arrow's impossibility
-theorem: ``Or rather, there would not be any need for an aggregation mechanism,
+completely replaces voting, thereby circumventing social choice's classic impossibility
+theorems: ``Or rather, there would not be any need for an aggregation mechanism,
 since a rational discussion would tend to produce unanimous preferences.'' (p.
-112). Though it would be desirable to circumvent Arrow's impossibility theorem,
+112). Though it would be desirable to circumvent these negative results,
 in practice people, even after deliberation, might not and indeed often do not
 come to full substantive agreement. \citet{listTwoConceptsAgreement2002}
 instead proposes another perspective  on deliberation based on Meta-Agreement

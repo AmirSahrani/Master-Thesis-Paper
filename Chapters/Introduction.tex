@@ -3,75 +3,74 @@
 \label{Introduction}
 \lhead{\emph{Introduction}} % Set the left side page header to "Symbols"
 
-Many Democracies suffer from polarization and misinformation, leading to a
-general dissatisfaction with the process under voting populations. As a result
-of this polarization and misinformation, voters get more extreme opinion, but
-also more skewed views of the other end of the spectrum. As a result any
-elections not only have the difficult task of electing candidates that please
-as many people as possible, they have to do this while people have different
-idea's about the problems and candidates in the first place.
+``Vaccines are deadly'' and ``nuclear energy is dangerous'' are two examples of
+claims that run counter to expert consensus, despite experts overwhelmingly
+vouching for both their safety and efficacy. Many democracies suffer this kind
+of misinformation, leading to a general dissatisfaction among the electorate.
+Misinformation not only pushes voters more extreme opinions, but skews their
+views of fellow citizens. Elections face a dual challenge, not only carrying
+out the task of electing broadly appealing candidates, but doing this in the
+context where people have drastically differing opinions on the nature of the
+problems, their possibly solutions and the roles of the candidates.
 
 For democracy to function effectively, voters need a shared foundation of
-understanding, what we term a ``shared reality.'' This shared reality consists
-of commonly accepted facts and causal relationships that allow meaningful
-debate about policy trade-offs. For example, most economists agree that raising
-minimum wages typically increases costs for businesses, which may lead to
-higher consumer prices. When voters share this understanding, they can engage
-in productive disagreement about whether wage increases are worth the potential
-price increases. However, when some voters believe wage increases lead to
-increased prices while others believe these to be unrelated, an election
-seemingly about purchasing power policies becomes an inaccurate measure of
-people's true intentions.
+understanding --- a ``shared reality.'' This consists of commonly accepted
+facts and causal relationships allowing meaningful debate about values and
+priorities. For example, while nuclear energy is considered safe by experts, it
+comes at high initial cost, and long construction times.
+Renewable sources such as solar and wind, by contrast, can be scaled up quickly but provide less
+consistent energy output. When voters share this understanding,
+they can engage in productive disagreement about whether the time and money
+investments for nuclear are worth the consistent energy production. However,
+when some voters believe nuclear to be unsafe, an election seemingly about the
+trade of between nuclear and solar becomes a referendum on the perceived safety
+of nuclear energy.
 
-Historically, people's understanding of the world came primarily from personal
-networks, family, friends, and colleagues who shared similar experiences and
-information sources. Increasingly, however, algorithmic curation shapes
-individual worldviews. This creates a fundamental problem: because algorithms
+Traditionally, people's understanding of the world was shaped by family, friends,
+and legacy media. These sources tend to reinforce shared viewpoints, friends
+and family often consumed similar media and held similar beliefs, while
+newspapers and broadcasters curated a common public narrative --- even if this narrative is not entirely factually accurate. Increasingly, however, algorithmic curation
+shapes individual worldviews creating a fundamental problem: because algorithms
 tailor content to individual preferences, each person may encounter a unique
-set of claims about how the world works, leading to fragmented understandings
-of reality.
+set of claims about the world, leading to fragmented understandings of reality.
 
-As a result of fragmented world views, what was once a clear problem can become
-messy with alternate unrelated problems. As a corollary to this, during
-elections people might be voting in favor of some outcome for different, and
-possibly opposing reasons. For example voting for some candidate thinking they
-will lower grocery prices while also increasing the minimum wage, which, in
-general are opposing forces. We later formalize this notion of a ``reason''
+This fragmentation creates a problem for collective decision-making. Voters
+might be supporting the same candidate for fundamentally different, and
+possibly opposing, reasons. We formalize this notion of a ``reason''
 through the concept of the \textit{Issue Dimension}
 \cite{listTwoConceptsAgreement2002}, when people have a common \textit{Issue
-	Dimension}, all their differences in opinion on outcomes can be explained
-through these dimensions. In the case of higher wages v.s. lower prices, for
-example, a difference in opinion could be explained as favoring higher wages
-as general costs will rise proportionally less.
+	Dimension}, their disagreement over outcomes can be explained
+through different trade-off along these dimensions.
 
-From a social choice perspective, having shared issue dimensions can be very beneficial, especially if
-in the case of a singular dimension. In this special case, we
-might get ``single-peaked'' preferences, . In \Cref{Literature} we explain what
-this means exactly, and why it is desirable. For now, it
-suffices to note that they allow for elections mechanisms which encourage
-voters to be honest about their preferences. We explain what we mean exactly by
-an election mechanism in \Cref{chap: preliminaries}, but intuitively it is
-simply a way to pick a winner from a set of preferences.
+From the perspective of social choice, shared issue dimensions can be
+beneficial. In particular if the problem can be reduced to a singular shared
+issue dimension,  we might get ``single-peaked'' preferences, a special
+structure in the preferences of voters.  In \Cref{Literature} we define this
+formally, Informally however, single-peaked preferences allow for elections mechanisms
+that encourage voters to report their preferences honestly. We elaborate on
+what we mean by an election mechanism in \Cref{chap: preliminaries}, but
+intuitively, it is a procedure for aggregating individual preferences into a
+collective choice.
 
-To increase the single-peakedness of voter preferences,
-\citet{listDeliberationSinglePeakednessPossibility2013} propose deliberation
-as a potential solution. Building on List's \cite{listTwoConceptsAgreement2002}
-concept of meta-agreement, the idea that voters must agree on which issue
-dimensions matter and where candidates stand on these dimensions. List et al. argue
-that deliberation can help voters develop more coherent preference structures.
-This is particularly valuable for low-salience issues that receive little
-public attention, where deliberation can both increase voter knowledge and
-produce preference profiles closer to single-peaked
+To promote the single-peakedness of public preferences,
+\citet{listDeliberationSinglePeakednessPossibility2013} propose deliberation as
+a potential strategy. Building on List's earlier concept of
+\emph{meta-agreement} \cite{listTwoConceptsAgreement2002}, being the idea that
+voters agree on which issue dimensions matter and where candidates stand
+on these dimensions. List et al. argue that deliberation can help voters
+develop more coherent preference structures. Deliberation, then, helps
+restructure voters' opinions in a more coherent way, particularly on
+low-salience issues that receive little media coverage.
 
-Given deliberation's potential to lead to this meta-agreement and possibly to
-nicely structured preferences, we think it important to understand
-deliberation more deeply.  As in-silico experiments become more important parts
-of socio-political modeling, we choose a computational approach to
-understanding deliberation. Specifically, we adapt the DeGroot model
-\cite{degrootReachingConsensus1974} to fit deliberation on voter opinions and
-candidate's positions.
+Given deliberation's potential to generate meta-agreement and more structured
+preferences, we aim to understand deliberation more rigoriously.  With the rise
+of in-silico experiments in computational social science, we take a
+computational approach to understanding deliberation. Specifically, we adapt
+the classic DeGroot model of opinion dynamics
+\cite{degrootReachingConsensus1974} to the context of political deliberation,
+both on voter opinions and perceived candidate positions.
 
-To this end, in \Cref{Literature} we present relevant work on
+To this end, in \Cref{Literature} we review work on
 single-peakedness, deliberation, and experiments, as well as presenting a
 deliberation model by \citet{radDeliberationSinglePeakednessCoherent2021}. In
 \Cref{theory} we formally define some properties of deliberation, and prove
@@ -83,5 +82,5 @@ in the applicability of  this model in the form of a negative computational
 complexity result, we show NP-completeness of mapping voter opinions to trust
 matrices. In \Cref{Methods} we explain the experimental setup we use to test
 our model, the result of which we present in \Cref{experiment_results}.
-Finally, we reflect on the results and methods in \Cref{Discussion}.
+Finally, we reflect on the results, and broader implications of this thesis in \Cref{Discussion}.
 

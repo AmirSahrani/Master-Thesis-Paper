@@ -4,9 +4,17 @@
 
 \lhead{\emph{Literature Review}} % Set the left side page header to "Symbols"
 
-In this chapter we explore previous results, as well as introducing relevant concepts.
 
 
+In this chapter we review the theoretical foundations that inform our
+computational approach to modeling deliberation. We examine three
+interconnected areas: domain restrictions in social choice theory (particularly
+single-peaked preferences and hereditary domains), the literature on
+deliberation and meta-agreement theory, and computational models of
+deliberative processes. Together, these establish both the theoretical
+motivation for understanding how deliberation can produce well-structured
+preference domains and the methodological foundation for our computational
+modeling approach.
 
 
 \section{Condorcet Domain}
@@ -19,7 +27,7 @@ Condorcet winner. Then $\votingrule{Condorcet}$ is strategyproof over
 $\domain{Condorcet}$ \citep{elkindPreferenceRestrictionsComputational2022}.
 
 \begin{proofc}{(\citet{elkindPreferenceRestrictionsComputational2022})}.
-	Assume, for the sake of a contradiction, we have profiles $\strictProfile = (\pref_1 \dots \pref_i \dots \pref_n)$ and $\strictProfile' = (\pref_1 \dots \pref_{i'} \dots \pref_n)$ such that:
+	Assume, for the sake of a contradiction, we have profiles $\strictProfile = (\pref_1, \dots, \pref_i, \dots, \pref_n)$ and $\strictProfile' = (\pref_1, \dots, \pref_{i'}, \dots, \pref_n)$ such that:
 	\[
 		\votingrule{Condorcet}(\strictProfile) = a, \quad \votingrule{Condorcet}(\strictProfile') = b, \quad \text{and } a \neq b
 	\]
@@ -31,9 +39,16 @@ $\domain{Condorcet}$ \citep{elkindPreferenceRestrictionsComputational2022}.
 	in $\strictProfile'$.
 \end{proofc}
 
-This result is strengthened by \citet{campbellNonmonotonicityDoesNot2002,campbellCorrectionStrategyproofnessCharacterization2016}, showing that for an odd number of candidates, \(f_{\text{Condorcet}}\) is the only voting rule over \(\domain{Condorcet}\) that is Strategyproof, Surjective and Non-dictatorial.
+This result is strengthened by
+\citet{campbellNonmonotonicityDoesNot2002,campbellCorrectionStrategyproofnessCharacterization2016},
+showing that for an odd number of candidates, \(f_{\text{Condorcet}}\) is the
+only voting rule over \(\domain{Condorcet}\) that is Strategyproof, Surjective
+and Non-dictatorial.
 
-When Surjectivity is strengthened to Neutrality, and Non-dictorship to Anonymity, \linebreak \(f_{\text{Condorcet}}\) is the only Strategyproof voting rule over \(\domain{Condorcet}\) for an odd number of voters \cite{campbellAnonymousNeutralStrategyproof2015}.
+When Surjectivity is strengthened to Neutrality, and Non-dictorship to
+Anonymity, \linebreak \(f_{\text{Condorcet}}\) is the only Strategyproof voting
+rule over \(\domain{Condorcet}\) for an odd number of voters
+\cite{campbellAnonymousNeutralStrategyproof2015}.
 
 \subsection{Hereditary Domains}
 
@@ -75,25 +90,6 @@ A domain not being hereditary means that the nice properties of the domain can b
 	(candidate Deletion). Consider any voter $i$ and their single-peaked vote, if we remove some candidate $x$, to this voter all candidates which voter $i$ preferred to $x$ stay in the same position, while all other candidates move up one rank, thus preserving the order, and single-peakedness.~\checkmark
 \end{proofc}
 
-% A similar notion to single-peaked profiles is that of single caved profiles, which is equivalent, but instead of a voters peak representing their most preferred option, they have a valley, which represents the worst option. Single caved profile are hereditary as well, but for a voting rule on them to be strategy proof, only two possible candidates can be chosen, the left and right most candidates according to $\orderalt$.
-
-% Instead of ordering the candidates, we can imagine instead ordering the voters, such that we have a leftmost and rightmost voter, and all other voters can be placed between them based on their difference. In this case, a profile is single-crossing if, for any candidate $a$, its preference relation to another any candidate $b$ flips at most once when traversing the voters in order $\orderalt$.
-%
-% \begin{definition}{Single-Crossing Profiles \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022})}}{single-crossing}
-% 	A profile $P$ is single-crossing w.r.t. some ordering $\orderalt$, if for any $a,b \in X$, $\{i \in N : a \pref b\}$ and $\{i \in N: b \pref_{i} a\}$ are both intervals over $[n]$. A profile $P$ is single crossing if the votes can be permuted such that it is single crossing w.r.t. some ordering.
-% \end{definition}
-%
-% Similar to single-peaked profiles, the domain of single-crossing profiles, $\domain{SC}$ is also hereditary
-%
-% \begin{proposition}
-% 	$\domain{SC}$ is hereditary
-% \end{proposition}
-%
-% \begin{proofc}
-% 	(Voter Deletion). Deleting a voter preserves the ordering between voters, as such this cannot introduce a new crossing between candidates.~\checkmark
-%
-% 	(candidate Deletion). If we remove an candidate, the voters' rankings of the other candidates does not change, thus preserving single-crossing.~\checkmark
-% \end{proofc}
 
 As the goal is to ensure we find ourselves in nicely structured domains, we
 need some mechanism through which we can ensure this is the case. Deliberation
@@ -319,15 +315,17 @@ as candidates, and a binary choice on each proposition.
 \end{figure}
 
 
-% TODO D_s should be a map from the set of all possible voters with all possible r to the set of all voters
-% TODO also clear up notation, d_s is the distance, D_s notation? this is messy
-Apart from these distances, Rad and Roy define a voter as a tuple of a (weak)
-preference and a bias (towards their current position) \(v = \langle r, b
-\rangle\), with \( b \in \Reals_{[0,1]}\). Finally, a deliberation step \(D_{s}
-: V \times r \to V\), with $V$ being a set of voters and $s$ being one of the
-spaces (KS, DP, CS). A round of deliberation consists of $n$ deliberation
-steps, such that each voter announces their opinion once. We formulate this
-procedure in the following program:
+% TODO D_s should be a map from the set of all possible voters with all
+% possible r to the set of all voters TODO also clear up notation, d_s is the
+% distance, D_s notation? this is messy
+Apart from these distances, Rad and Roy define a voter as a tuple of a linear
+order\footnote{We exclude their analysis of preferences containing ties} and a
+bias \(v = \langle r, b \rangle\), with \( b
+\in \Reals_{[0,1]}\). Finally, a deliberation step \(D_{s} : V \to
+V\), with $V$ being a set of voters and $s$ being one of the spaces (KS, DP,
+CS). A round of deliberation consists of $n$ deliberation steps, such that each
+voter announces their opinion once. We formulate this procedure in the
+following program:
 
 \IncMargin{1em}
 \begin{algorithm}
@@ -348,6 +346,7 @@ procedure in the following program:
 \end{algorithm}
 \DecMargin{1em}
 
+Here $v.r$ is using the ``dot'' operator, extracting the voter's preference.
 The deliberation step $D_s$ then updates all voters such that their new
 preference  minimize the following formula.
 
@@ -358,8 +357,10 @@ preference  minimize the following formula.
 	}
 	\label{eq:deliberation_step_formula}
 \end{equation}
+
 Where $r_i, r_j$ are the voters and the announced preference, respectively, and
-$r'$ is the voters new preference.
+$r'$ is the voters new preference, $d_s$ is the distance between two profiles
+under distance space $s$.
 
 We present a replication and extension of their work \Cref{experiment_results}.
 Furthermore, we present novel (negative) results based on this model in
@@ -378,17 +379,17 @@ defense. To address this we formulate a new model in \Cref{theory}.
 \subsection{Deliberative experiments}
 
 We now present some empirical studies showcasing the effects of deliberation in
-voting populations, focusing on \textcolor{red}{some meta analysis of
-	deliberative interventions}, and the \textsc{America In One Room} experiment.
+voting populations, focusing on deliberative policymaking, and the
+\textsc{America In One Room} experiment.
 
-\subsubsection{Meta-Analysis}
+\subsubsection{Deliberative Policymaking}
 
 \subsubsection{America in One Room}\label{sub:americainonroom} \citet{fishkinCanDeliberationHave2024}
 conducted a large scale experiment, during which they brought together American
 Voting-eligible citizens to deliberate about policies leading up to the 2020
 presidential elections. They conducted a questionnaire on these people
 measuring the knowledge of the current state of politics, the opinions on 4
-issue domains (Climate, Migration, Economy, Health Care, Foreign Policy), and
+issue domains (Climate, Migration, The Economy, Health Care, Foreign Policy), and
 their political affiliation (E.g. Who they would likely vote for, whether they
 considered themselves more liberal or conservative). This questionnaire was
 also conducted to a control group of people who did not participate in the

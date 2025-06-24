@@ -92,6 +92,14 @@ $\pref_i'$, such that  $\strictProfile' = (\pref_{0}, \dots,
 	\pref_{i}', \dots, \pref_{n})$ and $f(\strictProfile') \pref_i
 	f(\strictProfile)$.
 
+\emph{Axiom of Anonymity.} A SCF $f$ is anonimous if, when the labels of voters
+are shuffled, the winning alternative stays the same.
+
+\emph{Axiom of Neutrality.} A SCF $f$ is neutral if, when the labels of the
+alternatives are shuffled, the winning alternative in the shuffled election, is
+the alternative that has the ranks of the winning alternative in the original
+election.
+
 There are many more axioms on could reasonably argue for, however, these are
 enough to lead to the main impossibility results this works focuses on.
 
@@ -161,7 +169,7 @@ Fortunately, there seem to be ways around these negative results. Mainly
 through the assumption that there is some structure in the preferences of
 voters.
 
-\section{Domain Restrictions} \label{sec: Domain-res}
+\section{Domain Restrictions} \label{sec:Domain-res}
 
 Negative results often are a result of a small set of ill-behaved profiles. If there is
 reason to conclude these profiles are impossible in the election at hand, there
@@ -215,12 +223,42 @@ example, if the alternatives represent the minimum wage, where each cent-value
 constitutes an alternative. Imagine a voter thinks the minimum wage should  be
 some value $x$ and prefers alternatives that are closer to this value $x$. This
 results in each voter having a ``peak'' value, and all other values are ranked
-in terms of their distance to $x$. FIGURE [XXX] shows a picture of what this
+in terms of their distance to $x$. \Cref{fig:singlepeaked_vis} shows what this
 might look like for 3 voters. More generally, we call a profile single-peaked
 if there exists an axis on which we can place the alternatives such that all
 voters' preferences have a single peak on this axis. \Cref{def:single-peaked}
 makes this notion formal.
 
+\begin{figure}[ht]
+	\centering
+	\begin{subfigure}[b]{0.3\textwidth}
+		\centering
+		\begin{subfigure}[b]{0.3\textwidth}
+			\centering
+			\begin{tabular}{ccc}
+				\toprule
+				$1$ & $2$ & $3$ \\
+				\midrule
+				$c$ & $d$ & $b$ \\
+				$d$ & $c$ & $c$ \\
+				$e$ & $b$ & $d$ \\
+				$b$ & $a$ & $a$ \\
+				$a$ & $e$ & $e$ \\
+				\bottomrule
+			\end{tabular}
+			\vspace{2.8em}
+		\end{subfigure}
+		\caption{Preference profile}\label{tab:corresponding_profile}
+	\end{subfigure}
+	\hfill
+	\begin{subfigure}[b]{0.65\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Figures/single_peak_vis.png}
+		\caption{Single-peaked profile visualization}\label{fig:singlepeaked_vis}
+	\end{subfigure}
+	\caption{An election with three voters and five alternatives. Each voter has a unique peak, and the profile is single-peaked with respect to a shared axis.}
+	\label{fig:singlepeaked_full}
+\end{figure}
 \begin{definition}{Single-Peaked Profiles}{single-peaked}
 	A profile $\strictProfile$ is single-peaked, if given some ordering $\orderalt$ over the alternatives, it holds that for all voters $i$, and all $a, b, c \in \alternatives$, if $a \orderalt b \orderalt c$, then either $a \pref_i b$ or $c \pref_i b$, but never both.
 \end{definition}

@@ -52,10 +52,16 @@ rule over \(\domain{Condorcet}\) for an odd number of voters
 
 \subsection{Hereditary Domains}
 
-Though this result is positive, we might wonder how stable it is, for this we need to define a notion of stability. On natural way to think about it is as follows: suppose one of the candidates or voters drops out, do we keep the nice structure of the domain? If this is true we call a domain \emph{Hereditary}.
+Though this result is positive, we might wonder how stable it is, for this we
+need to define a notion of stability. On natural way to think about it is as
+follows: suppose one of the candidates or voters drops out, do we keep the nice
+structure of the domain? If this is true we consider the domain stable and call
+it \emph{Hereditary}.
 
 \begin{definition}{Hereditary \textnormal{(\citet{elkindPreferenceRestrictionsComputational2022})}}{dom-hereditary}
-	A domain restriction onto $\domain{ }$ is \emph{hereditary} if, for every profile $P \in \domain{ }$, and every profile $P'$, that can be obtained by deleting voters and candidates from $P$, $P'$ is also in $\domain{ }$
+	A domain $\domain{ }$ is called \emph{hereditary} if for
+	every profile $\strictProfile \in \domain{ }$, and every subprofile $\strictProfile'$
+	obtained by deleting voters and candidates from $\strictProfile$, it holds that $\strictProfile' \in \domain{ }$.
 \end{definition}
 
 $\domain{Condorcet}$ is not hereditary, this is easy to see through an example:
@@ -77,7 +83,15 @@ $\domain{Condorcet}$ is not hereditary, this is easy to see through an example:
 	\end{minipage}
 \end{example}
 
-A domain not being hereditary means that the nice properties of the domain can be unstable, as the number of voters and candidates might not be known or could be manipulated. Instead, we might want to look at hereditary domains. We present the single-peaked domain, will also be the main focus of this thesis. This is the domain of all single-peaked profiles.
+If a domain fails to be hereditary, designing an election with the domain is
+mind become hard. In the case of $\domain{Condorcet}$ it might be reasonable to
+make use of a rule such as Black's rule
+\cite{blackRationaleGroupDecisionmaking1948}. Which uses the Condorcet rule
+only if there is a Condorcet winner and the Borda rule otherwise, this however
+is not a strategyproof voting rule in general. Instead, we might want to look
+at hereditary strategyproof domains. We present the single-peaked domain, will
+also be the main focus of this thesis. This is the domain of all single-peaked
+profiles. We first proceed to show that this domain indeed is hereditary.
 
 
 \begin{proposition}{\textnormal{(\citet{elkindPreferenceRestrictionsComputational2022}).}}
@@ -87,14 +101,17 @@ A domain not being hereditary means that the nice properties of the domain can b
 \begin{proofc}
 	(Voter Deletion). If we remove a voter, this does not affect the other voters, thus the profile is still single-peaked.~\checkmark
 
-	(candidate Deletion). Consider any voter $i$ and their single-peaked vote, if we remove some candidate $x$, to this voter all candidates which voter $i$ preferred to $x$ stay in the same position, while all other candidates move up one rank, thus preserving the order, and single-peakedness.~\checkmark
+	(candidate Deletion). Consider any voter $i$ and their single-peaked
+	vote, if we remove some candidate $x$, to this voter all candidates which they preferred to $x$ stay in the same position, while all other candidates move
+	up one rank, thus preserving the order, and thus single-peakedness.~\checkmark
 \end{proofc}
 
 
-As the goal is to ensure we find ourselves in nicely structured domains, we
-need some mechanism through which we can ensure this is the case. Deliberation
-is one possible pathway towards this. We will now provide a brief overview of the
-literature surrounding deliberation.
+We have demonstrated that $\domain{SP}$ possesses the desired properties.
+However, we currently lack a method to ensure that we operate within
+$\domain{SP}$. Deliberation may provide a mechanism to ensure that preference
+profiles move toward single-peakedness. We will now provide a concise
+overview of the literature on deliberation.
 
 \section{The History of Deliberation and Meta-Agreement}
 
@@ -108,17 +125,23 @@ Meta-Agreement.
 
 \subsection{Deliberation}
 
-Though deliberation is intuitively familiar, namely
+Deliberation, though intuitively familiar as
 the process of multiple people talking through a problem with the goal of
 coming to an agreement, compromise or solution. Providing a definition that is
 both clear and consistent with the literature in Political Science, Philosophy
 and Social choice is difficult.  As this intuition leaves some of the reasons for
 and goals of deliberation, as stated in the literature, unmentioned.
 
-
-% !TODO Explain how deliberative democracy is even related to deliberation
-
-\citet{freemanDeliberativeDemocracySympathetic2000} gives an overview of deliberative democracy, in which he shares the intuitive idea that a deliberative democracy contains open discussion, open legislative deliberation and a pursuit of the common good. He also notes that there is no common agreement on the central features of a deliberative democracy, one account is that of deliberative democracy simply involving discussion among the public before voting. Another similar account is that this voting must not only be preceded by deliberation, but also general communication, all of which intended to change people's preferences. He further proceeds to give a more detailed conception of deliberative democracy, according to which a deliberative democracy is one in which political agents or their representatives
+Instead of defining deliberation in full generality, we instead focus on
+deliberation in a political
+sense.\citet{freemanDeliberativeDemocracySympathetic2000} gives an overview of
+deliberative democracy, he notes that there is no settled definition of
+deliberative democracy, however, one account is that of public discussions
+before voting. Furthermore, he shares the intuitive idea that a deliberative
+democracy contains open legislative deliberation and a pursuit of the common
+good. He further proceeds to give a more detailed conception of deliberative
+democracy, according to which a deliberative democracy is one in which
+political agents or their representatives:
 
 \begin{enumerate}
 	\label{list:deliberative-democracy}
@@ -135,20 +158,34 @@ and goals of deliberation, as stated in the literature, unmentioned.
 	\item  Agree that their common interest lies primarily in freedom, independence and equal status as citizens.
 \end{enumerate}
 
-\textcolor{OrangeRed}{Firstly, why suddenly talk about deliberative democracy? how is this different from deliberation. Secondly, does this imply that this is already the case? Or should we aim to achieve a deliberative democracy?}
-
-These features allow us to be more precise when we talk about a deliberative democracy, and in turn be more careful about what deliberation must entail. \citet{cohenDeliberationDemocraticLegimitimacy2002} further argues that deliberation is needed for democratic legitimacy. By this he means that without deliberation, a democracy is simply the will of the majority, but since majority rule is unstable, it is simply a reflection of the particular institutional constrains at the time. He further goes on to describe the \emph{ideal deliberative procedure} as follows
-
-\textcolor{OrangeRed}{What does it mean to be unstable in this context? Elaborate on "particular institutional constraints"}
+These features allow us to be more precise when we talk about a deliberative
+democracy, and in turn be more careful about what deliberation must entail.
+\citet{cohenDeliberationDemocraticLegimitimacy2002} further argues that
+deliberation is needed for democratic legitimacy. By this he means that without
+deliberation, a democracy is simply the will of the majority, but since
+majority rule is unstable, as shown through the Condorcet cycles, it is simply
+a reflection of the particular institutional constrains at the time, which end
+up dictating where the cycle breaks. He further goes on to describe the
+\emph{ideal deliberative procedure} as follows
 
 \begin{enumerate}
 	\label{list:ideal-deliberation}
 	\setlength\itemsep{1px}
 	\item  Ideal deliberation is \emph{free}, participants regard themselves as only bound by the results of the deliberation, and the preconditions thereof. Participants act in accordance with the decision made through deliberation, and it being agreed on is sufficient reason to do so.
-	\item  Ideal deliberation is \emph{reasoned}, parties are required to state their reasons for advancing proposals.
-	\item  In ideal deliberation, parties are \emph{equal}, both formally and substantively. There are no rules that single individuals out, and existing distributions of power to no lend a party the opportunity to contribute to deliberation.
-	\item  Ideal deliberation aims to arrive at \emph{consensus}, which can be rationally defended.
+	\item  Ideal deliberation is \emph{reasoned}, participants must
+	      state their reasons for supporting proposals.
+	\item  In ideal deliberation, parties are \emph{equal}, both formally
+	      and substantively. There are no rules that single individuals
+	      out, and existing distributions of power to no lend a party the
+	      opportunity to contribute to deliberation.
+	\item  Ideal deliberation aims to arrive at rationally defensible \emph{consensus}.
 \end{enumerate}
+
+From both Cohen's and Freeman's account there is clear overlap, with Freeman
+formulating the necessary preconditions for participants to engage in ideal
+deliberation. Both Cohen and Freeman  require freedom in a broad sense. Freedom
+to have a personal conception of the good, and to acknowledge and act in
+accordance to a decision that was made through deliberation.
 
 \subsection{Meta-Agreement}
 \label{subsection:Meta-agreement}
@@ -179,18 +216,18 @@ According to \citet{listTwoConceptsAgreement2002} there are three hypotheses tha
 	\setlength\itemsep{1px}
 	\item [D1] Deliberation leads people to discover a single \emph{issue}-dimension
 	\item [D2] Deliberation lets people place all possible candidates in this \emph{issue}-dimension
-	\item [D3] After this deliberation, people update their preferences by picking
-	      a preferred outcome, and all other rankings are based on the distance to this outcome in the \emph{issue}-dimension
+	\item [D3] After deliberation, people update their preferences picking
+	      a preferred outcome, and ranking all other candidates based on the distance to this outcome in the \emph{issue}-dimension
 \end{enumerate}
 
-All these are necessary conditions for \emph{meta-agreement}, from this is it
-also clear to see that, given that there is exactly 1 \emph{issue}-dimension,
-single-peaked profiles are, by definition, a direct consequence. This is the
-main reason meta-agreement is desirable, as it lets us circumvent the
-Gibbard-Satterthwaite theorem \citep{gibbardManipulationVotingSchemes1973,
-	satterthwaiteStrategyproofnessArrowsConditions1975} through restricting the
-domain of preference profiles to the single-peaked domain $\domain{SP}$
-
+These are necessary conditions for \emph{meta-agreement}, from this is it also
+clear to see that, given that there is exactly 1 \emph{issue}-dimension,
+single-peaked profiles are, by definition, a direct consequence. This property
+of inducing single-peakedness makes meta-agreement particularly desirable, as
+it enables circumvention of the Gibbard–Satterthwaite theorem
+\citep{gibbardManipulationVotingSchemes1973,
+	satterthwaiteStrategyproofnessArrowsConditions1975} through
+domain restriction to $\domain{SP}$.
 
 \citet{listDeliberationSinglePeakednessPossibility2013} provide empirical
 evidence for this theory of deliberation, showing deliberation increases
@@ -215,58 +252,58 @@ there is not much explanatory power to these claims. Little is known about to
 process be which voters signal the issue dimensions, nor how they decide on
 which ones to present.
 
-\textcolor{OrangeRed}{TODO Read the paper again}
 Furthermore,~\citet{ottonelliElusiveNotionMetaagreement2013} show
-meta-agreement to be a stronger requirement than it may seem at a first glance.
-Firstly for (D1) to hold, the \emph{issue}-dimension must hold some semantic
-meaning, as it is unclear how people can exchange conceptualization
-of the problem otherwise. Furthermore, the issues must consist of 2 semantic
-issues, with only 1 issue voters simply reach substantive
+single-peakedness from meta-agreement to be a stronger requirement than it may
+seem at a first glance. Firstly for (D1) to hold, the \emph{issue}-dimension
+must hold some semantic meaning, as it is unclear how people can exchange
+conceptualization of the problem otherwise. Furthermore, the issues must
+consist of 2 semantic issues, with only 1 issue voters simply reach substantive
 agreement. A further restriction on these two dimensions is that they need to
 be opposite, with opposite justifications. If this is not the case, a voter can
-agree with both justifications, and thereby introduce a new dimension
+agree with both justifications, and thereby introduce a new implicit dimension
 ``balance'', which then violates the conditions under which single-peaked
 profiles guarantee the existence of fair, strategyproof voting rules. D2
 requires that all voters share the exact same semantic understanding of the
-dimension, and the outcome associated with each candidate. Finally D3
-requires D1 and D2 to have happened before in order. D3 seems to be the easiest
-hypothesis to satisfy.
+dimension, and the outcome associated with each candidate. Finally, D3 requires
+D1 and D2 to have happened before in order, indeed this is the weakest of the
+three requirements.
 
 Thus, meta-agreement as a means for single-peaked profiles is still quite
 restrictive, needing multiple forms of unanimity, and only applying to problems
-with certain properties. Nonetheless,  meta-agreement could still provide
-explanatory power to deliberation.
+with certain properties. Nonetheless,  meta-agreement agreement might still
+play a crucial part in a deliberative process. In the next section we will
+look into a specific computational model of deliberation.
 
-\section{Models of Deliberation} \label{section:related_work} % work on this title
-\citet{radDeliberationSinglePeakednessCoherent2021} model deliberation and its
-effect on single-peakedness, though they argue single-plateauedness is a more
-accurate term. To this end, they model deliberation as the process of all
-voters announcing their preferences, and all other voters updating their
-current preference towards that of the announced preference, in doing so they
-might have a bias towards their own preference, as such they try to minimize
-the distance between their current preference and the announced one. This
-process repeats until all voters have announced their opinion once, which
-constitutes one ``round'' of deliberation. The preference a voter adopts when
-updating must lie between their current profile and the announced profile,
-which profiles are considered to be ``between'' is defined by the distance
-metric used. They considered three distance metrics, Kemeny-Snell
-(KS)~\citep{kemeny1962preference}, Duddy-Piggins
+
+\section{Models of Deliberation} \label{section:related_work} % work on this
+title \citet{radDeliberationSinglePeakednessCoherent2021} model deliberation
+and its effect on single-peakedness. To this end, they model deliberation as
+the process of all voters announcing their preferences, and all other voters
+updating their current preference towards that of the announced preference, in
+doing so they have a bias towards their own preference, as such they try to
+update their preference by minimizing the distance between their current
+preference and the announced one. This process repeats until all voters have
+announced their opinion once, which constitutes one ``round'' of deliberation.
+The preference a voter adopts when updating must lie between their current
+profile and the announced profile, which profiles are considered to be
+``between'' is defined by the distance metric used. They considered three
+distance metrics, Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins
 (DP)~\citep{duddyMeasureDistanceJudgment2012}, and Cook-Seiford
 (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the
 judgement set resulting from the voters preferences, which is contains, for
-each pair of candidates $a,b$, where $a \neq b$, a proposition $(a \pref b)$ or $\neg (a
-	\pref b)$. The KS distance is then defined as the number of binary swaps a
-judgement set needs to undergo before it becomes the target judgement set, an
-example for such a swap would be going from $(a \pref b)$ to $\neg (a \pref
-	b)$. The DP distance is defined on the graph of judgement sets, where 2 sets
-share an edge if there is no judgement set between them. Since KS and DP share
-their notion of betweenness, we introduce their betweenness as follows.
+each pair of candidates $a,b$, where $a \neq b$, a proposition $(a \pref b)$ or
+$\neg (a \pref b)$. The KS distance is then defined as the number of binary
+swaps a judgement set needs to undergo before it becomes the target judgement
+set, an example for such a swap would be going from $(a \pref b)$ to $\neg (a
+	\pref b)$. The DP distance is defined on the graph of judgement sets, where 2
+sets share an edge if there is no judgement set between them. Since KS and DP
+share their notion of betweenness, we define their betweenness as follows.
 
 \begin{definition}{J-Betweenness}{def:j-between}
 
 	A judgement set $J_i$ is between preferences $J_j$ and $J_k$ if for
-	every $x,y \in \alternatives$, $J_i$ either agrees with the proposition
-	in $J_j$ or $J_k$.
+	every $x,y \in \alternatives$, the proposition over $x$ and $y$ in
+	$J_i$ either agrees with the proposition over $x$ and $y$ in $J_j$ or $J_k$.
 
 \end{definition}
 
@@ -275,34 +312,35 @@ updating their original opinion in which they have $(a \pref b)$ to a new
 opinion where $\neg (a\pref b)$ only if the announced opinion contains $\neg (a
 	\pref b)$.
 
-\Cref{figure:DPDistance} shows a graph used for the DP distance in the case of
-3 candidates, for simplicity the associated preferences are used to label the
-judgement sets.
-
 
 The CS distance is simpler and is simply defined as the number of positions two
 voters disagree on, and a preference is between two others if for each position
 it agrees with one of the two preferences.
 
 Each distance has different trade-offs, CS is the simplest, but might
-exaggerate the distance when there are many candidates, for example if 2
-voters agree on the relative ranking of all but 1 candidate, which one voter
-happens to rank first, thereby shifting the opinion of voter 2 right by one,
-the CS distance would conclude that these voters are in full disagreement,
-while reasonably one could conclude their opinions do not differ much. The KS
-distance, using judgement sets instead of raw profiles captures this more
-effectively, while still being relatively easy to compute, but in cases of more
-disagreement, it is likely to over count the distance, since the binary changes
-do not capture logical necessities. For example, swapping $( a \pref b)$ to
-$\neg (a \pref b)$ must result in $(b \pref a)$ becoming true (in the case of
-strict preferences), thus one might reasonably conclude this should only count
-as 1 step. DP improves upon this, but in doing so becomes much harder to
+exaggerate the distance when there are many candidates, for example if 2 voters
+agree on the relative ranking of all but 1 candidate, which one voter happens
+to rank first, thereby shifting the opinion of voter 2 right by one, the CS
+distance would conclude that these voters are in full disagreement, while
+reasonably one could conclude their opinions do not differ much. The KS
+distance, using judgement sets instead of raw profiles, captures this more
+effectively, while still being relatively easy to compute, but in case of many
+disagreements, it is likely to over count the distance, since the binary
+changes do not capture logical necessities. For example, swapping $( a \pref
+	b)$ to $\neg (a \pref b)$ must result in $(b \pref a)$ becoming true (in the
+case of strict preferences), thus one might reasonably conclude this should
+only count as 1 step. DP improves upon this, \Cref{figure:DPDistance} shows a
+graph used for the DP distance in the case of 3 candidates. The graph shows the
+benefit of using the DP distance, as the edges in graphs automatically include
+logical consequences that the KS distance might not account for. In doing
+capturing logical consequences, the DP distances becomes much harder to
 compute, mainly through the cost of constructing the full graph of judgement
-sets, which grows in $f_n = 1 + \sum_{j=1}^{n-1} \binom{n}{j} f_{n-j}$ in the
-number of vertices, where $n$ is the number of candidates~\cite{grossPreferentialArrangements1962}. This can easily be
-verified by noting that the number of judgements sets over $n$ corresponds to
-the number of weak preference rankings over $n$ candidates, which is defined
-as candidates, and a binary choice on each proposition.
+sets, which grows in $f_m = 1 + \sum_{j=1}^{m-1} \binom{m}{j} f_{n-j}$ in the
+number of vertices, where $m$ is the number of
+candidates~\cite{grossPreferentialArrangements1962}. This can easily be
+verified by noting that the number of judgements sets over $m$ corresponds to
+the number of weak preference rankings over $m$ candidates, which is defined as
+candidates, and a binary choice on each proposition.
 
 
 
@@ -310,7 +348,9 @@ as candidates, and a binary choice on each proposition.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.65\textwidth]{dpGraph.pdf}
-	\caption{The graph of judgement sets for all preferences over three candidates, brackets indicate ties.}
+	\caption{The graph of judgement sets for all preferences over three
+		candidates, brackets indicate ties. For readability the corresponding
+		preferences are uses as node labels}
 	\label{figure:DPDistance}
 \end{figure}
 
@@ -318,17 +358,19 @@ as candidates, and a binary choice on each proposition.
 % TODO D_s should be a map from the set of all possible voters with all
 % possible r to the set of all voters TODO also clear up notation, d_s is the
 % distance, D_s notation? this is messy
+
 Apart from these distances, Rad and Roy define a voter as a tuple of a linear
 order\footnote{We exclude their analysis of preferences containing ties} and a
-bias \(v = \langle r, b \rangle\), with \( b
-\in \Reals_{[0,1]}\). Finally, a deliberation step \(D_{s} : V \to
-V\), with $V$ being a set of voters and $s$ being one of the spaces (KS, DP,
-CS). A round of deliberation consists of $n$ deliberation steps, such that each
-voter announces their opinion once. We formulate this procedure in the
-following program:
+bias \(v = \langle r, b \rangle\), with \( b \in \Reals_{[0,1]}\). Finally, a
+deliberation step \(D_{s} : V^n \to V^n\), where $V$ is the set of all possible
+voters $ (\setOfStrictProfiles \times \Reals_{[0,1]})^n$ and $s$ being one of
+the spaces (KS, DP, CS). The deliberation step $D_s(V, v.r)$ returns a fully
+updated voter set, where each voter has updated their opinion in response to
+the announced opinion $v.r$. We formulate this procedure in the following
+program:
 
 \IncMargin{1em}
-\begin{algorithm}
+\begin{algorithm}[H]
 	\SetKwInOut{Input}{input}
 	\SetKwInOut{Output}{output}
 
@@ -346,34 +388,35 @@ following program:
 \end{algorithm}
 \DecMargin{1em}
 
-Here $v.r$ is using the ``dot'' operator, extracting the voter's preference.
-The deliberation step $D_s$ then updates all voters such that their new
-preference  minimize the following formula.
+
+Here, we use $v.r$ to denote the preference component of voter $v = \langle r, b \rangle$.
+The deliberation step $D_s(V, v.r)$ returns a new set of voters, where each voter updates
+their opinion based on $v$'s preference $r$, under the influence of the deliberation
+space $s$. Each voter updates their preference to a new profile $r'$ that minimizes the weighted distance between their original preference $r_i$ and the announced preference.
 
 \begin{equation}
-	r =
+
 	\sqrt{
-		b d_s(r_i, r')^2 + (1-b)d_s(r_j, r')^2
+		b d_s(r_i, r')^2 + (1-b)d_s(v.r, r')^2
 	}
 	\label{eq:deliberation_step_formula}
 \end{equation}
 
-Where $r_i, r_j$ are the voters and the announced preference, respectively, and
-$r'$ is the voters new preference, $d_s$ is the distance between two profiles
+Where $b$ is this voter's bias, and $d_s$ is the distance between two profiles
 under distance space $s$.
 
 We present a replication and extension of their work \Cref{experiment_results}.
 Furthermore, we present novel (negative) results based on this model in
 \Cref{theory}.
 
-Though this model is simple and captures some communication of preferences, if
-we attempt to use it to model meta-agreement, it seems to be lacking in at
-least two important ways. Firstly, agents do not conceive of anything relating
-to the structure of the problem. They simply announce their preferences, and
-all other listen and update accordingly, thereby moving to some sort of
-substantive agreement. Secondly, the model presupposes that all opinions are
-equally defensible, and that each voter is equally able to formulate this
-defense. To address this we formulate a new model in \Cref{theory}.
+While this model effectively captures preference communication, it falls short
+as a model of meta-agreement in at least two important respects. Firstly,
+agents do not conceive of anything relating to the structure of the problem.
+They simply announce their preferences, and all other listen and update
+accordingly, thereby moving to some sort of substantive agreement. Secondly,
+the model presupposes that all opinions are equally defensible, and that each
+voter is equally able to formulate this defense. To address this we formulate a
+new model in \Cref{theory}.
 
 
 \subsection{Deliberative experiments}

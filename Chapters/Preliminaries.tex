@@ -11,13 +11,13 @@ chapters.
 To model elections, we represent voters by the set $\voters$ consisting of $n$
 voters. The possible outcomes of an election, we represent with the set
 $\alternatives$ consisting of $|A|$ possible outcomes, from now on we will
-refer to the outcomes of an election as alternatives. Each voter represents
-their preference on alternatives through a preference relation $\pref_i$, for
+refer to the outcomes of an election as candidates. Each voter represents
+their preference on candidates through a preference relation $\pref_i$, for
 example if voter i prefers outcome $a$ to outcome $b$, we write $a \pref_i b$.
 When a voter's preference is complete and transitive, i.e. it orders
-all alternatives and $a \pref_i b$ and $b \pref_i c$ implies $a \pref_i c$, we
+all candidates and $a \pref_i b$ and $b \pref_i c$ implies $a \pref_i c$, we
 call this a linear order, denoted by $\Preference_i$. We call the set of possible linear orders over the
-alternatives $\setOfStrictProfiles$. Thus, for an election, all voters report a
+candidates $\setOfStrictProfiles$. Thus, for an election, all voters report a
 (weak) order. The vector consisting of each voter's preference is called a
 profile, denoted by $\strictProfile = (\Preference_0, \dots \Preference_{n}) \in \setOfStrictProfiles^{n}$. Finally, a social choice function (SCF)
 $f$ decides the outcome of the election based on the profile. We discuss the
@@ -25,7 +25,7 @@ specifics of these functions in Section \cref{sec:SCF}.
 
 The last simple definition we will need is the \emph{majority relation}
 \cite{alma990028050780205131}. Given some profile $\strictProfile$ we can
-construct a majority relationship as follows: for each pair of alternatives
+construct a majority relationship as follows: for each pair of candidates
 $x,y$, we ask how many voters strictly prefer $x$ to $y$; if this number of people is
 greater than $\frac{\voters}{2}$ we get $x  \prefmaj y$. If it is exactly equal to
 $\frac{\voters}{2}$ and thus is a tie, we simply write $x \prefeqmaj y$ (breaking tie arbitrarily), otherwise we write $y \prefmaj x$. We proceed with an
@@ -54,12 +54,12 @@ summary of the voter's preferences. In \Cref{preliminaries: negative results}
 we show how a divided population can lead to an inconsistent majority relation.
 
 Using this majority relationship, we can formulate our first notion of when an
-alternative is winning. We call an alternative $x$ a Condorcet winner, if for
+candidate is winning. We call an candidate $x$ a Condorcet winner, if for
 each pairwise comparison between $x$ and $y \in \alternatives_{\setminus
 		\{x\}}$ we have $x \prefmaj y$, for example, in \Cref{ex:maj-rel} $a$ would be
 the Condorcet winner. We can relax the requirement of always winning to never
 losing, i.e. we never have $y \prefmaj x$ but $x prefeqmaj y$ is allowed. The
-alternative that never loses in any pair wise comparison is called the weak
+candidate that never loses in any pair wise comparison is called the weak
 Condorcet winner.
 
 \section{Social Choice Functions} \label{sec:SCF}
@@ -67,24 +67,24 @@ Condorcet winner.
 As mentioned, in order to decide the outcome of an election we need a social choice function
 $f$, this function should map all possible profiles to an outcome, thus $f:
 	\strictProfile \to \alternatives$. A famous and simple example of a SCF is the plurality
-rule, which simply elects the alternative voted into first place most often, i.e. ``most first place votes wins''.
+rule, which simply elects the candidate voted into first place most often, i.e. ``most first place votes wins''.
 
 For elections organizers likely will want to ensure the SCF has certain
-nice properties, such as not favoring an alternative. In social choice these
+nice properties, such as not favoring an candidate. In social choice these
 properties are called axioms, and the procedure of designing a SCF based on
 desired axioms is called the axiomatic approach. The name of the property just
 described is the axiom of neutrality, stating that the SCF should be
-neutral with respect to the alternatives. In this work four main axioms are of
+neutral with respect to the candidates. In this work four main axioms are of
 importance.
 
 \emph{Axiom of Resoluteness.} A SCF $f$ is resolute, if for every profile
 $\strictProfile$ we have $|f(\strictProfile)| = 1$.
 
-\emph{Axiom of Surjectivity.} A SCF $f$ is surjective, if for every alternative
+\emph{Axiom of Surjectivity.} A SCF $f$ is surjective, if for every candidate
 $x$, there exists a profile $\strictProfile$ such that
 $f(\strictProfile) = x$.
 
-\emph{Axiom of Non-Dictatorship.} A SCF $f$ is non-dictatorial, if there does not exist a voter $i$ such that $f(\strictProfile) = \textnormal{top}(i,\strictProfile)$ for all profiles $\strictProfile$, where $\textnormal{top}(i,\strictProfile)$  extracts voter $i$'s most preferred alternative from profile $\strictProfile$.
+\emph{Axiom of Non-Dictatorship.} A SCF $f$ is non-dictatorial, if there does not exist a voter $i$ such that $f(\strictProfile) = \textnormal{top}(i,\strictProfile)$ for all profiles $\strictProfile$, where $\textnormal{top}(i,\strictProfile)$  extracts voter $i$'s most preferred candidate from profile $\strictProfile$.
 
 \emph{Axiom of Strategyproofness.} A SCF $f$ is strategy proof if, for any
 voter $i \in \voters$, $i$ cannot report an untruthful preference
@@ -93,11 +93,11 @@ $\pref_i'$, such that  $\strictProfile' = (\pref_{0}, \dots,
 	f(\strictProfile)$.
 
 \emph{Axiom of Anonymity.} A SCF $f$ is anonimous if, when the labels of voters
-are shuffled, the winning alternative stays the same.
+are shuffled, the winning candidate stays the same.
 
 \emph{Axiom of Neutrality.} A SCF $f$ is neutral if, when the labels of the
-alternatives are shuffled, the winning alternative in the shuffled election, is
-the alternative that has the ranks of the winning alternative in the original
+candidates are shuffled, the winning candidate in the shuffled election, is
+the candidate that has the ranks of the winning candidate in the original
 election.
 
 There are many more axioms on could reasonably argue for, however, these are
@@ -133,10 +133,10 @@ majority relation, as shown in the following example.
 \end{example}
 
 It can be shown that under weak preferences the Condorcet
-cycle can occur anytime there are 3 or more alternatives and voters. While
-under strict preferences this can occur anytime the number of alternatives is
+cycle can occur anytime there are 3 or more candidates and voters. While
+under strict preferences this can occur anytime the number of candidates is
 odd and greater than 3, with the number of voters being a multiple of the
-number of alternatives. As we will show later, this profile can be the cause of
+number of candidates. As we will show later, this profile can be the cause of
 some impossibility results.
 
 One of the major negative results in social choice is that of the Gibbard
@@ -154,7 +154,7 @@ want to pick a singular winner from at least 3 candidates.
 
 Though we do not provide a full proof, the Condorcet cycle offers some
 intuition for why this result holds. Following \Cref{ex:condorcet-cycle},
-suppose we have a social choice function (SCF) $f$ that elects alternative $a$.
+suppose we have a social choice function (SCF) $f$ that elects candidate $a$.
 Voter 1 is very happy with this outcome, but voters 2 and 3 would prefer $c$
 instead. Voter 2 could then misreport their preferences by swapping $c$ and
 $b$, thereby causing $c$ to become the Condorcet winner.
@@ -180,52 +180,52 @@ this we use the definition by
 
 \begin{definition}{Domain}{domain}
 	{
-		Given a set of voters $\voters$, alternatives $A$, and conditions $C$, the domain $\domain{}$ of an election is the set of all profiles $\strictProfile$ such that all conditions $C$ are satisfied.
+		Given a set of voters $\voters$, candidates $A$, and conditions $C$, the domain $\domain{}$ of an election is the set of all profiles $\strictProfile$ such that all conditions $C$ are satisfied.
 	}
 \end{definition}
 
 This definition is different from usual definitions in social choice in so far as it talks about allowed profiles instead of allowed votes.
 
 As stated earlier, the Condorcet profile is one such ill-behaved profile, as
-each alternative, holds a majority preference over another alternative.
+each candidate, holds a majority preference over another candidate.
 Naturally one might consider if this profile might even come up in practice,
 though conceivable, it seems generally unlikely for there to exist a perfect
 split in opinions. Quite naturally one of the first ``solutions'' one might
 consider is when the number of voters is not a multiple of the number of
-alternatives, though this is hardly a useful solution since it only prevents
+candidates, though this is hardly a useful solution since it only prevents
 Condorcet cycles, it is the first example of a domain restriction, we define a
 simple domain that prevents these cycles as follows.
 
 \begin{definition}{$\domain{No-tie}$}{dom-ties}
-	Let $\alternatives$ be the set of alternatives and $\voters$ be the set of voters, of size $n$ such that $n \neq k \cdot |\alternatives|$ for any $k \in \Nat$. We call this domain $\domain{No-tie}$.
+	Let $\alternatives$ be the set of candidates and $\voters$ be the set of voters, of size $n$ such that $n \neq k \cdot |\alternatives|$ for any $k \in \Nat$. We call this domain $\domain{No-tie}$.
 \end{definition}
 
 This allows us to state our first proposition.
 
 \begin{proposition}
-	The plurality rule never returns a $|\alternatives|$-way tie between alternatives when applied to $\domain{No-tie}$
+	The plurality rule never returns a $|\alternatives|$-way tie between candidates when applied to $\domain{No-tie}$
 \end{proposition}
 
 \begin{proofc}
 	Assume, for the sake of contradiction, the plurality in fact does
-	return a $|\alternatives|$-way tie this must mean that all alternatives were ranked first an
+	return a $|\alternatives|$-way tie this must mean that all candidates were ranked first an
 	equal number of times, call this $k$, necessarily then, we need
 	exactly $k \cdot |\alternatives|$ voters, but this leads to a
 	contradiction, as this would no longer be inside $\domain{No-tie}$.
 \end{proofc}
 
-This is a simple result, but it serves as an example on how we can use the properties of the domain to prove things about the election. \citet{gaertnerDomainRestrictions2002} establishes 2 ways in which a domain can be restricted. Firstly we can restrict the domain to a number of voters or alternatives, which is what we did in $\domain{No-tie}$. Secondly, the domain can be restricted to have a certain structure, such as being single-peaked.
+This is a simple result, but it serves as an example on how we can use the properties of the domain to prove things about the election. \citet{gaertnerDomainRestrictions2002} establishes 2 ways in which a domain can be restricted. Firstly we can restrict the domain to a number of voters or candidates, which is what we did in $\domain{No-tie}$. Secondly, the domain can be restricted to have a certain structure, such as being single-peaked.
 
 
-In an election the alternatives might represent an axis, such that a voters
-prefers an alternative more if they are closer to them on the axis. For
-example, if the alternatives represent the minimum wage, where each cent-value
-constitutes an alternative. Imagine a voter thinks the minimum wage should  be
-some value $x$ and prefers alternatives that are closer to this value $x$. This
+In an election the candidates might represent an axis, such that a voters
+prefers an candidate more if they are closer to them on the axis. For
+example, if the candidates represent the minimum wage, where each cent-value
+constitutes an candidate. Imagine a voter thinks the minimum wage should  be
+some value $x$ and prefers candidates that are closer to this value $x$. This
 results in each voter having a ``peak'' value, and all other values are ranked
 in terms of their distance to $x$. \Cref{fig:singlepeaked_vis} shows what this
 might look like for 3 voters. More generally, we call a profile single-peaked
-if there exists an axis on which we can place the alternatives such that all
+if there exists an axis on which we can place the candidates such that all
 voters' preferences have a single peak on this axis. \Cref{def:single-peaked}
 makes this notion formal.
 
@@ -256,11 +256,14 @@ makes this notion formal.
 		\includegraphics[width=\textwidth]{Figures/single_peak_vis.png}
 		\caption{Single-peaked profile visualization}\label{fig:singlepeaked_vis}
 	\end{subfigure}
-	\caption{An election with three voters and five alternatives. Each voter has a unique peak, and the profile is single-peaked with respect to a shared axis.}
+	\caption{An election with three voters and five candidates. Each voter has a unique peak, and the profile is single-peaked with respect to a shared axis.}
 	\label{fig:singlepeaked_full}
 \end{figure}
 \begin{definition}{Single-Peaked Profiles}{single-peaked}
-	A profile $\strictProfile$ is single-peaked, if given some ordering $\orderalt$ over the alternatives, it holds that for all voters $i$, and all $a, b, c \in \alternatives$, if $a \orderalt b \orderalt c$, then either $a \pref_i b$ or $c \pref_i b$, but never both.
+	A profile $\strictProfile$ is single-peaked, if given some ordering
+	$\orderalt$ over the candidates, it holds that for all voters $i$, and
+	all $a, b, c \in \alternatives$, if $a \orderalt b \orderalt c$, then
+	either $a \pref_i b$ or $c \pref_i b$, but never both.
 \end{definition}
 
 This thesis will now focus on measures to ``increase'' single-peakedness of profile.

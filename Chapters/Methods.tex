@@ -2,6 +2,17 @@
 \label{Methods}
 \lhead{\emph{Methods}} % Set the left side page header to "Symbols"
 
+% Num simulations? 5000
+% Which statistics ~ might have some stats to find lowest combination, everything else from senstivity
+% Elaborate a bit on senstivity analysis, also explain what it means before hand
+% clean up structure between "experiments" and "DeGroot extension"
+% Proof read
+% Expand a bit on the replication, explain what it shows
+%
+%
+%
+
+
 We proceed with the methods used to replicate the paper by
 \citet{radDeliberationSinglePeakednessCoherent2021}, as well as the
 experimental setup of our own model. Links to the data used for these
@@ -18,8 +29,11 @@ proportion of cyclic Profiles, the Number of Unique profiles and the proximity
 to single-peakedness by voter deletion (PtS-V), as reported by
 \citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those we
 also measure the number of Condorcet winners. We do not measure the PtS-C, as
-any profile with 2 candidates is single-peaked, thus given the simulation will have 3 candidates
-this metric would be of little added value, as all values would be either 1 or $\frac{2}{3}$.
+any profile with 2 candidates is single-peaked, since the simulation will have
+3 candidates all values would be either 1 or $\frac{2}{3}$, therefore this
+metric would be of little added value. Due to the computational complexity of
+the DP-metric, as well as calculating PtS-V, a larger number of candidates is
+not feasible.
 
 \section{Experiments}
 
@@ -210,32 +224,28 @@ Given this formulation, we define an instance of our model through shaping the m
 
 \end{example}
 
-\subsection{DeGroot Extension}
+\subsection{Outcome measures}
 
-The first experiments we perform concern the DeGroot model. These experiments
-consist of two parts. Firstly we search the parameter space to identify
-parameters that best replicate the data, using Bayesian Parameter Estimation.
-For this we use data from the \textsc{America in One room} experiment as
-described in \Cref{section:related_work}. Though this data does not provide
-full preference rankings over the candidates, it does provide data on voters'
-opinions on 6 different topics of political discussion, such as climate change
-and immigration. Using these opinions, we are able to generate potential
+We split the experiments on the adapted DeGroot model into two parts. Firstly, we aim to asses the validity of the model. For this we use
+data from the \textsc{America in One room} experiment. This data does not provide full preference
+rankings over the candidates, instead provides data on voters' opinions on 6
+different topics of political discussion, such as climate change and
+immigration. Using these opinions, we assess the validity of the model in so far as
+it is able to accurately predict the change in opinion. We run 5000 simulations, randomizing the
+independent variables laid out in \Cref{tab: indepdent_variables}, we exclude \texttt{Candidates}, and \texttt{Candidate Generator} in this section.
+
+we are able to generate potential
 candidates, this is done either by selecting a voter and creating a candidate
 with identical opinions, or by pooling 10 voters\footnote{This is arbitrary,
-	and it might be good to look into this, but in my opinion this is low priority
-	for now. It might also be useful to keep the candidates constant over the
-	course of an experiment}
-and creating an average of their opinions. Using these
-simulated candidates we are able to create preference rankings using the
-$\ell_1$-norm. To model the difference between the deliberation and control
-group we change the topology of the graphs voters in the respective groups are
-situated in. As mentioned before, the deliberation groups will be embedded in a fully connected
-graph, while the control groups will be placed on the graph of academic
-citations in physics \cite{nr}, this graph is small enough to
-allow sampling of the graph for each simulation. Since the original data
-provides group numbers for candidates who participated in the deliberation, we
-also experiment with replicating these groups as opposed to randomly grouping
-voters together.
+	and it might be good to look into this, but in my opinion this is low
+	priority for now. It might also be useful to keep the candidates
+	constant over the course of an experiment} and creating an average of
+their opinions. Using these simulated candidates we are able to create
+preference rankings using the $\ell_1$-norm.  The deliberation groups
+will be embedded in a fully connected graph. Since the original data
+provides group numbers for candidates who participated in the
+deliberation, we also experiment with replicating these groups as
+opposed to randomly grouping voters together.
 
 
 We measure whether the final profiles are cyclic, whether they have a Condorcet
@@ -286,6 +296,7 @@ a slower $\mathcal{O}(|V| \cdot{} |C|^5)$ algorithm
 		\texttt{Self-Knowledge}       & Scale voters' bias according to their knowledge                                                                                                                             \\
 		\bottomrule
 	\end{tabular}
+	\label{tab: indepdent_variables}
 	\caption{The parameters of the DeGroot learning based model, as well as their descriptions}
 \end{table}
 

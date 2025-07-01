@@ -2,15 +2,6 @@
 \label{Methods}
 \lhead{\emph{Methods}} % Set the left side page header to "Symbols"
 
-% Num simulations? 5000
-% Which statistics ~ might have some stats to find lowest combination, everything else from senstivity
-% Elaborate a bit on senstivity analysis, also explain what it means before hand
-% clean up structure between "experiments" and "DeGroot extension"
-% Proof read
-% Expand a bit on the replication, explain what it shows
-%
-%
-%
 
 
 We proceed with the methods used to replicate the paper by
@@ -22,26 +13,31 @@ are implemented using \texttt{OCaml}, and \texttt{Python}.
 
 \section{Replicating Rad and Roy} We implement the model as described in
 \Cref{section:related_work}. Agents are limited to strict preferences over all
-candidates. All experiments are done with 3 alternatives, and 51 voters. The
+candidates. All experiments are done with 3 candidates, and 51 voters. The
 number of voters is chosen to be an odd number, as this prevents ties between
-alternatives. We measure evaluations relating to strict preferences, namely the
-proportion of cyclic Profiles, the Number of Unique profiles and the proximity
-to single-peakedness by voter deletion (PtS-V), as reported by
+candidates. We measure evaluations relating to strict preferences, namely the
+proportion of cyclic profiles, the number of unique profiles and the proximity
+to single-peakedness by voter deletion (PtS-V), all as reported by
 \citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those we
-also measure the number of Condorcet winners. We do not measure the PtS-C, as
-any profile with 2 candidates is single-peaked, since the simulation will have
-3 candidates all values would be either 1 or $\frac{2}{3}$, therefore this
-metric would be of little added value. Due to the computational complexity of
-the DP-metric, as well as calculating PtS-V, a larger number of candidates is
-not feasible.
+also measure the frequency of Condorcet winners. We do this to see if cyclic
+profiles might be hiding some agreement, where voters might be able to agree on
+a winner, but not on the full ranking. We do not measure the PtS-C, as any
+profile with 2 candidates is single-peaked. Since the simulation will have 3
+candidates, all values would be either 1 or $\frac{2}{3}$, therefore this metric
+would be of little added value. Due to the computational complexity of the
+DP-metric, as well as the calculation of PtS-V, a larger number of candidates is not
+feasible. Specifically PtS-V is NP-complete
+\cite{erdelyiComputationalAspectsNearly2013}, though it allows for a
+2-approximation. We use the method based on an ILP solver, as implemented in
+\texttt{PrefTools} \cite{PrefLibPreflibtools2025}
+
+Using these results we aim to show the limitations of preference based deliberation.
 
 \section{Experiments}
-
 We aim to replicate the findings by the \textsc{America in One room}
 experiments \cite{fishkinCanDeliberationHave2024} in-silico. To this end we
 use the adaption to the DeGroot model as laid out in \Cref{sec: main model}
-The dataset contains a control group as well as an experimental group. In the
-dataset, the control group shows no change in opinion over time,
+The dataset contains a control group as well as an experimental group. The control group shows no change in opinion over time,
 thus this group is best modelled by using the identity matrix $I^n$ as the
 trust matrix. The experimental group is modelled as a densely connected
 network.  The distribution of the trust we control through 3 methods.
@@ -140,7 +136,8 @@ Through some abuse of notation we can now define the final trust matrix $T$ as t
 Were $\operatorname{norm}$ normalizes the matrix such that each row sums to exactly 1.
 
 
-Given this formulation, we define an instance of our model through shaping the matrices, such as shown in example
+Given this formulation, we define an instance of our model through shaping the
+matrices, such as shown in example \Cref{ex:degroot_matrix_definition}.
 
 \begin{example}{DeGroot deliberation Instance}{degroot_matrix_definition}
 
@@ -226,43 +223,33 @@ Given this formulation, we define an instance of our model through shaping the m
 
 \subsection{Outcome measures}
 
-We split the experiments on the adapted DeGroot model into two parts. Firstly, we aim to asses the validity of the model. For this we use
-data from the \textsc{America in One room} experiment. This data does not provide full preference
-rankings over the candidates, instead provides data on voters' opinions on 6
-different topics of political discussion, such as climate change and
-immigration. Using these opinions, we assess the validity of the model in so far as
-it is able to accurately predict the change in opinion. We run 5000 simulations, randomizing the
-independent variables laid out in \Cref{tab: indepdent_variables}, we exclude \texttt{Candidates}, and \texttt{Candidate Generator} in this section.
-
-we are able to generate potential
-candidates, this is done either by selecting a voter and creating a candidate
-with identical opinions, or by pooling 10 voters\footnote{This is arbitrary,
-	and it might be good to look into this, but in my opinion this is low
-	priority for now. It might also be useful to keep the candidates
-	constant over the course of an experiment} and creating an average of
-their opinions. Using these simulated candidates we are able to create
-preference rankings using the $\ell_1$-norm.  The deliberation groups
-will be embedded in a fully connected graph. Since the original data
-provides group numbers for candidates who participated in the
-deliberation, we also experiment with replicating these groups as
-opposed to randomly grouping voters together.
+We split the experiments on the adapted DeGroot model into two parts. Firstly,
+we aim to assess the validity of the model. For this we use data from the
+\textsc{America in One room} experiment. This data does not provide full
+preference rankings over the candidates, instead provides data on voters'
+opinions on 6 different topics of political discussion, such as climate change
+and immigration. Using these opinions, we assess the validity of the model in
+so far as it is able to accurately predict the change in opinion. We run 5000
+simulations, randomizing the independent variables laid out in \Cref{tab:
+	indepdent_variables}, excluding \texttt{Candidates}, and \texttt{Candidate
+	Generator}. We then use an ANOVA to test for the configuration of trust
+matrices that minimizes the errors in predicted PBS. Since the original data
+provides group numbers for candidates who participated in the deliberation, we
+also experiment with replicating these groups as opposed to randomly grouping
+voters together.
 
 
-We measure whether the final profiles are cyclic, whether they have a Condorcet
-winner, home many unique profiles there are, and their proximity to being
-single-peaked. Proximity to single-peakedness is measured in two ways. When the
-simulation size allows for it, we measure the proximity in terms of the number
-of voters that would need to be removed for the full profile to become
-single-peaked. This particular notion is NP-complete
-\cite{erdelyiComputationalAspectsNearly2013}, though it allows for a
-2-approximation. We use the method based on an ILP solver, as implemented in
-\texttt{PrefTools} \cite{PrefLibPreflibtools2025}. The other notion of proximity is the proximity in
-terms of the number of candidates that need to be removed for the profile to
-become single-peaked. This can be done in $\mathcal{O}(|V| \cdot{} |C|
-	^3)$\cite{przedmojskiAlgorithmsExperimentsNearly}, though the implementation we
-use is that of the \texttt{PrefTools} library \cite{PrefLibPreflibtools2025}, which implements
-a slower $\mathcal{O}(|V| \cdot{} |C|^5)$ algorithm
-\cite{erdelyiComputationalAspectsNearly2013}.
+Using these results we expand the model to incorporate meta-agreement on
+alternatives, for this we need to generate potential candidates. This is done
+either by selecting a voter and creating a candidate with identical opinions,
+or by selecting 10 voters with replacement and creating an average of their
+opinions. Using these simulated candidates we are able to create preference
+rankings using the $\ell_1$-norm. We measure whether the same outcomes as in the Rad and Roy replication section, namely whether the final profiles are cyclic, whether they have a Condorcet winner, home many unique profiles there
+are, and their PtS-V, and finally we also measure PtS-C. The PtS-C can be calculated in
+$\mathcal{O}(|V| \cdot{} |C| ^3)$\cite{przedmojskiAlgorithmsExperimentsNearly},
+though the implementation we use is that of the \texttt{PrefTools} library
+\cite{PrefLibPreflibtools2025}, which implements a slower $\mathcal{O}(|V|
+	\cdot{} |C|^5)$ algorithm \cite{erdelyiComputationalAspectsNearly2013}.
 
 
 
@@ -300,16 +287,11 @@ a slower $\mathcal{O}(|V| \cdot{} |C|^5)$ algorithm
 	\caption{The parameters of the DeGroot learning based model, as well as their descriptions}
 \end{table}
 
-Given the best configurations, we will analyze the behavior of the model to
-understand the convergence on opinion. To this end, we measure the change in the trust
-matrix, as well as the distance between each voter's pre- and post-deliberation
-preferences using the KS and CS distances. We first aim to find the number of
-deliberative steps needed for convergence, which we define as the moment where
-the largest change in the trust matrix is smaller than some $\epsilon$. Then we
-hope to understand how individual voters' opinions change by looking at the
-final state of the trust matrix.
 
 Finally, we use sensitivity analysis to investigate which parameters have the
-strongest effect on the model, using Sobol indices to get the first and second
-order effects.
+strongest effect on the variance of model, using Sobol indices to get the
+first, second and total order effects. The first order indices refer to their
+direct effects on the variance of the model, when all other parameters are
+randomized. The second and total order capture this for 2-way interactions of
+variable and all interactions of a variable respectively.
 

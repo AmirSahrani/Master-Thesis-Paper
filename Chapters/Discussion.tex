@@ -10,7 +10,7 @@ and its effect on preference profiles. To this end we consulted the literature
 (\Cref{Literature}) laying out various points of view on the goal of
 deliberation. From this we follow Cohen's
 \cite{cohenDeliberationDemocraticLegimitimacy2002} four tenants of
-deliberation, deliberation should be \textit{free, reasoned, equal}, and  it
+deliberation; deliberation should be \textit{free, reasoned, equal}, and  it
 should aim to reach \textit{consensus}. In \Cref{theory} we show that the
 deliberative procedure posited by
 \citet{radDeliberationSinglePeakednessCoherent2021} cannot be strategyproof
@@ -18,86 +18,86 @@ under classic notions of strategyproofness as well as novel notion of
 strategyproofness we define. We use this add one more tenant to Cohen's four,
 namely \textit{honesty}.
 
-We then set out to mechanically understand deliberation, for this we introduced
+We then set out to mechanically understand deliberation. For this we introduced
 the DeGroot learning model, and adapted it to deliberation over opinions. We showed
-NP-hardness on the $\delta$-DBVM(S) problem, and conclude that using de DeGroot model
-to model sparse graphs is computationally difficult, if one want to assign voters to nodes
+NP-hardness on the $\delta$-DBVM(S) problem, and concluded that using de DeGroot model
+to model sparse graphs is computationally difficult, if one wants to assign voters to nodes
 based on some distances metrics.
 
 In \Cref{experiment_results} replicated the results by
 \citet{radDeliberationSinglePeakednessCoherent2021}, and we use our adapted
-DeGroot model to test its predictive power on the opinion using the
+DeGroot model to test its predictive power on opinions using the
 \textsc{America in one Room} dataset \cite{fishkinCanDeliberationHave2024}. We
 conclude that though in the first time step the model can do well on the
 population level, the prediction on the change in opinion for individuals was
 poor. We also show that this is at least partly explain by the fact that the
 DeGroot model treats all policies equally. The data showed that some topics had
-large shifts in opinions, while others showed less, the DeGroot model was
+large shifts in opinions, while others showed less. The DeGroot model was
 unable to capture this.
 
 Using sensitivity analysis we showed that all parameters effected the final
-predictions, but interestingly some parameters had non-significant first order
+predictions, but interestingly some parameters had non-significant first-order
 effects. We argue that this is a result of these parameters not introducing new
-information, as a result they can only affect the variance of the model by
-modulating the dynamics induces by the parameters with significant first order
+information. As a result they can only affect the variance of the model by
+modulating the dynamics induces by the parameters with significant first-order
 effects.
 
 Finally, we looked at the preference profiles which we simulated based on the
-opinions from both the data and the simulations. We show that similar to the
+opinions from both the data and the simulations. We show, that similar to the
 population level predictions for the PBS, the profiles based on the simulated
 and true opinions start looking more similar during the first steps in the
-simulation, however, after this the model convergence too strongly and the profiles
-of the simulated opinions become too ``nice''. In the sense that they get closer
-to being single-peaked and are acyclic more frequently.
+simulation. However, after this the model converge too strongly and the
+profiles of the simulated opinions become too ``nice'', in the sense that they
+get closer to being single-peaked and are acyclic more frequently.
 
 These results led us to conclude that the DeGroot learning model was overly
 simplistic and therefore was unable to adequately explain individual opinion
 change. As a result it is a bad approximation of what happens during human
-deliberation. These patterns are also in contradiction to know results in
+deliberation. These patterns are also in contradiction to known results in
 social psychology, where small extreme groups tend to become more extreme \cite{myersPolarizingEffectGroup1975}.
 
 \section{Discussion}
 
-We first present some limitations of these results, we can broadly put these into
-3 categories.
+We first present some limitations of these results. We can broadly put these
+into three categories.
 
 Firstly, given the lack of a complete data source combining pre- and
 post-deliberation opinions and preference rankings as well as the opinions of
 these alternatives, we have had to make many assumptions on both the positions
 represented by the candidates, and well as the method by which voters generate
 their preferred rankings over them. In terms of generating candidates, our
-approach is simple, and only assume that candidates represent the opinions held
+approach is simple, and only assumes that candidates represent the opinions held
 by the voters. This is however clearly a less rich process than that by which
-real world candidates are selected, where these might bring in new opinions or
+real-world candidates are selected, where these might bring in new opinions or
 have traits that are desirable, such as being good leaders or well-spoken. In
 terms of voters creating a ranking over alternatives, we have gone with the
-assumptions that this is done strictly through distance in opinions. Similar to
+assumptions that this is done strictly through distance in opinions, similar to
 what a political compass test might do. In reality however, voters might be
-using different and multiple heuristics to order the candidates, indeed if
+using different and multiple heuristics to order the candidates. Indeed if
 there are numerous candidates, the ranking might not even be complete.
-Therefore, distance based measure will likely diverge from heuristics, such as
+Therefore, distance-based measures will likely diverge from heuristics, such as
 pre-selecting some list of candidates deemed acceptable.
 
 
-Secondly, there are some methodological assumptions we made, these mainly
+Secondly, there are some methodological assumptions we made. These mainly
 relate to the generation of the trust matrices. For all Knowledge,
 Self-Knowledge, and Similarity the scores were normalized to be between 0 and
 1, while the Ego score was not normalized. This results in an asymmetry that
 allows Ego to increase the values in the trust matrix, where the other
-parameters could not. This decision was made as we found no clear ceiling Ego
-with respect to which we could normalize the score. As mentioned in \Cref{experiment_results},
+parameters could not. This decision was made as we found no clear ceiling
+with respect to which we could normalize the Ego score. As mentioned in \Cref{experiment_results},
 this might explain why Ego resulted in the lowest error on the Population level.
 
 The same trust matrix was used for substantive and meta deliberation. Though
 from a modeling perspective this is a pragmatic solution. In reality this
 assumption seems too strong. This assumption forces someone to be equally
 willing to change their opinion as they are to change their perception of a
-candidate's opinion. Where, at least intuitively, one might expect more
+candidate's opinion, where, at least intuitively, one might expect more
 willingness on the latter towards people with dissimilar opinions.
 
 
 Apart from these limitations in generating the trust matrices, we also note the
-noise added to the estimates of candidates opinion is normally distributed.
+noise added to the estimates of candidates' opinions is normally distributed.
 Though this was done to introduce voter uncertainty, over which they could then
 deliberate, normally distributed noise seems unlikely, especially for voters
 that hold more extreme positions. Here we might expect that the noise is
@@ -107,11 +107,11 @@ candidates. For these dissimilar candidates, it might then also be true that
 this noise is skewed towards the opposite extreme w.r.t. the voter's opinion.
 
 While we opted for the DeGroot model as a more accurate representation of human
-belief updating than full Bayesian updating. The DeGroot model does have some
+belief updating than full Bayesian updating, the DeGroot model does have some
 inherent limitations. Firstly, it does not take into account why people hold
 certain beliefs, nor does it constrain what kinds of beliefs a voter can hold
 at the same time. To remedy this, one might consider a framework such as
-abstract argumentation theory \citet{dungAcceptabilityArgumentsIts1995}, as
+abstract argumentation theory \cite{dungAcceptabilityArgumentsIts1995}, as
 this is able to model the arguments with the deliberative groups. Though, this
 is theoretically nice, as it allows for formal description on why opinions and
 preferences are held, not just their descriptions. From a simulation
@@ -126,8 +126,8 @@ voter's belief updates to linear transformations.
 
 
 
-Finally, we address some limitations on the real world implications of these results.
-The negative results surrounding strategyproofness in \Cref{theory}, might be less
+Finally, we address some limitations on the real-world implications of these results.
+The negative results surrounding strategyproofness in \Cref{theory} might be less
 of an issue in human deliberation, as the dishonest participant could be less convincing
 defending their dishonest opinion than their true opinion. As a result they might have less
 total influence than if they had defended their true opinion.
@@ -161,7 +161,7 @@ fixed over time. This can be addressed dynamic trust matrices that update accord
 to voter's familiarity with other voters, and possibly other factors.
 
 Another way in which the trust matrices can be further refined is through
-introducing topic dependent trust. As some topics might be more hotly debated,
+introducing topic-dependent trust. As some topics might be more hotly debated,
 for example as a result of some recent event. These voters could generally be
 more informed on these topics, and less willing to talk about other topics.
 This is related to the notion of \textit{Salience} as described by
@@ -173,7 +173,7 @@ Furthermore, any good model will need proper data, as such a study similar to
 that of \citet{fishkinCanDeliberationHave2024} is needed, where voters are
 asked not only for their opinion but also their preference order. This could
 also be a great opportunity to gather qualitative insights into deliberation
-and the social dynamics there of. This would also allow for testing participant's
+and the social dynamics thereof. This would also allow for testing participant's
 knowledge on topics directly, hopefully giving stronger indications of voter's ability
 to persuade and defend on specific topics.
 

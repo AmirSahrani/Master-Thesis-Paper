@@ -30,7 +30,7 @@ Bias is varied between 0.45 and 0.99 in steps of 0.1, for each bias factor we ru
 We measure evaluations relating to strict preferences, namely the
 proportion of cyclic profiles, the number of unique profiles and the proximity
 to single-peakedness by voter deletion (PtS-V), all as reported by
-\citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those we
+\citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those, we
 also measure the frequency of Condorcet winners. We do this to see if cyclic
 profiles might be hiding some agreement, where the majority relation might have a clear winner, while still being cyclic. We do not measure the PtS-C, as any
 profile with 2 candidates is single-peaked and the simulation will have 3
@@ -39,7 +39,7 @@ provides little additional insight.
 
 Due to the computational complexity of the
 DP-metric, as well as the calculation of PtS-V, a larger number of candidates is not
-feasible. Specifically PtS-V is NP-complete
+feasible. Specifically, PtS-V is NP-complete
 \cite{erdelyiComputationalAspectsNearly2013}, though it allows for a
 2-approximation. We use the method based on an ILP solver, as implemented in
 \texttt{PrefTools} \cite{PrefLibPreflibtools2025}.
@@ -50,9 +50,9 @@ feasible. Specifically PtS-V is NP-complete
 We use the adapted DeGroot model as laid out in \Cref{sec: main model} to capture deliberation dynamics. This model requires realistic trust matrices, we propose three mechanisms through which we can construct these.
 
 
-\textbf{Knowledge}. We consider knowledge as a factor that can influence both the trust a voter places in others and the confidence they have in their own opinion. Let $\boldsymbol{k}$ denote a vector where each $k_i$ represents a knowledge score for voter $i$. This score may inform a voter's bias towards their own opinion, under the assumption that greater knowledge increases confidence.
+\textbf{Knowledge}. We consider knowledge as a factor that can influence both the trust a voter places in others and the confidence they have in their own opinion. Let $\boldsymbol{k}$ denote a vector, where each $k_i$ represents a knowledge score for voter $i$. This score may inform a voter's bias towards their own opinion, under the assumption that greater knowledge increases confidence.
 
-There are two plausible interpretations of how knowledge affects self-bias. On one hand, more knowledgeable voters may be more confident and thus less susceptible to influence. On the other hand, increased knowledge might make voters more aware of the limits of their understanding—capturing the essence of the Dunning–Kruger effect, where individuals with limited knowledge fail to recognize their own ignorance. However, in the context of direct deliberation, we argue that the latter interpretation is less realistic: as deliberation progresses, voters are exposed to new information and opposing viewpoints, making them more aware of their knowledge boundaries.
+There are two plausible interpretations of how knowledge affects self-bias. On one hand, more knowledgeable voters may be more confident and thus less susceptible to influence. On the other hand, increased knowledge might make voters more aware of the limits of their understanding—capturing the essence of the Dunning-Kruger effect, where individuals with limited knowledge fail to recognize their own ignorance. However, in the context of direct deliberation, we argue that the latter interpretation is less realistic: as deliberation progresses, voters are exposed to new information and opposing viewpoints, making them more aware of their knowledge boundaries.
 
 Regarding trust in others, we follow a similar line of reasoning: voters are
 more likely to trust peers who exhibit higher levels of knowledge. We assume
@@ -73,7 +73,7 @@ Selecting among these mechanisms is ultimately an empirical question, which we e
 
 Given each notion of trust, we define the full model using matrix operations,
 including elementwise (Hadamard) products. Hadamard products are entry wise
-multiplications of matrices. First we define $T_{\text{out}}$ as follows,
+multiplications of matrices. First, we define $T_{\text{out}}$ as follows,
 
 \begin{equation}
 	T_{\text{out}} = A \odot  K \odot S
@@ -149,12 +149,12 @@ matrices, such as shown in example \Cref{ex:degroot_matrix_definition}.
 
 	Note that the adjacency matrix $A$ has no self loops, $K$ has repeating
 	rows, and $S$ is symmetric, as the similarity of voter $i$ to voter $j$
-	must be same as the other way round.
+	must be the same as the other way round.
 
 	Now suppose we want to create a trust matrix $T$, that uses knowledge for the
 	outgoing trust, but not the similarity. Uses a constant bias
 	factor of 2, and Ego-based trust, but not self-knowledge. To achieve
-	this we redefine matrix $S$ as follows, noting that $A$ handles the self-loops,
+	this, we redefine matrix $S$ as follows, noting that $A$ handles the self-loops,
 
 	\begin{align}
 		S = \begin{bmatrix}
@@ -188,7 +188,7 @@ matrices, such as shown in example \Cref{ex:degroot_matrix_definition}.
 			12 \\
 		\end{bmatrix} $$
 
-	Here the first vector is the result of each row sum of $T_{\text{out}}$ by the bias factor (2), and the second vector is the ego vector, i.e. sum of the columns in $T_{\text{out}}$.
+	Here the first vector is the result of each row sum of $T_{\text{out}}$ by the bias factor (2), and the second vector is the ego vector, i.e., the sum of the columns in $T_{\text{out}}$.
 
 	The trust matrix before normalization is then:
 	$$\begin{bmatrix}
@@ -210,7 +210,7 @@ matrices, such as shown in example \Cref{ex:degroot_matrix_definition}.
 \subsection{Model Validation}
 
 We split the experiments on the adapted DeGroot model into two parts. Firstly,
-we aim to assess the validity of the model. For this we use data from the
+we aim to assess the validity of the model. We use data from the
 \textsc{America in One room} experiment, focusing on the deliberation group.
 The control group in this data set shows no significant difference, thus the
 only sensible trust matrix is the identity matrix. This dataset does not
@@ -237,7 +237,7 @@ using the original groups, the \texttt{number of voters parameter} is ignored.
 We acknowledge that using the same dataset for both parameter estimation and
 validation may lead to overfitting. This represents a limitation imposed by
 data availability, as the America in One Room experiment is the only
-large-scale deliberation dataset with the necessary pre/post measurements and
+large-scale deliberation dataset with the necessary pre- / post-measurements/post measurements and
 knowledge scores to which we had access.
 
 
@@ -245,12 +245,12 @@ knowledge scores to which we had access.
 
 
 Finally, we use sensitivity analysis to investigate which parameters have the
-strongest effect on the variance of model's prediction error. Using Sobol
-indices and a sample size of 4096, we use the same ranges during the validation and sensitivity analysis. We calculate the first, second and total
+strongest effect on the variance of the model's prediction error. Using Sobol
+indices and a sample size of 4096, we use the same ranges during the validation and sensitivity analysis. We calculate the first, second, and total
 order effects. The first order indices refer to their direct effects on the
 variance of the model, while all other parameters are varied randomly. The second and
-total order capture this for pairwise interactions of variable and for all
-first- and higher-order interactions of a variable respectively.
+total order capture this for pairwise interactions of a variable and for all
+first- and higher-order interactions of a variable, respectively.
 
 
 \renewcommand{\arraystretch}{1.2}

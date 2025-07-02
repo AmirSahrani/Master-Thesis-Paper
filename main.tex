@@ -35,6 +35,11 @@
 \usepackage{amsmath}
 % \usepackage{subfig}
 \usepackage{subcaption}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+
 \usepackage{enumitem}
 \setlist{nolistsep}
 \usepackage{booktabs}
@@ -194,7 +199,17 @@
 
 \acknowledgements{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-	Thank the people that have helped, supervisors family etc.
+	I would like to thank Ulle Endriss for helping me walk the tight rope
+	between scientific disciplines, a path I find myself walking all too
+	often. His guidance has been of tremendous help whenever I found myself
+	lost, confused or when I was simply getting ahead of myself.
+
+	I thank my friends, and family for keeping me sane. Though stress and
+	tension sometimes ran high; the long talks, cards, and plastic
+	rock have kept my mind from fraying.
+
+	Thanks, but I'll take some more fish.
+
 
 }
 \clearpage % Start a new page
@@ -215,9 +230,9 @@
 \lhead{\emph{List of Tables}} % Set the left side page header to "List of Tables"
 \listoftables % Write out the List of Tables
 
-\lhead{\emph{List of Algorithms}} % Set the left side page header to "List of Algorithms"
-\addtotoc{List of Algorithms}
-\listofalgorithms % Write out the List of Tables
+% \lhead{\emph{List of Algorithms}} % Set the left side page header to "List of Algorithms"
+% \addtotoc{List of Algorithms}
+% \listofalgorithms % Write out the List of Tables
 
 %----------------------------------------------------------------------------------------
 %    ABBREVIATIONS
@@ -231,9 +246,9 @@
 \listofsymbols{ll} % Include a list of Abbreviations (a table of two columns)
 {
 	\textbf{PBS} & \textbf{P}olicy-\textbf{B}ased (ideology) \textbf{S}core\\
-	\textbf{PsT} & \textbf{P}roximity \textbf{t}o \textbf{S}ingle-peakedness\\
-	\textbf{PsT-V} & \textbf{P}roximity \textbf{t}o \textbf{S}ingle-peakedness (through) \textbf{V}oter (deletion)\\
-	\textbf{PsT-C} & \textbf{P}roximity \textbf{t}o \textbf{S}ingle-peakedness (through) \textbf{C}andidate (deletion)\\
+	\textbf{PtS} & \textbf{P}roximity \textbf{t}o \textbf{S}ingle-peakedness\\
+	\textbf{PtS-V} & \textbf{P}roximity \textbf{t}o \textbf{S}ingle-peakedness (through) \textbf{V}oter (deletion)\\
+	\textbf{PtS-C} & \textbf{P}roximity \textbf{t}o \textbf{S}ingle-peakedness (through) \textbf{C}andidate (deletion)\\
 }
 
 %----------------------------------------------------------------------------------------
@@ -315,7 +330,6 @@
 \input{Chapters/ExperimentsandResults} %Evaluation/testing of your hypothesis (10-15 pages)
 \input{Chapters/Discussion} %Evaluation/testing of your hypothesis (5-8 pages)
 % \input{Chapters/ConclusionsandFutureWork} % (5-6 pages)
-\input{Chapters/EthicsandDatamanagemnt}
 
 %----------------------------------------------------------------------------------------
 %    THESIS CONTENT - APPENDICES
@@ -328,6 +342,7 @@
 % Include the appendices of the thesis as separate files from the Appendices folder
 % Uncomment the lines as you write the Appendices
 
+\input{Chapters/EthicsandDatamanagemnt}
 \input{Appendices/AppendixA}
 \input{Appendices/AppendixB}
 %\input{Appendices/AppendixC}

@@ -16,7 +16,7 @@ Let $\mathcal{C}$ denote the set of preferences relations which are reflexive, c
 Let $\mathcal{D}$ denote the set of preferences relations which are reflexive, complete, acyclical and quasi-transative on $X$.
 Let $\mathcal{E}$ denote the set of preferences orderings on $X$.
 
-(Hint $\mathcal{E} = \mathcal{L}(X)$, $\mathcal{A}$ are the weak linear orders)
+(Hint $\mathcal{E} = \mathcal{L}(X)$, $\mathcal{A}$ are the weak orders)
 
 A concerned voter is a voter that is no indifferent to any pair of alterantives.
 

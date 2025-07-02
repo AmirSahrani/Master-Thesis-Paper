@@ -2,135 +2,131 @@
 \label{Methods}
 \lhead{\emph{Methods}} % Set the left side page header to "Symbols"
 
-We proceed with the methods used to replicate the paper by
-\citet{radDeliberationSinglePeakednessCoherent2021}, as well as the
-experimental setup of our own model. Links to the data used for these
-experiments can be found in \Cref{ethics_data}. The programs
-are implemented using \texttt{OCaml}, and \texttt{Python}.
 
 
-\section{Replication} We implement the model as described in
-\Cref{section:related_work}. Agents are limited to strict preferences over all
-candidates. All experiments are done with 3 alternatives, and 51 voters. The
-number of voters is chosen to be an odd number, as this prevents ties between
-alternatives. We measure evaluations relating to strict preferences, namely the
-proportion of cyclic Profiles, the Number of Unique profiles and the proximity
-to single-peakedness by voter deletion (PtS-V), as reported by
+This section presents our experimental methodology in three parts. First, we
+replicate the preference-based deliberation model of Rad and Roy (2021) to
+establish baseline measurements. Second, we develop and validate an extended
+DeGroot-based model using data from the America in One Room experiment.
+Finally, we apply this validated model to generate synthetic preference
+profiles and analyze their structural properties.
+
+All experiments are
+implemented using OCaml and Python. Data sources and ethical considerations are
+detailed in \Cref{ethics_data}.
+
+
+\section{Replication of \citet{radDeliberationSinglePeakednessCoherent2021}}
+
+We implement the model as described in \Cref{section:related_work}. Agents are
+limited to strict preferences over all candidates. All experiments are done
+with 3 candidates, and 51 voters. The number of voters is chosen to be an odd
+number to prevent perfect ties. Each voter receives a random strict preference,
+created by permuting the candidates. All voters share the same bias
+factor. The order of deliberation is decided randomly, by shuffling the voters.
+Bias is varied between 0.45 and 0.99 in steps of 0.1, for each bias factor we run 100 simulations, for a total of 5400 simulations.
+
+
+We measure evaluations relating to strict preferences, namely the
+proportion of cyclic profiles, the number of unique profiles and the proximity
+to single-peakedness by voter deletion (PtS-V), all as reported by
 \citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those we
-also measure the number of Condorcet winners. We do not measure the PtS-C, as
-any profile with 2 candidates is single-peaked, thus given the simulation will have 3 candidates
-this metric would be of little added value, as all values would be either 1 or $\frac{2}{3}$.
+also measure the frequency of Condorcet winners. We do this to see if cyclic
+profiles might be hiding some agreement, where the majority relation might have a clear winner, while still being cyclic. We do not measure the PtS-C, as any
+profile with 2 candidates is single-peaked and the simulation will have 3
+candidates, all values would trivially be either 1 or $\frac{2}{3}$.  This metric therefore
+provides little additional insight.
+
+Due to the computational complexity of the
+DP-metric, as well as the calculation of PtS-V, a larger number of candidates is not
+feasible. Specifically PtS-V is NP-complete
+\cite{erdelyiComputationalAspectsNearly2013}, though it allows for a
+2-approximation. We use the method based on an ILP solver, as implemented in
+\texttt{PrefTools} \cite{PrefLibPreflibtools2025}.
+
+
 
 \section{Experiments}
-
-We aim to replicate the findings by the \textsc{America in One room}
-experiments \cite{fishkinCanDeliberationHave2024} in-silico. To this end we
-use the adaption to the DeGroot model as laid out in \Cref{sec: main model}
-The dataset contains a control group as well as an experimental group. In the
-dataset, the control group shows no change in opinion over time,
-thus this group is best modelled by using the identity matrix $I^n$ as the
-trust matrix. The experimental group is modelled as a densely connected
-network.  The distribution of the trust we control through 3 methods.
-
-\subsection{Modelling Trust} We propose three different mechanisms through which we
-will the trust matrix, as well as the intuitive and theoretical
-appeal.
+We use the adapted DeGroot model as laid out in \Cref{sec: main model} to capture deliberation dynamics. This model requires realistic trust matrices, we propose three mechanisms through which we can construct these.
 
 
-\textbf{Knowledge}. Firstly we consider knowledge, this can be used to
-inform both the trust in others, and your bias towards yourself. For this we
-can imagine a vector $\boldsymbol{k}$, where each $k_i$ contains some knowledge
-score for voter $i$. In modeling, we now have 2 options, firstly, does a voters
-knowledge affect their bias towards their own opinion. Intuitively one could
-reasonably argue either way. Two plausible ways of reasoning are, ``A
-knowledgeable voter knows more facts and is therefore harder to convince'', or
-``A Knowledgeable voter realizes the complexity of the topic and is therefore
-less certain''. The first line of reasoning seems more general, as it seems
-independent of the topic at hand. However, the second line of reasoning seems
-to capture something like the Dunning-Kruger effect, which states that people
-can have ``meta-ignorance'', meaning they do not realize what they do not realize.
+\textbf{Knowledge}. We consider knowledge as a factor that can influence both the trust a voter places in others and the confidence they have in their own opinion. Let $\boldsymbol{k}$ denote a vector where each $k_i$ represents a knowledge score for voter $i$. This score may inform a voter's bias towards their own opinion, under the assumption that greater knowledge increases confidence.
 
-As for the trust a voter places in their peers, a similar argument can be made,
-where the voter could either place more trust on people that are more
-knowledgeable, and thereby might be able to provide more facts. Or less
-knowledgeable voters might be more persuasive in making strong an bold claims,
-as without strong knowledge on the subject voters are more likely to hold
-strong opinions SOURCE
+There are two plausible interpretations of how knowledge affects self-bias. On one hand, more knowledgeable voters may be more confident and thus less susceptible to influence. On the other hand, increased knowledge might make voters more aware of the limits of their understanding—capturing the essence of the Dunning–Kruger effect, where individuals with limited knowledge fail to recognize their own ignorance. However, in the context of direct deliberation, we argue that the latter interpretation is less realistic: as deliberation progresses, voters are exposed to new information and opposing viewpoints, making them more aware of their knowledge boundaries.
 
-% Or they could
-% trust less knowledgeable people more because their ignorance allows them to
-% make more confidant claims, even if these are inaccurate.
+Regarding trust in others, we follow a similar line of reasoning: voters are
+more likely to trust peers who exhibit higher levels of knowledge. We assume
+that expertise becomes apparent during discussion, leading to increased
+trust in more knowledgeable individuals
 
 
 \textbf{Similarity}. A voter might trust people more if they are similar to them, in this work we take similarity to mean a similarity in substantive opinion. It is however not hard to conceive of similarity influence trust in other ways such as social status.
 
-% Voters might simply trust people with
-% similar opinions more, representing a sort of confirmation bias. This cannot be
-% applied to ones own opinion in the same sense as with the other two methods.
-% This could be represented as a sort of ``general bias'', where a voter is more
-% or less inclined to listen to other opinions.
 
-\textbf{Ego}. Finally, a voter might be less inclined to change her opinion if
-more people value it.
+\textbf{Ego}. Finally, a voter may place greater weight on her own opinion if
+she is highly trusted by others.
 
-Given these different options, the right selection of methods becomes question
-for empirical observation, which we present in the next Chapter.
+Finally, we allow for a bias factor, similar to Rad and Roy, in order to
+directly affect the self-loop in the trust matrix.
 
-Firstly, and most simply, we give all voters a bias. This bias reflects how
-much of their trust they place on themselves. For example a bias of 1
-represents them placing equal trust on themselves as all other voters combined.
-The actual weight on the self loop is calculated as the sum of all incoming
-edges multiplied by the bias. Secondly, we have knowledge-based trust, in which
-a voter trusts voter $j$ more if voter $j$ is more knowledgeable. We get the
-knowledge scores from the \textsc{America in One room} dataset by taking the
-proportion of knowledge questions they answered correctly. The interpretation
-is that more knowledgeable voters would be more persuasive and thus be more
-influential on other voters' opinions. Thirdly, we have credibility-based
-trust, where the trust a voter places on another voter is proportional to the
-number of outgoing edges that second voter has. This method becomes equivalent
-to placing uniform trust in all voters when all voters are situated in a fully
-connected graph. If we do not use credibility- or knowledge- based trust, we
-call this uniform trust, meaning that they treat all neighbors the same.
-Importantly, this does not imply any specific bias value.
+Selecting among these mechanisms is ultimately an empirical question, which we explore in \Cref{experiment_results}.
 
-Given these matrices we can define the full model in terms of matrix and
-Hadamard products, where Hadamard products are entry wise multiplications of
-matrices. First we define $T_{\text{out}}$ as follows,
+Given each notion of trust, we define the full model using matrix operations,
+including elementwise (Hadamard) products. Hadamard products are entry wise
+multiplications of matrices. First we define $T_{\text{out}}$ as follows,
 
 \begin{equation}
 	T_{\text{out}} = A \odot  K \odot S
 	\label{eq:mat_out_trust}
 \end{equation}
 
-Where $A$ is the adjacency matrix, without any self loops, $K$ is the matrix of knowledge scores, and $S$ is the matrix of similarity between each voter. We use the indicator functions $\mathds{1}$ for both knowledge and similarity.
+Here $A$ is the adjacency matrix of shape $n \times n$, without self loops. $K$
+is the matrix of knowledge scores of shape $n \times n$ with each row being
+the vector of knowledge scores $\boldsymbol{k}^T$, such that each $K_{ij} =
+	\boldsymbol{k}_j$. $S$ is the similarity matrix, where $S_{ij} = 1 - d_{ij}$,
+and $d_{ij}$ is the normalized $\ell_1$ distance between voters $i$ and $j$’s
+opinions. The normalization ensures the maximum distance is 1, so that $S_{ij}
+	\in [0, 1]$.
 
-In order to determine the bias of each voter we use the matrix $T_{\text{out trust}}$, to generate $T_{\text{in}}$ as follows,
+Next, we compute the vector $T_{\text{in}}$, which represents each voter’s internal (self-)trust or bias:
 
 \begin{equation}
-	T_{in} = (T_{\text{out}} b) \odot \operatorname{diag}(K) \odot E
+	T_{\text{in}} = (T_{\text{out}} \boldsymbol{b}) \odot \boldsymbol{k} \odot E
 	\label{eq:in_trust}
 \end{equation}
 
-Where $b$ is a vector of length $n$ containing the bias factor in each entry,
-$K$ is the knowledge matrix, from which we extract the diagonals, and $E$ is
-the ego matrix defined as $T_{\text{out}}^T [1]^n$, thereby getting the sum of
-all incoming edges.
+Here $b$ is a vector of length $n$ containing the bias factor in each entry,
+and $T_{\text{out}} b$ is a standard matrix-vector product yielding a column
+vector that captures the total external influence received, scaled by the
+voter's bias. $\boldsymbol{k}$ is the column vector of knowledge scores, and
+$E$ is the ego vector, computed as $E = T_{\text{out}}^\top
+	\boldsymbol{1}$, where $\boldsymbol{1}$ is the all-ones vector. This represents
+the total trust each voter receives from others
 
-Through some abuse of notation, we can now define the final trust matrix $T$ as the diagonal matrix obtained from $T_{\text{in}}$ and its element wise addition with $T_{\text{out}}$:
+Finally, we construct the full trust matrix $T$ by combining $T_{\text{out}}$ with the diagonal matrix formed from $T_{\text{in}}$, and normalize each row so that trust weights sum to 1:
 
 \begin{equation}
-	T = \operatorname{norm}\left(\operatorname{diag}(T_{\text{in}}) \oplus T_{\text{out}}\right)
+	T = \operatorname{norm}\left(\operatorname{diag}(T_{\text{in}}) + T_{\text{out}}\right)
 	\label{eq:final_trust}
 \end{equation}
 
-Were $\operatorname{norm}$ normalizes the matrix such that each row sums to exactly 1.
+Here $+$ denotes element-wise addition, and $\operatorname{norm}$ normalizes the rows of the resulting matrix so that $\sum_j T_{ij} = 1$ for all $i$.
 
 
-Given this formulation, we define an instance of our model through shaping the matrices, such as shown in example
+In this model, we make the simplifying assumption that trust remains static
+over time. While this is likely an unrealistic assumption, the absence of data on
+trust dynamics during deliberation prevents us from empirically modeling its
+evolution. Although we refrain from speculating in detail on how this
+assumption could affect the general conclusions, we note it might affect both
+the rate of convergence, and the equilibrium reached.
+
+Given this formulation, we define an instance of our model through shaping the
+matrices, such as shown in example \Cref{ex:degroot_matrix_definition}.
 
 \begin{example}{DeGroot deliberation Instance}{degroot_matrix_definition}
 
-	Say we have the following matrices:
+	Consider a setting with three voters. Let us define the following matrices:
+
 	\begin{align}
 		A = \begin{bmatrix}
 			    0 & 1 & 1 \\
@@ -149,36 +145,32 @@ Given this formulation, we define an instance of our model through shaping the m
 		    \end{bmatrix}\quad
 	\end{align}
 
-	Note that $A$ has no self loops, $K$ repeats its rows, since each voter has 1
-	knowledge score, and $S$ must be symmetric, as the similarity of voter $i$
-	to voter $j$ must be same as the other way round.
+	Note that the adjacency matrix $A$ has no self loops, $K$ has repeating
+	rows, and $S$ is symmetric, as the similarity of voter $i$ to voter $j$
+	must be same as the other way round.
 
-	Now we want to create a trust matrix $T$, that uses knowledge for the outgoing trust, but not the similarity. For the bias it used a bias factor of 2, and uses Ego, it does not use self knowledge. To achieve this we define the following matrices,
+	Now suppose we want to create a trust matrix $T$, that uses knowledge for the
+	outgoing trust, but not the similarity. Uses a constant bias
+	factor of 2, and Ego-based trust, but not self-knowledge. To achieve
+	this we redefine matrix $S$ as follows, noting that $A$ handles the self-loops,
 
 	\begin{align}
-		K' = \begin{bmatrix}
-			     0   & 1 & 2 \\
-			     0.5 & 0 & 2 \\
-			     0.5 & 1 & 0 \\
-		     \end{bmatrix}\quad
-		S' = \begin{bmatrix}
-			     1 & 1 & 1 \\
-			     1 & 1 & 1 \\
-			     1 & 1 & 1 \\
-		     \end{bmatrix}\quad
+		S = \begin{bmatrix}
+			    1 & 1 & 1 \\
+			    1 & 1 & 1 \\
+			    1 & 1 & 1 \\
+		    \end{bmatrix}\quad
 	\end{align}
 
-	If we now use $K'$ and $S'$, we see that $T_{\text{out}}$ is not
-	affected by the change from $K$ to $K'$ since the diagonals remain 0,
-	and $S'$ now has no influence on the trust. As a result we get:
+	Taking the element-wise product of these matrices yields:
 
 	$$T_{\text{out}} = \begin{bmatrix}
 			0   & 1 & 2 \\
 			0.5 & 0 & 2 \\
 			0.5 & 1 & 0 \\
-		\end{bmatrix} = K'$$
+		\end{bmatrix}$$
 
-	As a result, $T_{\text{in}}$ now becomes:
+	Next, we compute $T_{\text{in}}$:
 	$$T_{\text{in}} = \begin{bmatrix}
 			6 \\
 			5 \\
@@ -194,111 +186,110 @@ Given this formulation, we define an instance of our model through shaping the m
 			12 \\
 		\end{bmatrix} $$
 
-	The final trust matrix $T$ is then:
-	$$T = \begin{bmatrix}
+	Here the first vector is the result of each row sum of $T_{\text{out}}$ by the bias factor (2), and the second vector is the ego vector, i.e. sum of the columns in $T_{\text{out}}$.
+
+	The trust matrix before normalization is then:
+	$$\begin{bmatrix}
 			6   & 1  & 2  \\
 			0.5 & 10 & 2  \\
 			0.5 & 1  & 12 \\
 		\end{bmatrix}$$
-	Which we then normalize to be:
+	Which we then normalize to get:
 	$$T = \begin{bmatrix}
-			\frac{2}{3}  & \frac{1}{9}   & \frac{2}{6}   \\
+			\frac{2}{3}  & \frac{1}{9}   & \frac{2}{9}   \\
 			\frac{1}{25} & \frac{20}{25} & \frac{4}{25}  \\
 			\frac{1}{27} & \frac{2}{27}  & \frac{24}{27} \\
 		\end{bmatrix}
 	$$
-
 \end{example}
 
-\subsection{DeGroot extension}
-
-The first experiments we perform concern the DeGroot model. These experiments
-consist of two parts. Firstly we search the parameter space to identify
-parameters that best replicate the data, using Bayesian Parameter Estimation.
-For this we use data from the \textsc{America in One room} experiment as
-described in \Cref{section:related_work}. Though this data does not provide
-full preference rankings over the candidates, it does provide data on voters'
-opinions on 6 different topics of political discussion, such as climate change
-and immigration. Using these opinions, we are able to generate potential
-candidates, this is done either by selecting a voter and creating a candidate
-with identical opinions, or by pooling 10 voters\footnote{This is arbitrary,
-	and it might be good to look into this, but in my opinion this is low priority
-	for now. It might also be useful to keep the candidates constant over the
-	course of an experiment}
-and creating an average of their opinions. Using these
-simulated candidates we are able to create preference rankings using the
-$\ell_1$-norm. To model the difference between the deliberation and control
-group we change the topology of the graphs voters in the respective groups are
-situated in. As mentioned before, the deliberation groups will be embedded in a fully connected
-graph, while the control groups will be placed on the graph of academic
-citations in physics \cite{nr}, this graph is small enough to
-allow sampling of the graph for each simulation. Since the original data
-provides group numbers for candidates who participated in the deliberation, we
-also experiment with replicating these groups as opposed to randomly grouping
-voters together.
 
 
-We measure whether the final profiles are cyclic, whether they have a Condorcet
-winner, home many unique profiles there are, and their proximity to being
-single-peaked. Proximity to single-peakedness is measured in two ways. When the
-simulation size allows for it, we measure the proximity in terms of the number
-of voters that would need to be removed for the full profile to become
-single-peaked. This particular notion is NP-complete
-\cite{erdelyiComputationalAspectsNearly2013}, though it allows for a
-2-approximation. We use the method based on an ILP solver, as implemented in
-\texttt{PrefTools} \cite{PrefLibPreflibtools2025}. The other notion of proximity is the proximity in
-terms of the number of candidates that need to be removed for the profile to
-become single-peaked. This can be done in $\mathcal{O}(|V| \cdot{} |C|
-	^3)$\cite{przedmojskiAlgorithmsExperimentsNearly}, though the implementation we
-use is that of the \texttt{PrefTools} library \cite{PrefLibPreflibtools2025}, which implements
-a slower $\mathcal{O}(|V| \cdot{} |C|^5)$ algorithm
-\cite{erdelyiComputationalAspectsNearly2013}.
+\subsection{Model Validation}
+
+We split the experiments on the adapted DeGroot model into two parts. Firstly,
+we aim to assess the validity of the model. For this we use data from the
+\textsc{America in One room} experiment, focusing on the deliberation group.
+The control group in this data set shows no significant difference, thus the
+only sensible trust matrix is the identity matrix. This dataset does not
+provide full preference rankings over the candidates, instead provides data on
+voters' opinions on 6 different topics of political discussion, such as climate
+change and immigration. This data provides knowledge scores for each voter as
+measured by a set of seven questions relating to governmental institutions. We
+construct the knowledge scores as the fraction of correct answers. Using these
+opinions, we assess the validity of the model insofar as it is able to
+accurately predict the final opinion of voters. This we measure for each voter,
+as well as for binned groups of voters with similar opinions. The latter
+measurement replicating the assessment by
+\citet{fishkinCanDeliberationHave2024}, where voters a placed in fixed size bins such that each bin contains voters with similar initial PBS.
+
+We run 5000 simulations, randomizing the independent variables laid out in
+\Cref{tab: indepdent_variables}, excluding \texttt{Candidates}, and
+\texttt{Candidate Generator}. We then use an ANOVA to test for the
+configuration of trust matrices that minimizes the absolute errors in predicted
+policy based-ideology score. Since the original data provides group numbers for
+the participants, we also experiment with
+replicating these groups as opposed to randomly grouping voters together. When
+using the original groups, the \texttt{number of voters parameter} is ignored.
+
+We acknowledge that using the same dataset for both parameter estimation and
+validation may lead to overfitting. This represents a limitation imposed by
+data availability, as the America in One Room experiment is the only
+large-scale deliberation dataset with the necessary pre/post measurements and
+knowledge scores to which we had access.
 
 
 
 
-% We aim to find values for all parameters that minimize the error of the model,
-% conditional on the number of voters and candidates. For this we define the
-% error of our model as the (normalized) difference of the proportion of cyclic
-% profiles, the proportion of simulation containing a Condorcet winner, and the
-% proximity to single-peakedness through voter deletion, and the
-% candidate-based notion. With these parameters, we argue that model captures the
-% learning process. We then proceed to analyze convergence behavior under these
-% optimal parameters. For this analysis, all configurations are run 100 times.
+
+Finally, we use sensitivity analysis to investigate which parameters have the
+strongest effect on the variance of model's prediction error. Using Sobol
+indices and a sample size of 4096, we use the same ranges during the validation and sensitivity analysis. We calculate the first, second and total
+order effects. The first order indices refer to their direct effects on the
+variance of the model, while all other parameters are varied randomly. The second and
+total order capture this for pairwise interactions of variable and for all
+first- and higher-order interactions of a variable respectively.
 
 
 \renewcommand{\arraystretch}{1.2}
 \begin{table}
 	\centering
-	\begin{tabular}{p{4cm}p{0.65\linewidth }}
+	\begin{tabular}{lp{0.4\linewidth}l}
 		\toprule
-		Parameter                     & Description                                                                                                                                                                 \\
+		Parameter                     & Description                                                         & Values                                                                                                \\
 		\midrule
-		\texttt{Number of Voters}     & The number of voters in the simulation, representing either the deliberation group, or the control population.                                                              \\
-		\texttt{Number of Candidates} & The number of candidates to be voted on.                                                                                                                                    \\
-		\texttt{Candidate Generator}  & The way the candidates are generated. Either a random voter is selected for each candidate, or 10 random voters (sampled with replacement) get averaged into one candidate. \\
-		\texttt{Bias}                 & The bias all voters have towards their own opinion.                                                                                                                         \\
-		\texttt{Time steps}           & The number of deliberation ``steps'' the voters undergo.                                                                                                                    \\
-		\texttt{Group}                & Use the original groups.                                                                                                                                                    \\
-		\texttt{Similarity}           & Distribute trust based on credibility.                                                                                                                                      \\
-		\texttt{Knowledge}            & Distribute trust based on knowledge.                                                                                                                                        \\
-		\texttt{Ego}                  & Scale voters' bias according to the trust other people have in them                                                                                                         \\
-		\texttt{Self-Knowledge}       & Scale voters' bias according to their knowledge                                                                                                                             \\
+		\texttt{Number of Voters}     & The number of voters in the simulation.                             & 9,  13, \dots,29*                                                                                     \\
+		\texttt{Number of Candidates} & The number of candidates to be voted on.                            & 3, 4, 5, 6, 7                                                                                         \\
+		\texttt{Candidate Generator}  & The method used to generate candidates.                             & Sample, single random voter                                                                           \\
+		\texttt{Bias}                 & The bias all voters have towards their own opinion.                 & 0.8, 1.0, \dots, 2.8*                                                                                 \\
+		\texttt{Time steps}           & The number of deliberation ``steps'' the voters undergo.            & 1, 2, \dots, 20                                                                                       \\
+		\texttt{Group}                & Use the original groups.                                            & True/False\footnote{Set to False during sensitivity analysis, in order to vary the number of voters.} \\
+		\texttt{Similarity}           & Distribute trust based on similarity.                               & True/False*                                                                                           \\
+		\texttt{Knowledge}            & Distribute trust based on knowledge.                                & True/False*                                                                                           \\
+		\texttt{Ego}                  & Scale voters' bias according to the trust other people have in them & True/False*                                                                                           \\
+		\texttt{Self-Knowledge}       & Scale voters' bias according to their knowledge                     & True/False*                                                                                           \\
 		\bottomrule
 	\end{tabular}
-	\caption{The parameters of the DeGroot learning based model, as well as their descriptions}
+	\label{tab:independent_variables}
+	\caption{The parameters of the adapted DeGroot model and their values. *Parameters marked with asterisk are randomized during sensitivity analysis (4096 trials total).}
 \end{table}
 
-Given the best configurations, we will analyze the behavior of the model to
-understand the convergence on opinion. To this end, we measure the change in the trust
-matrix, as well as the distance between each voter's pre- and post-deliberation
-preferences using the KS and CS distances. We first aim to find the number of
-deliberative steps needed for convergence, which we define as the moment where
-the largest change in the trust matrix is smaller than some $\epsilon$. Then we
-hope to understand how individual voters' opinions change by looking at the
-final state of the trust matrix.
 
-Finally, we use sensitivity analysis to investigate which parameters have the
-strongest effect on the model, using Sobol indices to get the first and second
-order effects.
+\section{Adding Meta-Agreement}
+
+Using these results we expand the model to
+incorporate meta-agreement on alternatives, for this we need to generate
+potential candidates. This is done either by selecting a voter and creating a
+candidate with identical opinions, or by selecting 10 voters with replacement
+and creating an average of their opinions. We derive voters’ preference
+rankings over the simulated candidates based on $\ell_1$ distances between
+their opinions. We run 1000 random simulations, assessing the same metrics as in the Rad and Roy replication,
+namely whether the final profiles are cyclic, whether they have a Condorcet
+winner, the number of unique profiles, and their PtS-V, and finally we also
+measure PtS-C. The PtS-C can be calculated in $\mathcal{O}(|V| \cdot{} |C|
+	^3)$\cite{przedmojskiAlgorithmsExperimentsNearly}, though the implementation we
+use is that of the \texttt{PrefTools} library \cite{PrefLibPreflibtools2025},
+which implements a slower $\mathcal{O}(|V| \cdot{} |C|^5)$ algorithm
+\cite{erdelyiComputationalAspectsNearly2013}.
+
 

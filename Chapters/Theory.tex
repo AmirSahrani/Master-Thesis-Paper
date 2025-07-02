@@ -26,7 +26,7 @@ behavior.
 	simulates $D$ before applying $f$, which would result in  voting rule $f'$
 	being surjective, strategyproof and non-dictatorial. This is a contradiction,
 	by the Gibbard-Satterthwaite
-	theorem~\citep{gibbardManipulationVotingSchemes1973,satterthwaiteStrategyproofnessArrowsConditions1975}.
+	\Cref{thm:gs-thm}.
 \end{proofc}
 
 
@@ -77,6 +77,7 @@ here we now show that even if we take the deliberation
 procedures on its own, it still not immune to strategic
 manipulation. For this we restate strategyproofness as follows:
 
+%TODO make the Dist function a function between two rankings, then change the formulation to sum notation
 \begin{definition}{Strategyproofness of
 		Deliberation}{delib-strategyproof} A deliberation
 	procedure is strategyproof if there exists no voter $i$
@@ -162,7 +163,7 @@ voters deliberate aim to reach consensus. Which we extend with \emph{Honesty}:
 Voters represent their true beliefs and preferences only.
 
 
-\section{Our model} \label{sec: main model}
+\section{Our Model} \label{sec: main model}
 
 In an attempt to model meta-agreement through deliberation, our model needs to
 make a proper distinction between the `substantive level' and the `meta level'.
@@ -451,7 +452,7 @@ Decision: Does there exist some bijection $f: [n] \to [n]$, such that: $$\sum_{i
 	Max-QAP, and thus NP-Hard.~\checkmark
 
 
-	($\implies$ NP-Complete) Given some $f$ and $k$, the decision can be made in $\mathcal{O}(n^2)$.~\checkmark
+	($\implies$ NP-Membership) Given any $f$, we can evaluate the cost of the allocation in $\mathcal{O}(n^2)$.~\checkmark
 
 
 \end{proofc}

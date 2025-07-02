@@ -103,7 +103,9 @@ $E$ is the ego vector, computed as $E = T_{\text{out}}^\top
 	\boldsymbol{1}$, where $\boldsymbol{1}$ is the all-ones vector. This represents
 the total trust each voter receives from others
 
+
 Finally, we construct the full trust matrix $T$ by combining $T_{\text{out}}$ with the diagonal matrix formed from $T_{\text{in}}$, and normalize each row so that trust weights sum to 1:
+
 
 \begin{equation}
 	T = \operatorname{norm}\left(\operatorname{diag}(T_{\text{in}}) + T_{\text{out}}\right)

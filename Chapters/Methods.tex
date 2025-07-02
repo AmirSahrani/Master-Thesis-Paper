@@ -116,7 +116,7 @@ $K$ is the knowledge matrix, from which we extract the diagonals, and $E$ is
 the ego matrix defined as $T_{\text{out}}^T [1]^n$, thereby getting the sum of
 all incoming edges.
 
-Through some abuse of notation we can now define the final trust matrix $T$ as the diagonal matrix obtained from $T_{\text{in}}$ and its element wise addition with $T_{\text{out}}$:
+Through some abuse of notation, we can now define the final trust matrix $T$ as the diagonal matrix obtained from $T_{\text{in}}$ and its element wise addition with $T_{\text{out}}$:
 
 \begin{equation}
 	T = \operatorname{norm}\left(\operatorname{diag}(T_{\text{in}}) \oplus T_{\text{out}}\right)

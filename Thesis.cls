@@ -166,6 +166,7 @@
 \newtcbtheorem[crefname={example}{examples}]{example}{Example}{
 	new/auto counter,
 	boxsep = 2mm,
+        breakable,
 	colback=examplecolor!2!white,
 	colbacktitle=examplecolor!8!white,
 	colframe=examplecolor!80!black,

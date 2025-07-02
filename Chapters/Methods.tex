@@ -6,8 +6,8 @@
 
 This section presents our experimental methodology in three parts. First, we
 replicate the preference-based deliberation model of Rad and Roy (2021) to
-establish baseline measurements. Second, we develop and validate an extended
-DeGroot-based model using data from the America in One Room experiment.
+establish baseline measurements. Second, we develop and validate the adapted 
+DeGroot model using data from the America in One Room experiment.
 Finally, we apply this validated model to generate synthetic preference
 profiles and analyze their structural properties.
 
@@ -19,12 +19,13 @@ detailed in \Cref{ethics_data}.
 \section{Replication of \citet{radDeliberationSinglePeakednessCoherent2021}}
 
 We implement the model as described in \Cref{section:related_work}. Agents are
-limited to strict preferences over all candidates. All experiments are done
-with 3 candidates, and 51 voters. The number of voters is chosen to be an odd
-number to prevent perfect ties. Each voter receives a random strict preference,
-created by permuting the candidates. All voters share the same bias
-factor. The order of deliberation is decided randomly, by shuffling the voters.
-Bias is varied between 0.45 and 0.99 in steps of 0.1, for each bias factor we run 100 simulations, for a total of 5400 simulations.
+limited to strict preferences over all candidates. All experiments are done with
+3 candidates, and 51 voters. The number of voters is chosen to be an odd number
+to prevent perfect ties. Each voter receives a random strict preference, created
+by permuting the candidates. All voters share the same bias factor. The order of
+deliberation is decided randomly, by shuffling the voters. Bias is varied
+between 0.45 and 0.99 in steps of 0.1, for each bias factor we run 100
+simulations, for a total of 5400 simulations.
 
 
 We measure evaluations relating to strict preferences, namely the
@@ -46,7 +47,7 @@ feasible. Specifically, PtS-V is NP-complete
 
 
 
-\section{Experiments}
+\section{Adapted DeGroot}
 We use the adapted DeGroot model as laid out in \Cref{sec: main model} to capture deliberation dynamics. This model requires realistic trust matrices, we propose three mechanisms through which we can construct these.
 
 
@@ -207,7 +208,7 @@ matrices, such as shown in example \Cref{ex:degroot_matrix_definition}.
 
 
 
-\subsection{Model Validation}
+\section{Model Validation}
 
 We split the experiments on the adapted DeGroot model into two parts. Firstly,
 we aim to assess the validity of the model. We use data from the
@@ -273,7 +274,7 @@ first- and higher-order interactions of a variable, respectively.
 		\bottomrule
 	\end{tabular}
 	\label{tab:independent_variables}
-	\caption{The parameters of the adapted DeGroot model and their values. *Parameters marked with asterisk are randomized during sensitivity analysis (4096 trials total).}
+	\caption{The parameters of the adapted DeGroot model and their values. Parameters marked with asterisk are randomized during sensitivity analysis.}
 \end{table}
 
 

@@ -212,7 +212,7 @@
 \newenvironment{proofc}{%
 	\myproof[proofcolor] %
 	\begin{proofaux} \normalfont
-		}{ \hfill $\square$
+		}{  \qedhere
 	\end{proofaux}
 	\endmytheorem
 }

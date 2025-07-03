@@ -5,15 +5,16 @@
 
 
 This section presents our experimental methodology in three parts. First, we
-replicate the preference-based deliberation model of Rad and Roy (2021) to
-establish baseline measurements. Second, we develop and validate the adapted 
-DeGroot model using data from the America in One Room experiment.
-Finally, we apply this validated model to generate synthetic preference
-profiles and analyze their structural properties.
+replicate the preference-based deliberation model of
+\citet{radDeliberationSinglePeakednessCoherent2021} to establish baseline
+measurements. Second, we develop and validate the adapted DeGroot model using
+data from the \textsc{America in One Room} experiment. Finally, we apply this validated
+model to generate synthetic preference profiles and analyze their structural
+properties.
 
 All experiments are
 implemented using OCaml and Python. Data sources and ethical considerations are
-detailed in \Cref{ethics_data}.
+detailed in \Cref{ethics_data}, all code can be found at \url{https://github.com/amirsahrani/master_thesis}.
 
 
 \section{Replication of \citet{radDeliberationSinglePeakednessCoherent2021}}
@@ -24,7 +25,7 @@ limited to strict preferences over all candidates. All experiments are done with
 to prevent perfect ties. Each voter receives a random strict preference, created
 by permuting the candidates. All voters share the same bias factor. The order of
 deliberation is decided randomly, by shuffling the voters. Bias is varied
-between 0.45 and 0.99 in steps of 0.1, for each bias factor we run 100
+between 0.45 and 0.99 (exclusive) in steps of 0.1, for each bias factor we run 100
 simulations, for a total of 5400 simulations.
 
 
@@ -53,7 +54,17 @@ We use the adapted DeGroot model as laid out in \Cref{sec: main model} to captur
 
 \textbf{Knowledge}. We consider knowledge as a factor that can influence both the trust a voter places in others and the confidence they have in their own opinion. Let $\boldsymbol{k}$ denote a vector, where each $k_i$ represents a knowledge score for voter $i$. This score may inform a voter's bias towards their own opinion, under the assumption that greater knowledge increases confidence.
 
-There are two plausible interpretations of how knowledge affects self-bias. On one hand, more knowledgeable voters may be more confident and thus less susceptible to influence. On the other hand, increased knowledge might make voters more aware of the limits of their understanding—capturing the essence of the Dunning-Kruger effect, where individuals with limited knowledge fail to recognize their own ignorance. However, in the context of direct deliberation, we argue that the latter interpretation is less realistic: as deliberation progresses, voters are exposed to new information and opposing viewpoints, making them more aware of their knowledge boundaries.
+There are two plausible interpretations of how knowledge affects self-bias. On
+one hand, more knowledgeable voters may be more confident and thus less
+susceptible to influence. On the other hand, increased knowledge might make
+voters more aware of the limits of their understanding—capturing the essence of
+the Dunning-Kruger effect, where individuals with limited knowledge fail to
+recognize their own ignorance. However, in the context of direct deliberation,
+we argue that the latter interpretation is less realistic: ideally, as
+deliberation progresses voters are exposed to new information and opposing
+viewpoints, making them more aware of the knowledge boundaries of their peers
+as well as their own. Thereby allowing voters to place more weight on voters
+more knowledgeable than them.
 
 Regarding trust in others, we follow a similar line of reasoning: voters are
 more likely to trust peers who exhibit higher levels of knowledge. We assume
@@ -92,15 +103,15 @@ opinions. The normalization ensures the maximum distance is 1, so that $S_{ij}
 Next, we compute the vector $T_{\text{in}}$, which represents each voter’s internal (self-)trust or bias:
 
 \begin{equation}
-	T_{\text{in}} = (T_{\text{out}} \boldsymbol{b}) \odot \boldsymbol{k} \odot E
+	T_{\text{in}} = (T_{\text{out}} \boldsymbol{b}) \odot \boldsymbol{k} \odot \boldsymbol{e}
 	\label{eq:in_trust}
 \end{equation}
 
-Here $b$ is a vector of length $n$ containing the bias factor in each entry,
+Here $\boldsymbol{b}$ is a vector of length $n$ containing the bias factor in each entry,
 and $T_{\text{out}} b$ is a standard matrix-vector product yielding a column
 vector that captures the total external influence received, scaled by the
 voter's bias. $\boldsymbol{k}$ is the column vector of knowledge scores, and
-$E$ is the ego vector, computed as $E = T_{\text{out}}^\top
+$\boldsymbol{e}$ is the ego vector, computed as $\boldsymbol{e} = T_{\text{out}}^\top
 	\boldsymbol{1}$, where $\boldsymbol{1}$ is the all-ones vector. This represents
 the total trust each voter receives from others
 
@@ -227,7 +238,7 @@ measurement replicating the assessment by
 \citet{fishkinCanDeliberationHave2024}, where voters a placed in fixed size bins such that each bin contains voters with similar initial PBS.
 
 We run 5000 simulations, randomizing the independent variables laid out in
-\Cref{tab: indepdent_variables}, excluding \texttt{Candidates}, and
+\Cref{tab:independent_variables}, excluding \texttt{Candidates}, and
 \texttt{Candidate Generator}. We then use an ANOVA to test for the
 configuration of trust matrices that minimizes the absolute errors in predicted
 policy based-ideology score. Since the original data provides group numbers for
@@ -237,7 +248,7 @@ using the original groups, the \texttt{number of voters parameter} is ignored.
 
 We acknowledge that using the same dataset for both parameter estimation and
 validation may lead to overfitting. This represents a limitation imposed by
-data availability, as the America in One Room experiment is the only
+data availability, as the \textsc{America in One Room} experiment is the only
 large-scale deliberation dataset with the necessary pre- / post-measurements/post measurements and
 knowledge scores to which we had access.
 
@@ -259,22 +270,22 @@ first- and higher-order interactions of a variable, respectively.
 	\centering
 	\begin{tabular}{lp{0.4\linewidth}l}
 		\toprule
-		Parameter                     & Description                                                         & Values                                                                                                \\
+		Parameter                     & Description                                                         & Values                      \\
 		\midrule
-		\texttt{Number of Voters}     & The number of voters in the simulation.                             & 9,  13, \dots,29*                                                                                     \\
-		\texttt{Number of Candidates} & The number of candidates to be voted on.                            & 3, 4, 5, 6, 7                                                                                         \\
-		\texttt{Candidate Generator}  & The method used to generate candidates.                             & Sample, single random voter                                                                           \\
-		\texttt{Bias}                 & The bias all voters have towards their own opinion.                 & 0.8, 1.0, \dots, 2.8*                                                                                 \\
-		\texttt{Time steps}           & The number of deliberation ``steps'' the voters undergo.            & 1, 2, \dots, 20                                                                                       \\
-		\texttt{Group}                & Use the original groups.                                            & True/False\footnote{Set to False during sensitivity analysis, in order to vary the number of voters.} \\
-		\texttt{Similarity}           & Distribute trust based on similarity.                               & True/False*                                                                                           \\
-		\texttt{Knowledge}            & Distribute trust based on knowledge.                                & True/False*                                                                                           \\
-		\texttt{Ego}                  & Scale voters' bias according to the trust other people have in them & True/False*                                                                                           \\
-		\texttt{Self-Knowledge}       & Scale voters' bias according to their knowledge                     & True/False*                                                                                           \\
+		\texttt{Number of Voters}     & The number of voters in the simulation.                             & 9,  13, \dots,29*           \\
+		\texttt{Number of Candidates} & The number of candidates to be voted on.                            & 3, 4, 5, 6, 7               \\
+		\texttt{Candidate Generator}  & The method used to generate candidates.                             & Sample, single random voter \\
+		\texttt{Bias}                 & The bias all voters have towards their own opinion.                 & 0.8, 1.0, \dots, 2.8*       \\
+		\texttt{Time steps}           & The number of deliberation ``steps'' the voters undergo.            & 1, 2, \dots, 20             \\
+		\texttt{Group}                & Use the original groups.                                            & True/False$^\dagger$        \\
+		\texttt{Similarity}           & Distribute trust based on similarity.                               & True/False*                 \\
+		\texttt{Knowledge}            & Distribute trust based on knowledge.                                & True/False*                 \\
+		\texttt{Ego}                  & Scale voters' bias according to the trust other people have in them & True/False*                 \\
+		\texttt{Self-Knowledge}       & Scale voters' bias according to their knowledge                     & True/False*                 \\
 		\bottomrule
 	\end{tabular}
 	\label{tab:independent_variables}
-	\caption{The parameters of the adapted DeGroot model and their values. Parameters marked with asterisk are randomized during sensitivity analysis.}
+	\caption{The parameters of the adapted DeGroot model and their values. Parameters marked with asterisk are randomized during sensitivity analysis. $\dagger$ Set to False during sensitivity analysis.}
 \end{table}
 
 

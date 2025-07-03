@@ -166,7 +166,7 @@
 \newtcbtheorem[crefname={example}{examples}]{example}{Example}{
 	new/auto counter,
 	boxsep = 2mm,
-        breakable,
+	breakable,
 	colback=examplecolor!2!white,
 	colbacktitle=examplecolor!8!white,
 	colframe=examplecolor!80!black,
@@ -320,13 +320,13 @@
 %	defined as \examname above so you cite it as \examname
 %----------------------------------------------------------------------------------------
 
-\thesistitle{Modelling Meta-Agreement through a DeGroot Model} % Your thesis title - this is used in the title and abstract
+\thesistitle{Modelling Meta-Agreement through Deliberation: An Adaptation of the DeGroot Model} % Your thesis title - this is used in the title and abstract
 %-------------------------------------------------  
 \supervisor{Prof. Dr. Ulle Endriss} % You supervisor's name - this is used in the title page
 %-------------------------------------------------   
 \examiner{Dr. Fernando P. Santos} % Your examiner's name - this is not currently used anywhere in the template, cite it with \examname if you want it
 %-------------------------------------------------   
-\assessor{Dr. Davide Grossi} % Your assesor's name - this is not currently used anywhere in the template, cite it with \assessorname if you want it
+\assessor{Prof. Dr. Davide Grossi} % Your assesor's name - this is not currently used anywhere in the template, cite it with \assessorname if you want it
 %-------------------------------------------------   
 \degree{Master of Science in Computational Science} % Your degree name - this is currently used in the title page and abstract
 %-------------------------------------------------   

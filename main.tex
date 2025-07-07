@@ -179,14 +179,42 @@
 
 \abstract{\addtocontents{toc}{\vspace{1em}} % Add a gap in the Contents, for aesthetics
 
-	Include your abstract here
-	Abstracts must include sufficient information for reviewers to judge the nature and significance
-	of the topic, the adequacy of the investigative strategy, the nature of the results, and the
-	conclusions. The abstract should summarize the substantive results of the work and not merely
-	list topics to be discussed.
+	Deliberation is often proposed as a remedy to democratic dysfunction, enabling
+	voters to reach more informed and coherent preferences. In particular,
+	deliberation may promote a shared understanding of the relevant
+	issue dimensions (meta-agreement), which can lead to single-peaked preference profiles and
+	circumvent classic impossibility results in social choice theory. This thesis
+	investigates whether and how deliberation fosters such structured preferences
+	by adapting the DeGroot model of opinion dynamics.
 
-	Length 200–400 words.
-}
+	We begin by reviewing theoretical foundations from social choice, focusing on
+	domain restrictions like single-peakedness, and by discussing deliberative
+	democracy and the concept of meta-agreement. We then replicate the
+	model by \citet{radDeliberationSinglePeakednessCoherent2021}, which models deliberation as preference updating
+	under various distance metrics. While their model can increase
+	proximity to single-peakedness, it does not capture meta-agreement and is
+	vulnerable to strategic manipulation.
+
+	To address the lack of meta-agreement, we introduce an extended
+	DeGroot-based model in which agents deliberate not only over their
+	substantive preferences but also over their beliefs about candidate
+	positions on multiple policy dimensions. Trust dynamics are modeled via
+	bias, ego, similarity, and knowledge, and are used to guide how individuals
+	weight others’ opinions. Using data from the \textsc{America in One
+		Room} experiment \cite{fishkinCanDeliberationHave2024}, we calibrate
+	and validate the model, showing it reproduces some empirical patterns
+	of opinion change. Notably, we find that ego-based trust better fits
+	observed data than knowledge-based trust, suggesting that being
+	informed does not always translate to persuasive influence.
+
+	We further extend the model to simulate deliberation-driven
+	meta-agreement and show that it can reduce cyclic preferences and
+	increase proximity to single-peakedness. Finally, a sensitivity
+	analysis identifies drivers of opinion convergence and highlights the
+	interaction effects between trust, bias, and group composition. These
+	results suggest that while deliberation may indeed structure
+	preferences, the dynamics are more complex and depend on voters'
+	understanding of the broader issue landscape. }
 
 \clearpage % Start a new page
 
@@ -343,7 +371,7 @@
 
 \input{Chapters/EthicsandDatamanagemnt}
 \input{Appendices/AppendixA}
-\input{Appendices/AppendixB}
+% \input{Appendices/AppendixB}
 %\input{Appendices/AppendixC}
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics

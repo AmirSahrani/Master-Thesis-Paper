@@ -5,23 +5,21 @@
 We first present a full replication and extension of the work by
 \citet{radDeliberationSinglePeakednessCoherent2021}. Then we present the simulations based on our model of
 meta-deliberation, as well as the results of the sensitivity analysis on both
-models. \Cref{AppendixB} contains all the values and ranges used for the experiments, as well as supplementary figures.
+models.
 
 
-\section{Replication}\label{sec: replication} We are able to fully replicate the results found by
+\section{Replication}\label{sec: replication} We successfully replicate the results found by
 \citet{radDeliberationSinglePeakednessCoherent2021},  in \Cref{fig:rep_cyclic}
-we see that for the biases less than 0.73, all metric results in acyclic
+for biases less than 0.73, all metric results in acyclic
 preferences. We also replicate the behavior of the KS metric, where biases in
 the range of 0.73-0.85, show that even initially acyclic profiles can become
-cyclic. \Cref{fig:rep_count} Further explains this by showing that within this
+cyclic. This is further illustrated in \Cref{fig:rep_count}, showing that within this
 range we always observe 3 unique profile for the KS metric, while DP and CS
 have already settled on 6 profiles, thereby representing all possible
-preferences. \Cref{fig:rep_condorcet} shows KS introduces ambiguity in the case
-that there was a Condorcet winner, resulting in losing the original nice
-profile. Finally, the proximity to single-peakedness shows a slightly more
+preferences. Finally, the proximity to single-peakedness shows a slightly more
 positive note for the KS metric, showing that while the DP and CS bottom out to
 the minimum proximity to single-peakedness, KS stays relatively close. Though
-this should be taken with a grain of salt, as it is likely a consequence of the
+this should be interpreted with caution, as it is likely a consequence of the
 unique preferences being smaller.
 
 \begin{figure}[htbp]
@@ -44,12 +42,6 @@ unique preferences being smaller.
 
 	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{Figures/condorcet_proportion_Proportion.pdf}
-		\caption{The proportion of Condorcet winners left after deliberation, value above one indicate Condorcet winners emerging during deliberation}
-		\label{fig:rep_condorcet}
-	\end{minipage}\hfill
-	\begin{minipage}{0.45\textwidth}
-		\centering
 		\vspace{-9pt}
 		\includegraphics[width=\textwidth]{Figures/sp_proximity_PtS.pdf}
 		\caption{Proximity to single-peakedness after deliberation. Proximity to single-peakedness as defined in \Cref{section:related_work}.}
@@ -57,36 +49,17 @@ unique preferences being smaller.
 	\end{minipage}
 \end{figure}
 
-
-
-% https://onlinelibrary.wiley.com/doi/10.1002/bimj.202200091
-% Things that might end up going into the methods section, but need to be mentioned:
-% [X] How is any source of randomness generated
-%	If Original groups are used, the only source of randomness is the group that we choose to measure and the voter(s) used to generate the potential candidates
-%	If we do not use original groups, then we randomly select voters (uniformly at random)
-%	[X] In each case the uncertainty over the candidates is modelled as a normal distribution with mean 0 and std 2
-% How are the parameters sampled
-%	For sensitivity: Sobol (Side note explain sensitivity analysis)
-%	For other experiments: Simply uniform sampling
-%	Sample size: Sensitivity chosen such that there are no negative indices, acknowledge that this might result in smaller error bars. Other: We pick 1000, though power analysis would likely be better, limited in number of samples because of the NP-hardness of PtS-V
-% [X] What are we trying to estimate
-%	We are trying to estimate the final PBS
-%	For this we want the smallest average distance between final PBS and simulated PBS
-% How are we measuring the performance of the model
-%	Absolute difference, since the errors are small there absolute difference and the squared difference are similar.
-% How are we going to test this performance
-%	We simply look for the best this model can do, and given that we try to explain what factors are important when considering an explanatory model of deliberation.
-
-
-% Things I need to do: 
-% Explain general experimental setup, small recap of what
-% we are going to present. Restate the goal of the analysis. How we adapted the
-% original data to fit our study, mainly only using voters that have filled in
-% both pre and post questionnaires without missing data. Report the number of
-% voters before and after this clean up. 
-
-% [X] Show relplots of knowledge and pbs.
-
+Through these results, we observe that while the original model does show
+increase in the proximity to single-peakedness (PtS-V) and discourages cyclic
+profiles, its outcomes are highly sensitive to both voter bias and the chosen
+distance metric. In particular, the instability observed with the KS metric
+across certain bias ranges raises concerns about the robustness and external
+validity of the approach. Moreover, the model lacks a mechanism for
+higher-order disagreement or reflection—there is no ``meta'' level at which
+agents evaluate the structure of their preferences. This limitation motivates
+the development of our own model, which explicitly incorporates
+meta-deliberation and trust dynamics to better capture the complexities of
+real-world opinion formation.
 
 \newpage
 \section{DeGroot Model}\label{degroot_results}
@@ -96,7 +69,7 @@ We present the results based on the DeGroot model. The model is informed by the
 data from the \textsc{America in one Room} experiment, which was used to
 construct the support vectors $\Support$ as well as the estimated support
 matrices $\EstSupport$. We follow the original paper, focussing on the most
-polarizing questions,  as mentioned in \Cref{sub:americainonroom}, the
+polarizing questions, the
 policy-based ideology score (PBS) is the average of the 26 most polarizing
 questions, where a low PBS corresponds to more liberal answers, and high PBS
 indicates more conservative answers.
@@ -111,15 +84,12 @@ which we do not have data, we limit our testing to voters of which we can be
 sure that we know their true opinion. The support vectors $\Support$ correspond
 to the voters' reported opinions, based on measured by several policy questions
 rated from 0 to 10 (inclusive). Each voter's estimated support matrix
-$\EstSupport$ is generated by adding normally distributed noise($\mu=0$, $\sigma=1.37$) to the
-candidates' true opinions. The mean of 0 ensures we do not bias the model towards
-preferring candidates with higher or lower average scores, as otherwise people
-would consistently be over or underestimating candidates' support. The standard
-deviation is chosen to match voter PBS distribution before
-deliberation.
-% Discussion: The normal distribution might not be realistic at all. The
-% distribution can be skewed, and the means can be different from 0. Also
-% likely different for different demographics
+$\EstSupport$ is generated by adding normally distributed noise($\mu=0$,
+$\sigma=1.37$) to the candidates' true opinions. Ensuring the model does not
+systematically favor candidates with higher or lower average scores, as
+otherwise people would consistently be over or underestimating candidates'
+support. The standard deviation is chosen to match voter PBS distribution
+before deliberation.
 
 
 % Simulation parameters
@@ -136,8 +106,8 @@ structure the groups might have had.
 To evaluate model performance, we predict each voter's post-deliberation
 opinion and compare it to the observed data. Additionally, we group voters into
 $m$ bins based on their initial PBS and compare the average predicted opinion
-within each group to the actual group average. This effectively model
-substantive agreement and thus does not incorporate \textit{meta-agreement}.
+within each group to the actual group average. This effectively models
+substantive agreement and thus does not yet incorporate \textit{meta-agreement}.
 However, it allows for the evaluation of the model without assumptions on how
 to infer the final ``preferences'' of the voters, or the opinions of
 candidates. After this assessment, we investigate the convergence of the model,
@@ -146,7 +116,9 @@ as well as its sensitivity to the choice of parameters.
 % We now assume that substantive agreement and meta-agreement happen at the same pace, but in practice this might be unrealistic as people talk about one topic at a time, and there might be complex dynamics between them. For example learning that you have strongly misjudged a candidate might result in you sticking to your substantive opinion
 
 % Extension to meta agreement
-Finally, we extend the model to incorporate meta-agreement through deliberation on the trust matrices. Assessing its effect on voters’ final preferences, using the metrics introduced in \Cref{sec: replication}.
+Finally, we extend the model to incorporate meta-agreement through deliberation
+on the trust matrices. Assessing its effect on voters’ final preferences, using
+the metrics introduced in \Cref{sec: replication}.
 
 \subsection{Policy-Based Ideology Scores}
 
@@ -176,22 +148,22 @@ converge toward a weighted average of the opinions presented to them.
 \end{figure}
 
 \Cref{fig:delta_pbs} depicts the change in PBS within the deliberation
-group. In the original data, we see that most changes occur among participants
+group. In the original data, most changes occur among participants
 with high initial PBS, who tend to moderate their views. The model, by
 contrast, predicts the most significant changes among those with low PBS in
 later time steps.
 
 One possible explanation for this discrepancy is the correlation between PBS
-and political knowledge. As shown by \citet{fishkinCanDeliberationHave2024},
-voters with more extreme PBS also tend to be more knowledgeable. Our
-filtered dataset supports this, showing a weak negative correlation of -0.05
-($p < 0.5$), \Cref{fig:knowledge_pbs} in~\Cref{AppendixB}
-shows the distribution of political knowledge across different PBS ranges.
-Since political knowledge in our sample is skewed toward voters with high PBS,
-incorporating knowledge-based trust into the model amplifies their influence,
-resulting in larger prediction errors.
+and political knowledge. As shown by
+\citet{fishkinCanDeliberationHave2024}, voters with more extreme PBS also tend
+to be more knowledgeable. Our filtered dataset supports this, showing a weak
+negative correlation of -0.05 ($p < 0.05$), \Cref{fig:knowledge_pbs}
+in~\Cref{AppendixA} shows the distribution of political knowledge across
+different PBS ranges. Since political knowledge in our sample is skewed toward
+voters with high PBS, incorporating knowledge-based trust into the model
+amplifies their influence, resulting in larger prediction errors.
 
-However, \Cref{fig:binned_errors} shows that the model performs better when
+Furthermore, \Cref{fig:binned_errors} shows that the model performs better when
 knowledge is excluded from the trust calculation. This suggests that political
 knowledge, at least as measured in this dataset, is a poor predictor of
 persuasiveness. It should be recalled, that the knowledge questions assess factual
@@ -208,13 +180,20 @@ issues such as immigration or the economy.
 \end{figure}
 
 
-We note that these slightly positive results appear only when the voters are
-grouped by their original PBS, thereby giving the model reasonable predictive
-power over a population of voters.  This holds even for different number of
-bins. \Cref{fig:binned_errors} shows the progression of errors over time when
-the error is calculated on a per-individual basis, and we find the model
-consistently overestimates the change in PBS, and thereby gives a worse
-prediction than the initial PBS.
+We note that these positive results appear only when the voters are grouped by
+their original PBS during the initial 3-4 time steps, thereby giving the model
+reasonable predictive power over a population of voters.  This holds even for
+smaller bins. \Cref{fig:binned_errors} shows the progression of errors over
+time when the error is calculated on a per-individual basis (left), and binned
+(right). We find the model does not predict the change per individual well,
+with the original score at t=0 being a better predictor of an individuals final
+PBS than the models output. Notably using the ego-based trust, the model makes
+smaller prediction errors. When we look at the predictions binned by initial
+PBS, the model seems to be doing a lot better, again with ego-based trust
+resulting in the lowest error. Interestingly after the first time step,
+knowledge-based trust results in the lowest prediction error, after this step
+ego-based trust outperforms all other kinds of trust.
+
 
 \begin{figure}[ht]
 	\begin{center}
@@ -223,6 +202,21 @@ prediction than the initial PBS.
 	\caption{Prediction error of the model as a function of time, binned relative to the original  PBS.}\label{fig:binned_errors}
 \end{figure}
 
+
+Further, looking into the change in PBS, \Cref{fig:per_topic} divides the
+change in PBS up into the change on each topic measured. The model predicts the
+change in PBS for healthcare very well, as well as at least changing the PBS
+into the right direction for the economy and immigration, still the model
+predicts roughly half as much change in PBS for immigration. For the
+environment and foreign policy, however, the model predicted an increase in PBS
+on average, while in reality people lowered that PBS (becoming more liberal).
+
+\begin{figure}[ht]
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{Figures/per_topic_change.png}
+	\end{center}
+	\caption{Change in PBS per topic, }\label{fig:per_topic}
+\end{figure}
 
 \begin{figure}[ht]
 	\centering
@@ -233,8 +227,8 @@ prediction than the initial PBS.
 	\label{fig:bias_slowdown}
 \end{figure}
 
-\Cref{fig:bias_slowdown} shows the relation between the bias factor and the PB
-score, showing that the bias does not improve the model's predictive power. As
+\Cref{fig:bias_slowdown} shows the relation between the bias factor and the PBS
+, showing that the bias does not improve the model's predictive power. As
 one might expect a bias is ``slowing down'' the model. Because of this the
 model is slower to diverge away from the true opinions.
 
@@ -243,7 +237,7 @@ assigning individual-specific biases, the model better reflects heterogeneous
 deliberative behavior. Second, increased self-bias slows down convergence,
 preventing the model from over-correcting.
 
-\subsection{Convergence}
+\subsection{Convergence of Trust Matrices}
 
 From \Cref{theory}, we have seen that in the limit some matrices are
 convergent, while some are not, in particular if the matrix is aperiodic, it
@@ -260,9 +254,9 @@ $\ell_1$ norm.
 	\caption{Convergence of trust matrices, as measured by the $\ell_1$-norm between the trust matrix at the start and  trust matrix at the current time step.}\label{fig:convergence_big}
 \end{figure}
 
-In \Cref{fig:convergence_big}, we see that all configurations converge at a
+In \Cref{fig:convergence_big}, all configurations converge at a
 similar rate, slowing down the rate of change around t = 15. Since using the
-original groups leads to generally smaller groups, the absolute difference in
+original groups leads to generally smaller groups, the mean absolute difference in
 the matrices is smaller. When using knowledge-based trust there is a lower rate
 of convergence
 
@@ -282,7 +276,7 @@ The second order indices show \textit{number of voters} interacts with
 contributing a large portion of their explained total variance induced by the
 \textit{number of voters}. There is also an interaction between \textit{ego}
 and \textit{similarity} and \textit{self knowledge}. As for the Total order
-indices, we see that variables contribute significantly to the variance in the
+indices, variables contribute significantly to the variance in the
 model.
 
 We argue the non-significant first order indices are a result of these

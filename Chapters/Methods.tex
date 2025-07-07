@@ -32,9 +32,7 @@ simulations, for a total of 5400 simulations.
 We measure evaluations relating to strict preferences, namely the
 proportion of cyclic profiles, the number of unique profiles and the proximity
 to single-peakedness by voter deletion (PtS-V), all as reported by
-\citet{radDeliberationSinglePeakednessCoherent2021}. In addition to those, we
-also measure the frequency of Condorcet winners. We do this to see if cyclic
-profiles might be hiding some agreement, where the majority relation might have a clear winner, while still being cyclic. We do not measure the PtS-C, as any
+\citet{radDeliberationSinglePeakednessCoherent2021}. We do not measure the PtS-C, as any
 profile with 2 candidates is single-peaked and the simulation will have 3
 candidates, all values would trivially be either 1 or $\frac{2}{3}$.  This metric therefore
 provides little additional insight.
@@ -289,21 +287,29 @@ first- and higher-order interactions of a variable, respectively.
 \end{table}
 
 
-\section{Adding Meta-Agreement}
+\section{Introducing Meta-Agreement}
 
-Using these results we expand the model to
-incorporate meta-agreement on alternatives, for this we need to generate
-potential candidates. This is done either by selecting a voter and creating a
-candidate with identical opinions, or by selecting 10 voters with replacement
-and creating an average of their opinions. We derive voters’ preference
-rankings over the simulated candidates based on $\ell_1$ distances between
-their opinions. We run 1000 random simulations, assessing the same metrics as in the Rad and Roy replication,
-namely whether the final profiles are cyclic, whether they have a Condorcet
-winner, the number of unique profiles, and their PtS-V, and finally we also
-measure PtS-C. The PtS-C can be calculated in $\mathcal{O}(|V| \cdot{} |C|
-	^3)$\cite{przedmojskiAlgorithmsExperimentsNearly}, though the implementation we
-use is that of the \texttt{PrefTools} library \cite{PrefLibPreflibtools2025},
-which implements a slower $\mathcal{O}(|V| \cdot{} |C|^5)$ algorithm
-\cite{erdelyiComputationalAspectsNearly2013}.
+To incorporate meta-agreement on alternatives, we expand the model by
+introducing simulated candidates. Candidates are generated in two ways: either
+by copying the opinion vector of a single randomly selected voter or by
+averaging the opinions of ten voters sampled with replacement. Each voter's
+preference ranking over the simulated candidates is then derived based on the
+$\ell_1$ distance between their own opinion vector and that of each candidate.
 
+We conduct 1,000 randomized simulations and evaluate the outcomes using the
+same metrics as in the Rad and Roy replication. These include the proportion of
+cyclic profiles, the presence of a Condorcet winner, the number of unique
+preference profiles, and the proximity to single-peakedness via voter deletion
+(PtS-V). Additionally, we compute the frequency of Condorcet winners and the
+proximity to single-peakedness via candidate deletion (PtS-C). The frequency of
+Condorcet winners, when more than three candidates are present, offers insight
+into the extent of agreement on a single best alternative, even when the
+majority graph contains cycles. For example, it is possible for one candidate
+to be consistently ranked first by a majority of voters, while the remaining
+candidates form a Condorcet cycle among themselves.
 
+While PtS-C can be computed in $\mathcal{O}(|V| \cdot |C|^3)$ time
+\cite{przedmojskiAlgorithmsExperimentsNearly}, we rely on the implementation
+provided by the \texttt{PrefTools} library \cite{PrefLibPreflibtools2025},
+which uses a slower $\mathcal{O}(|V| \cdot |C|^5)$ algorithm based on the
+method from \citet{erdelyiComputationalAspectsNearly2013}.

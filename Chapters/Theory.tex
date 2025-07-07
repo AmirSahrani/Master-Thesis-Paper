@@ -89,8 +89,8 @@ manipulation. For this we restate strategyproofness as follows:
 	$\Preference_{i}'$. This distance is measured as
 	\[\operatorname{Dist}(\Preference_{i},
 		D(\strictProfile)) \geq
-		\operatorname{Dist}(\Preference_{i}, D(\strictProfile')).\]
-	Where the Dist function is simply the sum of all distances
+		\operatorname{Dist}_{\text{S}}(\Preference_{i}, D(\strictProfile')).\]
+	Where the Dist function is simply the sum of all distances with distance measure $S$
 	between $\Preference_i$ and all preferences in
 	$\strictProfile$. \end{definition}
 
@@ -105,6 +105,7 @@ show that the deliberative procedures, under the metric spaces
 as follows:
 
 \begin{proposition}
+	\label{prop:rad_roy_delib}
 	Deliberation, as defined by
 	\citet{radDeliberationSinglePeakednessCoherent2021}, under distance
 	measures \emph{KS}, \emph{ DP}, \emph{ CS} is not strategyproof, for $n
@@ -113,24 +114,24 @@ as follows:
 
 We provide a proof by construction, we show how to do this for
 the KS and DP distance measures, as they share the same profiles for this proof. The
-proof for the CS distance measure is laid out in \Cref{AppendixA}.
+proof for the CS distance measure is laid out in \Cref{AppendixA:proof}.
 
 \begin{proofc} Assume the following population: we
 	have voter 1 whose bias is $1$, and all other voters $j \neq 1$
 	have bias $0.5$. Furthermore, we have
-	$\operatorname{Dist}(\Preference_1, \Preference_j) = 2$ for all
+	$\operatorname{Dist}_{\text{S}}(\Preference_1, \Preference_j) = 2$ for all
 	$j$. Voter $1$ now has the option to report $\Preference_{1}'$
-	instead, which has $\operatorname{Dist}(\Preference_{1}',
-		\Preference_j) = 4$ and $\operatorname{Dist}(\Preference_{1}',
+	instead, which has $\operatorname{Dist}_{\text{S}}(\Preference_{1}',
+		\Preference_j) = 4$ and $\operatorname{Dist}_{\text{S}}(\Preference_{1}',
 		\Preference_1) = 2$. If voter $1$ reports $\Preference_1'$,
 	then all $j$ will update towards $1$'s true preference, as
 	using \cref{eq:deliberation_step_formula} we get $r(R_{j},
 		R_{1}', R_1) = 4$, while $r(R_{j}, R_{1}', R_j) = r(R_{j},
 		R_{1}', R_1') = 16$.
 
-	Resulting in $\operatorname{Dist}(R_{1},
+	Resulting in $\operatorname{Dist}_{\text{S}}(R_{1},
 		D(R_{1},\strictProfile_{-1})) = 2(n-1) >
-		\operatorname{Dist}(R_{1}, D(R_{1}', \strictProfile_{-1})) =
+		\operatorname{Dist}_{\text{S}}(R_{1}, D(R_{1}', \strictProfile_{-1})) =
 		0$.
 
 	Since 1 has a bias of 1, the order of the deliberation has no

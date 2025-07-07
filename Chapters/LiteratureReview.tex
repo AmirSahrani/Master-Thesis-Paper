@@ -84,7 +84,7 @@ $\domain{Condorcet}$ is not hereditary. This is easy to see through an example:
 	\end{minipage}
 \end{example}
 
-If a domain fails to be hereditary, designing an election with the domain is
+If a domain fails to be hereditary, designing an election with the domain in
 mind becomes hard. In the case of $\domain{Condorcet}$ it might be reasonable
 to make use of a rule such as Black's rule
 \cite{blackRationaleGroupDecisionmaking1948}, which uses the Condorcet rule
@@ -122,7 +122,7 @@ properties, showing they avoid Condorcet cycles.
 are empirically rare. The next section is dedicated to explaining how
 deliberation might explain this is so through examining the historical ideas
 around deliberation and deliberative democracy, as well as that of
-Meta-Agreement.
+meta-agreement.
 
 \subsection{Deliberation}
 
@@ -177,7 +177,7 @@ up dictating where the cycle breaks. He further goes on to describe the
 	      state their reasons for supporting proposals.
 	\item  In ideal deliberation, parties are \emph{equal}, both formally
 	      and substantively. There are no rules that single individuals
-	      out, and existing distributions of power to no lend a party the
+	      out, and existing distributions of power do not lend a party the
 	      opportunity to contribute to deliberation.
 	\item  Ideal deliberation aims to arrive at rationally defensible \emph{consensus}.
 \end{enumerate}
@@ -200,15 +200,15 @@ since a rational discussion would tend to produce unanimous preferences.'' (p.
 112). Though it would be desirable to circumvent these negative results,
 in practice people, even after deliberation, might not and indeed often do not
 come to full substantive agreement. \citet{listTwoConceptsAgreement2002}
-instead proposes another perspective  on deliberation based on Meta-Agreement
+instead proposes another perspective  on deliberation based on meta-agreement
 
-Under \emph{Meta-agreement} individuals do not need to agree on their most
+Under meta-agreement individuals do not need to agree on their most
 preferred outcome, instead they only need to agree on the dimensions of the
 problem. To contrast this with Substantive-agreement, under which individuals
-do not need to conceive of the problem in the same way, all they need is to
-agree on the same outcome. This means that under substantive agreement, voters
-can agree outcome $a \pref b$ for different reasons, while under
-Meta-Agreement, if voters disagree on $a \pref b$ it must be for the same
+do not need to conceive of the problem in the same way, only requiring
+agreement on the preferred outcome. This means that under substantive
+agreement, voters can agree outcome $a \pref b$ for different reasons, while
+under meta-agreement, if voters disagree on $a \pref b$ it must be for the same
 reason.
 
 According to \citet{listTwoConceptsAgreement2002} there are three hypotheses that need to be satisfied for deliberation to induce meta-agreement:
@@ -221,7 +221,7 @@ According to \citet{listTwoConceptsAgreement2002} there are three hypotheses tha
 	      a preferred outcome, and ranking all other candidates based on the distance to this outcome in the \emph{issue}-dimension
 \end{enumerate}
 
-These are necessary conditions for \emph{meta-agreement}. From this is it also
+These are necessary conditions for meta-agreement. From this is it also
 clear to see that, given that there is exactly one \emph{issue}-dimension,
 single-peaked profiles are, by definition, a direct consequence. This property
 of inducing single-peakedness makes meta-agreement particularly desirable, as
@@ -271,7 +271,7 @@ three requirements.
 
 Thus, meta-agreement as a means for single-peaked profiles is still quite
 restrictive, needing multiple forms of unanimity, and only applying to problems
-with certain properties. Nonetheless,  meta-agreement agreement might still
+with certain properties. Nonetheless,  meta-agreement might still
 play a crucial part in a deliberative process. In the next section we will
 look into a specific computational model of deliberation.
 
@@ -279,8 +279,8 @@ look into a specific computational model of deliberation.
 \section{Models of Deliberation} \label{section:related_work} % work on this
 \citet{radDeliberationSinglePeakednessCoherent2021} model deliberation
 and its effect on single-peakedness. To this end, they model deliberation as
-the process of all voters announcing their preferences, and all other voters
-updating their current preference towards that of the announced preference, in
+a process where each voter announces their preferences, and all other voters
+update their current preference towards that of the announced preference, in
 doing so they have a bias towards their own preference, as such they try to
 update their preference by minimizing the distance between their current
 preference and the announced one. This process repeats until all voters have
@@ -291,7 +291,7 @@ profile and the announced profile, which profiles are considered to be
 distance metrics, Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins
 (DP)~\citep{duddyMeasureDistanceJudgment2012}, and Cook-Seiford
 (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the
-judgement set resulting from the voters preferences, which is contains, for
+judgement set resulting from the voters preferences, which contains, for
 each pair of candidates $a,b$, where $a \neq b$, a proposition $(a \pref b)$ or
 $\neg (a \pref b)$. The KS distance is then defined as the number of binary
 swaps a judgement set needs to undergo before it becomes the target judgement
@@ -333,8 +333,8 @@ case of strict preferences), thus one might reasonably conclude this should
 only count as 1 step. DP improves upon this, \Cref{figure:DPDistance} shows a
 graph used for the DP distance in the case of 3 candidates. The graph shows the
 benefit of using the DP distance, as the edges in graphs automatically include
-logical consequences that the KS distance might not account for. In doing
-capturing logical consequences, the DP distances becomes much harder to
+logical consequences that the KS distance might not account for. By
+capturing logical consequences, the DP distances become much harder to
 compute, mainly through the cost of constructing the full graph of judgement
 sets, which grows in $f_m = 1 + \sum_{j=1}^{m-1} \binom{m}{j} f_{n-j}$ in the
 number of vertices, where $m$ is the number of
@@ -422,37 +422,46 @@ new model in \Cref{theory}.
 
 \section{Deliberative experiments}
 
-% We now present some empirical studies showcasing the effects of deliberation in
-% voting populations, focusing on deliberative policymaking, and the
-% \textsc{America In One Room} experiment.
 
-Emperically, deliberation seems to bring about many positive changes, from the perspective of both the electrorate and experts. XXXX Show that deliberative mini republics increase .... and .... 
+Empirically, deliberation appears to bring about numerous positive outcomes,
+both from the perspectives of the electorate and democratic theorists. One
+example is the Citizens' Initiative Review (CIR), in which randomly selected
+voters come together to evaluate a policy proposal. Their goal is to
+collaboratively draft an informational brochure presenting arguments for and
+against the proposal, aimed at helping the broader public make informed
+decisions. As part of this process, participants deliberate on the issue and
+consider possible solutions. CIRs have been successfully implemented in the
+United States, where they have been shown to enhance voter knowledge and
+judgment \cite{gastilHopeDemocracyHow2020}. Their positive effects have also
+been observed outside the U.S., including in Finland
+\cite{setalaDeliberativeMinipublicsFacilitating2023}.
 
-Though previous work often focusses on participant experience and changes in
-their attitudes towards and knowledge about democracy. Not much work has been
-done on mapping out the exact changes in voter opinions.
+While this line of research has largely focused on participants’ experiences
+and the development of their attitudes and knowledge, studies that
+quantitatively map how voters’ opinions shift during deliberation have been
+relatively scarce.
 
-\citet{fishkinCanDeliberationHave2024} did conduct such a study, named the
-\textsc{America in one Room} experiment, during which they brought together
-American voting-eligible citizens to deliberate about policies leading up to the
-2020 presidential elections. They conducted a questionnaire on these people
-measuring the knowledge of the current state of politics, the opinions on 4
-issue domains (Climate, Migration, The Economy, Health Care, Foreign Policy),
-and their political affiliation (E.g. Who they would likely vote for, whether
-they considered themselves more liberal or conservative). This questionnaire was
-also conducted to a control group of people who did not participate in the
-deliberation. They found deliberation to increase the likelihood of voting,
-improve the opinion on their political rivals, increase the likelihood of voting
-for president Biden, among other effects. They explain these effects through,
-what they call, ``Civil awakening''. This states that previously uninformed and
-uninvolved voters become involved through an increase in self-efficacy as well
-as their knowledge. These were still measurable one year after the intervention.
-Though they did not measure full preference rankings over the possible parties,
-these results do indicate both an increase in Meta-Agreement, and
-Substantive-agreement. Namely, in terms of their opinions, opinions tended to
-shift more moderate, which more conservative voters changing their opinions
-most. The authors also note that moderate voters become more likely to voter for
-Biden, indicating some change in how voters conceptualize of the Candidates'
-positions.
+An important exception is a study by \citet{fishkinCanDeliberationHave2024}, who conducted
+the \textsc{America in One Room} experiment, a large-scale deliberative event in which a
+representative sample of U.S. voters gathered to discuss major policy issues in
+the lead-up to the 2020 presidential election. Participants completed surveys
+before and after the event assessing their political knowledge, policy
+preferences across five issue domains (climate, immigration, the economy,
+health care, and foreign policy), and partisan affiliation (including intended
+vote choice and ideological self-identification). A control group completed the
+same surveys without participating in deliberation. The researchers found that
+deliberation increased participants’ likelihood of voting, improved their
+opinions of political opponents, and increased support for Joe Biden—especially
+among moderate and previously disengaged voters. These effects were explained
+in terms of a "civil awakening," wherein deliberation led to increased
+self-efficacy and political engagement among previously uninvolved citizens.
+Notably, these effects persisted for at least a year after the intervention.
 
-
+While the study did not elicit full preference rankings over all political
+options, it provides strong evidence for both increased meta-agreement (i.e.,
+alignment on how political differences are framed or understood) and
+substantive agreement (i.e., convergence of actual issue positions).
+Participants’ opinions tended to shift toward the center, with conservative
+voters showing the most change. Moderate voters also became more likely to
+support Biden, suggesting changes in how they conceptualized the candidates’
+ideological positions.

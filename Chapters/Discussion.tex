@@ -15,14 +15,14 @@ should aim to reach \textit{consensus}. In \Cref{theory} we show that the
 deliberative procedure posited by
 \citet{radDeliberationSinglePeakednessCoherent2021} cannot be strategyproof
 under classic notions of strategyproofness as well as novel notion of
-strategyproofness we define. We use this add one more tenant to Cohen's four,
+strategyproofness we define. We use this to add one more tenant to Cohen's four,
 namely \textit{honesty}.
 
 We then set out to mechanically understand deliberation. For this we introduced
 the DeGroot learning model, and adapted it to deliberation over opinions. We showed
 NP-hardness on the $\delta$-DBVM(S) problem, and concluded that using de DeGroot model
 to model sparse graphs is computationally difficult, if one wants to assign voters to nodes
-based on some distances metrics.
+based on some distance metrics.
 
 In \Cref{experiment_results} replicated the results by
 \citet{radDeliberationSinglePeakednessCoherent2021}, and we use our adapted
@@ -35,11 +35,11 @@ DeGroot model treats all policies equally. The data showed that some topics had
 large shifts in opinions, while others showed less. The DeGroot model was
 unable to capture this.
 
-Using sensitivity analysis we showed that all parameters effected the final
+Using sensitivity analysis we showed that all parameters affected the final
 predictions, but interestingly some parameters had non-significant first-order
 effects. We argue that this is a result of these parameters not introducing new
 information. As a result they can only affect the variance of the model by
-modulating the dynamics induces by the parameters with significant first-order
+modulating the dynamics induced by the parameters with significant first-order
 effects.
 
 Finally, we looked at the preference profiles which we simulated based on the
@@ -65,7 +65,7 @@ Firstly, given the lack of a complete data source combining pre- and
 post-deliberation opinions and preference rankings as well as the opinions of
 these alternatives, we have had to make many assumptions on both the positions
 represented by the candidates, and well as the method by which voters generate
-their preferred rankings over them. In terms of generating candidates, our
+their preference rankings. In terms of generating candidates, our
 approach is simple, and only assumes that candidates represent the opinions held
 by the voters. This is however clearly a less rich process than that by which
 real-world candidates are selected, where these might bring in new opinions or
@@ -125,7 +125,6 @@ would update their believes using this framework is unclear. Secondly, it limits
 voter's belief updates to linear transformations.
 
 
-
 Finally, we address some limitations on the real-world implications of these results.
 The negative results surrounding strategyproofness in \Cref{theory} might be less
 of an issue in human deliberation, as the dishonest participant could be less convincing
@@ -142,14 +141,9 @@ need to be studied.
 
 
 
-
-
-
-
-
 \section{Future work}
 
-Based on the limitations of this study, and the literature it was based one, we present some areas for future work.
+Based on the limitations of this study, and the literature, we present some areas for future work.
 
 Given the weak performance of the model, a better computational model is needed
 to understand deliberation and inform the design of deliberative interventions.

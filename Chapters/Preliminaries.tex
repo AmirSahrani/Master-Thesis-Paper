@@ -12,7 +12,7 @@ relevant to the following chapters.
 To model elections, we represent voters by the set $\voters$ consisting of $n$
 voters. The possible outcomes of an election, we represent with the set
 $\alternatives$ consisting of $|A|$ possible outcomes, usually called the alternatives. In line with the topic of political elections, we will
-refer to the outcomes of an election as candidates instead. Each voter;represents
+refer to the outcomes of an election as candidates instead. Each voter represents
 their preference on candidates through a preference relation $\pref_i$, for
 example if voter $i$ prefers outcome $a$ to outcome $b$, we write $a \pref_{i} b$.
 When a voter's preference is antisymmetric, complete, and transitive, i.e. it orders
@@ -75,12 +75,12 @@ choice function $f$, this function should map all possible profiles to an
 outcome, thus $f: \setOfStrictProfiles^n \to \alternatives$. A famous and
 simple example of a SCF is the plurality rule, which simply elects the
 candidate voted into first place most often, i.e. ``most first place votes
-wins''. This rule presents one of the first challenges for many SCF, it must deal with ties.
+wins''. This rule presents one of the first challenges for many SCF: handling ties.
 
 For elections, organizers likely will want to ensure the SCF has certain
 nice properties, such as not favoring a candidate. In social choice, these
 properties are called axioms, and the procedure of designing a SCF based on
-desired axioms is called the axiomatic approach. The name of the property just
+desired axioms is called the axiomatic approach. The property just
 described is the axiom of neutrality, stating that the SCF should be
 neutral with respect to the candidates. In this work, six main axioms are of
 importance.
@@ -199,7 +199,7 @@ though conceivable, it seems generally unlikely for there to exist a perfect
 split in opinions. Quite naturally one of the first ``solutions'' one might
 consider is when the number of voters is not a multiple of the number of
 candidates, though this is hardly a useful solution since it only prevents
-Condorcet cycles, it is the first example of a domain restriction, we define a
+Condorcet cycles, this is the first example of a domain restriction, we define a
 simple domain that prevents these cycles as follows.
 
 \begin{definition}{$\domain{No-tie}$}{dom-ties}

@@ -65,7 +65,7 @@ real-world opinion formation.
 \section{DeGroot Model}\label{degroot_results}
 
 % Intro
-We present the results based on the DeGroot model. The model is informed by the
+We present the results based on the DeGroot model. The model is calibrated using the
 data from the \textsc{America in one Room} experiment, which was used to
 construct the support vectors $\Support$ as well as the estimated support
 matrices $\EstSupport$. We follow the original paper, focussing on the most
@@ -186,8 +186,8 @@ reasonable predictive power over a population of voters.  This holds even for
 smaller bins. \Cref{fig:binned_errors} shows the progression of errors over
 time when the error is calculated on a per-individual basis (left), and binned
 (right). We find the model does not predict the change per individual well,
-with the original score at t=0 being a better predictor of an individuals final
-PBS than the models output. Notably using the ego-based trust, the model makes
+with the original score at t=0 being a better predictor of an individual's final
+PBS than the model's output during any subsequent time steps. Notably, using the ego-based trust, the model makes
 smaller prediction errors. When we look at the predictions binned by initial
 PBS, the model seems to be doing a lot better, again with ego-based trust
 resulting in the lowest error. Interestingly after the first time step,
@@ -257,7 +257,7 @@ $\ell_1$ norm.
 In \Cref{fig:convergence_big}, all configurations converge at a
 similar rate, slowing down the rate of change around t = 15. Since using the
 original groups leads to generally smaller groups, the mean absolute difference in
-the matrices is smaller. When using knowledge-based trust there is a lower rate
+the matrix is smaller. When using knowledge-based trust there is a lower rate
 of convergence
 
 
@@ -268,7 +268,7 @@ PBS of the model. We do not use the original groups, as this allows us to vary
 the number of voters. \Cref{fig:sensitivty_pbs} shows the sensitivity indices.
 As for direct effects, as shown in the first order indices, the \textit{number
 	of voters} is clearly the biggest factor in the variance of the model. As
-expected the \textit{bias} does not directly contribute to the variance in the
+expected, the \textit{bias} does not directly contribute to the variance in the
 model. \textit{Knowledge} informed trust and\textit{ knowledge} informed bias
 (self knowledge) both are significantly impacting the variance of the model.
 The second order indices show \textit{number of voters} interacts with
@@ -305,7 +305,7 @@ the second order sensitivity indices
 	\label{fig:degroot_cyclic}
 \end{figure}
 
-Firstly, when comparing different voter generation mechanisms, we find that generating a candidate by copying the opinion of a single voter performs best—both in minimizing the number of cyclic profiles and in maximizing the frequency with which a Condorcet winner exists. Though this result may seem unintuitive, we suspect the reason is that pre-deliberation opinions were relatively polarized. As a consequence, constructing candidates as averages of 10 voters tends to produce alternatives that are too similar, making it difficult for any one to stand out.
+Firstly, when comparing different voter generation mechanisms, we find that generating a candidate by copying the opinion of a single voter performs best—both in minimizing the number of cyclic profiles and in maximizing the frequency with which a Condorcet winner exists. Though this result may seem unintuitive, we suspect the reason is that pre-deliberation opinions were relatively polarized. As a consequence, constructing candidates as averages of 10 voters tends to produce alternatives that are too similar, making it difficult for anyone to stand out.
 
 In contrast, a single voter's opinion is more likely to fall near a large cluster of voters, making that candidate closer—on average—to the majority. In such cases, that candidate is more likely to become a Condorcet winner. Put simply, averaged candidates tend to represent moderate positions, leading to greater voter indifference between them. In these situations, small errors in perceived support can have disproportionately large effects. Meanwhile, candidates based on a single voter's opinion—especially in a polarized society—are more likely to be distinct and strongly preferred.
 

@@ -128,10 +128,9 @@ meta-agreement.
 
 Deliberation, though intuitively familiar as
 the process of multiple people talking through a problem with the goal of
-coming to an agreement, compromise or solution. Providing a definition that is
+coming to an agreement, compromise, or solution. Providing a definition that is
 both clear and consistent with the literature in Political Science, Philosophy
-and Social Choice is difficult.  As this intuition leaves some of the reasons for
-and goals of deliberation, as stated in the literature, unmentioned.
+and Social Choice is difficult.  
 
 Instead of defining deliberation in full generality, we instead focus on
 deliberation in a political
@@ -148,7 +147,7 @@ political agents or their representatives:
 	\label{list:deliberative-democracy}
 	\setlength\itemsep{1px}
 	\item  Aim to collect, deliberate and vote
-	\item  Represent their sincere and informed judgements
+	\item  Represent their sincere and informed judgments
 	\item  Vote and deliberate on measures beneficial to the common good for the citizens
 	\item  Are seen and see each other as political equals
 	\item  Have Constitutional rights and their social means enable them to participate in public life
@@ -182,7 +181,7 @@ up dictating where the cycle breaks. He further goes on to describe the
 	\item  Ideal deliberation aims to arrive at rationally defensible \emph{consensus}.
 \end{enumerate}
 
-From both Cohen's and Freeman's account there is clear overlap, with Freeman
+From both Cohen's and Freeman's accounts, there is clear overlap, with Freeman
 formulating the necessary preconditions for participants to engage in ideal
 deliberation. Both Cohen and Freeman  require freedom in a broad sense. Freedom
 to have a personal conception of the good, and to acknowledge and act in
@@ -245,17 +244,17 @@ deliberation increases PtS-V. (H2')\footnote{This is a
 PtS than low salience issues. (H3) Effective deliberation, in the sense that
 more is learned during deliberation, results in bigger increases of PtS. (H4)
 All things equal, the increase is largest for issues with natural
-\emph{issue}-dimensions. They find support for all these hypothesis, showing
+\emph{issue}-dimensions. They find support for all these hypotheses, showing
 that on low-moderate salience issues PtS increases following deliberation.
 
 It is important to note that these claims simply predict what will happen,
-there is not much explanatory power to these claims. Little is known about to
-process be which voters signal the issue dimensions, nor how they decide on
+there is not much explanatory power to these claims. Little is known about the
+process through which voters would signal the issue dimensions, nor how they decide on
 which ones to present.
 
 Furthermore,~\citet{ottonelliElusiveNotionMetaagreement2013} show
 single-peakedness from meta-agreement to be a stronger requirement than it may
-seem at a first glance. Firstly for (D1) to hold, the \emph{issue}-dimension
+seem at a first glance. Firstly, for (D1) to hold, the \emph{issue}-dimension
 must hold some semantic meaning, as it is unclear how people can exchange
 conceptualization of the problem otherwise. Furthermore, the issues must
 consist of two semantic issues, with only one issue voters simply reach substantive
@@ -272,7 +271,7 @@ three requirements.
 Thus, meta-agreement as a means for single-peaked profiles is still quite
 restrictive, needing multiple forms of unanimity, and only applying to problems
 with certain properties. Nonetheless,  meta-agreement might still
-play a crucial part in a deliberative process. In the next section we will
+play a crucial part in a deliberative process. In the next section, we will
 look into a specific computational model of deliberation.
 
 
@@ -291,18 +290,18 @@ profile and the announced profile, which profiles are considered to be
 distance metrics, Kemeny-Snell (KS)~\citep{kemeny1962preference}, Duddy-Piggins
 (DP)~\citep{duddyMeasureDistanceJudgment2012}, and Cook-Seiford
 (CS)~\citep{cookPriorityRankingConsensus1978}. Both KS and DP depend on the
-judgement set resulting from the voters preferences, which contains, for
+judgment set resulting from the voters' preferences, which contains, for
 each pair of candidates $a,b$, where $a \neq b$, a proposition $(a \pref b)$ or
 $\neg (a \pref b)$. The KS distance is then defined as the number of binary
-swaps a judgement set needs to undergo before it becomes the target judgement
+swaps a judgment set needs to undergo before it becomes the target judgment
 set, an example for such a swap would be going from $(a \pref b)$ to $\neg (a
-	\pref b)$. The DP distance is defined on the graph of judgement sets, where 2
-sets share an edge if there is no judgement set between them. Since KS and DP
+	\pref b)$. The DP distance is defined on the graph of judgment sets, where 2
+sets share an edge if there is no judgment set between them. Since KS and DP
 share their notion of betweenness, we define their betweenness as follows.
 
 \begin{definition}{J-Betweenness}{def:j-between}
 
-	A judgement set $J_i$ is between preferences $J_j$ and $J_k$ if for
+	A judgment set $J_i$ is between preferences $J_j$ and $J_k$ if for
 	every $x,y \in \alternatives$, the proposition over $x$ and $y$ in
 	$J_i$ either agrees with the proposition over $x$ and $y$ in $J_j$ or $J_k$.
 
@@ -324,7 +323,7 @@ agree on the relative ranking of all but one candidate, which one voter happens
 to rank first, thereby shifting the opinion of voter 2 right by one, the CS
 distance would conclude that these voters are in full disagreement, while
 reasonably one could conclude their opinions do not differ much. The KS
-distance, using judgement sets instead of raw profiles, captures this more
+distance, using judgment sets instead of raw profiles, captures this more
 effectively, while still being relatively easy to compute, but in case of many
 disagreements, it is likely to over count the distance, since the binary
 changes do not capture logical necessities. For example, swapping $( a \pref
@@ -335,11 +334,11 @@ graph used for the DP distance in the case of 3 candidates. The graph shows the
 benefit of using the DP distance, as the edges in graphs automatically include
 logical consequences that the KS distance might not account for. By
 capturing logical consequences, the DP distances become much harder to
-compute, mainly through the cost of constructing the full graph of judgement
+compute, mainly through the cost of constructing the full graph of judgment
 sets, which grows in $f_m = 1 + \sum_{j=1}^{m-1} \binom{m}{j} f_{n-j}$ in the
 number of vertices, where $m$ is the number of
 candidates~\cite{grossPreferentialArrangements1962}. This can easily be
-verified by noting that the number of judgements sets over $m$ corresponds to
+verified by noting that the number of judgments sets over $m$ corresponds to
 the number of weak preference rankings over $m$ candidates, which is defined as
 candidates, and a binary choice on each proposition.
 
@@ -349,8 +348,8 @@ candidates, and a binary choice on each proposition.
 \begin{figure}[ht]
 	\centering
 	\includegraphics[width=0.65\textwidth]{dpGraph.pdf}
-	\caption{The graph of judgement sets for all preferences over three
-		candidates, brackets indicate ties. For readability the corresponding
+	\caption{The graph of judgment sets for all preferences over three
+		candidates, brackets indicate ties. For readability, the corresponding
 		preferences are uses as node labels}
 	\label{figure:DPDistance}
 \end{figure}
@@ -416,7 +415,7 @@ agents do not conceive of anything relating to the structure of the problem.
 They simply announce their preferences, and all other listen and update
 accordingly, thereby moving to some sort of substantive agreement. Secondly,
 the model presupposes that all opinions are equally defensible, and that each
-voter is equally able to formulate this defense. To address this we formulate a
+voter is equally able to formulate this defense. To address this, we formulate a
 new model in \Cref{theory}.
 
 
@@ -453,7 +452,7 @@ same surveys without participating in deliberation. The researchers found that
 deliberation increased participants’ likelihood of voting, improved their
 opinions of political opponents, and increased support for Joe Biden—especially
 among moderate and previously disengaged voters. These effects were explained
-in terms of a "civil awakening," wherein deliberation led to increased
+in terms of a ``civil awakening'', wherein deliberation led to increased
 self-efficacy and political engagement among previously uninvolved citizens.
 Notably, these effects persisted for at least a year after the intervention.
 

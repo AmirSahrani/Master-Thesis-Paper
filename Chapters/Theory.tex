@@ -31,7 +31,7 @@ behavior.
 
 
 We extend upon this result, showing the inclusion of biases in voters does not
-mitigate the negative result. For this we define $\biasedDeliberation$ as
+mitigate the negative result. For this, we define $\biasedDeliberation$ as
 follows:
 
 \begin{definition}{Biased Deliberation}{biased_delib} A deliberative procedure
@@ -41,7 +41,7 @@ follows:
 	the bias each voter has towards their own opinion. \end{definition}
 
 We now proceed with a corollary on
-\Cref{proposition:deterministic-delib}. Towards this we assume biases
+\Cref{proposition:deterministic-delib}. Towards this, we assume biases
 are true, in the sense that a voter cannot help but be `convinced' by
 the presented profiles as much as their bias allows for this. We think
 this assumption is weak and natural in the light of the current
@@ -75,7 +75,7 @@ $\biasedDeliberation$ to general deliberation $D$.
 This result is independent of the metric space chosen. From
 here we now show that even if we take the deliberation
 procedures on its own, it still not immune to strategic
-manipulation. For this we restate strategyproofness as follows:
+manipulation. For this, we restate strategyproofness as follows:
 
 %TODO make the Dist function a function between two rankings, then change the formulation to sum notation
 \begin{definition}{Strategyproofness of
@@ -149,7 +149,7 @@ proof for the CS distance measure is laid out in \Cref{AppendixA:proof}.
 	behave the same locally, with the distance of two profiles being 2 whenever one
 	is 1 swap of candidates away from the other. This means that  \(R_{i}\) and
 	\(R_{j}\) have a distance of 2, as well as  \(R_{1}'\) and \(R_{1}\) having a
-	distance of 2. In this case the total distance from \(R_{1}'\) to \(R_{j}\) is
+	distance of 2. In this case, the total distance from \(R_{1}'\) to \(R_{j}\) is
 	simply the sum of the local distances for both distance metrics, thus
 	satisfying our requirements.\hfill \end{proofc}
 
@@ -157,11 +157,12 @@ proof for the CS distance measure is laid out in \Cref{AppendixA:proof}.
 These results show it is likely frivolous to attempt to design a strategy proof
 deliberation procedure of the likes shown. Instead, focus is now brought to
 modeling `ideal' deliberation, as laid out in \Cref{subsection:Meta-agreement}.
-We provide the following mathematical formulations to the four tenants laid
-out. \emph{Freedom}: voters can report any preference, \emph{Reason}: voters
-are rational, \emph{Equality}: no voter has special rights, \emph{Consensus}:
-voters deliberate aim to reach consensus. Which we extend with \emph{Honesty}:
-Voters represent their true beliefs and preferences only.
+We provide the following mathematical formulations to the four tenants laid out.
+\emph{Freedom}: voters can report any preference, \emph{Reason}: voters are
+rational, \emph{Equality}: no voter has special rights, i.e. the axiom of
+neutrality is satisfied, \emph{Consensus}: voters deliberate with the aim to
+reach consensus. Which we extend with \emph{Honesty}: Voters represent their
+true beliefs and preferences only.
 
 
 \section{Our Model} \label{sec: main model}
@@ -172,7 +173,7 @@ In order to do so, we propose the following, let \(\policies = \{\policy_{1},
 \cdots \policy_{k}\}\) denote the set of policies that could be implemented. A
 voter $i \in \voters$, has support for these policies, represented as a number
 on an interval over $\Reals$. At a meta level, a voter has an understanding of
-which policies are supported by which candidates. This is modelled as matrix,
+which policies are supported by which candidates. This is modelled as a matrix,
 representing the estimated support for each policy for a candidate, thus voter
 $i$ has $\EstSupport^i$, where $\EstSupport^i_{j, x}$ represents this voters'
 estimated support of $\policy_j$ by candidate $x$.
@@ -180,14 +181,14 @@ estimated support of $\policy_j$ by candidate $x$.
 This model does not explicitly model $D1$, the discovery of a common issue
 dimension, on the one hand, if the candidates can be reduced to a line, this
 model should be able to capture this, even if this one line crosses through
-multiple issue dimension. For example if all issues are strongly (negatively)
-correlated on the side of the candidates, but not on the voters, this model
+multiple issue dimension. For example, if all issues are strongly (negatively)
+correlated on the side of the candidates, but not on the side of the voters, this model
 allows for the voters to recognize this by properly estimating the
 candidates' support matrices, while voters themselves can keep an
 uncorrelated support vector. In the case that the actual issue dimension is
 simply not included in $\policies$, our model would not be able to discover
 this new dimension, even if human deliberation feasibly could. More
-straightforwardly, if we the measured support is irrelevant to the true issue
+straightforwardly, if the measured support is irrelevant to the true issue
 dimension(s), our model cannot recover the true issue dimension.
 
 Our model adapts the DeGroot learning model, which
@@ -212,20 +213,11 @@ between the estimated support matrix for that candidate and her own. We
 further allow this distance to be weighted, such that a voter may have one or
 more policies their think are more important.
 
-% Next we define the deliberative procedure, for which we will provide two
-% models. Firstly a simpler model, which stays closer to the original DeGroot
-% model, using only a transition matrix. Secondly we extend this model to be an
-% Agent Based model, in which we allow agents to have additional properties. In
-% both models we allow voters to deliberate on both their own support vector and
-% the estimated support matrix, capturing deliberation on substantive basis as
-% well as a meta basis, respectively.
-
-Next we define the deliberative procedure in terms of the trust matrix of the
-DeGroot model.
-
-Firstly, a deliberative step can be modelled using a transition matrix $T$,
-defined as follows: \[ T=\begin{bmatrix} t_{11} & \cdots & t_{1n} \\ \vdots &
-                \ddots & \vdots          \\ t_{n1} & \cdots  & t_{nn} \\\end{bmatrix} \]
+Next, we define the deliberative procedure in terms of the trust matrix. A
+deliberative step can be modelled using a transition matrix $T$, defined as
+follows: 
+\[ T=\begin{bmatrix} t_{11} & \cdots & t_{1n} \\ \vdots & \ddots &
+\vdots          \\ t_{n1} & \cdots  & t_{nn} \\\end{bmatrix} \]
 
 Here each $t_{ij}$ represents how much voter $i$ trusts the opinion of voter
 $j$, in order for this to be a proper stochastic matrix, all rows must sum to
@@ -245,7 +237,7 @@ support matrices, weighted by the trust in each voter. Deliberation can now be
 modelled by taking powers of the trust matrix, $T^{t}$, representing $t$
 deliberation steps. This matrix now represents how much each voter $i$ has
 learned from the other voters, and can then be used to right multiply both the
-support and the estimated support matrix to calculate a voters beliefs after
+support and the estimated support matrix to calculate a voter's beliefs after
 deliberation.
 
 Finally, we provide an example of the first deliberation round in example
@@ -337,22 +329,11 @@ their preferred candidates, using meta-agreement to come to a consensus.
 
 \subsection{Consensus} \label{sub: concensus DeGroot}
 
-% \textcolor{RedViolet}{In using a single
-% trust matrix for both support and
-% estimated support matrices, we either have both
-% meta and substantive agreement, or neither. But using
-% two matrices would require justification, Maybe here we can
-% introduce biases again, were we assume the original trust matrix, but
-% we add some kind of "meta" bias and "substantive" bias, where these biases
-% reflect how much they are willing to change their minds. In terms of analysis
-% this would not really make things different, but for experimentation we might
-% be able to argue that people might be more willing to change their views on the
-% meta level, and we can experiment with lower substantive bias.}
 
 Using this model of deliberation, meta-agreement can be seen as some shared estimated
 support matrix over all policies. If the goal of deliberation is
 meta-agreement, then the study of interest becomes the dynamics of convergence
-towards a unified estimate. % Mention that this unified matrix, under this model, need not necessarily correspond to the "true" matrix.
+towards a unified estimate. 
 
 We present a summary of results relating to strongly connected graphs, as well
 as graphs for which there exists only closed and strongly connected subsets of
@@ -486,7 +467,3 @@ the Fast Approximate QAP Algorithm
 not consistently find better solutions than random assignment, and is unable to
 handle large enough instances for the experiments presented in the following
 chapters.
-
-% Given the number of
-% simulations ran, it is infeasible to attempt to refine solutions to consistently
-% be better than random solutions.

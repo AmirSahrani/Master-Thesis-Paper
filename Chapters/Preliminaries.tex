@@ -14,8 +14,8 @@ voters. The possible outcomes of an election, we represent with the set
 $\alternatives$ consisting of $|A|$ possible outcomes, usually called the alternatives. In line with the topic of political elections, we will
 refer to the outcomes of an election as candidates instead. Each voter;represents
 their preference on candidates through a preference relation $\pref_i$, for
-example if voter i prefers outcome $a$ to outcome $b$, we write $a \pref_i b$.
-When a voter's preference is antisymmetric, complete and transitive, i.e. it orders
+example if voter $i$ prefers outcome $a$ to outcome $b$, we write $a \pref_{i} b$.
+When a voter's preference is antisymmetric, complete, and transitive, i.e. it orders
 all candidates and $a \pref_i b$ and $b \pref_i c$ implies $a \pref_i c$, we
 call this a linear order, denoted by $\Preference_i$. We call the set of possible linear orders over the
 candidates $\setOfStrictProfiles$.  For an election, all voters report a
@@ -29,7 +29,7 @@ The last simple definition we will need is the \emph{majority relation}
 construct a majority relationship as follows: for each pair of candidates
 $x,y$, we ask how many voters strictly prefer $x$ to $y$; if this number of people is
 greater than $\frac{n}{2}$ we get $x  \prefmaj y$. If it is exactly equal to
-$\frac{n}{2}$ and thus is a tie, we simply write $x \prefeqmaj y$ (breaking tie arbitrarily), otherwise we write $y \prefmaj x$. We proceed with an
+$\frac{n}{2}$ and thus is a tie, we simply write $x \prefeqmaj y$ (breaking ties arbitrarily), otherwise we write $y \prefmaj x$. We proceed with an
 example.
 
 \begin{example}{Majority relation}{maj-rel}
@@ -55,12 +55,12 @@ example.
 	\end{minipage}
 \end{example}
 
-From this it is easy to see that the majority relation is in some sense a
+From this, it is easy to see that the majority relation is in some sense a
 summary of the voter's preferences. In \Cref{preliminaries: negative results}
 we show how a divided population can lead to an inconsistent majority relation.
 
-Using this majority relationship, we can formulate our first notion of when an
-candidate is winning. We call an candidate $x$ a Condorcet winner, if for
+Using this majority relationship, we can formulate our first notion of when a
+candidate is winning. We call a candidate $x$ a Condorcet winner, if for
 each pairwise comparison between $x$ and $y \in \alternatives\setminus
 	\{x\}$ we have $x \prefmaj y$ for example, in \Cref{ex:maj-rel} $a$ would be
 the Condorcet winner. We can relax the requirement of always winning to never
@@ -75,14 +75,14 @@ choice function $f$, this function should map all possible profiles to an
 outcome, thus $f: \setOfStrictProfiles^n \to \alternatives$. A famous and
 simple example of a SCF is the plurality rule, which simply elects the
 candidate voted into first place most often, i.e. ``most first place votes
-wins''. This rule presents on of the first challenges for many SCF, it must deal with ties.
+wins''. This rule presents one of the first challenges for many SCF, it must deal with ties.
 
-For elections organizers likely will want to ensure the SCF has certain
-nice properties, such as not favoring a candidate. In social choice these
+For elections, organizers likely will want to ensure the SCF has certain
+nice properties, such as not favoring a candidate. In social choice, these
 properties are called axioms, and the procedure of designing a SCF based on
 desired axioms is called the axiomatic approach. The name of the property just
 described is the axiom of neutrality, stating that the SCF should be
-neutral with respect to the candidates. In this work six main axioms are of
+neutral with respect to the candidates. In this work, six main axioms are of
 importance.
 
 \emph{Axiom of Resoluteness.} A SCF $f$ is resolute, if for every profile
@@ -108,13 +108,13 @@ candidates are shuffled, the winning candidate in the shuffled election, is
 the candidate that has the ranks of the winning candidate in the original
 election.
 
-There are many more axioms on could reasonably argue for however, these are
+There are many more axioms one could reasonably argue for, however, these are
 enough to lead to the main impossibility results this work focuses on.
 
 \section{Negative Results}
 \label{preliminaries: negative results}
 
-Classic social choice theory has many negative results one such example is the
+Classic social choice theory has many negative results, one such example is the
 Condorcet cycle. This is a specific profile that results in a cycle in the
 majority relation, as shown in the following example.
 
@@ -140,9 +140,9 @@ majority relation, as shown in the following example.
 	\end{minipage}
 \end{example}
 
-It can be shown that under weak preferences the Condorcet
+It can be shown that under weak preferences, the Condorcet
 cycle can occur anytime there are 3 or more candidates and voters. While
-under strict preferences this can occur anytime there is an odd number of preferences at least 3, with the number of voters being a multiple of the
+under strict preferences, this can occur anytime there is an odd number of candidates that is greater than one, with the number of voters being a multiple of the
 number of candidates. As we will show later, this profile can be the cause of
 some impossibility results.
 
@@ -159,18 +159,17 @@ Unless we accept a dictatorship, it is impossible to have a voting
 rule that incentivizes voters to report their preferences truthfully, when we
 want to pick a singular winner from at least 3 candidates.
 
-Though we do not provide a full proof, the Condorcet cycle offers some
-intuition for why this result holds. Following \Cref{ex:condorcet-cycle},
-suppose we have a social choice function (SCF) $f$ that elects candidate $a$.
-Voter 1 is very happy with this outcome, but voters 2 and 3 would prefer $c$
-instead. Voter 2 could then misreport their preferences by swapping $c$ and
-$b$, thereby causing $c$ to become the Condorcet winner.
-
-Now, if $f$ is both strategyproof and resolute, it must still elect $a$ despite
-$c$ being the Condorcet winner. Since $f$ is also surjective, $a$ cannot be the
-outcome for all preference profiles. Taken together, the only apparent reason
-$a$ continues to win in this profile is because voter 1 wants it to—suggesting
-that voter 1 effectively dictates the outcome.
+Though we do not provide a full proof, the Condorcet cycle offers some intuition
+for why this result holds. Following \Cref{ex:condorcet-cycle}, suppose we have
+a social choice function (SCF) $f$ that elects candidate $a$. Voter 1 is very
+happy with this outcome, but voters 2 and 3 would prefer $c$ instead. Voter 2
+could then misreport their preferences by swapping $c$ and $b$, thereby causing
+$c$ to become the Condorcet winner. Now, if $f$ is both strategyproof and
+resolute, it must still elect $a$ despite $c$ being the Condorcet winner. Since
+$f$ is also surjective, $a$ cannot be the outcome for all preference profiles.
+Taken together, the only apparent reason $a$ continues to win in this profile is
+because voter 1 wants it to—suggesting that voter 1 effectively dictates the
+outcome.
 
 Fortunately, there seem to be ways around these negative results. Mainly
 through the assumption that there is some structure in the preferences of
@@ -181,7 +180,7 @@ voters.
 Negative results often are a result of a small set of ill-behaved profiles. If there is
 reason to conclude these profiles are impossible in the election at hand, there
 is some hope of constructing SCF's satisfying our axioms. To speak more
-formally about profiles ``not occuring'', we introduce Domain restrictions, for
+formally about profiles ``not occurring'', we introduce Domain restrictions, for
 this we use the definition by
 \citet{elkindPreferenceRestrictionsComputational2022}.
 
@@ -216,7 +215,7 @@ This allows us to state our first proposition.
 \begin{proofc}
 	Assume, for the sake of contradiction, the plurality rule in fact does
 	return an $|\alternatives|$-way tie, this means all candidates were ranked first an
-	equal number of times call this $k$. Necessarily then, we need
+	equal number of times call this $k$. Necessarily, we need
 	exactly $k \cdot |\alternatives|$ voters, but this leads to a
 	contradiction, as this would no longer be inside $\domain{No-tie}$.
 \end{proofc}
@@ -224,15 +223,15 @@ This allows us to state our first proposition.
 This is a simple result, but it serves as an example on how we can use the
 properties of the domain to prove things about the election.
 \citet{gaertnerDomainRestrictions2002} establishes two ways in which a domain can
-be restricted. Firstly we can restrict the domain to a number of voters or
+be restricted. Firstly, we can restrict the domain to a number of voters or
 candidates, which is what we did in $\domain{No-tie}$. Secondly, the domain can
 be restricted to have a certain structure, such as being single-peaked.
 
 
-In an election the candidates might represent an axis, such that a voters
-prefers an candidate more if they are closer to them on the axis. For
+In an election, the candidates might represent a point on an axis, such that a voter
+prefers a candidate more if they are closer to them on the axis. For
 example, if the candidates represent the minimum wage, where each cent-value
-constitutes an candidate. Imagine a voter thinks the minimum wage should  be
+constitutes a candidate. Imagine a voter thinks the minimum wage should  be
 some value $x$ and prefers candidates that are closer to this value $x$. This
 results in each voter having a ``peak'' value, and all other values are ranked
 in terms of their distance to $x$. \Cref{fig:singlepeaked_vis} shows what this
@@ -278,7 +277,7 @@ makes this notion formal.
 	at most $a \pref_i b$ or $c \pref_i b$, but never both.
 \end{definition}
 
-This thesis will now focus on measures to ``increase'' single-peakedness of profile.
-
+The following chapters explore deliberation as a mechanism for increasing
+single-peakedness in preference profiles
 
 

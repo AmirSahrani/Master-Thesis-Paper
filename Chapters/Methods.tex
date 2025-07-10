@@ -31,15 +31,12 @@ simulations, for a total of 5400 simulations.
 
 We measure evaluations relating to strict preferences, namely the
 proportion of cyclic profiles, the number of unique profiles and the proximity
-to single-peakedness by voter deletion (PtS-V), all as reported by
-\citet{radDeliberationSinglePeakednessCoherent2021}. We do not measure the PtS-C, as any
-profile with 2 candidates is single-peaked and the simulation will have 3
-candidates, all values would trivially be either 1 or $\frac{2}{3}$.  This metric therefore
-provides little additional insight.
+to single-peakedness by voter deletion (PtS-V), all as also reported by
+\citet{radDeliberationSinglePeakednessCoherent2021}.
 
-Due to the computational complexity of the
-DP-metric, as well as the calculation of PtS-V, a larger number of candidates is not
-feasible. Specifically, PtS-V is NP-complete
+Due to the computational complexity of the DP-metric, as well as the
+calculation of PtS-V, a larger number of candidates is computationally
+infeasible. Specifically, PtS-V is NP-complete
 \cite{erdelyiComputationalAspectsNearly2013}, though it allows for a
 2-approximation. We use the method based on an ILP solver, as implemented in
 \texttt{PrefTools} \cite{PrefLibPreflibtools2025}.
@@ -70,11 +67,11 @@ that expertise becomes apparent during discussion, leading to increased
 trust in more knowledgeable individuals
 
 
-\textbf{Similarity}. A voter might trust people more if they are similar to them, in this work we take similarity to mean a similarity in substantive opinion. It is however not hard to conceive of similarity influence trust in other ways such as social status.
+\textbf{Similarity}. A voter might trust people more if they are similar to them, in this work we take similarity to mean a similarity in substantive opinion. It is however not hard to conceive of similarity influence trust in other ways such as social status. We calculate the similarity as the $\ell_1$-distance between two voters' opinions, normalized by the maximal distance between two voters in their deliberative group.
 
 
 \textbf{Ego}. Finally, a voter may place greater weight on her own opinion if
-she is highly trusted by others.
+she is highly trusted by others. This we calculate as the sum of incoming edges in the trust matrix.
 
 Finally, we allow for a bias factor, similar to Rad and Roy, in order to
 directly affect the self-loop in the trust matrix.
@@ -123,6 +120,24 @@ Finally, we construct the full trust matrix $T$ by combining $T_{\text{out}}$ wi
 \end{equation}
 
 Here $+$ denotes element-wise addition, and $\operatorname{norm}$ normalizes the rows of the resulting matrix so that $\sum_j T_{ij} = 1$ for all $i$.
+
+
+Once we have the trust matrix $T$, we model the evolution of both substantive
+and meta-opinions over $t$ time steps as:
+
+\begin{equation}
+	\Support_{i}^{t} = T^{t}\Support^{(0)}
+	\label{eq:delib-substatative}
+\end{equation}
+
+\begin{equation}
+	\EstSupport_{i}^{t} = T^{t}\EstSupport^{(0)}
+	\label{eq:delib-meta}
+\end{equation}
+
+Here equation \ref{eq:delib-substatative} captures the final support of voter
+$i$ after $t$ times steps, and equation \ref{eq:delib-meta}, captures how they
+estimate the candidates' support.
 
 
 In this model, we make the simplifying assumption that trust remains static
@@ -233,7 +248,7 @@ opinions, we assess the validity of the model insofar as it is able to
 accurately predict the final opinion of voters. This we measure for each voter,
 as well as for binned groups of voters with similar opinions. The latter
 measurement replicating the assessment by
-\citet{fishkinCanDeliberationHave2024}, where voters a placed in fixed size bins such that each bin contains voters with similar initial PBS.
+\citet{fishkinCanDeliberationHave2024}, where voters are placed in fixed size bins such that each bin contains voters with similar initial PBS.
 
 We run 5000 simulations, randomizing the independent variables laid out in
 \Cref{tab:independent_variables}, excluding \texttt{Candidates}, and
@@ -283,11 +298,17 @@ first- and higher-order interactions of a variable, respectively.
 		\bottomrule
 	\end{tabular}
 	\label{tab:independent_variables}
-	\caption{The parameters of the adapted DeGroot model and their values. Parameters marked with asterisk are randomized during sensitivity analysis. $\dagger$ Set to False during sensitivity analysis.}
+	\caption{The parameters of the adapted DeGroot model and their values.
+		Parameters marked with an asterisk (*) are randomized during
+		sensitivity analysis. $\dagger$
+		parameter set to \texttt{False} during sensitivity analysis.
+
+	}
 \end{table}
 
 
 \section{Introducing Meta-Agreement}
+\label{method: meta-agreement}
 
 To incorporate meta-agreement on alternatives, we expand the model by
 introducing simulated candidates. Candidates are generated in two ways: either
@@ -301,15 +322,20 @@ same metrics as in the Rad and Roy replication. These include the proportion of
 cyclic profiles, the presence of a Condorcet winner, the number of unique
 preference profiles, and the proximity to single-peakedness via voter deletion
 (PtS-V). Additionally, we compute the frequency of Condorcet winners and the
-proximity to single-peakedness via candidate deletion (PtS-C). The frequency of
-Condorcet winners, when more than three candidates are present, offers insight
-into the extent of agreement on a single best alternative, even when the
-majority graph contains cycles. For example, it is possible for one candidate
-to be consistently ranked first by a majority of voters, while the remaining
-candidates form a Condorcet cycle among themselves.
+proximity to single-peakedness via candidate deletion (PtS-C). PtS-C is an
+alternative view to PtS-V, focussing on ill-behaved candidates, instead of
+voters. The frequency of Condorcet winners, when more than three candidates are
+present, offers insight into the extent of agreement on a single best
+alternative, even when the majority graph contains cycles. For example, it is
+possible for one candidate to be consistently ranked first by a majority of
+voters, while the remaining candidates form a Condorcet cycle among themselves.
 
 While PtS-C can be computed in $\mathcal{O}(|V| \cdot |C|^3)$ time
 \cite{przedmojskiAlgorithmsExperimentsNearly2016}, we rely on the implementation
 provided by the \texttt{PrefTools} library \cite{PrefLibPreflibtools2025},
 which uses a slower $\mathcal{O}(|V| \cdot |C|^5)$ algorithm based on the
 method from \citet{erdelyiComputationalAspectsNearly2013}.
+
+In the following chapter, we analyze the behavior of these models under both
+empirical data and controlled simulations, examining their capacity to
+replicate realistic deliberative outcomes and foster structural agreement.

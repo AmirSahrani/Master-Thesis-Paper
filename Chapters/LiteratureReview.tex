@@ -364,7 +364,7 @@ order\footnote{We exclude their analysis of preferences containing ties.} and a
 bias \(v = \langle r, b \rangle\), with \( b \in \Reals_{[0,1]}\). Finally, a
 deliberation step \(D_{s} : V^n \to V^n\), where $V$ is the set of all possible
 voters $ (\setOfStrictProfiles \times \Reals_{[0,1]})^n$ and $s$ being one of
-the spaces (KS, DP, CS). The deliberation step $D_s(V, v.r)$ returns a fully
+the distance metrics (KS, DP, CS). The deliberation step $D_s(V, v.r)$ returns a fully
 updated voter set, where each voter has updated their opinion in response to
 the announced opinion $v.r$. We formulate this procedure in the following
 program:
@@ -374,7 +374,7 @@ program:
 	\SetKwInOut{Input}{input}
 	\SetKwInOut{Output}{output}
 
-	\Input{Set of Voters $V$, metric space $s$}
+	\Input{Set of Voters $V$, distance metric$s$}
 	\Output{Updated set of Voters $V$}
 	\BlankLine
 
@@ -391,8 +391,7 @@ program:
 
 Here, we use $v.r$ to denote the preference component of voter $v = \langle r, b \rangle$.
 The deliberation step $D_s(V, v.r)$ returns a new set of voters, where each voter updates
-their opinion based on $v$'s preference $r$, under the influence of the deliberation
-space $s$. Each voter updates their preference to a new profile $r'$ that minimizes the weighted distance between their original preference $r_i$ and the announced preference.
+their opinion based on $v$'s preference $r$, under the influence of the distance metric $s$. Each voter updates their preference to a new profile $r'$ that minimizes the weighted distance between their original preference $r_i$ and the announced preference.
 
 
 \begin{equation}
@@ -403,7 +402,7 @@ space $s$. Each voter updates their preference to a new profile $r'$ that minimi
 \end{equation}
 
 Here $b$ is this voter's bias, and $d_s$ is the distance between two profiles
-under distance space $s$.
+under distance metric $s$.
 
 We present a replication and extension of their work \Cref{experiment_results}.
 Furthermore, we present novel (negative) results based on this model in

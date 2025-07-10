@@ -230,7 +230,7 @@ foreign policy, the model predicted an increase in PBS on average,
 while in reality people decreased their PBS. Comparing different trust
 generation methods, we see that ego and similarity are quite similar on most
 topics, but specifically on the economy ego seems to be very accurate, while
-similarity seems to result in little change at all.
+similarity does not seem to lead to significant change.
 
 \begin{figure}[ht]
 	\begin{center}
@@ -238,7 +238,6 @@ similarity seems to result in little change at all.
 	\end{center}
 	\caption{
 		Change in PBS per topic with bias random between 0.2 and 0.4. This figure compares the observed change in PBS across policy topics (e.g., healthcare, immigration), showing the average change for three trust mechanisms: ego-based, similarity-based, and the model using all trust signals combined.
-
 	}\label{fig:per_topic}
 \end{figure}
 
@@ -253,7 +252,7 @@ similarity seems to result in little change at all.
 
 \Cref{fig:bias_slowdown} shows the relation between the bias factor and the
 PBS, showing that the bias does not improve the model's predictive power. As
-one might expect a bias is ``slowing down'' the model. Because of this the
+one might expect, bias is ``slowing down'' the model. Because of this, the
 model is slower to diverge away from the true opinions.
 
 
@@ -294,7 +293,7 @@ the number of voters. \Cref{fig:sensitivty_pbs} shows the sensitivity indices.
 The first order indices show that the \textit{number
 	of voters} is clearly the biggest factor in the variance of the model. As
 expected, the \textit{bias} does not directly contribute to the variance in the
-model. \textit{Knowledge} informed trust and\textit{self knowledge}
+model. \textit{Knowledge} informed trust and \textit{self knowledge}
 both are significantly impacting the variance of the model.
 The second order indices show \textit{number of voters} interacts with
 \textit{knowledge}, \textit{self knowledge}, and\textit{ similarity},
@@ -363,3 +362,5 @@ change slows and eventually plateaus. This behavior is well captured by a
 sigmoid curve, with an $R^2$ of 0.997 and 0.993 for the PtS-V and PtS-C respectively. The diminishing
 rate of change corresponds to the trust matrix stabilizing at its convergent
 state.
+
+

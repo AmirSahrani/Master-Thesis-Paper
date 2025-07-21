@@ -1,0 +1,243 @@
+\documentclass[10pt,dvipsnames]{beamer}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{bookmark}
+\usepackage{Oswald}
+
+\title{Modelling Meta-Agreement through Deliberation: An Adaptation of the DeGroot Model}
+\author{Amir Sahrani}
+\date{13-01-2025}
+
+\setbeamertemplate{frametitle}{%
+    \vspace{0.5em}% Space before the title
+    {\centering{\Large\insertframetitle}\par}
+    \vspace{1em}% Space after the title
+}
+\definecolor{ICLLightGrey}{RGB}{245, 245, 245} 
+
+\begin{document}
+\begingroup
+\setbeamercolor{background canvas}{bg=ICLLightGrey} % Slide background color
+\setbeamercolor{title page title}{fg=OrangeRed} % Title text color
+\setbeamercolor{title page subtitle}{fg=RoyalPurple} % Subtitle text color
+\setbeamercolor{author}{fg=OrangeRed} % Author(s) text color
+\setbeamercolor{date}{fg=OrangeRed} % Date text color
+\frame[plain, s]{\titlepage} % Output the title page with no footer ('plain') and vertically distributed text ('s')
+\endgroup
+\newcommand{\slidetitle}[1]{
+
+	{\textcolor{RoyalPurple}{\Large #1}\par}
+	\hspace{3em}
+}
+
+\begin{frame}
+
+	\slidetitle{Working Example}
+
+
+	Alice: $a \succ b \succ c$, thinks $a$ is most tasty, no monetary restrictions
+
+	Bob: $c \succ a \succ b$, does not care as much for taste, thinks $c$ is cheapest
+
+	Charlie: $b \succ c \succ a$, thinks $b$ is most tasty, also thinks $b$ is the cheapest
+
+	\hspace{3em}
+
+	Instead of directly trying to pick a winner, we ask them to talk a bit before.
+
+
+\end{frame}
+
+\begin{frame}
+
+	\slidetitle{After deliberation}
+
+	They realize that Bob and Charlie hold mutually exclusive beliefs,
+	namely $c$ and $b$ cannot both be the cheapest options. It turns out
+	that $b$ is actually cheaper!
+	\vspace{2em}
+
+	Alice: $a \succ b \succ c$
+
+	Bob: $b \succ a \succ c$
+
+	Charlie: $b \succ c \succ a$
+
+	\vspace{2em} These preferences are now single-peaked. This now allows
+	us to pick $b$ as the winner, using the strategyproof rule of picking the median alternative.
+\end{frame}
+
+\begin{frame}
+	\slidetitle{Motivation}
+
+	Following work by list etc. we propose deliberation
+	as a mechanism of enforcing ``shared realities''.
+
+
+	We set out to find a formal description of deliberation, as well as a
+	mechanistic computational model.
+
+	Using this we hope to be able to understand deliberation and inform
+	interventions on cultivating shared realities.
+
+\end{frame}
+
+\begin{frame}
+
+	\slidetitle{Outline}
+
+	\begin{itemize}[label=$\circ$]
+		\item Short history of deliberation theory
+		\item Models of deliberation
+		\item Negative results
+		\item Our model
+	\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+
+	\slidetitle{Deliberation, a political science perspective}
+
+	\begin{minipage}[t]{0.45\linewidth}
+		Tenets of deliberation (Cohen, 2002):
+		\begin{itemize}[label=$\circ$]
+			\item Free
+			\item Equal
+			\item Reasoned
+			\item Consensus
+		\end{itemize}
+	\end{minipage}
+	\begin{minipage}[t]{0.5\linewidth}
+		\begin{itemize}
+			\item [] List (2002): Meta-agreement, unanimous consensus too strong on substantive agreement.
+
+			\item []Meta-agreement requires three hypotheses to be satisfied
+
+
+			\item []Deliberation in mini republics increases voter knowledge and judgement
+
+
+		\end{itemize}
+	\end{minipage}
+
+\end{frame}
+
+\begin{frame}
+
+	\slidetitle{America in one Room (2020)}
+
+	\begin{itemize}
+		\item [] Large scale deliberative experiment
+		\item [] Measured pre- and post-deliberation opinions of participants
+		\item [] Deliberation caused participants to be more likely to vote, have more favorable opinions of alternatives, and be more likely to support Joe Biden
+	\end{itemize}
+
+	We use the data from this experiment to validate our own model.
+
+
+
+\end{frame}
+
+\begin{frame}
+
+	\slidetitle{Deliberation, a modelling perspective}
+
+	\begin{minipage}[t]{0.45\linewidth}
+		Rad and Roy (2021)
+		\begin{itemize}[label=$\circ$]
+			\item Participants discuss preference rankings
+			\item Make use of different metric spaces to calculate new opinion
+			\item Participants are biased
+			\item Only consensus in the form of unanimous preferences
+		\end{itemize}
+	\end{minipage}
+	\hspace{2em}
+	\begin{minipage}[t]{0.45\linewidth}
+		Missing:
+		\begin{itemize}[label=$\circ$]
+			\item No ``meta-agreement''
+			\item Updating procedure requires knowledge of large graphs
+			\item Reasoned
+			\item Consensus
+		\end{itemize}
+	\end{minipage}
+
+\end{frame}
+
+\begin{frame}
+
+	\slidetitle{Notation}
+
+	\begin{minipage}[t]{0.45\linewidth}
+		Rad and Roy (2021)
+		\begin{itemize}[label=$\circ$]
+			\item Participants discuss preference rankings
+			\item Make use of different metric spaces to calculate new opinion
+			\item Participants are biased
+			\item Only consensus in the form of unanimous preferences
+		\end{itemize}
+	\end{minipage}
+	\hspace{2em}
+	\begin{minipage}[t]{0.45\linewidth}
+		Missing:
+		\begin{itemize}[label=$\circ$]
+			\item No ``meta-agreement''
+			\item Updating procedure requires knowledge of large graphs
+			\item Reasoned
+			\item Consensus
+		\end{itemize}
+	\end{minipage}
+
+\end{frame}
+
+
+\begin{frame}
+
+	\slidetitle{Strategyproofness}
+
+
+	This leads to the next tenet of deliberation: Honesty
+\end{frame}
+
+
+\begin{frame}
+
+	\slidetitle{Our model: The Adapted DeGroot model}
+
+
+\end{frame}
+
+
+\begin{frame}
+
+	\slidetitle{Experimental Setup}
+
+
+\end{frame}
+
+\begin{frame}
+
+	\slidetitle{Results}
+
+
+\end{frame}
+
+
+\begin{frame}
+
+	\slidetitle{Limitations}
+
+
+\end{frame}
+
+
+\begin{frame}
+
+	\slidetitle{Conclusion}
+
+
+\end{frame}
+
+\end{document}
